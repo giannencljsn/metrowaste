@@ -81,25 +81,7 @@
                     </div>
                     <!-- Column -->
                     <!-- Column -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div class="round align-self-center round-success"><i class="ti-money"></i></div>
-                                    <div class="m-l-10 align-self-center">
-                                        <h3 class="m-b-0">
-                                         <?php 
-                                                $this->db->where('status','Granted');
-                                                $this->db->from("loan");
-                                                echo $this->db->count_all_results();
-                                            ?> Loan 
-                                        </h3>
-                                        <a href="<?php echo base_url(); ?>Loan/View" class="text-muted m-b-0">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- Column -->
                 </div>
                 <!-- Row -->
@@ -152,20 +134,7 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-success">
-                            <div class="box text-center">
-                                <h1 class="font-light text-white">
-                                         <?php 
-                                                $this->db->where('status','Granted');
-                                                $this->db->from("loan");
-                                                echo $this->db->count_all_results();
-                                            ?> 
-                                </h1>
-                                <h6 class="text-white">Loan Application</h6>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- Column -->
                 </div>
                 <!-- ============================================================== -->
