@@ -40,7 +40,10 @@
 							<ul aria-expanded="false "class="collapse">
 								
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
+<<<<<<< HEAD:application/views/backend/employeesidebar.php
 								<li><a href="<?php echo base_url(); ?>leave/EmLeavesheet">Leave Sheet</a></li>
+=======
+>>>>>>> nelbranch:metrowaste/application/views/backend/employeesidebar.php
 							</ul>
 							
 						</li>

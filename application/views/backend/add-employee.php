@@ -38,8 +38,26 @@
                                <?php echo $this->session->flashdata('feedback'); ?>
                             <div class="card-body">
 
+<<<<<<< HEAD:application/views/backend/add-employee.php
 							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
 
+=======
+<<<<<<<< HEAD:metrowaste3/application/views/backend/add-employee.php
+							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
+
+========
+<<<<<<< HEAD:metrowaste/application/views/backend/add-employee.php
+							<form name="myForm" id="myForm" class="row" method="post" action="Save" enctype="multipart/form-data" >
+<<<<<<< Updated upstream
+=======
+									
+>>>>>>> Stashed changes
+=======
+							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
+
+>>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/views/backend/add-employee.php
+>>>>>>>> nelbranch:application/views/backend/add-employee.php
+>>>>>>> nelbranch:metrowaste/application/views/backend/add-employee.php
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
                                         <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
@@ -232,7 +250,14 @@
 										</div>
 											<input type="hidden" name="contact" id="contact">	
 									</div>
+<<<<<<< HEAD:application/views/backend/add-employee.php
                                 
+=======
+                                    <div class="form-group col-md-3 m-t-20">
+                                        <label>Emergency Contact Name</label>
+                                        <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="15" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
+                                    </div>
+>>>>>>> nelbranch:metrowaste/application/views/backend/add-employee.php
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
                                         <div class="input-group">

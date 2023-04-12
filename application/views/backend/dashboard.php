@@ -15,6 +15,11 @@
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
+<<<<<<< HEAD:application/views/backend/dashboard.php
+=======
+            <?php if ($this->session->userdata('user_type') == 'ADMIN'): ?>
+
+>>>>>>> nelbranch:metrowaste/application/views/backend/dashboard.php
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Row -->
@@ -110,6 +115,10 @@
                 </div>
                 <!-- ============================================================== -->
             </div> 
+<<<<<<< HEAD:application/views/backend/dashboard.php
+=======
+            <?php endif; ?>
+>>>>>>> nelbranch:metrowaste/application/views/backend/dashboard.php
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
                 $userid = $this->session->userdata('user_login_id');
@@ -167,6 +176,10 @@
                                                     <div class="checkbox checkbox-info">
                                                         <input class="to-do" data-id="<?php echo $value->id?>" data-value="1" type="checkbox" id="<?php echo $value->id?>" checked>
                                                         <label class="task-done" for="<?php echo $value->id?>"><span><?php echo $value->to_dodata; ?></span></label>
+<<<<<<< HEAD:application/views/backend/dashboard.php
+=======
+                                                        <a href="<?php echo base_url('dashboard/delete/'.$value->id); ?>"title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+>>>>>>> nelbranch:metrowaste/application/views/backend/dashboard.php
                                                     </div> 
                                                     <?php } ?>                                                   
                                                 </li>
