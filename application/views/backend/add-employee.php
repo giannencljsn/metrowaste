@@ -41,11 +41,11 @@
                                 <form class="row" method="post" action="Save" enctype="multipart/form-data">
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
-                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" > 
+                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Last Name </label>
-                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2"> 
+                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Employee Code </label>
@@ -113,28 +113,28 @@
                                     </div>
                                   
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>SSS</label>
-                                        <input type="text" name="sss" class="form-control" value="" placeholder="SSS" minlength="10"> 
+                                        <label>SSS (10 digits)</label>
+                                        <input type="text" name="sss" class="form-control" value="" placeholder="SSS" maxlength="10"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>PHILHEALTH</label>
-                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" minlength="12"> 
+                                        <label>PHILHEALTH (12 digits)</label>
+                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>PAGIBIG</label>
-                                        <input type="text" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" minlength="12"> 
+                                        <label>PAGIBIG (12 digits)</label>
+                                        <input type="text" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>TIN</label>
+                                        <label>TIN (12 digits)</label>
                                         <input type="text" name="tin" class="form-control" value="" placeholder="TIN" minlength="9" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Contact </label>
-                                        <input type="text" name="contact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="15"> 
+                                        <label>Contact Number</label>
+                                        <input type="text" name="contact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="12"> 
                                     </div>
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
-                                        <input type="text" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="11"> 
+                                        <input type="text" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>
