@@ -60,25 +60,8 @@
                     </div>
                     <!-- Column -->
                     <!-- Column -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div class="round align-self-center round-danger"><i class="ti-calendar"></i></div>
-                                    <div class="m-l-10 align-self-center">
-                                        <h3 class="m-b-0"> 
-                                         <?php 
-                                                $this->db->where('pro_status','running');
-                                                $this->db->from("project");
-                                                echo $this->db->count_all_results();
-                                            ?> Projects
-                                        </h3>
-                                        <a href="<?php echo base_url(); ?>Projects/All_Projects" class="text-muted m-b-0">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+					<!-- PROJECTS DELETED -->
+                    
                     <!-- Column -->
                     <!-- Column -->
                     
@@ -119,20 +102,8 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <div class="col-md-6 col-lg-3 col-xlg-3">
-                        <div class="card card-inverse card-danger">
-                            <div class="box text-center">
-                                <h1 class="font-light text-white">
-                                     <?php 
-                                            $this->db->where('pro_status','upcoming');
-                                            $this->db->from("project");
-                                            echo $this->db->count_all_results();
-                                        ?> 
-                                </h1>
-                                <h6 class="text-white">Upcoming Project</h6>
-                            </div>
-                        </div>
-                    </div>
+					<!-- Project column deleted -->
+                
                     <!-- Column -->
                     
                     <!-- Column -->
@@ -151,30 +122,31 @@
                     
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Running Project/s</h4>
+						<div class="card-body">
+                                <h4 class="card-title">Notice Board</h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive" style="height:600px;overflow-y:scroll">
-                                    <table class="table table-bordered table-hover earning-box">
+                                <div class="table-responsive slimScrollDiv" style="height:600px;overflow-y:scroll">
+                                    <table class="table table-hover table-bordered earning-box ">
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
+                                                <th>File</th>
+                                                <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <?php foreach($running AS $value): ?>
-                                            <tr style="vertical-align:top;">
-                                                <td><a href="<?php echo base_url(); ?>Projects/view?P=<?php echo base64_encode($value->id); ?>"><?php echo substr("$value->pro_name",0,25).'...'; ?></a></td>
-                                                <td><?php echo $value->pro_start_date; ?></td>
-                                                <td><?php echo $value->pro_end_date; ?></td>
+                                           <?php foreach($notice AS $value): ?>
+                                            <tr class="scrollbar" style="vertical-align:top">
+                                                <td><?php echo $value->title ?></td>
+                                                <td><mark><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url ?>" target="_blank"><?php echo $value->file_url ?></a></mark>
+                                                </td>
+                                                <td style="width:100px"><?php echo $value->date ?></td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,7 +195,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="card">
-                            <div class="card-body">
+                            <!-- <div class="card-body">
                                 <h4 class="card-title">Notice Board</h4>
                             </div>
                             <div class="card-body">
@@ -248,12 +220,12 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body">
+                            <!-- <div class="card-body">
                                 <h4 class="card-title">
                                     Holidays
                                 </h4>
@@ -277,7 +249,7 @@
                                        </tbody> 
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div> 
