@@ -47,10 +47,45 @@
                                         <label>Last Name </label>
                                         <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" required> 
                                     </div>
+                                    <!----- RANDOM PIN NO. ----->
+
+                                    <?php
+                                    function generate_unique_random_number($min, $max) {
+                                        $db_conn = mysqli_connect('localhost', 'root', '', 'hrsystemci');
+                                        if (!$db_conn) {
+                                            die('Could not connect to database: ' . mysqli_connect_error());
+                                        }
+
+                                        $exists = true;
+                                        while ($exists) {
+                                            $random_number = mt_rand($min, $max);
+                                            $em_code = "EMP - " . $random_number;
+                                            $query = "SELECT COUNT(*) FROM employee WHERE em_code = '$em_code'";
+                                            $result = mysqli_query($db_conn, $query);
+                                            if (!$result) {
+                                                die('Error executing query: ' . mysqli_error($db_conn));
+                                            }
+                                            $count = mysqli_fetch_array($result)[0];
+                                            $exists = ($count > 0);
+                                        }
+
+                                        mysqli_close($db_conn);
+
+                                        return $em_code;
+                                    }
+
+                                    $min = 10000;
+                                    $max = 99999;
+                                    $unique_number = generate_unique_random_number($min, $max);
+                                    ?>
+                                    <!--- FUNCTION END ---->
+
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Employee Code </label>
-                                        <input type="text" name="eid" class="form-control form-control-line" placeholder="Example: 8820"> 
+                                        <label>Employee Code</label>
+                                        <input type="text" name="eid" class="form-control" placeholder="Example: 8820" value="<?php echo $unique_number; ?>" readonly>
                                     </div>
+
+
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Department</label>
                                         <select name="dept" value="" class="form-control custom-select">
@@ -118,7 +153,7 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PHILHEALTH (12 digits)</label>
-                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" maxlength="12"> 
+                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" minlength="12" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
@@ -130,11 +165,11 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Contact Number</label>
-                                        <input type="text" name="contact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="12"> 
+                                        <input type="text" name="contact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
                                     </div>
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
-                                        <input type="text" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="10" maxlength="12"> 
+                                        <input type="text" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>
