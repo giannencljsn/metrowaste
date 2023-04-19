@@ -80,73 +80,10 @@
                         </div>
                     </div>
                 </div>
-                        <div class="modal fade" id="holysmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content ">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="exampleModalLabel1">Holidays</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <form method="post" action="Add_Holidays" id="holidayform" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        
-                                            <div class="form-group">
-                                                <label class="control-label">Holidays name</label>
-                                                <input type="text" name="holiname" class="form-control" id="recipient-name1" minlength="4" maxlength="25" value="" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Holidays Start Date</label>
-                                                <input type="date" name="startdate" class="form-control" id="recipient-name1"  value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Holidays End Date</label>
-                                                <input type="date" name="enddate" class="form-control" id="recipient-name1" value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Number of Days</label>
-                                                <input type="number" name="nofdate" class="form-control" id="recipient-name1" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="message-text" class="control-label"> Year</label>
-                                                <textarea class="form-control" name="year" id="message-text1"></textarea>
-                                            </div>                                           
-                                        
-                                    </div>
-                                    <div class="modal-footer">
-                                    <input type="hidden" name="id" value="" class="form-control" id="recipient-name1">                                       
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-<script type="text/javascript">
-$(document).ready(function () {
-    $(".holiday").click(function (e) {
-        e.preventDefault(e);
-        // Get the record's ID via attribute  
-        var iid = $(this).attr('data-id');
-        $('#holidayform').trigger("reset");
-        $('#holysmodel').modal('show');
-        $.ajax({
-            url: 'Holidaybyib?id=' + iid,
-            method: 'GET',
-            data: '',
-            dataType: 'json',
-        }).done(function (response) {
-            console.log(response);
-            // Populate the form fields with the data returned from server
-			$('#holidayform').find('[name="id"]').val(response.holidayvalue.id).end();
-            $('#holidayform').find('[name="holiname"]').val(response.holidayvalue.holiday_name).end();
-            $('#holidayform').find('[name="startdate"]').val(response.holidayvalue.from_date).end();
-            $('#holidayform').find('[name="enddate"]').val(response.holidayvalue.to_date).end();
-            $('#holidayform').find('[name="nofdate"]').val(response.holidayvalue.number_of_days).end();
-            $('#holidayform').find('[name="year"]').val(response.holidayvalue.year).end();
-		});
-    });
-});
-</script>
+                        
+                                    
+                                 
+
 <script type="text/javascript">
 $(document).ready(function () {
     $(".holidelet").click(function (e) {

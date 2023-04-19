@@ -15,7 +15,6 @@ class Attendance extends CI_Controller
         $this->load->model('settings_model');
         $this->load->model('leave_model');
         $this->load->model('attendance_model');
-        $this->load->model('project_model');
         $this->load->library('csvimport');
     }
     

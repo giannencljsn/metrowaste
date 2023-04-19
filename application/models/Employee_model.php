@@ -76,16 +76,7 @@
 		$result = $query->row();
 		return $result;          
     }
-    public function ProjectEmployee($id){
-      $sql = "SELECT `assign_task`.`assign_user`,
-      `employee`.`em_id`,`first_name`,`last_name`
-      FROM `assign_task`
-      LEFT JOIN `employee` ON `assign_task`.`assign_user`=`employee`.`em_id`
-      WHERE `assign_task`.`project_id`='$id' AND `user_type`='Team Head'";
-      $query=$this->db->query($sql);
-      $result = $query->result();
-      return $result;          
-    }
+ 
     public function GetperAddress($id){
       $sql = "SELECT * FROM `address`
       WHERE `emp_id`='$id' AND `type`='Permanent'";

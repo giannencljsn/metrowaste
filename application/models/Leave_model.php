@@ -7,9 +7,7 @@
 	parent::__construct();
 	
 	}
-    public function Add_HolidayInfo($data){
-        $this->db->insert('holiday',$data);
-    }
+
 
     // Add the application of leave with ID no ID
     public function Application_Apply($data){
@@ -33,24 +31,7 @@
     public function Application_Apply_Approve($data){
         $this->db->insert('assign_leave', $data);
     }
-    public function GetAllHoliInfo(){
-        $sql = "SELECT * FROM `holiday`";
-        $query = $this->db->query($sql);
-        $result = $query->result();
-        return $result;
-    }
-    public function GetAllHoliInfoForCalendar(){
-        $sql = "SELECT holiday_name AS `title`, from_date AS `start` FROM `holiday`";
-        $query = $this->db->query($sql);
-        $result = $query->result();
-        return json_encode($result);
-    }
-    public function GetLeaveValue($id){
-        $sql = "SELECT * FROM `holiday` WHERE `id`='$id'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result; 
-    }
+    
     public function GetEarneBalanceByEmCode($id){
         $sql = "SELECT `earned_leave`.*,
         `employee`.`em_id`,CONCAT(`first_name`, ' ', `last_name`) AS emname
@@ -225,10 +206,7 @@
 		$result = $query->result();
 		return $result; 
     }
-    public function Update_HolidayInfo($id,$data){
-		$this->db->where('id', $id);
-		$this->db->update('holiday',$data);         
-    }
+ 
 
     public function Update_leave_Info($id,$data){
 		$this->db->where('type_id', $id);
@@ -238,9 +216,7 @@
         $this->db->where('type_id', $type);
         $this->db->update('assign_leave', $data);         
     }
-    public function DeletHoliday($id){
-        $this->db->delete('holiday',array('id'=> $id));        
-    }
+  
     public function DeletType($id){
         $this->db->delete('leave_types',array('type_id'=> $id));        
     }
@@ -286,10 +262,6 @@
         return $query->num_rows();
     }
 
-    public function get_holiday_between_dates($day) {
-        $sql = "SELECT * FROM `holiday` WHERE ('$day' = `holiday`.`from_date`) OR ('$day' BETWEEN `holiday`.`from_date` AND `holiday`.`to_date`)";
-        $query = $this->db->query($sql);
-        return $query->row();
-    }
+ 
     }
 ?>    

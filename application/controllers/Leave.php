@@ -28,7 +28,6 @@ class Leave extends CI_Controller
         $this->load->model('employee_model');
         $this->load->model('leave_model');
         $this->load->model('settings_model');
-        $this->load->model('project_model');
     }
 
     public function index()
@@ -674,7 +673,6 @@ class Leave extends CI_Controller
                         'signout_time' => '17:00:00',
                         'status' => 'E'
                     );
-        $this->project_model->insertAttendanceByFieldVisitReturn($data); 
                 
             }
             echo "Successfully Added";

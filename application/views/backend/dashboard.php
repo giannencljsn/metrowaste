@@ -112,10 +112,8 @@
             </div> 
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
-                $running = $this->dashboard_model->GetRunningProject(); 
                 $userid = $this->session->userdata('user_login_id');
                 $todolist = $this->dashboard_model->GettodoInfo($userid);                 
-                $holiday = $this->dashboard_model->GetHolidayInfo();                 
                 ?>
                 <!-- Row -->
                 <div class="row">
@@ -240,12 +238,7 @@
                                             </tr>                                           
                                        </thead>
                                        <tbody>
-                                          <?php foreach($holiday as $value): ?>
-                                           <tr style="background-color:#e3f0f7">
-                                               <td><?php echo $value->holiday_name ?></td>
-                                               <td><?php echo $value->from_date; ?></td>
-                                           </tr>
-                                           <?php endforeach ?>
+                                         
                                        </tbody> 
                                     </table>
                                 </div>

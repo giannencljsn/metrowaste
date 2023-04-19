@@ -157,7 +157,7 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
-                                        <input type="text" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" maxlength="12"> 
+                                        <input type="text" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" minlength="12" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>TIN (12 digits)</label>

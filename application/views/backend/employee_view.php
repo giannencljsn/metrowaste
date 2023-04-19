@@ -75,7 +75,7 @@
 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Employee PIN </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" readonly> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>First Name</label>
@@ -148,15 +148,15 @@
 				                                
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>SSS Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" minlength="10" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" minlength="10" maxlength="10" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PHILHEALTH Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>" minlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>" minlength="12" maxlength="12" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PAGIBIG Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>" minlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>" minlength="12" maxlength="12" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>TIN Number </label>
@@ -164,11 +164,11 @@
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" > 
+				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="11" maxlength="11" > 
 				                                    </div>
 													<div class="form-group col-md-4 m-t-10">
 				                                        <label>Emergency Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>" minlength="10" maxlength="15" > 
+				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>" minlength="11" maxlength="11" > 
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
