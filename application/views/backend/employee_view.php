@@ -645,15 +645,18 @@
 				                                <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Old Password</label>
-				                                        <input type="text" class="form-control" name="old" value="" placeholder="old password" required minlength="6"> 
-				                                    </div>
+				                                        <input type="password" class="form-control" name="old" value="" placeholder="Old password" id="cpassword" required minlength="8"> 
+														
+													</div>
 				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
-				                                    </div>
+				                                        <label>New Password</label>
+				                                        <input type="password" class="form-control" name="new1" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+														title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" id="cpassword" minlength="8" required> 
+														
+													</div>
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
+				                                        <input type="password" id="" name="new2" class="form-control " required minlength="6"> 
 				                                    </div>
 				                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
@@ -661,6 +664,9 @@
 				                                    </div>
 				                                </form>
                                     </div>
+							
+									
+									
                                 </div>
 
                                 <div class="tab-pane" id="salary" role="tabpanel">
@@ -693,6 +699,7 @@
 			                                        <label>Basic</label>
 			                                        <input type="text" name="basic" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" > 
 			                                    </div> 
+												
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>House Rent</label>
 			                                        <input type="text" name="houserent" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line houserent" placeholder="House Rent..." value="<?php if(!empty($salaryvalue->house_rent)) echo $salaryvalue->house_rent ?>" > 
@@ -743,6 +750,9 @@
                                                 <?php } ?>
                                             </div>                                                		                                    
 			                                    </form>
+
+												
+
 				                        </div>
                                     </div>
                                 </div>                                
@@ -751,6 +761,7 @@
                     </div>
                     <!-- Column -->
                 </div>
+				
           <script type="text/javascript">
           $('.total').on('input',function() {
             var amount = parseInt($('.total').val());
