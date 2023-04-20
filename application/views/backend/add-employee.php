@@ -202,6 +202,7 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Confirm Password </label>
                                         <input type="password" name="confirm" id="cpassword" class="form-control" value="" placeholder="**********" minlength="8"required> 
+                                        <p id="error-message"></p>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Image </label>

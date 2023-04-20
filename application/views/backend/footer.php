@@ -25,6 +25,9 @@ var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("cpassword");
+const errorMessage = document.getElementById("error-message");
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
@@ -76,6 +79,17 @@ myInput.onkeyup = function() {
     length.classList.remove("pvalid");
     length.classList.add("invalid");
   }
+
+  confirmPassword.addEventListener("input", () => {
+  if (confirmPassword.value !== password.value) {
+    errorMessage.textContent = "Passwords not match";
+    errorMessage.style.color ="red";
+    confirmPassword.setCustomValidity("Passwords do not match");
+  } else {
+    errorMessage.textContent = "";
+    confirmPassword.setCustomValidity("");
+  }
+});
 }
 </script>
 
