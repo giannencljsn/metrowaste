@@ -108,7 +108,7 @@
                                         <label>Role </label>
                                         <select name="role" class="form-control custom-select">
                                             <option>Select Role</option>
-                                            <option value="ADMIN">ADMIN</option>
+                                            <option value="ADMIN">Admin</option>
                                             <option value="EMPLOYEE">Employee</option>
                                             <option value="SUPER ADMIN">Super Admin</option>
                                         </select>
@@ -149,27 +149,27 @@
                                   
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>SSS (10 digits)</label>
-                                        <input type="text" name="sss" class="form-control" value="" placeholder="SSS" maxlength="10"> 
+                                        <input type="number" name="sss" class="form-control" value="" placeholder="SSS" maxlength="10"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PHILHEALTH (12 digits)</label>
-                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" minlength="12" maxlength="12"> 
+                                        <input type="number" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" minlength="12" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
-                                        <input type="text" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" minlength="12" maxlength="12"> 
+                                        <input type="number" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" minlength="12" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>TIN (12 digits)</label>
-                                        <input type="text" name="tin" class="form-control" value="" placeholder="TIN" minlength="9" maxlength="12"> 
+                                        <input type="number" name="tin" class="form-control" value="" placeholder="TIN" minlength="9" maxlength="12"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Contact Number</label>
-                                        <input type="text" name="contact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
+                                        <input type="number" name="contact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
                                     </div>
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
-                                        <input type="text" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
+                                        <input type="number" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>
@@ -186,15 +186,22 @@
                                    
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="7" > 
+                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="7"
+										title="Must contain at least 7 characters" > 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Password </label>
-                                        <input type="text" name="password" class="form-control" value="" placeholder="**********"> 
-                                    </div>
+                                        <input type="password" name="password" id="password" class="form-control" value="" placeholder="**********" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+										title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" minlength="8"required>
+										<input type="checkbox" onclick="showPassword()" style="position: initial; opacity: 100;">Show Password
+									</div>
+
+								
+
+									
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Confirm Password </label>
-                                        <input type="text" name="confirm" class="form-control" value="" placeholder="**********"> 
+                                        <input type="password" name="confirm" id="cpassword" class="form-control" value="" placeholder="**********" minlength="8"required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Image </label>
@@ -207,6 +214,14 @@
                                     </div>
                                 </form>
                             </div>
+							<div id="message">
+										<h3>Password must contain the following:</h3>
+										<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+										<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+										<p id="number" class="invalid">A <b>number</b></p>
+										<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+							</div>
+
                         </div>
                     </div>
                 </div>
