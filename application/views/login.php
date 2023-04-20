@@ -92,7 +92,7 @@
 		<!-- ============================================================== -->
 		<script src="<?php echo base_url(); ?>assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
-
+		<p>TEST</p>
 
 
 	</body>
