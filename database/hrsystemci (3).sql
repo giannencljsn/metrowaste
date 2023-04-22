@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 12:46 PM
+-- Generation Time: Apr 21, 2023 at 02:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -300,6 +300,13 @@ CREATE TABLE `desciplinary` (
   `incidentdate` varchar(130) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `desciplinary`
+--
+
+INSERT INTO `desciplinary` (`id`, `em_id`, `action`, `reporteddate`, `description`, `incidentdate`) VALUES
+(5, 'gsd1765', 'Suspension', '2023-04-20', 'thredgrdgy5dy5ydtyyttydtyddy', '2023-04-20');
+
 -- --------------------------------------------------------
 
 --
@@ -380,13 +387,13 @@ CREATE TABLE `employee` (
   `first_name` varchar(128) DEFAULT NULL,
   `last_name` varchar(128) DEFAULT NULL,
   `em_email` varchar(64) DEFAULT NULL,
-  `em_password` varchar(512) NOT NULL,
+  `em_password` varchar(50) NOT NULL,
   `em_role` enum('ADMIN','EMPLOYEE','SUPER ADMIN') NOT NULL DEFAULT 'EMPLOYEE',
   `em_address` varchar(512) DEFAULT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL DEFAULT 'ACTIVE',
   `em_gender` enum('Male','Female') NOT NULL DEFAULT 'Male',
   `em_marital_status` enum('Single','Married','Widowed') NOT NULL DEFAULT 'Single',
-  `em_phone` varchar(64) DEFAULT NULL,
+  `em_phone` varchar(11) DEFAULT NULL,
   `em_em_contact` varchar(11) DEFAULT NULL,
   `em_birthday` varchar(128) DEFAULT NULL,
   `em_blood_group` enum('O+','O-','A+','A-','B+','B-','AB+','OB+') DEFAULT NULL,
@@ -407,7 +414,11 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
-(41, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '12345678911', '12345678911', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL);
+(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
+(2, 'Kim1363', 'EMP - 92279', 2, 2, 'Taehyung', 'Kim', 'taehyung30', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1995-12-30', 'O+', '2023-04-20', '2023-05-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(3, 'Kim1479', 'EMP - 25024', 2, 2, 'Namjoon', 'Kim', 'namjoon12', '2268de2ca0ea4dca6e5d679faf372539c3e43582', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(4, 'Jeo1145', 'EMP - 51488', 2, 2, 'Jungkook', 'Jeon', 'jungkook01', 'fef34852b2ed031906f275077656f24f8c5cb69e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(5, 'gsd1765', 'EMP - 71353', 2, 2, 'dgdsgdfg', 'gsdfgsgds', 'fsdfsfs', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', 'Single', '12345678911', '12345678911', '2023-04-20', 'O+', '2023-04-20', '', NULL, '123456789111', '123456789111', '1234567891', '123456789111', '', 'Resigned', '');
 
 -- --------------------------------------------------------
 
@@ -1111,7 +1122,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `desciplinary`
 --
 ALTER TABLE `desciplinary`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `designation`
@@ -1129,7 +1140,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
