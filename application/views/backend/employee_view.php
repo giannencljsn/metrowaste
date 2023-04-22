@@ -28,7 +28,7 @@
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#bank" role="tab" style="font-size: 14px;"> Bank Account</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#document" role="tab" style="font-size: 14px;"> Document</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#salary" role="tab" style="font-size: 14px;"> Salary</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#leave" role="tab" style="font-size: 14px;"> Leave</a> </li>
+                               
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#social" role="tab" style="font-size: 14px;"> Social Media</a> </li>
                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#password" role="tab" style="font-size: 14px;"> Change Password</a> </li>
@@ -125,9 +125,9 @@
                                                         <label>User Type </label>
                                                         <select name="role" class="form-control custom-select" >
 				                                            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
-                                                            <option value="HR">HR</option>
+                                                           
                                                             <option value="EMPLOYEE">Employee</option>
-                                                            <option value="ADMIN">Super Admin</option>
+                                                            <option value="ADMIN">Admin</option>
                                                         </select>
                                                     </div>
                                                     <?php } ?>
@@ -520,75 +520,9 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="leave" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-md-6">
-			                        <div class="card">
-			                            <div class="card-body">
-			                                <h4 class="card-title"> Leave</h4>
-                                            <form action="Assign_leave" method="post" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                <label class="">Leave Type</label>                                 
-                                                 <select name="typeid" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="select2 form-control custom-select" style="width: 100%" id="" required>
-                                                  <option value="">Select Here...</option>
-                                                   <?php foreach($leavetypes as $value): ?>
-                                                    <option value="<?php echo $value->type_id ?>"><?php echo $value->name ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>          
-                                                </div>
-			                                 <div class="form-group">
-			                                    	<label>Day</label>
-			                                    	<input type="number" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="noday" class="form-control form-control-line noday" placeholder="Leave Day" required> 
-			                                 </div>
+                               
 
-                                                <div class="form-group">
-                                                <label class="">Year</label>                                 <select name="year" class="select2 form-control custom-select" style="width: 100%" id="" required>
-                                                 <option value="">Select Here...</option>
-                                                  <?php 
-                                                   for ($x = 2016; $x < 3000; $x++){
-                                                    echo '<option value='.$x.'>'.$x.'</option>';            
-                                                   }
-                                                    ?>
-                                                </select>          
-                                                </div>
-                                                <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>                 
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <input type="hidden" name="em_id" value="<?php echo $basic->em_id; ?>">                                                   
-                                                    <button type="submit" class="btn btn-success">Submit</button>
-                                                </div>
-                                            </div>                                                                     <?php } ?>         
-                                            </form>
-			                            </div>
-			                        </div>                                          
-                                    </div>
-                                    <div class="col-md-6">
-			                        <div class="card">
-			                            <div class="card-body">
-			                                <h4 class="card-title"> Leave/<?php echo date('Y') ?></h4>
-                                            <table class="display nowrap table table-hover table-striped table-bordered" width="50%">
-                                                <thead>
-                                                   <tr class="m-t-50">
-                                                    <th>Type</th>
-                                                    <th>Dayout/Day</th>       
-                                                   </tr>
-                                                </thead>
-                                                <tbody>
-                                                   <?php foreach($Leaveinfo as $value): ?>
-                                                    <tr>
-                                                        <td><?php echo $value->name; ?></td>
-                                                        <td><?php echo $value->total_day; ?>/<?php echo $value->day; ?></td>
-                                                    </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-			                            </div>
-			                        </div>                                     
-                                    </div>
-                                  
-                                </div>
-                                </div>
+								
                                 <div class="tab-pane" id="password1" role="tabpanel">
                                     <div class="card-body">
 				                                <form class="row" action="Reset_Password_Hr" method="post" enctype="multipart/form-data">

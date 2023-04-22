@@ -37,7 +37,7 @@ CREATE TABLE `employee` (
   `last_name` varchar(128) DEFAULT NULL,
   `em_email` varchar(64) DEFAULT NULL,
   `em_password` varchar(50) NOT NULL,
-  `em_role` enum('ADMIN','EMPLOYEE','SUPER ADMIN') NOT NULL DEFAULT 'EMPLOYEE',
+  `em_role` enum('ADMIN','EMPLOYEE') NOT NULL DEFAULT 'EMPLOYEE',
   `em_address` varchar(512) DEFAULT NULL,
   `status` enum('ACTIVE','INACTIVE') NOT NULL DEFAULT 'ACTIVE',
   `em_gender` enum('Male','Female') NOT NULL DEFAULT 'Male',

@@ -58,6 +58,7 @@
 			left: 250px;
 			content: "✖";
 			}
+			
 	</style>
 
 </head>
