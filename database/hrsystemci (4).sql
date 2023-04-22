@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2023 at 02:35 AM
+-- Generation Time: Apr 22, 2023 at 10:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -52,7 +52,9 @@ INSERT INTO `addition` (`addi_id`, `salary_id`, `basic`, `medical`, `house_rent`
 (9, 9, '3500.00', '350.00', '2800.00', '350.00'),
 (10, 10, '2800.00', '280.00', '2240.00', '280.00'),
 (11, 11, '', '', '', ''),
-(12, 12, '5000.00', '500.00', '4000.00', '500.00');
+(12, 12, '5000.00', '500.00', '4000.00', '500.00'),
+(13, 13, '5000.00', '500.00', '4000.00', '500.00'),
+(14, 14, '50.00', '5.00', '40.00', '5.00');
 
 -- --------------------------------------------------------
 
@@ -78,56 +80,9 @@ INSERT INTO `address` (`id`, `emp_id`, `city`, `country`, `address`, `type`) VAL
 (2, 'Doe1753', 'Muscle Shoals', 'US', '1669 James M Avenue', 'Present'),
 (3, 'Soy1332', 'Fordsan', 'US', '778 Blecker Street', 'Permanent'),
 (4, 'Soy1332', 'Fordsan', 'US', '778 Blecker Street', 'Present'),
-(5, 'gfd1001', 'yrtyrtytryr', 'yrtyryr', 'ytyrtytryr', 'Permanent');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assets`
---
-
-CREATE TABLE `assets` (
-  `ass_id` int(14) NOT NULL,
-  `catid` varchar(14) NOT NULL,
-  `ass_name` varchar(256) DEFAULT NULL,
-  `ass_brand` varchar(128) DEFAULT NULL,
-  `ass_model` varchar(256) DEFAULT NULL,
-  `ass_code` varchar(256) DEFAULT NULL,
-  `configuration` varchar(512) DEFAULT NULL,
-  `purchasing_date` varchar(128) DEFAULT NULL,
-  `ass_price` varchar(128) DEFAULT NULL,
-  `ass_qty` varchar(64) DEFAULT NULL,
-  `in_stock` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `assets`
---
-
-INSERT INTO `assets` (`ass_id`, `catid`, `ass_name`, `ass_brand`, `ass_model`, `ass_code`, `configuration`, `purchasing_date`, `ass_price`, `ass_qty`, `in_stock`) VALUES
-(1, '3', 'Laptop T10', 'Dell', 'Alienware', 'AW569', 'demo config demo config demo config', '12/23/2021', '1949', '3', '3');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assets_category`
---
-
-CREATE TABLE `assets_category` (
-  `cat_id` int(14) NOT NULL,
-  `cat_status` enum('ASSETS','LOGISTIC') NOT NULL DEFAULT 'ASSETS',
-  `cat_name` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `assets_category`
---
-
-INSERT INTO `assets_category` (`cat_id`, `cat_status`, `cat_name`) VALUES
-(1, 'ASSETS', 'TAB'),
-(2, 'ASSETS', 'Computer'),
-(3, 'ASSETS', 'Laptop'),
-(4, 'LOGISTIC', 'tab');
+(5, 'gfd1001', 'yrtyrtytryr', 'yrtyryr', 'ytyrtytryr', 'Permanent'),
+(6, 'Kim1479', 'PASIG CITY', 'MARS', 'SITIO TOMATO SAUCE BRGY CRISPY FRY, TIDBITS', 'Permanent'),
+(7, 'Kim1479', 'PASAY', 'VENUS', 'SITIO TOMATO SAUSE BRGY CRISPY FRY, TIDBITS', 'Present');
 
 -- --------------------------------------------------------
 
@@ -157,29 +112,9 @@ INSERT INTO `assign_leave` (`id`, `app_id`, `emp_id`, `type_id`, `day`, `hour`, 
 (4, '', 'data-id=\"4\"', 1, NULL, '2', NULL, '2023'),
 (5, '', 'Par1787', 8, NULL, '7', NULL, '2023'),
 (6, '', 'Kim1923', 11, NULL, '4', NULL, '2023'),
-(7, '', 'Seo1259', 13, NULL, '2', NULL, '2023');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assign_task`
---
-
-CREATE TABLE `assign_task` (
-  `id` int(14) NOT NULL,
-  `task_id` int(14) NOT NULL,
-  `project_id` int(14) NOT NULL,
-  `assign_user` varchar(64) DEFAULT NULL,
-  `user_type` enum('Team Head','Collaborators') NOT NULL DEFAULT 'Collaborators'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `assign_task`
---
-
-INSERT INTO `assign_task` (`id`, `task_id`, `project_id`, `assign_user`, `user_type`) VALUES
-(1, 1, 1, 'Moo1402', 'Team Head'),
-(2, 1, 1, 'Doe1753', 'Collaborators');
+(7, '', 'Seo1259', 13, NULL, '2', NULL, '2023'),
+(8, '', 'Jeo1145', 13, NULL, '8', NULL, '2023'),
+(9, '', 'Jeo1145', 10, NULL, '8', NULL, '2023');
 
 -- --------------------------------------------------------
 
@@ -231,7 +166,8 @@ INSERT INTO `bank_info` (`id`, `em_id`, `holder_name`, `bank_name`, `branch_name
 (7, 'Smi1266', 'Colin Smith', 'IO Bank', 'CVB Branch', 'CA001450006980', 'Salary Account'),
 (8, 'Moo1634', 'Christine Moore', 'RTY Bank', 'ERT Branch', 'CA850000245800', 'Savings'),
 (9, 'Joh1474', 'Michael K Johnson', 'Aexr Bank', 'ERT Branch', 'CA800000256147', 'Salary Account'),
-(10, 'Den1745', 'Emily V Denn', 'Demo Bank', 'XZY Branch', 'CA777000001055', 'Savings');
+(10, 'Den1745', 'Emily V Denn', 'Demo Bank', 'XZY Branch', 'CA777000001055', 'Savings'),
+(11, 'Kim1479', '123456', '23423', '213243', '432423', '432342');
 
 -- --------------------------------------------------------
 
@@ -264,7 +200,9 @@ INSERT INTO `deduction` (`de_id`, `salary_id`, `provident_fund`, `bima`, `tax`, 
 (9, 9, '0', '0', '0', '0'),
 (10, 10, '0', '100', '10', '0'),
 (11, 11, '', '', '', ''),
-(12, 12, '100', '100', '100', '100');
+(12, 12, '100', '100', '100', '100'),
+(13, 13, '', '', '', ''),
+(14, 14, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -414,10 +352,10 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
-(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
+(1, 'Seo1523', 'EMP - 57764', 4, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
 (2, 'Kim1363', 'EMP - 92279', 2, 2, 'Taehyung', 'Kim', 'taehyung30', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1995-12-30', 'O+', '2023-04-20', '2023-05-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(3, 'Kim1479', 'EMP - 25024', 2, 2, 'Namjoon', 'Kim', 'namjoon12', '2268de2ca0ea4dca6e5d679faf372539c3e43582', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(4, 'Jeo1145', 'EMP - 51488', 2, 2, 'Jungkook', 'Jeon', 'jungkook01', 'fef34852b2ed031906f275077656f24f8c5cb69e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(3, 'Kim1479', 'EMP - 25024', 4, 2, 'Namjoon', 'Kim', 'namjoon12', '2f084577bc6a170397cc2333a3ff969c5f635a1e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(4, 'Jeo1145', 'EMP - 51488', 4, 3, 'Jungkook', 'Jeon', 'jungkook01', 'ea025ba34ea5e906c3735c69a308d20dc72004be', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
 (5, 'gsd1765', 'EMP - 71353', 2, 2, 'dgdsgdfg', 'gsdfgsgds', 'fsdfsfs', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', 'Single', '12345678911', '12345678911', '2023-04-20', 'O+', '2023-04-20', '', NULL, '123456789111', '123456789111', '1234567891', '123456789111', '', 'Resigned', '');
 
 -- --------------------------------------------------------
@@ -433,19 +371,12 @@ CREATE TABLE `employee_file` (
   `file_url` varchar(512) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `emp_assets`
+-- Dumping data for table `employee_file`
 --
 
-CREATE TABLE `emp_assets` (
-  `id` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `assets_id` int(11) NOT NULL,
-  `given_date` date NOT NULL,
-  `return_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+INSERT INTO `employee_file` (`id`, `em_id`, `file_title`, `file_url`) VALUES
+(1, 'Kim1479', 'MANUSCRIPT', 'CHAPTER_1-3-Final_(1).docx');
 
 -- --------------------------------------------------------
 
@@ -461,6 +392,13 @@ CREATE TABLE `emp_experience` (
   `exp_com_address` varchar(128) DEFAULT NULL,
   `exp_workduration` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `emp_experience`
+--
+
+INSERT INTO `emp_experience` (`id`, `emp_id`, `exp_company`, `exp_com_position`, `exp_com_address`, `exp_workduration`) VALUES
+(1, 'Kim1479', 'WQEQEQE', 'SADSDS', 'FSDFSFDSFDSF', '1223');
 
 -- --------------------------------------------------------
 
@@ -486,7 +424,9 @@ CREATE TABLE `emp_leave` (
 --
 
 INSERT INTO `emp_leave` (`id`, `em_id`, `typeid`, `leave_type`, `start_date`, `end_date`, `leave_duration`, `apply_date`, `reason`, `leave_status`) VALUES
-(10, 'Seo1259', 13, 'Half Day', '2023-04-18', '', '2', '2023-04-19', 'hhgfknhdgffdghgjhgfhjg', 'Approve');
+(10, 'Seo1259', 13, 'Half Day', '2023-04-18', '', '2', '2023-04-19', 'hhgfknhdgffdghgjhgfhjg', 'Approve'),
+(11, 'Jeo1145', 13, 'Full Day', '2023-04-22', '', '8', '2023-04-22', 'jhhghhghgjhjhg', 'Approve'),
+(12, 'Jeo1145', 10, 'More than One day', '2023-04-20', '2023-04-21', '8', '2023-04-22', 'hjghjhkhjkhkh', 'Approve');
 
 -- --------------------------------------------------------
 
@@ -514,17 +454,13 @@ CREATE TABLE `emp_salary` (
   `total` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `emp_training`
+-- Dumping data for table `emp_salary`
 --
 
-CREATE TABLE `emp_training` (
-  `id` int(11) NOT NULL,
-  `trainig_id` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+INSERT INTO `emp_salary` (`id`, `emp_id`, `type_id`, `total`) VALUES
+(13, 'Kim1479', 2, '10000'),
+(14, 'Jeo1145', 2, '100');
 
 -- --------------------------------------------------------
 
@@ -575,46 +511,6 @@ INSERT INTO `leave_types` (`type_id`, `name`, `leave_day`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logistic_asset`
---
-
-CREATE TABLE `logistic_asset` (
-  `log_id` int(14) NOT NULL,
-  `name` varchar(256) DEFAULT NULL,
-  `qty` varchar(64) DEFAULT NULL,
-  `entry_date` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `logistic_asset`
---
-
-INSERT INTO `logistic_asset` (`log_id`, `name`, `qty`, `entry_date`) VALUES
-(1, 'Lubricant', '30', '12/25/17');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `logistic_assign`
---
-
-CREATE TABLE `logistic_assign` (
-  `ass_id` int(14) NOT NULL,
-  `asset_id` int(14) NOT NULL,
-  `assign_id` varchar(64) DEFAULT NULL,
-  `project_id` int(14) NOT NULL,
-  `task_id` int(14) NOT NULL,
-  `log_qty` varchar(64) DEFAULT NULL,
-  `start_date` varchar(64) DEFAULT NULL,
-  `end_date` varchar(64) DEFAULT NULL,
-  `back_date` varchar(64) DEFAULT NULL,
-  `back_qty` varchar(64) DEFAULT NULL,
-  `remarks` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `notice`
 --
 
@@ -632,19 +528,6 @@ CREATE TABLE `notice` (
 INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
 (1, 'This is a demo notice for all!', 'sample_image.jpg', '2022-01-01'),
 (5, 'Mission of company metrowaste', '339838725_2184844885044271_1958159763907385544_n.jpg', '2023-04-25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `owner`
---
-
-CREATE TABLE `owner` (
-  `id` int(11) NOT NULL,
-  `owner_name` varchar(64) NOT NULL,
-  `owner_position` varchar(64) DEFAULT NULL,
-  `note` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -686,76 +569,6 @@ CREATE TABLE `penalty` (
   `penalty_name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pro_expenses`
---
-
-CREATE TABLE `pro_expenses` (
-  `id` int(14) NOT NULL,
-  `pro_id` int(14) NOT NULL,
-  `assign_to` varchar(64) DEFAULT NULL,
-  `details` varchar(512) DEFAULT NULL,
-  `amount` varchar(256) DEFAULT NULL,
-  `date` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pro_notes`
---
-
-CREATE TABLE `pro_notes` (
-  `id` int(14) NOT NULL,
-  `assign_to` varchar(64) DEFAULT NULL,
-  `pro_id` int(14) NOT NULL,
-  `details` varchar(1024) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pro_task`
---
-
-CREATE TABLE `pro_task` (
-  `id` int(14) NOT NULL,
-  `pro_id` int(14) NOT NULL,
-  `task_title` varchar(256) DEFAULT NULL,
-  `start_date` varchar(128) DEFAULT NULL,
-  `end_date` varchar(128) DEFAULT NULL,
-  `image` varchar(128) DEFAULT NULL,
-  `description` varchar(2048) DEFAULT NULL,
-  `task_type` enum('Office','Field') NOT NULL DEFAULT 'Office',
-  `status` enum('running','complete','cancel') DEFAULT 'running',
-  `location` varchar(512) DEFAULT NULL,
-  `return_date` varchar(128) DEFAULT NULL,
-  `total_days` varchar(128) DEFAULT NULL,
-  `create_date` varchar(128) DEFAULT NULL,
-  `approve_status` enum('Approved','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `pro_task`
---
-
-INSERT INTO `pro_task` (`id`, `pro_id`, `task_title`, `start_date`, `end_date`, `image`, `description`, `task_type`, `status`, `location`, `return_date`, `total_days`, `create_date`, `approve_status`) VALUES
-(1, 1, 'Demo Task Title for Testing', '2022-01-03', '2022-01-31', NULL, 'This is demo details for testing. This is demo details for testing', 'Office', 'running', NULL, NULL, NULL, '2022-01-03', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pro_task_assets`
---
-
-CREATE TABLE `pro_task_assets` (
-  `id` int(11) NOT NULL,
-  `pro_task_id` int(11) NOT NULL,
-  `assign_id` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -821,6 +634,14 @@ CREATE TABLE `social_media` (
   `skype_id` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `emp_id`, `facebook`, `twitter`, `google_plus`, `skype_id`) VALUES
+(1, 'Jeo1145', '', '', 'https://www.bing.com/search?pglt=41&q=google&cvid=fcc737a185d841338d14aaf33ba72277&aqs=edge.0.46j69i57j46l3j0j46j69i60l2.1521j0j1&FORM=ANNTA1&PC=HCTS', ''),
+(2, 'Kim1479', '', '', 'https://us05web.zoom.us/postattendee?mn=Ue86cW53AzC7_eF6yBR4S-_YCUn8EBAi0dM.z-8p07tRRK-kuwXh', '');
+
 -- --------------------------------------------------------
 
 --
@@ -844,7 +665,10 @@ INSERT INTO `to-do_list` (`id`, `user_id`, `to_dodata`, `date`, `value`) VALUES
 (2, 'Soy1332', 'Research on X1, Y2, A3', '2022-01-02 08:27:25pm', '0'),
 (3, 'Soy1332', 'Recruit Members', '2022-01-02 08:27:50pm', '1'),
 (4, 'Soy1332', 'Assign Task to Dev.', '2022-01-02 08:28:04pm', '0'),
-(5, 'Soy1332', 'Attend Zoom Meetings', '2022-01-03 03:10:07pm', '1');
+(5, 'Soy1332', 'Attend Zoom Meetings', '2022-01-03 03:10:07pm', '1'),
+(6, 'Seo1523', 'this is test', '2023-04-22 03:36:30pm', '1'),
+(7, 'Seo1523', 'hello', '2023-04-22 04:30:00pm', '1'),
+(8, 'Jeo1145', 'hello', '2023-04-22 04:40:27pm', '1');
 
 --
 -- Indexes for dumped tables
@@ -863,27 +687,9 @@ ALTER TABLE `address`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `assets`
---
-ALTER TABLE `assets`
-  ADD PRIMARY KEY (`ass_id`);
-
---
--- Indexes for table `assets_category`
---
-ALTER TABLE `assets_category`
-  ADD PRIMARY KEY (`cat_id`);
-
---
 -- Indexes for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `assign_task`
---
-ALTER TABLE `assign_task`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -941,12 +747,6 @@ ALTER TABLE `employee_file`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `emp_assets`
---
-ALTER TABLE `emp_assets`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `emp_experience`
 --
 ALTER TABLE `emp_experience`
@@ -983,18 +783,6 @@ ALTER TABLE `leave_types`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indexes for table `logistic_asset`
---
-ALTER TABLE `logistic_asset`
-  ADD PRIMARY KEY (`log_id`);
-
---
--- Indexes for table `logistic_assign`
---
-ALTER TABLE `logistic_assign`
-  ADD PRIMARY KEY (`ass_id`);
-
---
 -- Indexes for table `notice`
 --
 ALTER TABLE `notice`
@@ -1005,30 +793,6 @@ ALTER TABLE `notice`
 --
 ALTER TABLE `pay_salary`
   ADD PRIMARY KEY (`pay_id`);
-
---
--- Indexes for table `pro_expenses`
---
-ALTER TABLE `pro_expenses`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pro_notes`
---
-ALTER TABLE `pro_notes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pro_task`
---
-ALTER TABLE `pro_task`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pro_task_assets`
---
-ALTER TABLE `pro_task_assets`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `salary_type`
@@ -1062,37 +826,19 @@ ALTER TABLE `to-do_list`
 -- AUTO_INCREMENT for table `addition`
 --
 ALTER TABLE `addition`
-  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `assets`
---
-ALTER TABLE `assets`
-  MODIFY `ass_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `assets_category`
---
-ALTER TABLE `assets_category`
-  MODIFY `cat_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `assign_task`
---
-ALTER TABLE `assign_task`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -1104,13 +850,13 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `bank_info`
 --
 ALTER TABLE `bank_info`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `deduction`
 --
 ALTER TABLE `deduction`
-  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -1134,7 +880,7 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -1146,25 +892,19 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `employee_file`
 --
 ALTER TABLE `employee_file`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `emp_assets`
---
-ALTER TABLE `emp_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `emp_experience`
 --
 ALTER TABLE `emp_experience`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `emp_leave`
 --
 ALTER TABLE `emp_leave`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `emp_penalty`
@@ -1176,7 +916,7 @@ ALTER TABLE `emp_penalty`
 -- AUTO_INCREMENT for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `field_visit`
@@ -1191,18 +931,6 @@ ALTER TABLE `leave_types`
   MODIFY `type_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `logistic_asset`
---
-ALTER TABLE `logistic_asset`
-  MODIFY `log_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `logistic_assign`
---
-ALTER TABLE `logistic_assign`
-  MODIFY `ass_id` int(14) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
@@ -1213,30 +941,6 @@ ALTER TABLE `notice`
 --
 ALTER TABLE `pay_salary`
   MODIFY `pay_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `pro_expenses`
---
-ALTER TABLE `pro_expenses`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pro_notes`
---
-ALTER TABLE `pro_notes`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pro_task`
---
-ALTER TABLE `pro_task`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `pro_task_assets`
---
-ALTER TABLE `pro_task_assets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salary_type`
@@ -1254,13 +958,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `social_media`
 --
 ALTER TABLE `social_media`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `to-do_list`
 --
 ALTER TABLE `to-do_list`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
