@@ -34,6 +34,8 @@ class Login extends CI_Controller {
             $data=array();
             #$data['settingsvalue'] = $this->dashboard_model->GetSettingsValue();
 			$this->load->view('login');
+
+
 	}
 	public function Login_Auth(){	
 	$response = array();
@@ -94,6 +96,15 @@ class Login extends CI_Controller {
             $this->session->set_userdata('email', $row->em_email);
             $this->session->set_userdata('user_image', $row->em_image);
             $this->session->set_userdata('user_type', $row->em_role);
+
+			//Redirect based on user type
+			if($row->em_role == 'ADMIN'){
+				redirect(base_url() . 'admin_dashboard/dashboard');
+			} elseif($row->em_role == 'EMPLOYEE'){
+				redirect(base_url() . 'employee_dashboard/dashboard');
+			}
+			
+
             return 'success';
         }
 	}

@@ -244,13 +244,13 @@ class Leave extends CI_Controller
             if($type == 'Half Day') {
                 $duration = $hourAmount;
             } else if($type == 'Full Day') { 
-                $duration = 8;
+                $duration = 24;
             } else { 
                 $formattedStart = new DateTime($appstartdate);
                 $formattedEnd = new DateTime($appenddate);
 
                 $duration = $formattedStart->diff($formattedEnd)->format("%d");
-                $duration = $duration * 8;
+                $duration = $duration * 24;
             }
 
             $this->load->library('form_validation');

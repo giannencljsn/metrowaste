@@ -53,7 +53,12 @@
         $result = $query->row();
         return $result ? 1 : 0;    
     } 
- 
+    public function GetHolidayByYear($dateval){
+        $sql = "SELECT * FROM `holiday` WHERE `holiday`.`year`= '$dateval'";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;         
+    } 
     public function GetloanInfo($emid){
         $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$emid'";
         $query = $this->db->query($sql);
@@ -223,7 +228,14 @@
       $result = $query->row();
       return $result;        
     }     
-
+    public function getNumberOfHolidays($month, $year){
+      $sql = "SELECT SUM(`number_of_days`) AS total_days
+      FROM `holiday`
+      WHERE MONTH(`from_date`)='$month' AND YEAR(`from_date`)='$year'";
+      $query=$this->db->query($sql);
+	    $result = $query->row();
+	    return $result;        
+    }
 public function getPinFromID($employeeID){
       $sql = "SELECT `em_code`
       FROM `employee`

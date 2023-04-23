@@ -110,7 +110,7 @@
                                             <option>Select Role</option>
                                             <option value="ADMIN">Admin</option>
                                             <option value="EMPLOYEE">Employee</option>
-                                            <option value="SUPER ADMIN">Super Admin</option>
+                                           
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
@@ -147,30 +147,105 @@
                                         </select>
                                     </div>
                                   
+
+									<div class="form-group col-md-3 m-t-20">
+										<label>PHILHEALTH (12 digits)</label>
+										<div class="input-group">
+											<input type="text" name="philhealth_1" class="form-control" maxlength="2" placeholder="00">
+											<div class="input-group-prepend">
+											<span class="input-group-text">-</span>
+											</div>
+											<input type="text" name="philhealth_2" class="form-control" maxlength="9" placeholder="000000000">
+											<div class="input-group-prepend">
+											<span class="input-group-text">-</span>
+											</div>
+											<input type="text" name="philhealth_3" class="form-control" maxlength="1" placeholder="0">
+										</div>
+										<input type="hidden" name="philhealth" id="philhealth">
+										</div>
+
+
+
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>SSS (10 digits)</label>
-                                        <input type="number" name="sss" class="form-control" value="" placeholder="SSS" maxlength="10"> 
-                                    </div>
-                                    <div class="form-group col-md-3 m-t-20">
+                                        <div class="input-group">
+                                            <input type="text" name="sss_1" class="form-control" minlength="2" maxlength="2" placeholder="00" >
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+                                            </div>
+                                            <input type="text" name="sss_2" class="form-control" minlength="7" maxlength="7" placeholder="0000000" >
+											<div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+                                            </div>
+                                            <input type="text" name="sss_3" class="form-control" minlength="1" maxlength="1" placeholder="0" >
+                                       	 </div>
+											<input type="hidden" name="sss" id="sss">	
+									</div>
+                                    <!-- <div class="form-group col-md-3 m-t-20">
                                         <label>PHILHEALTH (12 digits)</label>
-                                        <input type="number" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" minlength="12" maxlength="12"> 
-                                    </div>
+                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" pattern="\d{3}-\d{3}-\d{3}" maxlength="9" > 
+                                    </div> -->
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
-                                        <input type="number" name="pagibig" class="form-control" value="" placeholder="PAGIBIG" minlength="12" maxlength="12"> 
+										<div class="input-group">
+                                        	<input type="text" name="pagibig_1" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+											</div>
+                                            
+                                            <input type="text" name="pagibig_2" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+											<div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+                                            </div>
+                                            <input type="text" name="pagibig_3" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+                                       	 </div>
+											<input type="hidden" name="pagibig" id="pagibig">	
                                     </div>
+
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>TIN (12 digits)</label>
-                                        <input type="number" name="tin" class="form-control" value="" placeholder="TIN" minlength="9" maxlength="12"> 
+                                        <label>TIN (12-15 digits)</label>
+										<div class="input-group">
+											<input type="text" name="tin_1" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+											</div>
+                                            
+                                            <input type="text" name="tin_2" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+											<div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+                                            </div>
+                                            <input type="text" name="tin_3" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+											<div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+											</div>
+											<input type="text" name="tin_4" class="form-control" minlength="3" maxlength="5" placeholder="00000" >
+										
+										</div>
+											<input type="hidden" name="tin" id="tin">
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Contact Number</label>
-                                        <input type="number" name="contact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
-                                    </div>
+										<div class="input-group">
+                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+											</div>
+                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" >
+										</div>
+											<input type="hidden" name="contact" id="contact">	
+									</div>
+                                
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
-                                        <input type="number" name="emcontact" class="form-control" value="" placeholder="1234567890" minlength="11" maxlength="11"> 
-                                    </div>
+                                        <div class="input-group">
+                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text">-</span>
+											</div>
+                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" >
+										</div>
+											<input type="hidden" name="emcontact" id="emcontact"> 
+									</div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>
                                         <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder=""> 
@@ -186,8 +261,8 @@
                                    
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="7"
-										title="Must contain at least 7 characters" > 
+                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="3"
+										title="Must contain at least 3 characters" > 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Password </label>
@@ -202,6 +277,7 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Confirm Password </label>
                                         <input type="password" name="confirm" id="cpassword" class="form-control" value="" placeholder="**********" minlength="8"required> 
+                                        <p id="error-message"></p>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Image </label>

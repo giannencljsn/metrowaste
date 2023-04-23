@@ -63,8 +63,8 @@
                                                 <td ><?php echo $value->em_code; ?></td>
                                                 <td ><?php echo substr("$value->reporteddate",0,15).'...' ?></td>
                                                 <td ><?php echo substr("$value->incidentdate",0,15).'...' ?></td>
-                                                <td><?php echo substr("$value->description",0,10).'...' ?> </td>
-                                                <td><button class="btn btn-sm btn-success"><?php echo $value->action; ?></button></td>
+                                                <td><?php echo substr("$value->description",0,40).'...' ?> </td>
+                                                <td><button id="actionButton" class="btn btn-sm action"><?php echo $value->action; ?></button></td>
                                                 <td  class="jsgrid-align-center ">
                                                     <a href="#" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light disiplinary" data-id="<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o"></i></a>
                                                     <a href="DeletDisiplinary?D=<?php echo $value->id; ?>" onclick="confirm('Are you sure to delete this value?')" title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
@@ -135,6 +135,40 @@
                     </div>
                 </div>
 <script type="text/javascript">
+				
+
+</script>
+
+
+
+<script type="text/javascript">
+	var button = $('.action');
+	button.css('color','white');
+
+$(document).ready(function() {
+  $('.action').each(function() {
+    var buttonText = $(this).text().trim();
+    var color = '';
+    switch(buttonText) {
+      case 'First Warning':
+        color = 'green';
+        break;
+      case 'Second Warning':
+        color = 'orange';
+       break;
+      case 'Suspension':
+        color = 'red';
+		break;
+	 case 'Terminated':
+        color = 'blue';
+        break;
+    }
+    $(this).css('background-color', color);
+  });
+});
+
+
+//END CHANGE BUTTON COLOR
                                         $(document).ready(function () {
                                             $(".disiplinary").click(function (e) {
                                                 e.preventDefault(e);

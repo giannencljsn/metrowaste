@@ -3,7 +3,7 @@
 	class Settings_model extends CI_Model{
 
 
-	function __construct(){
+	function __consturct(){
 	parent::__construct();
 	
 	}

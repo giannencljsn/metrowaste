@@ -33,7 +33,7 @@
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>ID </th>
+                                    
                                         <th>Leave Type</th>
                                         <th>Number Of Days</th>
                                         <th>Action</th>
@@ -49,8 +49,8 @@
                                 </tfoot> -->
                                 <tbody>
                                     <?php foreach($leavetypes as $value): ?>
-                                    <tr>
-                                        <td><?php echo $value->type_id; ?></td>
+                                    <!-- <tr>
+                                        <td><?php echo $value->type_id; ?></td> -->
                                         <td><?php echo $value->name ?></td>
                                         <td><?php echo $value->leave_day ?></td>
                                         <td class="jsgrid-align-center ">
