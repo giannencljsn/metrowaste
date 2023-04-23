@@ -3,7 +3,7 @@
 	class Employee_model extends CI_Model{
 
 
-	function __construct(){
+	function __consturct(){
 	parent::__construct();
 	
 	}
@@ -45,11 +45,6 @@
 		$result = $query->result();
 		return $result;
 	}
-  //delete inactive
-  public function deleteEmployee($em_code){
-    return $this->db->delete('employee', ['em_code' => $em_code]);
-
-  }
     public function Does_email_exists($email) {
 		$user = $this->db->dbprefix('employee');
         $sql = "SELECT `em_email` FROM $user
@@ -76,7 +71,16 @@
 		$result = $query->row();
 		return $result;          
     }
- 
+    public function ProjectEmployee($id){
+      $sql = "SELECT `assign_task`.`assign_user`,
+      `employee`.`em_id`,`first_name`,`last_name`
+      FROM `assign_task`
+      LEFT JOIN `employee` ON `assign_task`.`assign_user`=`employee`.`em_id`
+      WHERE `assign_task`.`project_id`='$id' AND `user_type`='Team Head'";
+      $query=$this->db->query($sql);
+      $result = $query->result();
+      return $result;          
+    }
     public function GetperAddress($id){
       $sql = "SELECT * FROM `address`
       WHERE `emp_id`='$id' AND `type`='Permanent'";
@@ -118,11 +122,9 @@
 		$result = $query->result();
 		return $result;          
     }
-    
     public function desciplinaryfetch(){
-      //it will select the all colums from deciplinary then it will return the result function
       $sql = "SELECT `desciplinary`.*,
-      `employee`.`em_id`,`first_name`,`last_name`,`em_code` 
+      `employee`.`em_id`,`first_name`,`last_name`,`em_code`
       FROM `desciplinary`
       LEFT JOIN `employee` ON `desciplinary`.`em_id`=`employee`.`em_id`";
         $query=$this->db->query($sql);
@@ -193,12 +195,6 @@
 		$this->db->where('id', $id);
 		$this->db->update('desciplinary',$data);        
     }
-
-		public function Update_Inactivity($id,$data){
-			$this->db->where('id', $id);
-			$this->db->update('employee',$data);
-		}
-		
     public function Update_Media($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('social_media',$data);        
@@ -215,11 +211,6 @@
     public function Add_Desciplinary($data){
         $this->db->insert('desciplinary',$data);
     }
-
-		public function Add_Inactivity($data){
-			$this->db->insert('employee', $data);
-		}
-
     public function Add_BankInfo($data){
         $this->db->insert('bank_info',$data);
     }
@@ -259,16 +250,6 @@
         $result = $query->row();
         return $result; 
     } 
-
-		//Invalid User
-		public function GetInValue($id){
-			$sql = "SELECT * FROM `employee` 
-			WHERE `id` = '$id' AND `status`='INACTIVE'"; 
-			$query = $this->db->query($sql);
-			$result = $query->row();
-			return $result;
-		}
-
 	public function depselect(){
   	$query = $this->db->get('department');
   	$result = $query->result();

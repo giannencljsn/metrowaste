@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2023 at 10:47 AM
+-- Generation Time: Apr 23, 2023 at 10:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -136,6 +136,20 @@ CREATE TABLE `attendance` (
   `status` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `emp_id`, `atten_date`, `signin_time`, `signout_time`, `working_hour`, `place`, `absence`, `overtime`, `earnleave`, `status`) VALUES
+(1030, 'EMP - 57764', '2023-04-23', '10:50:00', '03:00:00', '07 h 50 m', 'office', NULL, NULL, NULL, 'A'),
+(1031, 'EMP - 92279', '2023-04-01', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1032, 'EMP - 51488', '2023-04-11', '09:50:00', '01:10:00', '08 h 40 m', 'office', NULL, NULL, NULL, 'A'),
+(1033, 'EMP - 25024', '2023-04-26', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1034, 'EMP - 92279', '2023-04-08', '12:57:00', '01:01:00', '11 h 56 m', 'office', NULL, NULL, NULL, 'A'),
+(1035, 'EMP - 25024', '2023-04-30', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1036, 'EMP - 57764', '2023-04-30', '12:00:00', '12:05:00', '00 h 5 m', 'office', NULL, NULL, NULL, 'A'),
+(1037, 'EMP - 51488', '2023-04-01', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A');
+
 -- --------------------------------------------------------
 
 --
@@ -243,7 +257,8 @@ CREATE TABLE `desciplinary` (
 --
 
 INSERT INTO `desciplinary` (`id`, `em_id`, `action`, `reporteddate`, `description`, `incidentdate`) VALUES
-(5, 'gsd1765', 'Suspension', '2023-04-20', 'thredgrdgy5dy5ydtyyttydtyddy', '2023-04-20');
+(5, 'gsd1765', 'Suspension', '2023-04-20', 'thredgrdgy5dy5ydtyyttydtyddy', '2023-04-20'),
+(6, 'Kim1363', 'Terminated', '2023-04-23', 'hgfghfhfhgf', '2023-04-23');
 
 -- --------------------------------------------------------
 
@@ -352,11 +367,10 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
-(1, 'Seo1523', 'EMP - 57764', 4, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
+(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', '', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
 (2, 'Kim1363', 'EMP - 92279', 2, 2, 'Taehyung', 'Kim', 'taehyung30', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1995-12-30', 'O+', '2023-04-20', '2023-05-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(3, 'Kim1479', 'EMP - 25024', 4, 2, 'Namjoon', 'Kim', 'namjoon12', '2f084577bc6a170397cc2333a3ff969c5f635a1e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(4, 'Jeo1145', 'EMP - 51488', 4, 3, 'Jungkook', 'Jeon', 'jungkook01', 'ea025ba34ea5e906c3735c69a308d20dc72004be', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(5, 'gsd1765', 'EMP - 71353', 2, 2, 'dgdsgdfg', 'gsdfgsgds', 'fsdfsfs', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', 'Single', '12345678911', '12345678911', '2023-04-20', 'O+', '2023-04-20', '', NULL, '123456789111', '123456789111', '1234567891', '123456789111', '', 'Resigned', '');
+(3, 'Kim1479', 'EMP - 25024', 2, 2, 'Namjoon', 'Kim', 'namjoon12', '2268de2ca0ea4dca6e5d679faf372539c3e43582', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
+(4, 'Jeo1145', 'EMP - 51488', 2, 2, 'Jungkook', 'Jeon', 'jungkook01', 'fef34852b2ed031906f275077656f24f8c5cb69e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -481,6 +495,33 @@ CREATE TABLE `field_visit` (
   `status` enum('Approved','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve',
   `attendance_updated` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `holiday`
+--
+
+CREATE TABLE `holiday` (
+  `id` int(11) NOT NULL,
+  `holiday_name` varchar(256) DEFAULT NULL,
+  `from_date` varchar(64) DEFAULT NULL,
+  `to_date` varchar(64) DEFAULT NULL,
+  `number_of_days` varchar(64) DEFAULT NULL,
+  `year` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `holiday`
+--
+
+INSERT INTO `holiday` (`id`, `holiday_name`, `from_date`, `to_date`, `number_of_days`, `year`) VALUES
+(1, 'New Year\'s Eve', '2021-12-30', '2022-01-31', '32', '12-2021'),
+(3, 'New Year\'s Day', '2022-01-01', '2022-01-02', '1', '01-2022'),
+(5, 'Christmas', '2021-12-23', '2021-12-25', '2', '12-2021'),
+(6, 'Thanksgiving', '2021-11-23', '2021-11-26', '3', '11-2021'),
+(7, 'Halloween', '2021-10-31', '2021-10-31', '0', '10-2021'),
+(8, 'Saint Patrick\'s Day', '2021-03-17', '2021-03-17', '0', '03-2021');
 
 -- --------------------------------------------------------
 
@@ -666,9 +707,13 @@ INSERT INTO `to-do_list` (`id`, `user_id`, `to_dodata`, `date`, `value`) VALUES
 (3, 'Soy1332', 'Recruit Members', '2022-01-02 08:27:50pm', '1'),
 (4, 'Soy1332', 'Assign Task to Dev.', '2022-01-02 08:28:04pm', '0'),
 (5, 'Soy1332', 'Attend Zoom Meetings', '2022-01-03 03:10:07pm', '1'),
-(6, 'Seo1523', 'this is test', '2023-04-22 03:36:30pm', '1'),
-(7, 'Seo1523', 'hello', '2023-04-22 04:30:00pm', '1'),
-(8, 'Jeo1145', 'hello', '2023-04-22 04:40:27pm', '1');
+(6, 'Seo1523', 'this is test', '2023-04-22 03:36:30pm', '0'),
+(7, 'Seo1523', 'hello', '2023-04-22 04:30:00pm', '0'),
+(8, 'Jeo1145', 'hello', '2023-04-22 04:40:27pm', '1'),
+(9, 'Seo1523', 'hello', '2023-04-23 12:20:21pm', '0'),
+(10, 'Seo1523', 'whyyyyy', '2023-04-23 12:36:50pm', '1'),
+(11, 'Seo1523', 'tengenee nemen', '2023-04-23 12:39:59pm', '1'),
+(12, 'Seo1523', 'to do', '2023-04-23 01:02:09pm', '1');
 
 --
 -- Indexes for dumped tables
@@ -777,6 +822,12 @@ ALTER TABLE `field_visit`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `holiday`
+--
+ALTER TABLE `holiday`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `leave_types`
 --
 ALTER TABLE `leave_types`
@@ -844,7 +895,7 @@ ALTER TABLE `assign_leave`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1020;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1038;
 
 --
 -- AUTO_INCREMENT for table `bank_info`
@@ -868,7 +919,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `desciplinary`
 --
 ALTER TABLE `desciplinary`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `designation`
@@ -886,7 +937,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
@@ -923,6 +974,12 @@ ALTER TABLE `emp_salary`
 --
 ALTER TABLE `field_visit`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `holiday`
+--
+ALTER TABLE `holiday`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
@@ -964,7 +1021,7 @@ ALTER TABLE `social_media`
 -- AUTO_INCREMENT for table `to-do_list`
 --
 ALTER TABLE `to-do_list`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
