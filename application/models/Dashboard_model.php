@@ -9,6 +9,10 @@
     }
 
     //down code for todo,leave,holiday
+
+	public function insert_tododata($data){
+        $this->db->insert('to-do_list',$data);
+    }
 	public function GettodoInfo($userid){
         $sql = "SELECT * FROM `to-do_list` WHERE `user_id`='$userid' ORDER BY `date` DESC";
         $query=$this->db->query($sql);
@@ -16,9 +20,6 @@
         return $result;
     }
 
-
-
-	
 
 	public function UpdateTododata($id,$data){
 		$this->db->where('id', $id);
