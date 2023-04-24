@@ -321,6 +321,11 @@
   }
     public function DeletDisiplinary($id){
       $this->db->delete('desciplinary',array('id'=> $id));
-  }        
+  } 
+  public function delete_employee($emid) {
+    $this->db->where('em_id', $emid);
+    $this->db->delete('employee');
+}
+       
     }
 ?>

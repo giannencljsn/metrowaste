@@ -1329,9 +1329,9 @@ else{
         $this->load->view('backend/invalid_user',$data);
     }
     //delete inactive
-    public function delete($em_code){
+    public function delete($id){
         $this->load->model('Employee_model');
-        $this->Employee_model->deleteEmployee($em_code);
+        $this->Employee_model->delete_employee($id);
         redirect(base_url('employee'));
     }
 }
