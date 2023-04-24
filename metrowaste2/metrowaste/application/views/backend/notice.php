@@ -30,7 +30,7 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>Sl</th>
+                                                
                                                 <th>Title</th>
                                                 <th>File</th>
                                                 <th>Date</th>
@@ -47,7 +47,7 @@
                                         <tbody>
                                            <?php foreach($notice as $value): ?>
                                             <tr>
-                                                <td><?php echo $value->id; ?></td>
+                                                <!-- <td><?php echo $value->id; ?></td> -->
                                                 <td><?php echo $value->title; ?></td>
                                                 <td><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url; ?>" target="_blank"><?php echo $value->file_url; ?></a></td>
                                                 <td><?php echo $value->date; ?></td>
@@ -72,7 +72,7 @@
                                     <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="message-text" class="control-label">Notice Title</label>
-                                                <textarea class="form-control" name="title" id="message-text1" required minlength="25" maxlength="150"></textarea>
+                                                <textarea class="form-control" name="title" id="message-text1" required minlength="5" maxlength="150"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label">Document</label>

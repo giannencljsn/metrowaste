@@ -91,8 +91,8 @@ class Employee extends CI_Controller {
 	$deg = $this->input->post('deg');
 	$role = $this->input->post('role');
 	$gender = $this->input->post('gender');
-	$contact = $this->input->post('contact');
-	$emcontact = $this->input->post('emcontact');
+	$contact = $this->input->post('contact_1') . '-' . $this->input->post('contact_2');
+	$emcontact = $this->input->post('emcontact_1') . '-' . $this->input->post('emcontact_2');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
 	$leavedate = $this->input->post('leavedate');
@@ -102,10 +102,10 @@ class Employee extends CI_Controller {
 	$acctpw = $this->input->post('password');	
 	$password = sha1($acctpw);	
 	$confirm = $this->input->post('confirm');		
-	$sss = $this->input->post('sss');		
-	$philhealth = $this->input->post('philhealth');		
-	$pagibig = $this->input->post('pagibig');		
-	$tin = $this->input->post('tin');		
+	$sss =  $this->input->post('sss_1') . '-' . $this->input->post('sss_2') . '-' . $this->input->post('sss_3');	
+	$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
+	$pagibig = $this->input->post('pagibig_1') . '-' . $this->input->post('pagibig_2') . '-' . $this->input->post('pagibig_3');		
+	$tin =  $this->input->post('tin_1') . '-' . $this->input->post('tin_2') . '-' . $this->input->post('tin_3'). '-' . $this->input->post('tin_4');	
 	$blood = $this->input->post('blood');
 	$marital = $this->input->post('maritalstat');		
         $this->load->library('form_validation');
@@ -113,7 +113,7 @@ class Employee extends CI_Controller {
         // Validating Name Field
         // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
         /*validating email field*/
-        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[3]|max_length[100]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -254,7 +254,7 @@ class Employee extends CI_Controller {
 	$confirm = $this->input->post('confirm');	
 	$address = $this->input->post('address');		
 	$sss = $this->input->post('sss');		
-	$philhealth = $this->input->post('philhealth');		
+	$philhealth =  $this->input->post('philhealth');
 	$pagibig = $this->input->post('pagibig');		
 	$tin = $this->input->post('tin');		
 	$status = $this->input->post('status');		
@@ -265,7 +265,7 @@ class Employee extends CI_Controller {
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
 
-        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[3]|max_length[100]|xss_clean');
 
 
         if ($this->form_validation->run() == FALSE) {
@@ -396,7 +396,7 @@ class Employee extends CI_Controller {
 				$confirm = $this->input->post('confirm');	
 				$address = $this->input->post('address');			
 				$sss = $this->input->post('sss');		
-				$philhealth = $this->input->post('philhealth');		
+				$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
 				$pagibig = $this->input->post('pagibig');		
 				$tin = $this->input->post('tin');		
 				$status = $this->input->post('status');		
@@ -654,7 +654,7 @@ class Employee extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('name', 'name', 'trim|required|min_length[2]|max_length[150]|xss_clean');
-        $this->form_validation->set_rules('institute', 'institute', 'trim|required|min_length[5]|max_length[250]|xss_clean');
+        $this->form_validation->set_rules('institute', 'institute', 'trim|required|min_length[3]|max_length[250]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -817,50 +817,51 @@ class Employee extends CI_Controller {
     }
 
 	//Invalid User
+//Invalid User
 
-	public function adding_Inactivity(){
-        if($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('id');
-        $em_id = $this->input->post('emid');
-        $reason = $this->input->post('reason');
-        $inactivedate = $this->input->post('inactivedate');
-        $remarks = $this->input->post('remarks');
-       
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-       
-        // $this->form_validation->set_rules('inactive', 'Date of Inactive', 'required|regex_match[/^\d{4}\-\d{2}\-\d{2}$/]');
-        $this->form_validation->set_rules('remarks', 'Remarks', 'trim|xss_clean');
+public function adding_Inactivity(){
+	if($this->session->userdata('user_login_access') != False) {
+	$id = $this->input->post('id');
+	$em_id = $this->input->post('emid');
+	$reason = $this->input->post('reason');
+	$inactivedate = $this->input->post('inactivedate');
+	$remarks = $this->input->post('remarks');
+   
+	$this->load->library('form_validation');
+	$this->form_validation->set_error_delimiters();
+   
+	// $this->form_validation->set_rules('inactive', 'Date of Inactive', 'required|regex_match[/^\d{4}\-\d{2}\-\d{2}$/]');
+	$this->form_validation->set_rules('remarks', 'Remarks', 'trim|xss_clean');
 
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-			#redirect('Disciplinary');
-			} else {
-            $data = array();
-                $data = array(
-                    'em_id' => $em_id,
-                    'inactivedate' => $inactivedate,
-                    'reason' => $reason,
-                    'remarks' => $remarks
-                );
-            if(empty($id)){
-                $success = $this->employee_model->Add_Inactivity($data);
-                $this->session->set_flashdata('feedback','Successfully Added');
-                #redirect('employee/Disciplinary');
-                echo "Successfully Added";
-            } else {
-                $success = $this->employee_model->Update_Inactivity($id,$data);
-                #$this->session->set_flashdata('feedback','Successfully Updated');
-                #redirect("employee/view?I=" .base64_encode($em_id));
-                echo "Successfully Updated";
-            }
-                       
-        }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
-    }
+	if ($this->form_validation->run() == FALSE) {
+		echo validation_errors();
+		#redirect('Disciplinary');
+		} else {
+		$data = array();
+			$data = array(
+				'em_id' => $em_id,
+				'inactivedate' => $inactivedate,
+				'reason' => $reason,
+				'remarks' => $remarks
+			);
+		if(empty($id)){
+			$success = $this->employee_model->Add_Inactivity($data);
+			$this->session->set_flashdata('feedback','Successfully Added');
+			#redirect('employee/Disciplinary');
+			echo "Successfully Added";
+		} else {
+			$success = $this->employee_model->Update_Inactivity($id,$data);
+			#$this->session->set_flashdata('feedback','Successfully Updated');
+			#redirect("employee/view?I=" .base64_encode($em_id));
+			echo "Successfully Updated";
+		}
+				   
+	}
+	}
+else{
+	redirect(base_url() , 'refresh');
+}        
+}
 
     public function Add_bank_info(){
         if($this->session->userdata('user_login_access') != False) {
@@ -1328,9 +1329,9 @@ class Employee extends CI_Controller {
         $this->load->view('backend/invalid_user',$data);
     }
     //delete inactive
-    public function delete($em_code){
+    public function delete($id){
         $this->load->model('Employee_model');
-        $this->Employee_model->deleteEmployee($em_code);
+        $this->Employee_model->delete_employee($id);
         redirect(base_url('employee'));
     }
 }
