@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2023 at 10:49 AM
+-- Generation Time: Apr 23, 2023 at 06:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -114,7 +114,8 @@ INSERT INTO `assign_leave` (`id`, `app_id`, `emp_id`, `type_id`, `day`, `hour`, 
 (6, '', 'Kim1923', 11, NULL, '4', NULL, '2023'),
 (7, '', 'Seo1259', 13, NULL, '2', NULL, '2023'),
 (8, '', 'Jeo1145', 13, NULL, '8', NULL, '2023'),
-(9, '', 'Jeo1145', 10, NULL, '8', NULL, '2023');
+(9, '', 'Jeo1145', 10, NULL, '8', NULL, '2023'),
+(10, '', 'Kim1767', 14, NULL, '8', NULL, '2023');
 
 -- --------------------------------------------------------
 
@@ -148,7 +149,8 @@ INSERT INTO `attendance` (`id`, `emp_id`, `atten_date`, `signin_time`, `signout_
 (1034, 'EMP - 92279', '2023-04-08', '12:57:00', '01:01:00', '11 h 56 m', 'office', NULL, NULL, NULL, 'A'),
 (1035, 'EMP - 25024', '2023-04-30', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A'),
 (1036, 'EMP - 57764', '2023-04-30', '12:00:00', '12:05:00', '00 h 5 m', 'office', NULL, NULL, NULL, 'A'),
-(1037, 'EMP - 51488', '2023-04-01', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A');
+(1037, 'EMP - 51488', '2023-04-01', '12:00:00', '01:00:00', '11 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1038, 'EMP - 57764', '2023-04-13', '08:00:00', '11:00:00', '03 h 0 m', 'office', NULL, NULL, NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -257,8 +259,7 @@ CREATE TABLE `desciplinary` (
 --
 
 INSERT INTO `desciplinary` (`id`, `em_id`, `action`, `reporteddate`, `description`, `incidentdate`) VALUES
-(5, 'gsd1765', 'Suspension', '2023-04-20', 'thredgrdgy5dy5ydtyyttydtyddy', '2023-04-20'),
-(6, 'Kim1363', 'Terminated', '2023-04-23', 'hgfghfhfhgf', '2023-04-23');
+(12, 'Min1919', 'Suspension', '2023-04-26', 'FSDBGSDFGHSDGFD', '2023-04-24');
 
 -- --------------------------------------------------------
 
@@ -323,7 +324,8 @@ CREATE TABLE `education` (
 --
 
 INSERT INTO `education` (`id`, `emp_id`, `edu_type`, `institute`, `result`, `year`) VALUES
-(1, 'Doe1753', 'MSIT', 'Westview University', '71', '2016');
+(1, 'Doe1753', 'MSIT', 'Westview University', '71', '2016'),
+(3, 'Kim1767', 'IT', 'AMA', '90', '2023');
 
 -- --------------------------------------------------------
 
@@ -346,17 +348,17 @@ CREATE TABLE `employee` (
   `status` enum('ACTIVE','INACTIVE') NOT NULL DEFAULT 'ACTIVE',
   `em_gender` enum('Male','Female') NOT NULL DEFAULT 'Male',
   `em_marital_status` enum('Single','Married','Widowed') NOT NULL DEFAULT 'Single',
-  `em_phone` varchar(11) DEFAULT NULL,
-  `em_em_contact` varchar(11) DEFAULT NULL,
+  `em_phone` varchar(12) DEFAULT NULL,
+  `em_em_contact` varchar(12) DEFAULT NULL,
   `em_birthday` varchar(128) DEFAULT NULL,
   `em_blood_group` enum('O+','O-','A+','A-','B+','B-','AB+','OB+') DEFAULT NULL,
   `em_joining_date` varchar(128) DEFAULT NULL,
   `em_contact_end` varchar(11) DEFAULT NULL,
   `em_image` varchar(128) DEFAULT NULL,
-  `em_philhealth` varchar(12) DEFAULT NULL,
-  `em_pagibig` varchar(12) DEFAULT NULL,
-  `em_sss` varchar(10) DEFAULT NULL,
-  `em_tin` varchar(12) DEFAULT NULL,
+  `em_philhealth` varchar(14) DEFAULT NULL,
+  `em_pagibig` varchar(14) DEFAULT NULL,
+  `em_sss` varchar(12) DEFAULT NULL,
+  `em_tin` varchar(18) DEFAULT NULL,
   `inactivedate` varchar(130) DEFAULT NULL,
   `reason` varchar(256) DEFAULT NULL,
   `remarks` varchar(512) DEFAULT NULL
@@ -367,10 +369,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
-(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', '', NULL, 'ACTIVE', 'Female', 'Single', '12345678901', '12345678901', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '123456789111', '123456789111', '1234567891', '123456789111', NULL, NULL, NULL),
-(2, 'Kim1363', 'EMP - 92279', 2, 2, 'Taehyung', 'Kim', 'taehyung30', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1995-12-30', 'O+', '2023-04-20', '2023-05-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(3, 'Kim1479', 'EMP - 25024', 2, 2, 'Namjoon', 'Kim', 'namjoon12', '2268de2ca0ea4dca6e5d679faf372539c3e43582', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1994-09-12', 'O+', '2023-04-20', '2023-04-30', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL),
-(4, 'Jeo1145', 'EMP - 51488', 2, 2, 'Jungkook', 'Jeon', 'jungkook01', 'fef34852b2ed031906f275077656f24f8c5cb69e', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '12345678901', '12345678901', '1997-09-01', 'O+', '2023-04-20', '2023-05-31', NULL, '123456789012', '123456789012', '1234567890', '123456789012', NULL, NULL, NULL);
+(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL),
+(2, 'Kim1767', 'EMP - 41785', 7, 3, 'Namjoon', 'Kim', 'namjoon01', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '2023-04-01', 'O+', '2023-04-24', '2023-04-30', NULL, '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -440,7 +440,9 @@ CREATE TABLE `emp_leave` (
 INSERT INTO `emp_leave` (`id`, `em_id`, `typeid`, `leave_type`, `start_date`, `end_date`, `leave_duration`, `apply_date`, `reason`, `leave_status`) VALUES
 (10, 'Seo1259', 13, 'Half Day', '2023-04-18', '', '2', '2023-04-19', 'hhgfknhdgffdghgjhgfhjg', 'Approve'),
 (11, 'Jeo1145', 13, 'Full Day', '2023-04-22', '', '8', '2023-04-22', 'jhhghhghgjhjhg', 'Approve'),
-(12, 'Jeo1145', 10, 'More than One day', '2023-04-20', '2023-04-21', '8', '2023-04-22', 'hjghjhkhjkhkh', 'Approve');
+(12, 'Jeo1145', 10, 'More than One day', '2023-04-20', '2023-04-21', '8', '2023-04-22', 'hjghjhkhjkhkh', 'Approve'),
+(13, 'Kim1767', 14, 'Full Day', '2023-04-25', '', '8', '2023-04-23', 'Dentist Appointment', 'Approve'),
+(14, 'Kim1767', 13, 'Full Day', '2023-04-25', '', '24', '2023-04-23', 'Sick leave', 'Not Approve');
 
 -- --------------------------------------------------------
 
@@ -568,7 +570,8 @@ CREATE TABLE `notice` (
 
 INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
 (1, 'This is a demo notice for all!', 'sample_image.jpg', '2022-01-01'),
-(5, 'Mission of company metrowaste', '339838725_2184844885044271_1958159763907385544_n.jpg', '2023-04-25');
+(5, 'Mission of company metrowaste', '339838725_2184844885044271_1958159763907385544_n.jpg', '2023-04-25'),
+(6, 'abaca', '1.png', '2023-04-24');
 
 -- --------------------------------------------------------
 
@@ -711,9 +714,7 @@ INSERT INTO `to-do_list` (`id`, `user_id`, `to_dodata`, `date`, `value`) VALUES
 (7, 'Seo1523', 'hello', '2023-04-22 04:30:00pm', '0'),
 (8, 'Jeo1145', 'hello', '2023-04-22 04:40:27pm', '1'),
 (9, 'Seo1523', 'hello', '2023-04-23 12:20:21pm', '0'),
-(10, 'Seo1523', 'whyyyyy', '2023-04-23 12:36:50pm', '1'),
-(11, 'Seo1523', 'tengenee nemen', '2023-04-23 12:39:59pm', '1'),
-(12, 'Seo1523', 'to do', '2023-04-23 01:02:09pm', '1');
+(10, 'Seo1523', 'whyyyyy', '2023-04-23 12:36:50pm', '1');
 
 --
 -- Indexes for dumped tables
@@ -889,13 +890,13 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1038;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1039;
 
 --
 -- AUTO_INCREMENT for table `bank_info`
@@ -919,7 +920,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT for table `desciplinary`
 --
 ALTER TABLE `desciplinary`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `designation`
@@ -931,13 +932,13 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
@@ -955,7 +956,7 @@ ALTER TABLE `emp_experience`
 -- AUTO_INCREMENT for table `emp_leave`
 --
 ALTER TABLE `emp_leave`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `emp_penalty`
@@ -991,7 +992,7 @@ ALTER TABLE `leave_types`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `pay_salary`

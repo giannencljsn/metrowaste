@@ -29,7 +29,7 @@
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#document" role="tab" style="font-size: 14px;"> Document</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#salary" role="tab" style="font-size: 14px;"> Salary</a> </li>
                                
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#social" role="tab" style="font-size: 14px;"> Social Media</a> </li>
+                                
                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                 <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#password" role="tab" style="font-size: 14px;"> Change Password</a> </li>
                                 <?php } else { ?>
@@ -58,7 +58,7 @@
                             </div>
                             <div>
                                 <hr> </div>
-                            <div class="card-body"> <small class="text-muted">Email address </small>
+                            <!-- <div class="card-body"> <small class="text-muted">Email address </small>
                                 <h6><?php echo $basic->em_email; ?></h6> <small class="text-muted p-t-30 db">Phone</small>
                                 <h6><?php echo $basic->em_phone; ?></h6> 
                                 <small class="text-muted p-t-30 db">Social Profile</small>
@@ -67,7 +67,7 @@
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->twitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>" target="_blank"><i class="fa fa-skype"></i></a>
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->google_Plus)) echo $socialmedia->google_Plus ?>" target="_blank"><i class="fa fa-google"></i></a>
-                            </div>
+                            </div> -->
                         </div>                                                    
                                                 </div>
                                                 <div class="col-md-8">
@@ -148,27 +148,27 @@
 				                                
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>SSS Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" minlength="10" maxlength="10" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" maxlength="12" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PHILHEALTH Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>" minlength="12" maxlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>"  maxlength="14" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PAGIBIG Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>" minlength="12" maxlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>"  maxlength="14" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>TIN Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="TIN Number" name="tin" value="<?php echo $basic->em_tin; ?>" minlength="9" maxlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="TIN Number" name="tin" value="<?php echo $basic->em_tin; ?>" maxlength="18" > 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="11" maxlength="11" > 
+				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>"  maxlength="12" > 
 				                                    </div>
 													<div class="form-group col-md-4 m-t-10">
 				                                        <label>Emergency Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>" minlength="11" maxlength="11" > 
+				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>"  maxlength="12" > 
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
@@ -345,7 +345,7 @@
 			                                        <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute Name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Result</label>
+			                                        <label>GPA</label>
 			                                        <input type="text" name="result" class="form-control form-control-line" placeholder=" Result" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
@@ -544,7 +544,7 @@
 				                                </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="social" role="tabpanel">
+                                <!-- <div class="tab-pane" id="social" role="tabpanel">
                                     <div class="card-body">
 				                                <form class="row" action="Save_Social" method="post" enctype="multipart/form-data">
 				                                    <div class="form-group col-md-6 m-t-20">
@@ -573,7 +573,7 @@
 				                                    <?php } ?>
 				                                </form>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="tab-pane" id="password" role="tabpanel">
                                     <div class="card-body">
 				                                <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">

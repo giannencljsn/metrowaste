@@ -45,6 +45,12 @@
 		$result = $query->result();
 		return $result;
 	}
+
+	//delete inactive
+  public function deleteEmployee($em_code){
+    return $this->db->delete('employee', ['em_code' => $em_code]);
+
+  }
     public function Does_email_exists($email) {
 		$user = $this->db->dbprefix('employee');
         $sql = "SELECT `em_email` FROM $user
@@ -195,6 +201,13 @@
 		$this->db->where('id', $id);
 		$this->db->update('desciplinary',$data);        
     }
+
+		public function Update_Inactivity($id,$data){
+			$this->db->where('id', $id);
+			$this->db->update('employee',$data);
+		}
+
+
     public function Update_Media($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('social_media',$data);        
@@ -211,6 +224,10 @@
     public function Add_Desciplinary($data){
         $this->db->insert('desciplinary',$data);
     }
+
+		public function Add_Inactivity($data){
+			$this->db->insert('employee', $data);
+		}
     public function Add_BankInfo($data){
         $this->db->insert('bank_info',$data);
     }
@@ -250,6 +267,17 @@
         $result = $query->row();
         return $result; 
     } 
+
+		//Invalid User
+		public function GetInValue($id){
+			$sql = "SELECT * FROM `employee` 
+			WHERE `id` = '$id' AND `status`='INACTIVE'"; 
+			$query = $this->db->query($sql);
+			$result = $query->row();
+			return $result;
+		}
+
+
 	public function depselect(){
   	$query = $this->db->get('department');
   	$result = $query->result();
@@ -293,6 +321,11 @@
   }
     public function DeletDisiplinary($id){
       $this->db->delete('desciplinary',array('id'=> $id));
-  }        
+  } 
+  public function delete_employee($emid) {
+    $this->db->where('em_id', $emid);
+    $this->db->delete('employee');
+}
+       
     }
 ?>
