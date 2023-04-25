@@ -58,7 +58,9 @@
 			left: 250px;
 			content: "✖";
 			}
-			
+		hr.solid {
+    border-top: 2px solid #999;
+}
 	</style>
 
 </head>

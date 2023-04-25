@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2023 at 07:49 PM
+-- Generation Time: Apr 23, 2023 at 06:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -54,8 +54,7 @@ INSERT INTO `addition` (`addi_id`, `salary_id`, `basic`, `medical`, `house_rent`
 (11, 11, '', '', '', ''),
 (12, 12, '5000.00', '500.00', '4000.00', '500.00'),
 (13, 13, '5000.00', '500.00', '4000.00', '500.00'),
-(14, 14, '50.00', '5.00', '40.00', '5.00'),
-(15, 15, '8000.00', '800.00', '6400.00', '800.00');
+(14, 14, '50.00', '5.00', '40.00', '5.00');
 
 -- --------------------------------------------------------
 
@@ -219,8 +218,7 @@ INSERT INTO `deduction` (`de_id`, `salary_id`, `provident_fund`, `bima`, `tax`, 
 (11, 11, '', '', '', ''),
 (12, 12, '100', '100', '100', '100'),
 (13, 13, '', '', '', ''),
-(14, 14, '', '', '', ''),
-(15, 15, '120', '100', '120', '120');
+(14, 14, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -261,7 +259,7 @@ CREATE TABLE `desciplinary` (
 --
 
 INSERT INTO `desciplinary` (`id`, `em_id`, `action`, `reporteddate`, `description`, `incidentdate`) VALUES
-(12, 'Par1100', 'Second Warning', '2023-04-26', 'Created a scene with residents', '2023-04-24');
+(12, 'Min1919', 'Suspension', '2023-04-26', 'FSDBGSDFGHSDGFD', '2023-04-24');
 
 -- --------------------------------------------------------
 
@@ -372,9 +370,7 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
 (1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL),
-(2, 'Kim1767', 'EMP - 41785', 7, 3, 'Namjoon', 'Kim', 'namjoon01', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '2023-04-01', 'O+', '2023-04-24', '2023-04-30', NULL, '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL),
-(3, 'Par1100', 'EMP - 91669', 2, 2, 'Jimin', 'Park', 'jimin13', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-451512345', '09-871523123', '1995-10-13', 'O+', '2023-05-01', '2023-05-31', 'Par1100.jpg', '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-123', NULL, NULL, NULL),
-(4, 'Kim1082', 'EMP - 85945', 2, 2, 'Taehyung', 'Kim', 'taehyung30', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'INACTIVE', 'Male', '', '09-961523232', '09-961523232', '1995-12-30', 'O+', '2023-04-01', '2023-04-30', NULL, NULL, NULL, NULL, NULL, '2023-04-25', 'Terminated', 'AWOL');
+(2, 'Kim1767', 'EMP - 41785', 7, 3, 'Namjoon', 'Kim', 'namjoon01', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '2023-04-01', 'O+', '2023-04-24', '2023-04-30', NULL, '12-123456789-1', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -437,6 +433,17 @@ CREATE TABLE `emp_leave` (
   `leave_status` enum('Approve','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `emp_leave`
+--
+
+INSERT INTO `emp_leave` (`id`, `em_id`, `typeid`, `leave_type`, `start_date`, `end_date`, `leave_duration`, `apply_date`, `reason`, `leave_status`) VALUES
+(10, 'Seo1259', 13, 'Half Day', '2023-04-18', '', '2', '2023-04-19', 'hhgfknhdgffdghgjhgfhjg', 'Approve'),
+(11, 'Jeo1145', 13, 'Full Day', '2023-04-22', '', '8', '2023-04-22', 'jhhghhghgjhjhg', 'Approve'),
+(12, 'Jeo1145', 10, 'More than One day', '2023-04-20', '2023-04-21', '8', '2023-04-22', 'hjghjhkhjkhkh', 'Approve'),
+(13, 'Kim1767', 14, 'Full Day', '2023-04-25', '', '8', '2023-04-23', 'Dentist Appointment', 'Approve'),
+(14, 'Kim1767', 13, 'Full Day', '2023-04-25', '', '24', '2023-04-23', 'Sick leave', 'Not Approve');
+
 -- --------------------------------------------------------
 
 --
@@ -469,8 +476,7 @@ CREATE TABLE `emp_salary` (
 
 INSERT INTO `emp_salary` (`id`, `emp_id`, `type_id`, `total`) VALUES
 (13, 'Kim1479', 2, '10000'),
-(14, 'Jeo1145', 2, '100'),
-(15, 'Kim1767', 2, '16000');
+(14, 'Jeo1145', 2, '100');
 
 -- --------------------------------------------------------
 
@@ -872,7 +878,7 @@ ALTER TABLE `to-do_list`
 -- AUTO_INCREMENT for table `addition`
 --
 ALTER TABLE `addition`
-  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -902,7 +908,7 @@ ALTER TABLE `bank_info`
 -- AUTO_INCREMENT for table `deduction`
 --
 ALTER TABLE `deduction`
-  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -932,7 +938,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
@@ -962,7 +968,7 @@ ALTER TABLE `emp_penalty`
 -- AUTO_INCREMENT for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `field_visit`

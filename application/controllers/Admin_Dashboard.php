@@ -34,5 +34,50 @@ class Admin_Dashboard extends CI_Controller {
 		redirect(base_url() , 'refresh'); //if not it redirect to the base url
 	}            
     }
+
+    public function add_todo(){
+        $userid = $this->input->post('userid');
+        $tododata = $this->input->post('todo_data');
+        $date = date("Y-m-d h:i:sa");
+        $this->load->library('form_validation');
+        //validating to do list data
+        $this->form_validation->set_rules('todo_data', 'To-do Data', 'trim|required|min_length[5]|max_length[150]|xss_clean');        
+        if($this->form_validation->run() == FALSE){
+            echo validation_errors();
+        } else {
+        $data=array();
+        $data = array(
+        'user_id' => $userid,
+        'to_dodata' =>$tododata,
+        'value' =>'1',
+        'date' =>$date    
+        );
+        $success = $this->dashboard_model->insert_tododata($data);
+            #echo "successfully added";
+            if($this->db->affected_rows()){
+                echo "Successfully Added";
+            } else {
+                echo "validation Error";
+            }
+        }        
+    }
+	public function Update_Todo(){
+        $id = $this->input->post('toid');
+		$value = $this->input->post('tovalue');
+			$data = array();
+			$data = array(
+				'value'=> $value
+			);
+        $update= $this->dashboard_model->UpdateTododata($id,$data);
+        $inserted = $this->db->affected_rows();
+		if($inserted){
+			$message="Successfully Added";
+			echo $message;
+		} else {
+			$message="Something went wrong";
+			echo $message;			
+		}
+	}    
+     
      
 }
