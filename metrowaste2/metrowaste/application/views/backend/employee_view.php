@@ -453,7 +453,7 @@
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Number</label>
-			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" minlength="5" required> 
+			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" minlength="5"  required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Type</label>
@@ -621,51 +621,104 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div> 
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Total Salary</label>
-			                                        <input type="text" name="total" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line total" placeholder="Total Salary" value="<?php if(!empty($salaryvalue->total)) echo $salaryvalue->total ?>" minlength="3" required> 
-			                                    </div>
+											<!-- Basic Salary -->
+											<div class="form-group col-md-6 m-t-5">
+			                                        <label>Basic</label>
+			                                        <input type="text" name="basic" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
+			                                    </div> 
+			                                   
+												<!-- Basic Salary -->
+
                                                 </div>
                                                  
 			                                    <h3 class="card-title">Addition</h3>
 			                                    <div class="row">
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Basic</label>
-			                                        <input type="text" name="basic" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" > 
+												<!-- Rest Day  Duty-->
+												<div class="form-group col-md-6 m-t-5">
+												<label>Rest Day Duty</label>
+			                                        <input type="text" name="restduty" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line restduty" placeholder="Rest Duty" value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div> 
-												
+												<!-- Rest Day  Duty-->
+												<!-- Straight Duty -->
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>House Rent</label>
-			                                        <input type="text" name="houserent" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line houserent" placeholder="House Rent..." value="<?php if(!empty($salaryvalue->house_rent)) echo $salaryvalue->house_rent ?>" > 
+			                                        <label>Straight Duty</label>
+			                                        <input type="text" name="straightduty" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line straightduty" placeholder="Straight Duty" value="<?php if(!empty($salaryvalue->house_rent)) echo $salaryvalue->house_rent ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div> 
+												<!-- Straight Duty -->
+												<!-- Special Holiday -->
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Medical</label>
-			                                        <input type="text" name="medical" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line medical" placeholder="Medical..." value="<?php if(!empty($salaryvalue->medical)) echo $salaryvalue->medical ?>" > 
+			                                        <label>Special Holiday</label>
+			                                        <input type="text" name="specialholiday" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line specialholiday" placeholder="Special Holiday" value="<?php if(!empty($salaryvalue->medical)) echo $salaryvalue->medical ?>" onkeypress="return /[0-9]/i.test(event.key)" > 
 			                                    </div> 
+												<!-- Special Holiday -->
+												<!-- Legal Holiday -->
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Conveyance</label>
-			                                        <input type="text" name="conveyance" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line conveyance" placeholder="Conveyance..." value="<?php if(!empty($salaryvalue->conveyance)) echo $salaryvalue->conveyance ?>" > 
+			                                        <label>Legal Holiday</label>
+			                                        <input type="text" name="legalholiday" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line legalholiday" placeholder="Legal Holiday" value="<?php if(!empty($salaryvalue->conveyance)) echo $salaryvalue->conveyance ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div>
+												<!-- Legal Holiday -->
+												 <!-- Solid divider -->
+												 <hr class="solid">
+												 <div class="form-group col-md-6 m-t-5">
+												 <label><b>Less:</b></label><br>
+												 <label>Absences</label>
+			                                        <input type="text" name="absences" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line absences" placeholder="Absences" value="<?php if(!empty($salaryvalue->total)) echo $salaryvalue->total ?>" minlength="3" onkeypress="return /[0-9]/i.test(event.key)" required> 
+												 </div>
+												 <div class="form-group col-md-6 m-t-5">
+												   </div>
+													<!-- Total Salary -->
+												<div class="form-group col-md-6 m-t-5">
+			                                        <label><b>Total Salary</b></label>
+			                                        <input type="text" name="total" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line total" placeholder="Total Salary" value="<?php if(!empty($salaryvalue->total)) echo $salaryvalue->total ?>" minlength="3" onkeypress="return /[0-9]/i.test(event.key)"  required> 
+			                                    </div>
+												<!-- Total Salary -->
                                                 </div>
                                                 
 			                                    <h3 class="card-title">Deduction</h3>
 			                                    <div class="row">
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Insurance</label>
-			                                        <input type="text" name="bima" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="Insurance" value="<?php if(!empty($salaryvalue->bima)) echo $salaryvalue->bima ?>"> 
+												<label><b>HDMF Loans:</b></label><br>
+												<label><b>SSS Loans:</b></label><br>
+			                                        <label>SSS</label>
+			                                        <input type="text" name="sss" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line sss" placeholder="SSS" value="<?php if(!empty($salaryvalue->bima)) echo $salaryvalue->bima ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
+													<br>
+													<label>SSS Provident Fund</label>
+			                                        <input type="text" name="sssprovident" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line sssprovident" placeholder="SSS Provident Fund" value="<?php if(!empty($salaryvalue->bima)) echo $salaryvalue->bima ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
+												</div>
+			                                
+			                                    <div class="form-group col-md-6 m-t-5">
+			                                        <label>Philhealth</label>
+			                                        <input type="text" name="philhealth" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line philhealth" placeholder="Philhealth" value="<?php if(!empty($salaryvalue->provident_fund)) echo $salaryvalue->provident_fund ?>" onkeypress="return /[0-9]/i.test(event.key)"><br>
+														
+														<label>HDMF</label>
+														<input type="text" name="hdmf" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line hdmf" placeholder="HDMF" value="<?php if(!empty($salaryvalue->provident_fund)) echo $salaryvalue->provident_fund ?>" onkeypress="return /[0-9]/i.test(event.key)"> <br>
+														<label>Withholding Tax</label>
+			                                        	<input type="text" name="whtax" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line whtax" placeholder="Withholding Tax" value="<?php if(!empty($salaryvalue->provident_fund)) echo $salaryvalue->provident_fund ?>" onkeypress="return /[0-9]/i.test(event.key)"> <br>
+												</div>
+												
+												
+												<div class="form-group col-md-6 m-t-5">
+			                                        <label>Cash Advances</label>
+			                                        <input type="text" name="cashadvances" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line cashadvances" placeholder="Cash Advances" value="<?php if(!empty($salaryvalue->provident_fund)) echo $salaryvalue->provident_fund ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
+			                                    </div>
+												<div class="form-group col-md-6 m-t-5">
+			                                       
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Tax</label>
-			                                        <input type="text" name="tax" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="Tax" value="<?php if(!empty($salaryvalue->tax)) echo $salaryvalue->tax ?>" > 
+			                                        <label><b>Total Deduction<b></label>
+			                                        <input type="text" name="totaldeduction" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line totaldeduction" placeholder="Total Deduction" value="<?php if(!empty($salaryvalue->others)) echo $salaryvalue->others ?>"> 
 			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Provident Fund</label>
-			                                        <input type="text" name="provident" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="Provident..." value="<?php if(!empty($salaryvalue->provident_fund)) echo $salaryvalue->provident_fund ?>"> 
+												<div class="form-group col-md-6 m-t-5">
+			                                       
 			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Others</label>
-			                                        <input type="text" name="others" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="others..." value="<?php if(!empty($salaryvalue->others)) echo $salaryvalue->others ?>"> 
+												<div class="form-group col-md-6 m-t-5">
+			                                        <label><b>Total Net Pay<b></label>
+			                                        <input type="text" name="totalnetpay" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line totalnetpay" placeholder="Total Net Pay" value="<?php if(!empty($salaryvalue->others)) echo $salaryvalue->others ?>"> 
 			                                    </div>
+												
+
+
+
                                                 </div>
                                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
@@ -696,15 +749,59 @@
                     <!-- Column -->
                 </div>
 				
-          <script type="text/javascript">
-          $('.total').on('input',function() {
-            var amount = parseInt($('.total').val());
-            $('.basic').val((amount * .50 ? amount * .50 : 0).toFixed(2));
-            $('.houserent').val((amount * .40 ? amount * .40 : 0).toFixed(2));
-            $('.medical').val((amount * .05 ? amount * .05 : 0).toFixed(2));
-            $('.conveyance').val((amount * .05 ? amount * .05 : 0).toFixed(2));
-          });
-          </script>
+		
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$('.basic, .restduty, .straightduty, .specialholiday, .legalholiday, .absences').on('input', function() {
+							var sum = 0;
+							$('.basic, .restduty, .straightduty, .specialholiday, .legalholiday').each(function() {
+							var val = parseFloat($(this).val());
+							sum += isNaN(val) ? 0 : val;
+							});
+							var absences = parseFloat($('.absences').val());
+							sum -= isNaN(absences) ? 0 : absences;
+							$('input[name="total"]').val(sum.toFixed(2));
+						});
+						});
+
+					</script>
+
+				<script type="text/javascript">
+					// Total deduction
+							$(document).ready(function(){
+							$('.sss, .sssprovident, .philhealth, .hdmf, .whtax, .cashadvances').on('change', function() {
+								var totalDeduction = 0;
+								$('.sss, .sssprovident, .philhealth, .hdmf, .whtax, .cashadvances').each(function() {
+								totalDeduction += parseInt($(this).val()) || 0;
+								});
+								$('.totaldeduction').val(totalDeduction);
+							});
+							});
+
+					//Total Net Pay
+						$(document).ready(function(){
+						$('.total, .sss, .sssprovident, .philhealth, .hdmf, .whtax, .cashadvances').on('change', function() {
+							var total = parseInt($('.total').val()) || 0;
+							var totalDeduction = parseInt($('.totaldeduction').val()) || 0;
+							var totalNetPay = total - totalDeduction;
+							$('.totalnetpay').val(totalNetPay);
+						});
+						});
+
+					</script>
+
+
+          <!-- <script type="text/javascript">
+        //   $('.total').on('input',function() {
+        //     var amount = parseInt($('.total').val());
+        //     $('.basic').val((amount * .50 ? amount * .50 : 0).toFixed(2));
+        //     $('.houserent').val((amount * .40 ? amount * .40 : 0).toFixed(2));
+        //     $('.medical').val((amount * .05 ? amount * .05 : 0).toFixed(2));
+        //     $('.conveyance').val((amount * .05 ? amount * .05 : 0).toFixed(2));
+        //   });
+          </script> -->
+
+
 <?php $this->load->view('backend/em_modal'); ?>                
 <script type="text/javascript">
                                         $(document).ready(function () {
