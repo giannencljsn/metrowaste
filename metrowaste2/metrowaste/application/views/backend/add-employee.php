@@ -41,11 +41,11 @@
                                 <form class="row" method="post" action="Save" enctype="multipart/form-data">
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
-                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" required> 
+                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Last Name </label>
-                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" required> 
+                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <!----- RANDOM PIN NO. ----->
 
@@ -151,15 +151,15 @@
 									<div class="form-group col-md-3 m-t-20">
 										<label>PHILHEALTH (12 digits)</label>
 										<div class="input-group">
-											<input type="text" name="philhealth_1" class="form-control" maxlength="2" placeholder="00">
+											<input type="text" name="philhealth_1" class="form-control" maxlength="2" placeholder="00" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
 											<span class="input-group-text">-</span>
 											</div>
-											<input type="text" name="philhealth_2" class="form-control" maxlength="9" placeholder="000000000">
+											<input type="text" name="philhealth_2" class="form-control" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
 											<span class="input-group-text">-</span>
 											</div>
-											<input type="text" name="philhealth_3" class="form-control" maxlength="1" placeholder="0">
+											<input type="text" name="philhealth_3" class="form-control" maxlength="1" placeholder="0" onkeypress="return /[0-9]/i.test(event.key)">
 										</div>
 										<input type="hidden" name="philhealth" id="philhealth">
 										</div>
@@ -169,15 +169,15 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>SSS (10 digits)</label>
                                         <div class="input-group">
-                                            <input type="text" name="sss_1" class="form-control" minlength="2" maxlength="2" placeholder="00" >
+                                            <input type="text" name="sss_1" class="form-control" minlength="2" maxlength="2" placeholder="00" onkeypress="return /[0-9]/i.test(event.key)">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
                                             </div>
-                                            <input type="text" name="sss_2" class="form-control" minlength="7" maxlength="7" placeholder="0000000" >
+                                            <input type="text" name="sss_2" class="form-control" minlength="7" maxlength="7" placeholder="0000000" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
                                             </div>
-                                            <input type="text" name="sss_3" class="form-control" minlength="1" maxlength="1" placeholder="0" >
+                                            <input type="text" name="sss_3" class="form-control" minlength="1" maxlength="1" placeholder="0" onkeypress="return /[0-9]/i.test(event.key)">
                                        	 </div>
 											<input type="hidden" name="sss" id="sss">	
 									</div>
@@ -188,16 +188,16 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
 										<div class="input-group">
-                                        	<input type="text" name="pagibig_1" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+                                        	<input type="text" name="pagibig_1" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
                                             
-                                            <input type="text" name="pagibig_2" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+                                            <input type="text" name="pagibig_2" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
                                             </div>
-                                            <input type="text" name="pagibig_3" class="form-control" minlength="4" maxlength="4" placeholder="0000" >
+                                            <input type="text" name="pagibig_3" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
                                        	 </div>
 											<input type="hidden" name="pagibig" id="pagibig">	
                                     </div>
@@ -205,20 +205,20 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>TIN (12-15 digits)</label>
 										<div class="input-group">
-											<input type="text" name="tin_1" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+											<input type="text" name="tin_1" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
                                             
-                                            <input type="text" name="tin_2" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+                                            <input type="text" name="tin_2" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
                                             </div>
-                                            <input type="text" name="tin_3" class="form-control" minlength="3" maxlength="3" placeholder="000" >
+                                            <input type="text" name="tin_3" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
 											<div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-											<input type="text" name="tin_4" class="form-control" minlength="3" maxlength="5" placeholder="00000" >
+											<input type="text" name="tin_4" class="form-control" minlength="3" maxlength="5" placeholder="00000" onkeypress="return /[0-9]/i.test(event.key)">
 										
 										</div>
 											<input type="hidden" name="tin" id="tin">
@@ -226,11 +226,11 @@
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Contact Number</label>
 										<div class="input-group">
-                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09">
+                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" >
+                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
 										</div>
 											<input type="hidden" name="contact" id="contact">	
 									</div>
@@ -238,11 +238,11 @@
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
                                         <div class="input-group">
-                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09">
+                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" >
+                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
 										</div>
 											<input type="hidden" name="emcontact" id="emcontact"> 
 									</div>
