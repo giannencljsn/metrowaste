@@ -69,7 +69,6 @@
                                                    
 													<!-- <a href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($value->em_id); ?>" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a> -->
                                                 <!--- delete Inactive--->    
-												<a href="<?php echo base_url('employee/delete/'.$value->em_id); ?>"title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                                 
                                             </tr>

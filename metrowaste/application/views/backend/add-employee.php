@@ -254,11 +254,7 @@
                                         <label>Date Hired </label>
                                         <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
                                     </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Of Leaving </label>
-                                        <input type="date" name="leavedate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
-                                    </div>
-                                   
+                               
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
                                         <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="3"
