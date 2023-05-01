@@ -31,20 +31,13 @@
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
 						</li>
 				
-						<li>
-							<a href="" class="has-arrow waves-effect waves-dark">
-								<i class="mdi mdi-rocket"></i> <span class="hide-menu">Leave</span>
-							</a>
-						
+						<li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">Leave </span></a>
 							<ul aria-expanded="false "class="collapse">
-								
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
 								<li><a href="<?php echo base_url(); ?>leave/EmLeavesheet">Leave Sheet</a></li>
 							</ul>
 
-						</li>
-						
-								
+						</li>				
 						<?php } else { ?>
 
 				<!-- Employees -->
