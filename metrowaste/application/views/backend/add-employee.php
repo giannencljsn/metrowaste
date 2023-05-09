@@ -38,7 +38,7 @@
                                <?php echo $this->session->flashdata('feedback'); ?>
                             <div class="card-body">
 
-                                <form class="row" method="post" action="Save" enctype="multipart/form-data">
+							<form name="myForm" id="myForm" class="row" method="post" action="Save" enctype="multipart/form-data" >
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
                                         <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
@@ -257,7 +257,7 @@
                                
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="3"
+                                        <input type="text" id="example-email2" name="email" class="form-control" pattern="^[a-zA-Z0-9_]*$"placeholder="username" minlength="3"
 										title="Must contain at least 3 characters" > 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
