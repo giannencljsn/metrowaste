@@ -1180,17 +1180,7 @@ else{
 		redirect(base_url() , 'refresh');
 	} 
     }
-    public function DeletDisiplinary(){
-        if($this->session->userdata('user_login_access') != False) {  
-		$id= $this->input->get('D');
-		$success = $this->employee_model->DeletDisiplinary($id);
-		#echo "Successfully Deletd";
-            redirect('employee/Disciplinary');
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	} 
-    }
+  
     public function Add_Salary(){
         if($this->session->userdata('user_login_access') != False) { 
         $sid = $this->input->post('sid');
@@ -1328,10 +1318,5 @@ else{
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
-    //delete inactive
-    public function delete($id){
-        $this->load->model('Employee_model');
-        $this->Employee_model->delete_employee($id);
-        redirect(base_url('employee'));
-    }
+ 
 }
