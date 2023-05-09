@@ -104,6 +104,14 @@
                                                                
                                                             </select>
                                                         </div>
+
+                                                        <div class="form-group">
+                                                        <label>Status </label>
+                                                        <select name="status" tabindex="1" class="form-control custom-select" >
+                                                            <option value="ACTIVE">ACTIVE</option>
+                                                            <option value="INACTIVE">INACTIVE</option>
+                                                        </select>
+                                                    </div>
                                                         <!-- <div class="form-group">
                                                             <label for="recipient-name" class="control-label">Title</label>
                                                             <input type="text" name="title" value="" class="form-control" id="recipient-name1">

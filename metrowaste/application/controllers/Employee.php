@@ -815,6 +815,7 @@ public function adding_Inactivity(){
 	$id = $this->input->post('id');
 	$em_id = $this->input->post('emid');
 	$reason = $this->input->post('reason');
+    $status = $this->input->post('status');
 	$inactivedate = $this->input->post('inactivedate');
 	$remarks = $this->input->post('remarks');
    
@@ -833,6 +834,7 @@ public function adding_Inactivity(){
 				'em_id' => $em_id,
 				'inactivedate' => $inactivedate,
 				'reason' => $reason,
+                'status' => $status,
 				'remarks' => $remarks
 			);
 		if(empty($id)){
