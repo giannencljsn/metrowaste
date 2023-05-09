@@ -5,6 +5,70 @@
 </div>
 
 </div>
+<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
+<script>
+	function validateForm() {
+		var isValid = true; // introduce a variable to keep track of the validation status
+
+		// Validate Name Field
+		var firstName = document.forms["myForm"]["fname"].value;
+		if (firstName == "" || firstName.length < 3 || firstName.length > 30) {
+			alert("Please enter a valid first name.");
+			isValid = false; // set isValid to false if validation fails
+		}
+
+		var lastName = document.forms["myForm"]["lname"].value;
+		if (lastName == "" || lastName.length < 3 || lastName.length > 30) {
+			alert("Please enter a valid last name.");
+			isValid = false; // set isValid to false if validation fails
+		}
+
+		// // Validate Email Field
+		// var email = document.forms["myForm"]["email"].value;
+		// if (email == "" || email.length < 7 || email.length > 100) {
+		// 	alert("Please enter a valid email address");
+		// 	isValid = false; // set isValid to false if validation fails
+		// }
+
+		// Validate Image Field
+		var image = document.forms["myForm"]["image_url"].files[0];
+		var reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = function (event) {
+			var img = new Image();
+			img.src = event.target.result;
+			img.onload = function () {
+				var fileSize = image.size / 1024 / 1024; // in MB
+				var fileType = image.type;
+				var maxWidth = 800;
+				var maxHeight = 800;
+				if (fileType != 'image/jpeg' && fileType != 'image/png' && fileType != 'image/gif') {
+					alert("Please select a valid image file (JPEG, PNG, or GIF).");
+					isValid = false; // set isValid to false if validation fails
+				} else if (fileSize > 2) {
+					alert("Please select an image file smaller than 2MB.");
+					isValid = false; // set isValid to false if validation fails
+				} else if (img.width > maxWidth || img.height > maxHeight) {
+					alert("Please select an image with dimensions not exceeding " + maxWidth + "px x " + maxHeight + "px.");
+					isValid = false; // set isValid to false if validation fails
+				}
+				if (isValid) {
+					document.getElementById("myForm").submit(); // submit the form if validation succeeds
+				}
+			};
+		};
+
+		return false;
+	}
+
+	document.getElementById("myForm").addEventListener("submit", function (event) {
+		event.preventDefault();
+		validateForm();
+	});
+</script>
+
+
+
 <!-- TOGGLE PASSWORD VISIBILITY -->
 									
 <script>
