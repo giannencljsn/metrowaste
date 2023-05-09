@@ -5,6 +5,7 @@
 </div>
 
 </div>
+
 <!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
 <script>
 	function validateForm() {
@@ -13,23 +14,32 @@
 		// Validate Name Field
 		var firstName = document.forms["myForm"]["fname"].value;
 		if (firstName == "" || firstName.length < 3 || firstName.length > 30) {
-			alert("Please enter a valid first name.");
+			alert("Please enter minimum 3 characters for First Name.");
 			isValid = false; // set isValid to false if validation fails
 		}
 
 		var lastName = document.forms["myForm"]["lname"].value;
 		if (lastName == "" || lastName.length < 3 || lastName.length > 30) {
-			alert("Please enter a valid last name.");
+			alert("Please enter minimum 3 characters for Last Name..");
 			isValid = false; // set isValid to false if validation fails
 		}
 
-		// // Validate Email Field
+		// // Validate Username Field
 		// var email = document.forms["myForm"]["email"].value;
-		// if (email == "" || email.length < 7 || email.length > 100) {
-		// 	alert("Please enter a valid email address");
+		// var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex pattern for valid email format
+		// if (email == "" || email.length < 3 || email.length > 100 || !emailRegex.test(email) || /[^\w\s]/.test(email)) {
+		// 	alert("Please enter a valid Username without special characters");
 		// 	isValid = false; // set isValid to false if validation fails
 		// }
 
+
+		// Validate Password and Confirm Password Fields
+			var password = document.forms["myForm"]["password"].value;
+			var cpassword = document.forms["myForm"]["confirm"].value;
+			if (password != cpassword) {
+				alert("Passwords do not match.");
+				isValid = false; // set isValid to false if validation fails
+			}
 		// Validate Image Field
 		var image = document.forms["myForm"]["image_url"].files[0];
 		var reader = new FileReader();
@@ -66,7 +76,6 @@
 		validateForm();
 	});
 </script>
-
 
 
 <!-- TOGGLE PASSWORD VISIBILITY -->
