@@ -118,6 +118,7 @@ class Employee extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
+
 			} else {
             if($this->employee_model->Does_email_exists($email) && $password != $confirm){
                 $this->session->set_flashdata('formdata','Username is already Existing or Check your password');
@@ -228,9 +229,13 @@ class Employee extends CI_Controller {
         }
         }
     else{
-		redirect(base_url() , 'refresh');
+		redirect(base_url());
+		
 	       }        
 		}
+
+
+
 	public function Update(){
     if($this->session->userdata('user_login_access') != False) {    
     $eid = $this->input->post('eid');    

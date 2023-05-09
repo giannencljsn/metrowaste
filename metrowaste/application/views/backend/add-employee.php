@@ -39,9 +39,13 @@
                             <div class="card-body">
 
 							<form name="myForm" id="myForm" class="row" method="post" action="Save" enctype="multipart/form-data" >
+<<<<<<< Updated upstream
+=======
+									
+>>>>>>> Stashed changes
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
-                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
+                                        <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Last Name </label>
@@ -181,10 +185,7 @@
                                        	 </div>
 											<input type="hidden" name="sss" id="sss">	
 									</div>
-                                    <!-- <div class="form-group col-md-3 m-t-20">
-                                        <label>PHILHEALTH (12 digits)</label>
-                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" pattern="\d{3}-\d{3}-\d{3}" maxlength="9" > 
-                                    </div> -->
+                                   
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
 										<div class="input-group">

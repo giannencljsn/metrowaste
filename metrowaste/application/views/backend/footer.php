@@ -5,9 +5,7 @@
 </div>
 
 </div>
-
-
-
+	
 <!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
 <script>
 	function validateForm() {
