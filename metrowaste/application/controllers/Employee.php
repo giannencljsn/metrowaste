@@ -95,7 +95,6 @@ class Employee extends CI_Controller {
 	$emcontact = $this->input->post('emcontact_1') . '-' . $this->input->post('emcontact_2');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
-	$leavedate = $this->input->post('leavedate');
     $address = $this->input->post('address');	
 	$username = $this->input->post('username');	
 	$email = $this->input->post('email');
@@ -112,8 +111,15 @@ class Employee extends CI_Controller {
         $this->form_validation->set_error_delimiters();
         // Validating Name Field
         // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+<<<<<<< HEAD
         /*validating username field*/
         $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
+=======
+        
+		/*Validating Username field*/
+        $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
+
+>>>>>>> nelbranch
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -166,7 +172,6 @@ class Employee extends CI_Controller {
 					'em_em_contact'=>$emcontact,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
                     'em_address' =>$address,
                     'em_image'=>$img_url,
                     'em_sss'=>$sss,
@@ -205,7 +210,6 @@ class Employee extends CI_Controller {
 					'em_em_contact'=>$emcontact,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
                     'em_address'=>$address,
                     'em_blood_group'=> $blood,
 					'em_marital_status' => $marital,
@@ -251,7 +255,6 @@ class Employee extends CI_Controller {
 	$emcontact = $this->input->post('emcontact');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
-	$leavedate = $this->input->post('leavedate');	
     $address = $this->input->post('address');
 	$username = $this->input->post('username');	
 	$email = $this->input->post('email');	
@@ -268,7 +271,7 @@ class Employee extends CI_Controller {
 
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+        // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
 
         $this->form_validation->set_rules('email', 'Email','trim|required|min_length[3]|max_length[100]|xss_clean');
 
@@ -323,7 +326,6 @@ class Employee extends CI_Controller {
                     'em_phone'=>$contact,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
                     'em_address' =>$address,
                     'em_image'=>$img_url,
                     'em_address'=>$address,
@@ -356,7 +358,6 @@ class Employee extends CI_Controller {
 					'em_em_contact'=>$emcontact,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
                     'em_address'=>$address,
                     'em_sss'=>$sss,
 					'em_philhealth'=>$philhealth,
@@ -393,7 +394,6 @@ class Employee extends CI_Controller {
 				$emcontact = $this->input->post('emcontact');
 				$dob = $this->input->post('dob');	
 				$joindate = $this->input->post('joindate');	
-				$leavedate = $this->input->post('leavedate');	
 				$username = $this->input->post('username');	
 				$email = $this->input->post('email');
 					
@@ -466,7 +466,6 @@ class Employee extends CI_Controller {
 												'em_em_contact'=>$emcontact,
 												'em_birthday'=>$dob,
 												'em_joining_date'=>$joindate,
-												'em_contact_end'=>$leavedate,
 												'em_image'=>$img_url,
 												'em_address'=>$address,
                                                 'em_sss'=>$sss,
@@ -498,7 +497,6 @@ class Employee extends CI_Controller {
 											'em_em_contact'=>$emcontact,
 											'em_birthday'=>$dob,
 											'em_joining_date'=>$joindate,
-											'em_contact_end'=>$leavedate,
 											'em_address'=>$address,
 											'em_sss'=>$sss,
 											'em_philhealth'=>$philhealth,
@@ -829,6 +827,7 @@ public function adding_Inactivity(){
 	$id = $this->input->post('id');
 	$em_id = $this->input->post('emid');
 	$reason = $this->input->post('reason');
+    $status = $this->input->post('status');
 	$inactivedate = $this->input->post('inactivedate');
 	$remarks = $this->input->post('remarks');
    
@@ -847,6 +846,7 @@ public function adding_Inactivity(){
 				'em_id' => $em_id,
 				'inactivedate' => $inactivedate,
 				'reason' => $reason,
+                'status' => $status,
 				'remarks' => $remarks
 			);
 		if(empty($id)){
@@ -1185,17 +1185,7 @@ else{
 		redirect(base_url() , 'refresh');
 	} 
     }
-    public function DeletDisiplinary(){
-        if($this->session->userdata('user_login_access') != False) {  
-		$id= $this->input->get('D');
-		$success = $this->employee_model->DeletDisiplinary($id);
-		#echo "Successfully Deletd";
-            redirect('employee/Disciplinary');
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	} 
-    }
+  
     public function Add_Salary(){
         if($this->session->userdata('user_login_access') != False) { 
         $sid = $this->input->post('sid');
@@ -1333,10 +1323,5 @@ else{
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
-    //delete inactive
-    public function delete($id){
-        $this->load->model('Employee_model');
-        $this->Employee_model->delete_employee($id);
-        redirect(base_url('employee'));
-    }
+ 
 }

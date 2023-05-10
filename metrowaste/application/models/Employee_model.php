@@ -46,11 +46,7 @@
 		return $result;
 	}
 
-	//delete inactive
-  public function deleteEmployee($em_code){
-    return $this->db->delete('employee', ['em_code' => $em_code]);
 
-  }
     public function Does_email_exists($email) {
 		$user = $this->db->dbprefix('employee');
         $sql = "SELECT `em_email` FROM $user

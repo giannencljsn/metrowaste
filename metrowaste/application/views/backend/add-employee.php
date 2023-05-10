@@ -39,7 +39,14 @@
                             <div class="card-body">
 
 							<form name="myForm" id="myForm" class="row" method="post" action="Save" enctype="multipart/form-data" >
+<<<<<<< HEAD
 									
+=======
+<<<<<<< Updated upstream
+=======
+									
+>>>>>>> Stashed changes
+>>>>>>> nelbranch
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
                                         <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
@@ -252,14 +259,10 @@
                                         <label>Date Hired </label>
                                         <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
                                     </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Of Leaving </label>
-                                        <input type="date" name="leavedate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
-                                    </div>
-                                   
+                               
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="3"
+                                        <input type="text" id="example-email2" name="email" class="form-control" pattern="^[a-zA-Z0-9_]*$"placeholder="username" minlength="3"
 										title="Must contain at least 3 characters" > 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
