@@ -5,7 +5,6 @@
 </div>
 
 </div>
-<<<<<<< HEAD
 
 <!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
 
@@ -13,12 +12,6 @@
 		function validateForm(event) {
 		event.preventDefault(); // prevent the default form submission behavior
 		
-=======
-	
-<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
-<script>
-	function validateForm() {
->>>>>>> nelbranch
 		var isValid = true; // introduce a variable to keep track of the validation status
 
 		// Validate Name Field
@@ -44,7 +37,6 @@
 
 
 		// Validate Password and Confirm Password Fields
-<<<<<<< HEAD
 		var password = document.forms["myForm"]["password"].value;
 		var cpassword = document.forms["myForm"]["confirm"].value;
 		if (password != cpassword) {
@@ -52,14 +44,6 @@
 			isValid = false; // set isValid to false if validation fails
 		}
 		
-=======
-			var password = document.forms["myForm"]["password"].value;
-			var cpassword = document.forms["myForm"]["confirm"].value;
-			if (password != cpassword) {
-				alert("Passwords do not match.");
-				isValid = false; // set isValid to false if validation fails
-			}
->>>>>>> nelbranch
 		// Validate Image Field
 		var image = document.forms["myForm"]["image_url"].files[0];
 		var reader = new FileReader();
@@ -68,7 +52,6 @@
 			var img = new Image();
 			img.src = event.target.result;
 			img.onload = function () {
-<<<<<<< HEAD
 			var fileSize = image.size / 1024 / 1024; // in MB
 			var fileType = image.type;
 			var maxWidth = 800;
@@ -95,37 +78,6 @@
 </script>
 
 
-=======
-				var fileSize = image.size / 1024 / 1024; // in MB
-				var fileType = image.type;
-				var maxWidth = 800;
-				var maxHeight = 800;
-				if (fileType != 'image/jpeg' && fileType != 'image/png' && fileType != 'image/gif') {
-					alert("Please select a valid image file (JPEG, PNG, or GIF).");
-					isValid = false; // set isValid to false if validation fails
-				} else if (fileSize > 2) {
-					alert("Please select an image file smaller than 2MB.");
-					isValid = false; // set isValid to false if validation fails
-				} else if (img.width > maxWidth || img.height > maxHeight) {
-					alert("Please select an image with dimensions not exceeding " + maxWidth + "px x " + maxHeight + "px.");
-					isValid = false; // set isValid to false if validation fails
-				}
-				if (isValid) {
-					document.getElementById("myForm").submit(); // submit the form if validation succeeds
-				}
-			};
-		};
-
-		return false;
-	}
-
-	document.getElementById("myForm").addEventListener("submit", function (event) {
-		event.preventDefault();
-		validateForm();
-	});
-</script>
-
->>>>>>> nelbranch
 <!-- TOGGLE PASSWORD VISIBILITY -->
 									
 <script>
