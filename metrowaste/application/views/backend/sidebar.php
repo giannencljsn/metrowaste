@@ -25,7 +25,13 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li> <a class="dashboard-link" href="<?php echo base_url();?>" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+						<!-- If user is employee redirect to employeedashboard -->
+						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
+                        <li> <a class="dashboard-link" href="<?php echo base_url();?>employee_dashboard/Dashboard"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+						<?php } else { ?>
+							<!-- Admin dashboard -->
+							<li> <a class="dashboard-link" href="<?php echo base_url();?>admin_dashboard/Dashboard"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+							<?php } ?>
 						<!-- IF USER IS EMPLOYEE -->
 						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
