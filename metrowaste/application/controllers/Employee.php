@@ -1218,7 +1218,7 @@ else{
                     'emp_id' => $em_id,
                     'type_id' => $type,
                     'total' => $total,
-					'totalnetpay' => $totalnetpay
+					
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -1244,7 +1244,7 @@ else{
                 }
                 if(!empty($did)){
                  $data2 = array();
-                $data2 = array(
+               	 $data2 = array(
 					// Deduction
                     'salary_id' => $sid,
                     'sss' => $sss,
@@ -1280,7 +1280,7 @@ else{
                 $data2 = array();
                 $data2 = array(
                     // Deduction
-                    'salary_id' => $sid,
+                    'salary_id' => $insertId,
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
 					'philhealth' => $philhealth,
