@@ -230,26 +230,16 @@ class Payroll extends CI_Controller {
         $sid = $this->input->post('sid');
         $aid = $this->input->post('aid');
         $did = $this->input->post('did');
-        $em_id = $this->input->post('eid');
+        $em_id = $this->input->post('emid');
         /*$type = $this->input->post('typeid');*/
-       // salary related
-       $basic = $this->input->post('basic');
-	   $restduty = $this->input->post('restduty');
-	   $straightduty = $this->input->post('straightduty');
-	   $specialholiday = $this->input->post('specialholiday');
-	   $legalholiday = $this->input->post('legalholiday');
-	   $total = $this->input->post('total');
-		//    deduction
-	   $sss = $this->input->post('sss');
-	   $sssprovident = $this->input->post('sssprovident');
-	   $philhealth = $this->input->post('philhealth');
-	   $hdmf = $this->input->post('hdmf');
-	   $whtax = $this->input->post('whtax');
-	   $cashadvances = $this->input->post('cashadvances');
-	   $totaldeduction = $this->input->post('totaldeduction');
-	   $totalnetpay = $this->input->post('totalnetpay');
-
-		// salary end
+        $basic = $this->input->post('basic');
+        $medical = $this->input->post('medical');
+        $houserent = $this->input->post('houserent');
+        $bonus = $this->input->post('bonus');
+        $provident = $this->input->post('provident');
+        $bima = $this->input->post('bima');
+        $tax = $this->input->post('tax');
+        $others = $this->input->post('others');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('basic', 'basic', 'trim|required|min_length[3]|max_length[10]|xss_clean');
@@ -262,7 +252,7 @@ class Payroll extends CI_Controller {
                 $data = array(
                     'emp_id' => $em_id,
                     /*'type_id' => $type,*/
-                    'basic' => $totalnetpay
+                    'basic' => $basic
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -275,24 +265,18 @@ class Payroll extends CI_Controller {
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $sid,
-                    'basic' => $basic,
-                    'restduty'=> $restduty,
-                    'straightduty'=> $straightduty,
-                    'specialholiday'=> $specialholiday,
-                    'legalholiday'=> $legalholiday
+                    'medical' => $medical,
+                    'house_rent' => $houserent,
+                    'bonus' => $bonus
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $sid,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-					'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
+                    'provident_fund' => $provident,
+                    'bima' => $bima,
+                    'tax' => $tax,
+                    'others' => $others
                 );
                 $success = $this->employee_model->Update_Deduction($did,$data2); 
                 echo "Successfully Updated";                
@@ -304,24 +288,18 @@ class Payroll extends CI_Controller {
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $insertId,
-                    'basic' => $basic,
-                    'restduty'=> $restduty,
-                    'straightduty'=> $straightduty,
-                    'specialholiday'=> $specialholiday,
-                    'legalholiday'=> $legalholiday
+                    'medical' => $medical,
+                    'house_rent' => $houserent,
+                    'bonus' => $bonus
                 );
                 $success = $this->employee_model->Add_Addition($data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $insertId,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-					'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
+                    'provident_fund' => $provident,
+                    'bima' => $bima,
+                    'tax' => $tax,
+                    'others' => $others
                 );
                 $success = $this->employee_model->Add_Deduction($data2); 
                 echo "Successfully Added";
@@ -384,7 +362,7 @@ class Payroll extends CI_Controller {
             echo "<tr>
                     <td>$value->em_code</td>
                     <td>$value->first_name</td>
-                    <td>$value->totalnetpay</td>
+                    <td>$value->total</td>
                     <td>$hourrate</td>
                     <td>$totalmonthhour</td>
                     <td><a href='' data-id='$value->em_id' class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' data-toggle='modal' data-target='#SalaryTypemodel' data-hour='$totalmonthhour'>Generate Salary</a></td>
@@ -635,7 +613,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                         <div class='card card-body'>
                             <div class='row'>
                                 <div class='col-md-4 col-xs-6 col-sm-6'>
-                                    <img src='$base/assets/images/icon_logo2.png' style=' width:180px; margin-right: 10px;' />
+                                    <img src='$base/assets/images/hrinv.png' style=' width:180px; margin-right: 10px;' />
                                 </div>
                                 <div class='col-md-8 col-xs-6 col-sm-6 text-left payslip_address'>
                                     <p>
@@ -715,22 +693,22 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                         <tbody style='border: 1px solid #ececec;'>
                                             <tr>
                                                 <td>Basic Salary</td>
-                                                <td class='text-right'>". $addition[0]->basic; echo"PHP</td>
+                                                <td class='text-right'>". $addition[0]->basic; echo"USD</td>
                                                 <td class='text-right'>  </td>
                                             </tr>
                                             <tr>
                                                 <td>Medical Allowance</td>
-                                                <td class='text-right'>". $addition[0]->medical; echo "PHP</td>
+                                                <td class='text-right'>". $addition[0]->medical; echo "USD</td>
                                                 <td class='text-right'>  </td>
                                             </tr>
                                             <tr>
                                                 <td>House Rent</td>
-                                                <td class='text-right'>".$addition[0]->house_rent; echo "PHP</td>
+                                                <td class='text-right'>".$addition[0]->house_rent; echo "USD</td>
                                                 <td class='text-right'>  </td>
                                             </tr>
                                             <tr>
                                                 <td>Conveyance Allowance</td>
-                                                <td class='text-right'>".$addition[0]->conveyance; echo "PHP</td>
+                                                <td class='text-right'>".$addition[0]->conveyance; echo "USD</td>
                                                 <td class='text-right'>  </td>
                                             </tr>
                                             <tr>
@@ -750,7 +728,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                                 <td class='text-right'>
                                                 </td>
                                                 <td class='text-right'>
-                                                         $salary_info->diduction PHP 
+                                                         $salary_info->diduction USD 
                                                 </td>
                                                 <td class='text-right'> </td>
                                             </tr>
@@ -764,13 +742,13 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                         <tfoot class='tfoot-light'>
                                             <tr>
                                                 <th>Total</th>
-                                                <th class='text-right'>". $total_add = $salary_info->basic + $salary_info->medical + $salary_info->house_rent + $salary_info->bonus;  round($total_add,2); echo "PHP</th>
-                                                <th class='text-right'>".$total_did = $salary_info->loan + $salary_info->diduction;  round($total_did,2); echo"PHP</th>
+                                                <th class='text-right'>". $total_add = $salary_info->basic + $salary_info->medical + $salary_info->house_rent + $salary_info->bonus;  round($total_add,2); echo "USD</th>
+                                                <th class='text-right'>".$total_did = $salary_info->loan + $salary_info->diduction;  round($total_did,2); echo"USD</th>
                                             </tr>
                                             <tr>
                                                 <th></th>
                                                 <th class='text-right'>Net Pay</th>
-                                                <th class='text-right'>$salary_info->total_pay PHP</th>
+                                                <th class='text-right'>$salary_info->total_pay USD</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -1091,7 +1069,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             echo "<tr>
                     <td>$employee->em_code</td>
                     <td>$full_name</td>
-                    <td>$employee->totalnetpay</td>
+                    <td>$employee->total</td>
                     <td><a href=''
                                 data-id='$employee->em_id' 
                                 data-month='$month' 

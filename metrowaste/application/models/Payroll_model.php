@@ -130,7 +130,7 @@
       `employee`.`first_name`,`last_name`,`em_code`,
       `salary_type`.`salary_type`
       FROM `pay_salary`
-      LEFT JOIN `employee` ON `pay_salary`.`emp_id`=`employee`.`em_code`
+      LEFT JOIN `employee` ON `pay_salary`.`emp_id`=`employee`.`em_id`
       LEFT JOIN `salary_type` ON `pay_salary`.`type_id`=`salary_type`.`id`
       ORDER BY `pay_salary`.`pay_id` DESC";
         $query=$this->db->query($sql);
