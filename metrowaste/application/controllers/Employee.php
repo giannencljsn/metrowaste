@@ -1186,15 +1186,25 @@ else{
         $did = $this->input->post('did');
         $em_id = $this->input->post('emid');
         $type = $this->input->post('typeid');
-        $total = $this->input->post('total');
-        $basic = $this->input->post('basic');
-        $medical = $this->input->post('medical');
-        $houserent = $this->input->post('houserent');
-        $conveyance = $this->input->post('conveyance');
-        $provident = $this->input->post('provident');
-        $bima = $this->input->post('bima');
-        $tax = $this->input->post('tax');
-        $others = $this->input->post('others');
+
+		// salary related
+       $basic = $this->input->post('basic');
+	   $restduty = $this->input->post('restduty');
+	   $straightduty = $this->input->post('straightduty');
+	   $specialholiday = $this->input->post('specialholiday');
+	   $legalholiday = $this->input->post('legalholiday');
+	   $total = $this->input->post('total');
+		//    deduction
+	   $sss = $this->input->post('sss');
+	   $sssprovident = $this->input->post('sssprovident');
+	   $philhealth = $this->input->post('philhealth');
+	   $hdmf = $this->input->post('hdmf');
+	   $whtax = $this->input->post('whtax');
+	   $cashadvances = $this->input->post('cashadvances');
+	   $totaldeduction = $this->input->post('totaldeduction');
+	   $totalnetpay = $this->input->post('totalnetpay');
+
+		// salary end
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('total', 'total', 'trim|required|min_length[3]|max_length[10]|xss_clean');

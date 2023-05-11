@@ -627,7 +627,7 @@
 			                                        <input type="text" name="basic" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div> 
 			                                   
-												<!-- Basic Salary -->
+												<!-- Basic Salary End-->
 
                                                 </div>
                                                  
@@ -659,11 +659,11 @@
 												<!-- Legal Holiday -->
 												 <!-- Solid divider -->
 												 <hr class="solid">
-												 <div class="form-group col-md-6 m-t-5">
+												 <!-- <div class="form-group col-md-6 m-t-5">
 												 <label><b>Less:</b></label><br>
 												 <label>Absences</label>
 			                                        <input type="text" name="absences" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line absences" placeholder="Absences" value="<?php if(!empty($salaryvalue->total)) echo $salaryvalue->total ?>" minlength="3" onkeypress="return /[0-9]/i.test(event.key)" required> 
-												 </div>
+												 </div> -->
 												 <div class="form-group col-md-6 m-t-5">
 												   </div>
 													<!-- Total Salary -->

@@ -38,15 +38,8 @@
                                <?php echo $this->session->flashdata('feedback'); ?>
                             <div class="card-body">
 
-							<form name="myForm" id="myForm" class="row" method="post" action="Save" enctype="multipart/form-data" >
-<<<<<<< HEAD
-									
-=======
-<<<<<<< Updated upstream
-=======
-									
->>>>>>> Stashed changes
->>>>>>> nelbranch
+							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
+
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
                                         <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
@@ -282,10 +275,10 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Image </label>
-                                        <input type="file" name="image_url" class="form-control" value=""> 
+                                        <input type="file" name="image_url" class="form-control" value="" accept=".jpg,.jpeg,.png"> 
                                     </div>
                                     <div class="form-actions col-md-12">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" id="submitBtn" class="btn btn-success" disabled> <i class="fa fa-check"></i> Save</button>
                                         <button type="button" class="btn btn-danger">
 										<a href="<?php echo base_url(); ?>employee/Employees" class="text-white">Cancel</a></button>
                                     </div>

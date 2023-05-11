@@ -6,6 +6,19 @@
 
 </div>
 
+<script>
+  // add an event listener to the form
+  document.getElementById("myForm").addEventListener("input", function() {
+    // check if all form inputs are valid
+    if (this.checkValidity()) {
+      // enable the submit button
+      document.getElementById("submitBtn").disabled = false;
+    } else {
+      // disable the submit button
+      document.getElementById("submitBtn").disabled = true;
+    }
+  });
+</script>
 <!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
 
 <script>
@@ -76,6 +89,8 @@
 		document.getElementById("myForm").addEventListener("submit", validateForm);
 
 </script>
+
+
 
 
 <!-- TOGGLE PASSWORD VISIBILITY -->
