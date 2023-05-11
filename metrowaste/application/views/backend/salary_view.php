@@ -166,7 +166,7 @@ $this->load->view('backend/sidebar');
               <div class="form-group row">
                 <label class="control-label text-left col-md-3">Employee</label>
                 <div class="col-md-9">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" id="emid" tabindex="1" name="emid" id="OnEmValue" required>
+                <select class="form-control custom-select" data-placeholder="Choose a Category" id="eid" tabindex="1" name="eid" id="OnEmValue" required>
                   <option value="#">Select Here
                   </option>
                   <?php foreach ($employee as $value): ?>
@@ -391,7 +391,7 @@ $this->load->view('backend/sidebar');
 
           console.log(has_loan);
 
-          $('#generatePayrollForm').find('[name="emid"]').val(emid).attr('readonly', true).end();
+          $('#generatePayrollForm').find('[name="eid"]').val(emid).attr('readonly', true).end();
           $('#generatePayrollForm').find('[name="month"]').val(Math.abs(month)).attr('readonly', true).end();
 
           $.ajax({

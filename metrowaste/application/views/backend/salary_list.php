@@ -112,7 +112,7 @@
 			                                    </div> -->                                        
                                             <div class="form-group">
                                                 <label class="control-label">Employee Id</label>
-                                                <input type="text" name="emid" class="form-control" id="recipient-name1" value="" readonly>
+                                                <input type="text" name="eid" class="form-control" id="recipient-name1" value="" readonly>
                                             </div>                                         
                                             <div class="form-group">
                                                 <label class="control-label">Basic</label>
@@ -181,7 +181,7 @@
 													$('#salaryform').find('[name="aid"]').val(response.salaryvalue.addi_id).end();
 													$('#salaryform').find('[name="did"]').val(response.salaryvalue.de_id).end();
                                                    /* $('#salaryform').find('[name="typeid"]').val(response.salaryvalue.type_id).end();*/
-                                                    $('#salaryform').find('[name="emid"]').val(response.salaryvalue.emp_id).end();
+                                                    $('#salaryform').find('[name="eid"]').val(response.salaryvalue.emp_id).end();
                                                     $('#salaryform').find('[name="basic"]').val(response.salaryvalue.basic).end();
                                                     $('#salaryform').find('[name="medical"]').val(response.salaryvalue.medical).end();
                                                     $('#salaryform').find('[name="houserent"]').val(response.salaryvalue.house_rent).end();

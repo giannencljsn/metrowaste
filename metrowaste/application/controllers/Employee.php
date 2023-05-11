@@ -127,7 +127,7 @@ class Employee extends CI_Controller {
 			$fileSize = $_FILES["image_url"]["size"]/1024;
 			$fileType = $_FILES["image_url"]["type"];
 			$new_file_name='';
-            $new_file_name .= $emrand;
+            $new_file_name .= $eid;
 
             $config = array(
                 'file_name' => $new_file_name,
@@ -150,7 +150,7 @@ class Employee extends CI_Controller {
                 $img_url = $path['file_name'];
                 $data = array();
                 $data = array(
-                    'em_id' => $emrand,
+                    'em_id' => $eid,
                     'em_code' => $eid,
                     'des_id' => $deg,
                     'dep_id' => $dept,
@@ -188,7 +188,7 @@ class Employee extends CI_Controller {
         } else {
                 $data = array();
                 $data = array(
-                    'em_id' => $emrand,
+                    'em_id' => $eid,
                     'em_code' => $eid,
                     'des_id' => $deg,
                     'dep_id' => $dept,
@@ -1217,7 +1217,8 @@ else{
                 $data = array(
                     'emp_id' => $em_id,
                     'type_id' => $type,
-                    'total' => $total
+                    'total' => $total,
+					'totalnetpay' => $totalnetpay
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -1230,22 +1231,31 @@ else{
                 if(!empty($aid)){
                 $data1 = array();
                 $data1 = array(
+					// Addition
                     'salary_id' => $sid,
                     'basic' => $basic,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'conveyance' => $conveyance
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday
+
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);                    
                 }
                 if(!empty($did)){
                  $data2 = array();
                 $data2 = array(
+					// Deduction
                     'salary_id' => $sid,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+					'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
+
                 );
                 $success = $this->employee_model->Update_Deduction($did,$data2);                    
                 }
@@ -1259,19 +1269,26 @@ else{
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $insertId,
+                    // Addition
                     'basic' => $basic,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'conveyance' => $conveyance
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday
                 );
                 $success = $this->employee_model->Add_Addition($data1);
                 $data2 = array();
                 $data2 = array(
-                    'salary_id' => $insertId,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    // Deduction
+                    'salary_id' => $sid,
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+					'philhealth' => $philhealth,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
                 );
                 $success = $this->employee_model->Add_Deduction($data2); 
                 echo "Successfully Added";

@@ -53,7 +53,7 @@ $this->load->view('backend/sidebar');
                             <div class="card-body">
                                 <form method="post" action="" id="salaryform" class="form-material row">
                                     <div class="form-group col-md-3">
-                                        <select class="form-control custom-select"  tabindex="1" name="emid" id="emid" style="margin-top: 23px" required>
+                                        <select class="form-control custom-select"  tabindex="1" name="eid" id="emid" style="margin-top: 23px" required>
                                         <option>Employee</option>
                                          <?php foreach($employee as $value): ?>
                                          <option value="<?php echo $value->em_id; ?>">

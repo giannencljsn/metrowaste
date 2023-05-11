@@ -3,7 +3,7 @@
 	class Payroll_model extends CI_Model{
 
 
-	function __consturct(){
+	function __construct(){
 	parent::__construct();
 	
 	}
@@ -27,7 +27,7 @@
     }
     public function GetDepEmployee($depid){
     $sql = "SELECT `employee`.*,
-      `emp_salary`.`total`
+      `emp_salary`.`totalnetpay`
       FROM `employee`
       LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
       WHERE `employee`.`dep_id`='$depid'";
@@ -130,7 +130,7 @@
       `employee`.`first_name`,`last_name`,`em_code`,
       `salary_type`.`salary_type`
       FROM `pay_salary`
-      LEFT JOIN `employee` ON `pay_salary`.`emp_id`=`employee`.`em_id`
+      LEFT JOIN `employee` ON `pay_salary`.`emp_id`=`employee`.`em_code`
       LEFT JOIN `salary_type` ON `pay_salary`.`type_id`=`salary_type`.`id`
       ORDER BY `pay_salary`.`pay_id` DESC";
         $query=$this->db->query($sql);

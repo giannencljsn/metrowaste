@@ -230,16 +230,26 @@ class Payroll extends CI_Controller {
         $sid = $this->input->post('sid');
         $aid = $this->input->post('aid');
         $did = $this->input->post('did');
-        $em_id = $this->input->post('emid');
+        $em_id = $this->input->post('eid');
         /*$type = $this->input->post('typeid');*/
-        $basic = $this->input->post('basic');
-        $medical = $this->input->post('medical');
-        $houserent = $this->input->post('houserent');
-        $bonus = $this->input->post('bonus');
-        $provident = $this->input->post('provident');
-        $bima = $this->input->post('bima');
-        $tax = $this->input->post('tax');
-        $others = $this->input->post('others');
+       // salary related
+       $basic = $this->input->post('basic');
+	   $restduty = $this->input->post('restduty');
+	   $straightduty = $this->input->post('straightduty');
+	   $specialholiday = $this->input->post('specialholiday');
+	   $legalholiday = $this->input->post('legalholiday');
+	   $total = $this->input->post('total');
+		//    deduction
+	   $sss = $this->input->post('sss');
+	   $sssprovident = $this->input->post('sssprovident');
+	   $philhealth = $this->input->post('philhealth');
+	   $hdmf = $this->input->post('hdmf');
+	   $whtax = $this->input->post('whtax');
+	   $cashadvances = $this->input->post('cashadvances');
+	   $totaldeduction = $this->input->post('totaldeduction');
+	   $totalnetpay = $this->input->post('totalnetpay');
+
+		// salary end
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('basic', 'basic', 'trim|required|min_length[3]|max_length[10]|xss_clean');
@@ -252,7 +262,7 @@ class Payroll extends CI_Controller {
                 $data = array(
                     'emp_id' => $em_id,
                     /*'type_id' => $type,*/
-                    'basic' => $basic
+                    'basic' => $totalnetpay
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -265,18 +275,24 @@ class Payroll extends CI_Controller {
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $sid,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'bonus' => $bonus
+                    'basic' => $basic,
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $sid,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+					'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
                 );
                 $success = $this->employee_model->Update_Deduction($did,$data2); 
                 echo "Successfully Updated";                
@@ -288,18 +304,24 @@ class Payroll extends CI_Controller {
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $insertId,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'bonus' => $bonus
+                    'basic' => $basic,
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday
                 );
                 $success = $this->employee_model->Add_Addition($data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $insertId,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+					'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
                 );
                 $success = $this->employee_model->Add_Deduction($data2); 
                 echo "Successfully Added";
@@ -362,7 +384,7 @@ class Payroll extends CI_Controller {
             echo "<tr>
                     <td>$value->em_code</td>
                     <td>$value->first_name</td>
-                    <td>$value->total</td>
+                    <td>$value->totalnetpay</td>
                     <td>$hourrate</td>
                     <td>$totalmonthhour</td>
                     <td><a href='' data-id='$value->em_id' class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' data-toggle='modal' data-target='#SalaryTypemodel' data-hour='$totalmonthhour'>Generate Salary</a></td>
@@ -1069,7 +1091,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             echo "<tr>
                     <td>$employee->em_code</td>
                     <td>$full_name</td>
-                    <td>$employee->total</td>
+                    <td>$employee->totalnetpay</td>
                     <td><a href=''
                                 data-id='$employee->em_id' 
                                 data-month='$month' 
