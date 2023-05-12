@@ -15,7 +15,7 @@
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <?php if ($this->session->userdata('user_type') == 'EMPLOYEE' && $this->session->userdata('user_role') == 'admin'): ?>
+            <?php if ($this->session->userdata('user_type') == 'ADMIN'): ?>
 
             <div class="container-fluid">
                 <!-- ============================================================== -->
