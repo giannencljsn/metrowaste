@@ -724,13 +724,13 @@
                                                     <?php } else { ?>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <input type="text" name="emid" value="<?php echo $basic->em_id; ?>"> 
+                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>"> 
                                                     <?php if(!empty($salaryvalue->salary_id)){ ?>    
-                                                    <input type="text" name="sid" value="<?php echo $salaryvalue->salary_id; ?>">                                               <?php } ?> 
+                                                    <input type="hidden" name="sid" value="<?php echo $salaryvalue->salary_id; ?>">                                               <?php } ?> 
                                                     <?php if(!empty($salaryvalue->addi_id)){ ?>    
-                                                    <input type="text" name="aid" value="<?php echo $salaryvalue->addi_id; ?>">                                                  <?php } ?> 
+                                                    <input type="hidden" name="aid" value="<?php echo $salaryvalue->addi_id; ?>">                                                  <?php } ?> 
                                                     <?php if(!empty($salaryvalue->de_id)){ ?>
-                                                    <input type="text" name="did" value="<?php echo $salaryvalue->de_id; ?>">
+                                                    <input type="hidden" name="did" value="<?php echo $salaryvalue->de_id; ?>">
                                                     <?php } ?>                                                   
                                                     <button <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> disabled <?php } ?> type="submit" style="float: right" class="btn btn-success">Add Salary</button>
                                                 </div>

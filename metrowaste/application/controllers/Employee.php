@@ -1218,6 +1218,7 @@ else{
                     'emp_id' => $em_id,
                     'type_id' => $type,
                     'total' => $total,
+					'totalnetpay' => $totalnetpay
 					
                 );
             if(!empty($sid)){

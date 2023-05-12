@@ -27,7 +27,7 @@
     }
     public function GetDepEmployee($depid){
     $sql = "SELECT `employee`.*,
-      `emp_salary`.`totalnetpay`
+			`emp_salary`.`totalnetpay`
       FROM `employee`
       LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
       WHERE `employee`.`dep_id`='$depid'";
@@ -35,6 +35,17 @@
         $result = $query->result();
         return $result;         
     } 
+
+		public function GetDepEmployee2($depid){
+			$sql = "SELECT `employee`.*,
+				`emp_salary`.`totalnetpay`
+				FROM `employee`
+				LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
+				WHERE `employee`.`dep_id`='$depid'";
+					$query = $this->db->query($sql);
+					$result = $query->result();
+					return $result;         
+			} 
     public function Get_typeValue($id){
         $sql = "SELECT * FROM `salary_type` WHERE `salary_type`.`id`= '$id'";
         $query = $this->db->query($sql);
@@ -276,7 +287,7 @@ public function getPinFromID($employeeID){
     public function getOtherInfo($emid) {
       $sql = "SELECT `employee`.*,
               (SELECT `des_name` FROM `designation` WHERE `employee`.`des_id` = `designation`.`id`) AS name, 
-              (SELECT `dep_name` FROM `department` WHERE `employee`.`dep_id` = `department`.`id`) AS dep_name, `emp_salary`.`total`, `bank_info`.*, `addition`.*, `deduction`.*, 
+              (SELECT `dep_name` FROM `department` WHERE `employee`.`dep_id` = `department`.`id`) AS dep_name, `emp_salary`.`totalnetpay`, `bank_info`.*, `addition`.*, `deduction`.*, 
               (SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$emid') AND (DATE_FORMAT(`attendance`.`atten_date`, '%m'))=MONTH(CURRENT_DATE())) AS hours_worked,COUNT(*) AS days FROM `employee`
               LEFT JOIN `department` ON `employee`.`dep_id`=`department`.`id` 
               LEFT JOIN `addition` ON `employee`.`em_id`=`addition`.`salary_id` 
