@@ -15,6 +15,8 @@
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
+            <?php if ($this->session->userdata('user_type') == 'EMPLOYEE' && $this->session->userdata('user_role') == 'admin'): ?>
+
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Row -->
@@ -110,6 +112,7 @@
                 </div>
                 <!-- ============================================================== -->
             </div> 
+            <?php endif; ?>
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
                 $userid = $this->session->userdata('user_login_id');

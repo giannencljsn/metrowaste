@@ -75,15 +75,15 @@
 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Employee PIN </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" readonly> 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>"  readonly> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>First Name</label>
-				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" required> 
+				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Last Name </label>
-				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Employee's LastName" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" required> 
+				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Employee's LastName" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
 				                                    </div>
                                                     <div class="form-group col-md-4 m-t-10">
                                                         <label>Blood Group </label>
@@ -160,23 +160,23 @@
 				                                
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>SSS Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" maxlength="12" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="SSS Number" name="sss" value="<?php echo $basic->em_sss; ?>" maxlength="12" onkeypress="return /[0-9]/i.test(event.key)"> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PHILHEALTH Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>"  maxlength="14" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="PHILHEALTH Number" name="philhealth" value="<?php echo $basic->em_philhealth; ?>"  maxlength="14" onkeypress="return /[0-9]/i.test(event.key)"> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>PAGIBIG Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>"  maxlength="14" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="PAGIBIG Number" name="pagibig" value="<?php echo $basic->em_pagibig; ?>"  maxlength="14" onkeypress="return /[0-9]/i.test(event.key)"> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>TIN Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="TIN Number" name="tin" value="<?php echo $basic->em_tin; ?>" maxlength="18" > 
+				                                        <input type="text" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> class="form-control"placeholder="TIN Number" name="tin" value="<?php echo $basic->em_tin; ?>" maxlength="18" onkeypress="return /[0-9]/i.test(event.key)"> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>"  maxlength="12" > 
+				                                        <input type="text" class="form-control" placeholder="Contact No." name="contact" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>"  maxlength="12" onkeypress="return /[0-9]/i.test(event.key)"> 
 				                                    </div>
 													<div class="form-group col-md-4 m-t-10">
 				                                        <label>Emergency Contact Number </label>
