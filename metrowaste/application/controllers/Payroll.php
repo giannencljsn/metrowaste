@@ -905,7 +905,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     // Add or update the salary record
     public function pay_salary_add_record() {
         if($this->session->userdata('user_login_access') != False) {
-        $emid = $this->input->post('emid');
+        $eid = $this->input->post('eid');
         $month = $this->month_number_to_name($this->input->post('month'));
         $basic = $this->input->post('basic');
         $year = $this->input->post('year');
@@ -930,7 +930,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
             $data = array();
             $data = array(
-                'emp_id' => $emid,
+                'emp_id' => $eid,
                 'month' => $month,
                 'year' => $year,
                 'paid_date' => $paydate,
@@ -945,7 +945,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             );
             
             // See if record exists
-            $get_salary_record = $this->payroll_model->getSalaryRecord($emid, $month,$year);
+            $get_salary_record = $this->payroll_model->getSalaryRecord($eid, $month,$year);
 
             if($get_salary_record) {
                 $payID = $get_salary_record[0]->pay_id;
@@ -974,7 +974,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                             $number = $loan_info->loan_number;
                             $data = array();
                             $data = array(
-                                'emp_id' => $emid,
+                                'emp_id' => $eid,
                                 'loan_id' => $loan_id,
                                 'loan_number' => $number,
                                 'install_amount' => $loan,
@@ -1028,7 +1028,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                             $number = $loan_info->loan_number;
                             $data = array();
                             $data = array(
-                                'emp_id' => $emid,
+                                'emp_id' => $eid,
                                 'loan_id' => $loan_id,
                                 'loan_number' => $number,
                                 'install_amount' => $loan,

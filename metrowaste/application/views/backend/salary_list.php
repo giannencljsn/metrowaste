@@ -35,17 +35,18 @@
                                         <thead>
                                             <tr>
                                                 <th class="hide">SL </th>
-                                                <th>PIN </th>
-                                                <th>Employee </th>
+                                                <th>ID No.</th>
+                                                <th>Employee</th>
                                                 <th>Month </th>
                                                 <th>Salary </th>
-                                                <th>Loan </th>
                                                 <th>Hours </th>
+												
                                                 <th>Deduction</th>
                                                 <th>Total Paid</th>
                                                 <th>Pay Date</th>
                                                 <th>Status</th>
                                                 <th class="jsgrid-align-center">Action</th>
+											
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -74,16 +75,18 @@
                                                 <td><?php echo $individual_info->first_name.' '.$individual_info->last_name; ?></td>
                                                 <td><?php echo $individual_info->month.' '.$individual_info->year; ?></td>
                                                 <td><?php echo '₱'.$individual_info->basic; ?></td>
-                                                <td><?php echo '₱'.$individual_info->loan; ?></td>
+                                               
                                                 <td><?php echo $individual_info->total_days; ?></td>
-                                                <!--<td><?php echo $individual_info->addition; ?></td>-->
+                                                <!-- <td><?php echo $individual_info->addition; ?></td> -->
                                                 <td><?php echo '₱'.$individual_info->diduction; ?></td>
                                                 <td><?php echo '₱'.$individual_info->total_pay; ?></td>
                                                 <td><?php echo $individual_info->paid_date; ?></td>
                                                 <td><?php echo $individual_info->status; ?></td>
+												
                                                 <td class="jsgrid-align-center ">
                                                     <a href="<?php echo base_url(); ?>payroll/invoice?Id=<?php echo $individual_info->pay_id; ?>&em=<?php echo $individual_info->emp_id; ?>" title="Edit" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-print"></i></a>
                                                 </td>
+												
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>

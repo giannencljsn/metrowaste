@@ -275,10 +275,10 @@ public function getPinFromID($employeeID){
         $result = $this->db->update('pay_salary', $data);
         return $result;
     }
-    public function getSalaryRecord($emid, $month,$year){
+    public function getSalaryRecord($eid, $month,$year){
       $sql = "SELECT `pay_salary`.*
               FROM `pay_salary`
-              WHERE `emp_id`='$emid' AND `month`='$month' AND `year`='$year'";
+              WHERE `emp_id`='$eid' AND `month`='$month' AND `year`='$year'";
       $query=$this->db->query($sql);
       $result = $query->result();
       return $result;        
