@@ -182,7 +182,10 @@
 				                                        <label>Emergency Contact Number </label>
 				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>"  maxlength="12" > 
 				                                    </div>
-
+                                                    <div class="form-group col-md-4 m-t-10">
+				                                        <label>Emergency Contact Name </label>
+				                                        <input type="text" class="form-control" placeholder="Emergency Contact Name" name="contactname" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->contactname; ?>"  maxlength="15"  onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)"> 
+				                                    </div>
                                                     <!---update 11/05/23 --->
                                                     
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
