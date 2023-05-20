@@ -226,10 +226,15 @@
       $sql = "SELECT `deduction`.*
               FROM `deduction`
               WHERE `deduction`.salary_id = '$salaryID'";
+		
+
       $query = $this->db->query($sql);
-      $result = $query->result();
+      $result = $query->result_array();
       return $result;
     }
+	
+	
+
 
     public function GetsalaryValueByID($id){
       $sql = "SELECT `emp_salary`.*

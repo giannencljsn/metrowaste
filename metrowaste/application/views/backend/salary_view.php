@@ -175,6 +175,8 @@ $this->load->view('backend/sidebar');
                     <?php echo $value->first_name.' '.$value->last_name; ?>
                   </option>
                   <?php endforeach; ?>
+
+
                 </select>
                 </div>
               </div>                                        
@@ -220,6 +222,7 @@ $this->load->view('backend/sidebar');
                 </label>
                 <div class="col-md-7">
                 <input type="text" name="basic" class="form-control" id="" value="">
+								
               </div> 
               </div>                                     
               <div class="form-group row">
@@ -330,6 +333,11 @@ $this->load->view('backend/sidebar');
                                     </div>
                                 </div>                             
             </div>
+							
+
+
+
+
             <div class="modal-footer">
               <input type="hidden" name="action" value="add" class="form-control" id="formAction">              
               <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                      
