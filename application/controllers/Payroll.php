@@ -277,6 +277,7 @@ class Payroll extends CI_Controller {
                 #echo "Successfully Added";
                 $data1 = array();
                 $data1 = array(
+					// I made changes here!
                     'salary_id' => $sid,
                     'basic' => $basic,
                     'restduty'=> $restduty,
