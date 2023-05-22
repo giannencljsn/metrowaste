@@ -112,15 +112,10 @@ class Employee extends CI_Controller {
         $this->form_validation->set_error_delimiters();
         // Validating Name Field
         // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
-<<<<<<< HEAD:metrowaste/application/controllers/Employee.php
         
 		/*Validating Username field*/
         $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
 
-=======
-        /*validating username field*/
-        $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
->>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/controllers/Employee.php
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
