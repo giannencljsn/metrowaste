@@ -93,6 +93,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact_1') . '-' . $this->input->post('contact_2');
 	$emcontact = $this->input->post('emcontact_1') . '-' . $this->input->post('emcontact_2');
+    $contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');	
@@ -111,10 +112,15 @@ class Employee extends CI_Controller {
         $this->form_validation->set_error_delimiters();
         // Validating Name Field
         // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+<<<<<<< HEAD:metrowaste/application/controllers/Employee.php
         
 		/*Validating Username field*/
         $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
 
+=======
+        /*validating username field*/
+        $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
+>>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/controllers/Employee.php
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -165,6 +171,7 @@ class Employee extends CI_Controller {
                     'status'=>'ACTIVE',
                     'em_phone'=>$contact,
 					'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address' =>$address,
@@ -248,6 +255,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact');
 	$emcontact = $this->input->post('emcontact');
+	$contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');
@@ -325,6 +333,7 @@ class Employee extends CI_Controller {
                     'em_image'=>$img_url,
                     'em_address'=>$address,
                     'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_sss'=>$sss,
 					'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
@@ -351,6 +360,7 @@ class Employee extends CI_Controller {
                     'status'=>$status,
                     'em_phone'=>$contact,
 					'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
@@ -387,6 +397,7 @@ class Employee extends CI_Controller {
 				$gender = $this->input->post('gender');
 				$contact = $this->input->post('contact');
 				$emcontact = $this->input->post('emcontact');
+				$contactname = $this->input->post('contactname');
 				$dob = $this->input->post('dob');	
 				$joindate = $this->input->post('joindate');	
 				$username = $this->input->post('username');	
@@ -459,6 +470,7 @@ class Employee extends CI_Controller {
 												'status'=>$status,
 												'em_phone'=>$contact,
 												'em_em_contact'=>$emcontact,
+                                                'contactname' =>$contactname,
 												'em_birthday'=>$dob,
 												'em_joining_date'=>$joindate,
 												'em_image'=>$img_url,
@@ -490,6 +502,7 @@ class Employee extends CI_Controller {
 											'status'=>$status,
 											'em_phone'=>$contact,
 											'em_em_contact'=>$emcontact,
+                                            'contactname' =>$contactname,
 											'em_birthday'=>$dob,
 											'em_joining_date'=>$joindate,
 											'em_address'=>$address,
@@ -1188,15 +1201,25 @@ else{
         $did = $this->input->post('did');
         $em_id = $this->input->post('emid');
         $type = $this->input->post('typeid');
-        $total = $this->input->post('total');
-        $basic = $this->input->post('basic');
-        $medical = $this->input->post('medical');
-        $houserent = $this->input->post('houserent');
-        $conveyance = $this->input->post('conveyance');
-        $provident = $this->input->post('provident');
-        $bima = $this->input->post('bima');
-        $tax = $this->input->post('tax');
-        $others = $this->input->post('others');
+
+		// salary related
+       $basic = $this->input->post('basic');
+	   $restduty = $this->input->post('restduty');
+	   $straightduty = $this->input->post('straightduty');
+	   $specialholiday = $this->input->post('specialholiday');
+	   $legalholiday = $this->input->post('legalholiday');
+	   $total = $this->input->post('total');
+		//    deduction
+	   $sss = $this->input->post('sss');
+	   $sssprovident = $this->input->post('sssprovident');
+	   $philhealth = $this->input->post('philhealth');
+	   $hdmf = $this->input->post('hdmf');
+	   $whtax = $this->input->post('whtax');
+	   $cashadvances = $this->input->post('cashadvances');
+	   $totaldeduction = $this->input->post('totaldeduction');
+	   $totalnetpay = $this->input->post('totalnetpay');
+
+		// salary end
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('total', 'total', 'trim|required|min_length[3]|max_length[10]|xss_clean');
