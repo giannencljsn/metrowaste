@@ -38,10 +38,11 @@
                                <?php echo $this->session->flashdata('feedback'); ?>
                             <div class="card-body">
 
-                                <form class="row" method="post" action="Save" enctype="multipart/form-data">
+							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
+
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
-                                        <input type="text" name="fname" class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
+                                        <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Last Name </label>
@@ -181,10 +182,7 @@
                                        	 </div>
 											<input type="hidden" name="sss" id="sss">	
 									</div>
-                                    <!-- <div class="form-group col-md-3 m-t-20">
-                                        <label>PHILHEALTH (12 digits)</label>
-                                        <input type="text" name="philhealth" class="form-control" value="" placeholder="PHILHEALTH" pattern="\d{3}-\d{3}-\d{3}" maxlength="9" > 
-                                    </div> -->
+                                   
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>PAGIBIG (12 digits)</label>
 										<div class="input-group">
@@ -234,7 +232,10 @@
 										</div>
 											<input type="hidden" name="contact" id="contact">	
 									</div>
-                                
+                                    <div class="form-group col-md-3 m-t-20">
+                                        <label>Emergency Contact Name</label>
+                                        <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="15" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
+                                    </div>
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
                                         <div class="input-group">
@@ -254,14 +255,10 @@
                                         <label>Date Hired </label>
                                         <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
                                     </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Of Leaving </label>
-                                        <input type="date" name="leavedate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
-                                    </div>
-                                   
+                               
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="username" minlength="3"
+                                        <input type="text" id="example-email2" name="email" class="form-control" pattern="^[a-zA-Z0-9_]*$"placeholder="username" minlength="3"
 										title="Must contain at least 3 characters" > 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
@@ -281,10 +278,10 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Image </label>
-                                        <input type="file" name="image_url" class="form-control" value=""> 
+                                        <input type="file" name="image_url" class="form-control" value="" accept=".jpg,.jpeg,.png"> 
                                     </div>
                                     <div class="form-actions col-md-12">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="submit" id="submitBtn" class="btn btn-success" disabled> <i class="fa fa-check"></i> Save</button>
                                         <button type="button" class="btn btn-danger">
 										<a href="<?php echo base_url(); ?>employee/Employees" class="text-white">Cancel</a></button>
                                     </div>

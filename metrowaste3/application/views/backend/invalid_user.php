@@ -69,7 +69,6 @@
                                                    
 													<!-- <a href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($value->em_id); ?>" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a> -->
                                                 <!--- delete Inactive--->    
-												<a href="<?php echo base_url('employee/delete/'.$value->em_id); ?>"title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                                 
                                             </tr>
@@ -105,6 +104,15 @@
                                                                
                                                             </select>
                                                         </div>
+                                                        <div class="form-group">
+                                                        <label>Status </label>
+                                                        <select name="status" tabindex="1" class="form-control custom-select" >
+                                                            <option value="ACTIVE">ACTIVE</option>
+                                                            <option value="INACTIVE">INACTIVE</option>
+                                                        </select>
+                                                    </div>
+                                                
+
                                                         <!-- <div class="form-group">
                                                             <label for="recipient-name" class="control-label">Title</label>
                                                             <input type="text" name="title" value="" class="form-control" id="recipient-name1">
@@ -157,6 +165,7 @@
                                                     $('#btnSubmit').find('[name="inactivedate"]').val(response.inactivity.inactivedate).end();
                                                     $('#btnSubmit').find('[name="reason"]').val(response.inactivity.reason).end();
                                                     $('#btnSubmit').find('[name="remarks"]').val(response.inactivity.remarks).end();
+                                                    $('#btnSubmit').find('[name="status"]').val(response.inactivity.status).end();
                                                    
 												});
                                             });

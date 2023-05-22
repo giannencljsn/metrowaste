@@ -5,6 +5,94 @@
 </div>
 
 </div>
+
+<script>
+  // add an event listener to the form
+  document.getElementById("myForm").addEventListener("input", function() {
+    // check if all form inputs are valid
+    if (this.checkValidity()) {
+      // enable the submit button
+      document.getElementById("submitBtn").disabled = false;
+    } else {
+      // disable the submit button
+      document.getElementById("submitBtn").disabled = true;
+    }
+  });
+</script>
+<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
+
+<script>
+		function validateForm(event) {
+		event.preventDefault(); // prevent the default form submission behavior
+		
+		var isValid = true; // introduce a variable to keep track of the validation status
+
+		// Validate Name Field
+		var firstName = document.forms["myForm"]["fname"].value;
+		if (firstName == "" || firstName.length < 3 || firstName.length > 30) {
+			alert("Please enter minimum 3 characters for First Name.");
+			isValid = false; // set isValid to false if validation fails
+		}
+
+		var lastName = document.forms["myForm"]["lname"].value;
+		if (lastName == "" || lastName.length < 3 || lastName.length > 30) {
+			alert("Please enter minimum 3 characters for Last Name..");
+			isValid = false; // set isValid to false if validation fails
+		}
+
+		// // Validate Username Field
+		// var email = document.forms["myForm"]["email"].value;
+		// var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex pattern for valid email format
+		// if (email == "" || email.length < 3 || email.length > 100 || !emailRegex.test(email) || /[^\w\s]/.test(email)) {
+		// 	alert("Please enter a valid Username without special characters");
+		// 	isValid = false; // set isValid to false if validation fails
+		// }
+
+
+		// Validate Password and Confirm Password Fields
+		var password = document.forms["myForm"]["password"].value;
+		var cpassword = document.forms["myForm"]["confirm"].value;
+		if (password != cpassword) {
+			alert("Passwords do not match.");
+			isValid = false; // set isValid to false if validation fails
+		}
+		
+		// Validate Image Field
+		var image = document.forms["myForm"]["image_url"].files[0];
+		var reader = new FileReader();
+		reader.readAsDataURL(image);
+		reader.onload = function (event) {
+			var img = new Image();
+			img.src = event.target.result;
+			img.onload = function () {
+			var fileSize = image.size / 1024 / 1024; // in MB
+			var fileType = image.type;
+			var maxWidth = 800;
+			var maxHeight = 800;
+			if (fileType != 'image/jpeg' && fileType != 'image/png' && fileType != 'image/gif') {
+				alert("Please select a valid image file (JPEG, PNG, or GIF).");
+				isValid = false; // set isValid to false if validation fails
+			} else if (fileSize > 2) {
+				alert("Please select an image file smaller than 2MB.");
+				isValid = false; // set isValid to false if validation fails
+			} else if (img.width > maxWidth || img.height > maxHeight) {
+				alert("Please select an image with dimensions not exceeding " + maxWidth + "px x " + maxHeight + "px.");
+				isValid = false; // set isValid to false if validation fails
+			}
+			if (isValid) {
+				document.getElementById("myForm").submit(); // submit the form if validation succeeds
+			}
+			};
+		};
+		}
+
+		document.getElementById("myForm").addEventListener("submit", validateForm);
+
+</script>
+
+
+
+
 <!-- TOGGLE PASSWORD VISIBILITY -->
 									
 <script>
