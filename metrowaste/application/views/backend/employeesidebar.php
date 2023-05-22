@@ -1,8 +1,4 @@
-<<<<<<< HEAD:application/views/backend/sidebar.php
-        <aside class="left-sidebar">
-=======
 <aside class="left-sidebar">
->>>>>>> nelbranch:metrowaste/application/views/backend/sidebar.php
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- User profile -->
@@ -28,29 +24,27 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-						<!-- If user is employee redirect to employeedashboard -->
-						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
-                        <li> <a class="dashboard-link" href="<?php echo base_url();?>employee_dashboard/Dashboard"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
-						<?php } else { ?>
-							<!-- Admin dashboard -->
-							<li> <a class="dashboard-link" href="<?php echo base_url();?>admin_dashboard/Dashboard"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
-							<?php } ?>
+                        
 						<!-- IF USER IS EMPLOYEE -->
+						<li class="nav-devider"></li>
+                        <li> <a class="dashboard-link" href="<?php echo base_url();?>employee_dashboard/Dashboard" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
 						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
 						</li>
 				
-						<li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">Leave </span></a>
+						<li>
+							<a href="" class="has-arrow waves-effect waves-dark">
+								<i class="mdi mdi-rocket"></i> <span class="hide-menu">Leave</span>
+							</a>
+						
 							<ul aria-expanded="false "class="collapse">
+								
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
-<<<<<<< HEAD:application/views/backend/sidebar.php
 								<li><a href="<?php echo base_url(); ?>leave/EmLeavesheet">Leave Sheet</a></li>
-=======
->>>>>>> nelbranch:metrowaste/application/views/backend/sidebar.php
 							</ul>
-
-						</li>				
+							
+						</li>
+						
 						<?php } else { ?>
 
 				<!-- Employees -->
@@ -92,17 +86,6 @@
                                 <li><a href="<?php echo base_url(); ?>leave/Leave_report"> Report </a></li>
                             </ul>
                         </li>
-<<<<<<< HEAD:application/views/backend/sidebar.php
-=======
-						 <!---Organization--->
-						 <!---update 11/05/23--->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-building-o"></i><span class="hide-menu">Organization </span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="<?php echo base_url();?>organization/Department">Department </a></li>
-                                <li><a href="<?php echo base_url();?>organization/Designation">Designation</a></li>
-                            </ul>
-                        </li>
->>>>>>> nelbranch:metrowaste/application/views/backend/sidebar.php
 				<!-- Notice -->
 						<li> <a href="<?php echo base_url()?>notice/All_notice" ><i class="mdi mdi-clipboard"></i><span class="hide-menu">Notice <span class="hide-menu"></a></li>
 						<?php } ?>

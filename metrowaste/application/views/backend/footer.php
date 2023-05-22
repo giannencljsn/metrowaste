@@ -5,18 +5,6 @@
 </div>
 
 </div>
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
-<<<<<<< HEAD:metrowaste/application/views/backend/footer.php
-	
-<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
-<script>
-	function validateForm() {
-=======
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 
 <script>
   // add an event listener to the form
@@ -37,13 +25,6 @@
 		function validateForm(event) {
 		event.preventDefault(); // prevent the default form submission behavior
 		
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
->>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/views/backend/footer.php
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 		var isValid = true; // introduce a variable to keep track of the validation status
 
 		// Validate Name Field
@@ -69,20 +50,6 @@
 
 
 		// Validate Password and Confirm Password Fields
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
-<<<<<<< HEAD:metrowaste/application/views/backend/footer.php
-			var password = document.forms["myForm"]["password"].value;
-			var cpassword = document.forms["myForm"]["confirm"].value;
-			if (password != cpassword) {
-				alert("Passwords do not match.");
-				isValid = false; // set isValid to false if validation fails
-			}
-=======
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 		var password = document.forms["myForm"]["password"].value;
 		var cpassword = document.forms["myForm"]["confirm"].value;
 		if (password != cpassword) {
@@ -90,13 +57,6 @@
 			isValid = false; // set isValid to false if validation fails
 		}
 		
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
->>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/views/backend/footer.php
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 		// Validate Image Field
 		var image = document.forms["myForm"]["image_url"].files[0];
 		var reader = new FileReader();
@@ -105,43 +65,6 @@
 			var img = new Image();
 			img.src = event.target.result;
 			img.onload = function () {
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
-<<<<<<< HEAD:metrowaste/application/views/backend/footer.php
-				var fileSize = image.size / 1024 / 1024; // in MB
-				var fileType = image.type;
-				var maxWidth = 800;
-				var maxHeight = 800;
-				if (fileType != 'image/jpeg' && fileType != 'image/png' && fileType != 'image/gif') {
-					alert("Please select a valid image file (JPEG, PNG, or GIF).");
-					isValid = false; // set isValid to false if validation fails
-				} else if (fileSize > 2) {
-					alert("Please select an image file smaller than 2MB.");
-					isValid = false; // set isValid to false if validation fails
-				} else if (img.width > maxWidth || img.height > maxHeight) {
-					alert("Please select an image with dimensions not exceeding " + maxWidth + "px x " + maxHeight + "px.");
-					isValid = false; // set isValid to false if validation fails
-				}
-				if (isValid) {
-					document.getElementById("myForm").submit(); // submit the form if validation succeeds
-				}
-			};
-		};
-
-		return false;
-	}
-
-	document.getElementById("myForm").addEventListener("submit", function (event) {
-		event.preventDefault();
-		validateForm();
-	});
-</script>
-
-=======
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 			var fileSize = image.size / 1024 / 1024; // in MB
 			var fileType = image.type;
 			var maxWidth = 800;
@@ -170,13 +93,6 @@
 
 
 
-<<<<<<< HEAD:application/views/backend/footer.php
-=======
-<<<<<<<< HEAD:metrowaste3/application/views/backend/footer.php
-========
->>>>>>> 0e517c7c1f70fcda27e12b400ca619fb4d5bea2b:metrowaste3/application/views/backend/footer.php
->>>>>>>> nelbranch:application/views/backend/footer.php
->>>>>>> nelbranch:metrowaste/application/views/backend/footer.php
 <!-- TOGGLE PASSWORD VISIBILITY -->
 									
 <script>

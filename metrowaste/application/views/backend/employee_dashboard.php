@@ -15,11 +15,6 @@
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-<<<<<<< HEAD:application/views/backend/employee_dashboard.php
-=======
-            <?php if ($this->session->userdata('user_type') == 'ADMIN'): ?>
-
->>>>>>> nelbranch:metrowaste/application/views/backend/employee_dashboard.php
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Row -->
@@ -86,11 +81,6 @@
                 </div>
                 <!-- ============================================================== -->
             </div> 
-<<<<<<< HEAD:application/views/backend/employee_dashboard.php
-=======
-            <?php endif; ?>
-
->>>>>>> nelbranch:metrowaste/application/views/backend/employee_dashboard.php
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
                 $userid = $this->session->userdata('user_login_id');
