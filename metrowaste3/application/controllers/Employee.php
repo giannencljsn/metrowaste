@@ -93,6 +93,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact_1') . '-' . $this->input->post('contact_2');
 	$emcontact = $this->input->post('emcontact_1') . '-' . $this->input->post('emcontact_2');
+    $contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');	
@@ -163,6 +164,7 @@ class Employee extends CI_Controller {
                     'status'=>'ACTIVE',
                     'em_phone'=>$contact,
 					'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address' =>$address,
@@ -246,6 +248,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact');
 	$emcontact = $this->input->post('emcontact');
+	$contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');
@@ -323,6 +326,7 @@ class Employee extends CI_Controller {
                     'em_image'=>$img_url,
                     'em_address'=>$address,
                     'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_sss'=>$sss,
 					'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
@@ -349,6 +353,7 @@ class Employee extends CI_Controller {
                     'status'=>$status,
                     'em_phone'=>$contact,
 					'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
@@ -385,6 +390,7 @@ class Employee extends CI_Controller {
 				$gender = $this->input->post('gender');
 				$contact = $this->input->post('contact');
 				$emcontact = $this->input->post('emcontact');
+				$contactname = $this->input->post('contactname');
 				$dob = $this->input->post('dob');	
 				$joindate = $this->input->post('joindate');	
 				$username = $this->input->post('username');	
@@ -457,6 +463,7 @@ class Employee extends CI_Controller {
 												'status'=>$status,
 												'em_phone'=>$contact,
 												'em_em_contact'=>$emcontact,
+                                                'contactname' =>$contactname,
 												'em_birthday'=>$dob,
 												'em_joining_date'=>$joindate,
 												'em_image'=>$img_url,
@@ -488,6 +495,7 @@ class Employee extends CI_Controller {
 											'status'=>$status,
 											'em_phone'=>$contact,
 											'em_em_contact'=>$emcontact,
+                                            'contactname' =>$contactname,
 											'em_birthday'=>$dob,
 											'em_joining_date'=>$joindate,
 											'em_address'=>$address,
