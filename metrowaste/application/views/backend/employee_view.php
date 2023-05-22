@@ -640,16 +640,22 @@
 			                                    </div> 
 												<!-- Rest Day  Duty-->
 												<!-- Straight Duty -->
+												<!-- Rest Day  Duty-->
+												<!-- Straight Duty -->
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Straight Duty</label>
 			                                        <input type="text" name="straightduty" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line straightduty" placeholder="Straight Duty" value="<?php if(!empty($salaryvalue->straightduty)) echo $salaryvalue->straightduty ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div> 
 												<!-- Straight Duty -->
 												<!-- Special Holiday -->
+												<!-- Straight Duty -->
+												<!-- Special Holiday -->
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Special Holiday</label>
 			                                        <input type="text" name="specialholiday" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line specialholiday" placeholder="Special Holiday" value="<?php if(!empty($salaryvalue->specialholiday)) echo $salaryvalue->specialholiday ?>" onkeypress="return /[0-9]/i.test(event.key)" > 
 			                                    </div> 
+												<!-- Special Holiday -->
+												<!-- Legal Holiday -->
 												<!-- Special Holiday -->
 												<!-- Legal Holiday -->
 			                                    <div class="form-group col-md-6 m-t-5">
@@ -701,6 +707,8 @@
 			                                        <label>Cash Advances</label>
 			                                        <input type="text" name="cashadvances" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line cashadvances" placeholder="Cash Advances" value="<?php if(!empty($salaryvalue->cashadvances)) echo $salaryvalue->cashadvances ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
 			                                    </div>
+												<div class="form-group col-md-6 m-t-5">
+			                                       
 												<div class="form-group col-md-6 m-t-5">
 			                                       
 			                                    </div>
