@@ -1,6 +1,7 @@
 <?php $this->load->view('backend/header'); ?>
 <?php $this->load->view('backend/sidebar'); ?>
       <div class="page-wrapper">
+		<!-- Testing -->
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -264,7 +265,7 @@
 										title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" minlength="8"required>
 										<input type="checkbox" onclick="showPassword()" style="position: initial; opacity: 100;">Show Password
 									</div>
-
+												
 								
 
 									
