@@ -21,13 +21,122 @@
                         <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Application" class="text-white"><i class="" aria-hidden="true"></i>  Leave Application</a></button>
                     </div>
                 </div>  
-                <div class="row">
+				<div class="row">
+                    <div class="col-12">
+                        <div class="card card-outline-info">
+                            <div class="card-header">
+                                <h4 class="m-b-0 text-white"><i class="fa fa-user-o" aria-hidden="true"></i> Employee List</h4>
+                            </div>
+							<div class="card-body">
+    <div class="table-responsive">
+        <table id="employees123" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>PIN</th>
+                    <th>Username</th>
+                    <th>Contact</th>
+                    <th>User Type</th>
+                    <th>
+                        <input type="checkbox" id="selectAllCheckbox">Select All 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+			<form method="POST" action="<?php echo site_url('formController/process_selected'); ?>" id="attendanceForm">
+                    <?php foreach($employee as $value): ?>
+                    <tr>
+                        <td>
+                            <?php echo $value->first_name .' '.$value->last_name; ?>
+                        </td>
+                        <td><?php echo $value->em_code; ?></td>
+                        <td><?php echo $value->em_email; ?></td>
+                        <td><?php echo $value->em_phone; ?></td>
+                        <td><?php echo $value->em_role; ?></td>
+                        <td>
+                            <input type="checkbox" name="selected_values[]" value="<?php echo $value->em_id; ?>" class="attendanceCheckbox">
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td colspan="6">
+							<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.getElementById('selectAllCheckbox').addEventListener('change', function() {
+        var checkboxes = document.getElementsByClassName('attendanceCheckbox');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });
+
+    document.getElementById('attendanceForm').addEventListener('submit', function() {
+        var checkboxes = document.getElementsByClassName('attendanceCheckbox');
+        var isChecked = false;
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                isChecked = true;
+                break;
+            }
+        }
+        if (!isChecked) {
+            alert('Please select at least one employee.');
+            return false; // Prevent form submission
+        }
+    });
+</script>
+<script>
+   document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      // Get selected checkbox values
+      var selectedEmployees = [];
+      var checkboxes = document.getElementsByClassName('attendanceCheckbox');
+      for (var i = 0; i < checkboxes.length; i++) {
+         if (checkboxes[i].checked) {
+            selectedEmployees.push(checkboxes[i].value);
+         }
+      }
+      
+      // Display selected values in the modal body
+      var modalBody = document.getElementById('myModal').querySelector('.modal-body');
+      modalBody.innerHTML = '<p>Selected Employees:</p><ul>';
+      selectedEmployees.forEach(function(employee) {
+         modalBody.innerHTML += '<li>' + employee + '</li>';
+      });
+      modalBody.innerHTML += '</ul>';
+      
+      // Show the modal
+      $('#myModal').modal('show');
+   });
+</script>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                 <!-- <div class="row">
                     <div class="col-6">
                         <div class="card card-outline-info">
                             <div class="card-header">
                                 <h4 class="m-b-0 text-white"> Attendance </h4>
                             </div>
-                            <div class="card-body">
+
+
+
+
+
+                           <div class="card-body">
                                     <form method="post" action="Add_Attendance" id="holidayform" enctype="multipart/form-data">
                                     <div class="modal-body">
 			                                    <div class="form-group">
@@ -76,7 +185,7 @@
                                         <button type="submit" id="attendanceUpdate" class="btn btn-success">Submit</button>
                                     </div>
                                     </form>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -84,7 +193,7 @@
                                     
                                  
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function () {
     $(".holidelet").click(function (e) {
         e.preventDefault(e);
@@ -105,5 +214,30 @@ $(document).ready(function () {
         window.setTimeout(function(){location.reload()}, 1000);
     });
 });
-</script>                              
+</script>                               -->
+
+
+<div id="myModalContent">
+   <!-- Form content goes here -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Selected Employees</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <!-- Selected employees will be displayed here -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+</div>
+
 <?php $this->load->view('backend/footer'); ?>
