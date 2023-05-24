@@ -79,7 +79,7 @@ class Dashboard extends CI_Controller {
 		}
 	}    
      
-      //delete todo list
+    //delete todo list
     public function delete($id){
         $this->load->model('Dashboard_model');
         $this->Dashboard_model->deleteTodolist($id);

@@ -112,10 +112,8 @@ class Employee extends CI_Controller {
         $this->form_validation->set_error_delimiters();
         // Validating Name Field
         // $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
-        
-		/*Validating Username field*/
+        /*validating username field*/
         $this->form_validation->set_rules('email', 'Username', 'trim|required|min_length[3]|max_length[100]|regex_match[/^[a-zA-Z0-9_]*$/]');
-
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();

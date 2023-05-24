@@ -79,7 +79,7 @@
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>First Name</label>
-				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
+				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> minlength="3" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Last Name </label>
@@ -182,10 +182,11 @@
 				                                        <label>Emergency Contact Number </label>
 				                                        <input type="text" class="form-control" placeholder="Emergency Contact No." name="emcontact" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->em_em_contact; ?>"  maxlength="12" > 
 				                                    </div>
-                                                    <div class="form-group col-md-4 m-t-10">
+													<div class="form-group col-md-4 m-t-10">
 				                                        <label>Emergency Contact Name </label>
 				                                        <input type="text" class="form-control" placeholder="Emergency Contact Name" name="contactname" <?php if($this->session->userdata('user_type')==''){ ?> readonly <?php } ?> value="<?php echo $basic->contactname; ?>"  maxlength="15"  onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)"> 
 				                                    </div>
+                                                   
                                                     <!---update 11/05/23 --->
                                                     
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
