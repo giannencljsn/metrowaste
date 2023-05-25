@@ -60,6 +60,13 @@
 			}
 			
 	</style>
+	<!-- Attendance CSS -->
+	<style>
+    #attendanceCheckbox{
+		position: absolute;
+	}
+</style>
+
 
 </head>
 
