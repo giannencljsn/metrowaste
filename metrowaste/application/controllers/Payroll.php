@@ -267,7 +267,7 @@ class Payroll extends CI_Controller {
                 $data = array(
                     'emp_id' => $em_id,
                     /*'type_id' => $type,*/
-                    'basic' => $basic
+                    'basic' => $basic,
                     'total' => $total,
                     'totalnetpay' => $totalnetpay
 
