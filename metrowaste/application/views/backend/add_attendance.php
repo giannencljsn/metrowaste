@@ -38,7 +38,7 @@
                     <th>Contact</th>
                     <th>User Type</th>
                     <th>
-                        <input type="checkbox" id="selectAllCheckbox">Select All 
+                        <input type="checkbox" id="selectAllCheckbox" style="position: inherit; opacity: 1;">Select All 
                     </th>
                 </tr>
             </thead>
@@ -54,7 +54,7 @@
                         <td><?php echo $value->em_phone; ?></td>
                         <td><?php echo $value->em_role; ?></td>
                         <td>
-                            <input type="checkbox" name="selected_values[]" value="<?php echo $value->em_id; ?>" class="attendanceCheckbox">
+                            <input type="checkbox" name="selected_values[]" value="<?php echo $value->em_id; ?>" class="attendanceCheckbox" style="position: inherit; opacity: 1;">
                         </td>
                     </tr>
                     <?php endforeach; ?>
