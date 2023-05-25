@@ -104,7 +104,6 @@
                                                                
                                                             </select>
                                                         </div>
-
                                                         <div class="form-group">
                                                         <label>Status </label>
                                                         <select name="status" tabindex="1" class="form-control custom-select" >
@@ -112,6 +111,8 @@
                                                             <option value="INACTIVE">INACTIVE</option>
                                                         </select>
                                                     </div>
+                                                
+
                                                         <!-- <div class="form-group">
                                                             <label for="recipient-name" class="control-label">Title</label>
                                                             <input type="text" name="title" value="" class="form-control" id="recipient-name1">
@@ -164,6 +165,7 @@
                                                     $('#btnSubmit').find('[name="inactivedate"]').val(response.inactivity.inactivedate).end();
                                                     $('#btnSubmit').find('[name="reason"]').val(response.inactivity.reason).end();
                                                     $('#btnSubmit').find('[name="remarks"]').val(response.inactivity.remarks).end();
+                                                    $('#btnSubmit').find('[name="status"]').val(response.inactivity.status).end();
                                                    
 												});
                                             });

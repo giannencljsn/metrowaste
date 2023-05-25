@@ -31,6 +31,7 @@ class Payroll extends CI_Controller {
         $this->load->model('loan_model');
 		
     
+
     }
     public function index()
     {
@@ -234,6 +235,7 @@ class Payroll extends CI_Controller {
         $did = $this->input->post('did');
         $em_id = $this->input->post('emid');
         /*$type = $this->input->post('typeid');*/
+
        // salary related
        $basic = $this->input->post('basic');
 	   $restduty = $this->input->post('restduty');
@@ -252,6 +254,7 @@ class Payroll extends CI_Controller {
 	   $totalnetpay = $this->input->post('totalnetpay');
 
 		// salary end
+
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('basic', 'basic', 'trim|required|min_length[3]|max_length[10]|xss_clean');
@@ -264,8 +267,10 @@ class Payroll extends CI_Controller {
                 $data = array(
                     'emp_id' => $em_id,
                     /*'type_id' => $type,*/
-					'total' => $total,
+                    'basic' => $basic
+                    'total' => $total,
                     'totalnetpay' => $totalnetpay
+
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -283,28 +288,31 @@ class Payroll extends CI_Controller {
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
                     'legalholiday'=> $legalholiday,
-					'sss' => $sss,
+                    'sss' => $sss,
                     'sssprovident' => $sssprovident,
                     'hdmf' => $hdmf,
                     'whtax' => $whtax,
-					'philhealth' => $philhealth,
+                    'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
                     'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 					
+
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $sid,
+
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
                     'hdmf' => $hdmf,
                     'whtax' => $whtax,
-					'philhealth' => $philhealth,
+                    'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
                     'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
+
                 );
                 $success = $this->employee_model->Update_Deduction($did,$data2); 
                 echo "Successfully Updated";                
@@ -316,6 +324,7 @@ class Payroll extends CI_Controller {
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $insertId,
+
                     // Addition
                     'basic' => $basic,
                     'restduty'=> $restduty,
@@ -331,11 +340,13 @@ class Payroll extends CI_Controller {
                     'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 					
+
                 );
                 $success = $this->employee_model->Add_Addition($data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $insertId,
+
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
 					'philhealth' => $philhealth,
@@ -344,6 +355,7 @@ class Payroll extends CI_Controller {
                     'cashadvances' => $cashadvances,
                     'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
+
                 );
                 $success = $this->employee_model->Add_Deduction($data2); 
                 echo "Successfully Added";
@@ -400,7 +412,8 @@ class Payroll extends CI_Controller {
         $totalmonthhour = $monthday * 8;
         $totalmonthhour;
         $employee = $this->payroll_model->GetDepEmployee($depid);
-		$employee2 = $this->payroll_model->GetDepEmployee2($depid);
+		    $employee2 = $this->payroll_model->GetDepEmployee2($depid);
+
 
         foreach($employee as $value){
             $hourrate = $value->total/$totalmonthhour;
@@ -506,7 +519,9 @@ class Payroll extends CI_Controller {
         //Get his monthly salary
         $employee_salary = $this->payroll_model->GetsalaryValueByID($id_em);
         if($employee_salary) {
+
             $employee_salary = $employee_salary->totalnetpay;
+
         }
 
         // Hourly rate for the month
@@ -567,9 +582,11 @@ class Payroll extends CI_Controller {
         $settingsvalue      = $this->settings_model->GetSettingsValue();
 
         $addition = $this->payroll_model->getAdditionDataBySalaryID($salaryvalue->id);
+
         // $diduction = $this->payroll_model->getDiductionDataBySalaryID($salaryvalue->id);
 		
         $data['diduction'] = $this->payroll_model->getDiductionDataBySalaryID($salaryvalue->id);
+
         //print_r($salary_info);
         //$month = date('m');
         //$data['loanInfo']      = $this->payroll_model->getLoanInfoInvoice($id, $month);
@@ -619,7 +636,9 @@ class Payroll extends CI_Controller {
         //Get his monthly salary
         $employee_salary = $this->payroll_model->GetsalaryValueByID($id_em);
         if($employee_salary) {
+
             $employee_salary = $employee_salary->totalnetpay;
+
         }
 
         // Hourly rate for the month
@@ -736,6 +755,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                             </tr>
                                         </thead>
                                         <tbody style='border: 1px solid #ececec;'>
+
 										
 											
                                             <tr>
@@ -813,6 +833,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                                 <th>Total</th>
                                                 <th class='text-right'>". $total_add = $addition[0]->basic + $addition[0]->restduty + $addition[0]->straightduty + $addition[0]->specialholiday + $addition[0]-> legalholiday;  round($total_add,2); echo "PHP</th>
                                                 <th class='text-right'>".$total_did = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth + $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances;  round($total_did,2); echo"PHP</th>
+
                                             </tr>
                                             <tr>
                                                 <th></th>
@@ -897,7 +918,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         //Get his monthly salary
         $employee_salary = $this->payroll_model->GetsalaryValueByID($employeeID);
         if($employee_salary) {
+
             $employee_salary = $employee_salary->totalnetpay;
+
         }
 
         // Hourly rate for the month
@@ -920,11 +943,13 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         if($loan_amount) {
             $loan_amount = $loan_amount->installment;
         }
+
 		// Get their deduction
 		$employee_deduction = $this->payroll_model->getDiductionDataBySalaryID($employeeID);
 		if($employee_deduction){
 			$employee_deduction = $employee_deduction->sss;
 		}
+
 
         // Sending 
         $data = array();
@@ -934,8 +959,10 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['addition'] = $addition;
         $data['diduction'] = $diduction;
         $data['loan'] = $loan_amount;
+
 	
 	
+
         echo json_encode($data);
         }
         else{
@@ -955,7 +982,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     // Add or update the salary record
     public function pay_salary_add_record() {
         if($this->session->userdata('user_login_access') != False) {
+
         $eid = $this->input->post('eid');
+
         $month = $this->month_number_to_name($this->input->post('month'));
         $basic = $this->input->post('basic');
         $year = $this->input->post('year');
@@ -980,7 +1009,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
             $data = array();
             $data = array(
+
                 'emp_id' => $eid,
+
                 'month' => $month,
                 'year' => $year,
                 'paid_date' => $paydate,
@@ -995,7 +1026,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             );
             
             // See if record exists
+
             $get_salary_record = $this->payroll_model->getSalaryRecord($eid, $month,$year);
+
 
             if($get_salary_record) {
                 $payID = $get_salary_record[0]->pay_id;
@@ -1024,6 +1057,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                             $number = $loan_info->loan_number;
                             $data = array();
                             $data = array(
+
                                 'emp_id' => $eid,
                                 'loan_id' => $loan_id,
                                 'loan_number' => $number,
@@ -1078,7 +1112,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                             $number = $loan_info->loan_number;
                             $data = array();
                             $data = array(
+
                                 'emp_id' => $eid,
+
                                 'loan_id' => $loan_id,
                                 'loan_number' => $number,
                                 'install_amount' => $loan,
@@ -1145,7 +1181,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             echo "<tr>
                     <td>$employee->em_code</td>
                     <td>$full_name</td>
+
 					<td>$employee->totalnetpay</td>
+
                     <td><a href=''
                                 data-id='$employee->em_id' 
                                 data-month='$month' 
@@ -1213,7 +1251,9 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
 
         if($employee_salary) {
+
             $employee_salary = $employee_salary->totalnetpay;
+
         }
 
         // Hourly rate for the month

@@ -3,6 +3,7 @@
 	class Payroll_model extends CI_Model{
 
 
+
 	function __construct(){
 	parent::__construct();
 	
@@ -27,7 +28,9 @@
     }
     public function GetDepEmployee($depid){
     $sql = "SELECT `employee`.*,
+
 			`emp_salary`.`totalnetpay`
+
       FROM `employee`
       LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
       WHERE `employee`.`dep_id`='$depid'";
@@ -35,6 +38,7 @@
         $result = $query->result();
         return $result;         
     } 
+
 
 		public function GetDepEmployee2($depid){
 			$sql = "SELECT `employee`.*,
@@ -46,6 +50,7 @@
 					$result = $query->result();
 					return $result;         
 			} 
+
     public function Get_typeValue($id){
         $sql = "SELECT * FROM `salary_type` WHERE `salary_type`.`id`= '$id'";
         $query = $this->db->query($sql);
@@ -226,13 +231,13 @@
       $sql = "SELECT `deduction`.*
               FROM `deduction`
               WHERE `deduction`.salary_id = '$salaryID'";
+
 		
 
       $query = $this->db->query($sql);
       $result = $query->result_array();
       return $result;
     }
-	
 	
 
 
@@ -280,6 +285,7 @@ public function getPinFromID($employeeID){
         $result = $this->db->update('pay_salary', $data);
         return $result;
     }
+
     public function getSalaryRecord($eid, $month,$year){
       $sql = "SELECT `pay_salary`.*
               FROM `pay_salary`
@@ -303,4 +309,6 @@ public function getPinFromID($employeeID){
       $result = $query->result();
       return $result;
     }   
+
 }
+
