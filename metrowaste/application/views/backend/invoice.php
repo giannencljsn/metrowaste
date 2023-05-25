@@ -126,32 +126,69 @@
                                                 <td class="text-right">  </td>
                                             </tr>
                                             <tr>
-                                                <td>Medical Allowance</td>
-                                                <td class="text-right"> <?php echo $addition[0]->medical; ?> PHP</td>
+                                                <td>Rest duty</td>
+                                                <td class="text-right"> <?php echo $addition[0]->restduty; ?> PHP</td>
                                                 <td class="text-right">  </td>
                                             </tr>
                                             <tr>
-                                                <td>House Rent</td>
-                                                <td class="text-right"><?php echo $addition[0]->house_rent; ?> PHP</td>
+                                                <td>Straight duty</td>
+                                                <td class="text-right"><?php echo $addition[0]->straightduty; ?> PHP</td>
                                                 <td class="text-right">  </td>
                                             </tr>
                                             <tr>
-                                                <td>Conveyance Allowance</td>
-                                                <td class="text-right"><?php echo $addition[0]->conveyance; ?> PHP</td>
+                                                <td>Special Holiday</td>
+                                                <td class="text-right"><?php echo $addition[0]->specialholiday; ?> PHP</td>
                                                 <td class="text-right">  </td>
                                             </tr>
-                                            <tr>
-                                                <td>Bonus</td>
-                                                <td class="text-right"><?php echo $salary_info->bonus; ?></td>
-                                                <td class="text-right"></td>
+											<tr>
+                                                <td>Legal Holiday</td>
+                                                <td class="text-right"><?php echo $addition[0]->legalholiday; ?> PHP</td>
+                                                <td class="text-right">  </td>
                                             </tr>
-                                            <tr>
-                                                <td>Loan</td>
-                                                <td class="text-right"> </td>
-                                                <td class="text-right"><?php if(!empty($salary_info->loan)) {
-                                                    echo $salary_info->loan . "PHP";
-                                                } ?> </td>
+
+											<tr>
+                                                <td>SSS</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->sss; ?> PHP</td>
+                                                
                                             </tr>
+
+											<tr>
+                                                <td>SSS Provident</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->sssprovident; ?> PHP</td>
+                                                
+                                            </tr>
+
+											<tr>
+                                                <td>Philhealth</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->philhealth; ?> PHP</td>
+                                                
+                                            </tr>
+
+											<tr>
+                                                <td>HDMF</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->hdmf; ?> PHP</td>
+                                                
+                                            </tr>
+
+											<tr>
+                                                <td>Withholding Tax</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->whtax; ?> PHP</td>
+                                                
+                                            </tr>
+
+											<tr>
+                                                <td>Cash Advances</td>
+												<td class="text-right">  </td>
+                                                <td class="text-right"><?php echo $addition[0]->cashadvances; ?> PHP</td>
+                                                
+                                            </tr>
+											
+                                           
                                             <tr>
                                                 <td>Working Hour (<?php echo $salary_info->total_days; ?> hrs)</td>
                                                 <td class="text-right">
@@ -164,7 +201,7 @@
                                                         if($d > 0) { echo round($d,2).'PHP'; }
                                                     ?>        
                                                 </td>
-                                                <td class="text-right"> </td>
+                                                
                                             </tr>
                                             <!--<tr>
                                                 <td>Without Pay( <?php echo $work_h_diff ?> hrs)</td>
@@ -175,17 +212,15 @@
                                                     ?> </td>
                                                 
                                             </tr>-->
-                                            <tr>
-                                                <td>Tax</td>
-                                                <td class="text-right"> </td>
-                                                <td class="text-right"> </td>
-                                            </tr>
+                                           
                                         </tbody>
                                         <tfoot class="tfoot-light">
                                             <tr>
                                                 <th>Total</th>
-                                                <th class="text-right"><?php $total_add = $salary_info->basic + $salary_info->medical + $salary_info->house_rent + $salary_info->bonus+$a; echo round($total_add,2); ?>PHP</th>
-                                                <th class="text-right"><?php $total_did = $salary_info->loan+$salary_info->diduction; echo round($total_did,2); ?>PHP</th>
+                                                <th class="text-right"><?php $total_add = $addition[0]->basic + $addition[0]->restduty + $addition[0]->straightduty 
+																						+ $addition[0]->specialholiday + $addition[0]-> legalholiday; echo round($total_add,2); ?>PHP</th>
+                                                <th class="text-right"><?php $total_did = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth 
+																						+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances; echo round($total_did,2); ?>PHP</th>
                                             </tr>
                                             <tr>
                                                 <th></th>

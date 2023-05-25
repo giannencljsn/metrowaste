@@ -29,7 +29,7 @@
                                             <input type="text" name="datetime" id="date_from" class="form-control mydatetimepicker" placeholder="from" required>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <select class="select2 form-control custom-select col-md-8" data-placeholder="Choose a Category" tabindex="1" id="emid" name="emid" required>
+                                            <select class="select2 form-control custom-select col-md-8" data-placeholder="Choose a Category" tabindex="1" id="eid" name="emid" required>
                                                 <option value="#">Select Here</option>
                                                 <option value="all">All Employee</option>
                                                 <?php foreach($employee as $value): ?>

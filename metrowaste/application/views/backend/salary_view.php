@@ -95,11 +95,12 @@ $this->load->view('backend/sidebar');
               <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                   <tr>
-                    <th>PIN 
+                    <th>Employee Code
                     </th>
-                    <th>Full name
+                    <th>Full Name
+
                     </th>
-                    <th>Total salary
+										<th>Total Net Pay
                     </th>
                     <th>Action
                     </th>
@@ -166,7 +167,7 @@ $this->load->view('backend/sidebar');
               <div class="form-group row">
                 <label class="control-label text-left col-md-3">Employee</label>
                 <div class="col-md-9">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" id="emid" tabindex="1" name="emid" id="OnEmValue" required>
+                <select class="form-control custom-select" data-placeholder="Choose a Category" id="eid" tabindex="1" name="eid" id="OnEmValue" required>
                   <option value="#">Select Here
                   </option>
                   <?php foreach ($employee as $value): ?>
@@ -174,6 +175,8 @@ $this->load->view('backend/sidebar');
                     <?php echo $value->first_name.' '.$value->last_name; ?>
                   </option>
                   <?php endforeach; ?>
+
+
                 </select>
                 </div>
               </div>                                        
@@ -219,6 +222,7 @@ $this->load->view('backend/sidebar');
                 </label>
                 <div class="col-md-7">
                 <input type="text" name="basic" class="form-control" id="" value="">
+								
               </div> 
               </div>                                     
               <div class="form-group row">
@@ -329,6 +333,11 @@ $this->load->view('backend/sidebar');
                                     </div>
                                 </div>                             
             </div>
+							
+
+
+
+
             <div class="modal-footer">
               <input type="hidden" name="action" value="add" class="form-control" id="formAction">              
               <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                      
@@ -391,7 +400,7 @@ $this->load->view('backend/sidebar');
 
           console.log(has_loan);
 
-          $('#generatePayrollForm').find('[name="emid"]').val(emid).attr('readonly', true).end();
+          $('#generatePayrollForm').find('[name="eid"]').val(emid).attr('readonly', true).end();
           $('#generatePayrollForm').find('[name="month"]').val(Math.abs(month)).attr('readonly', true).end();
 
           $.ajax({
