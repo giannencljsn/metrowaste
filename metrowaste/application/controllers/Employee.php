@@ -128,7 +128,9 @@ class Employee extends CI_Controller {
 			$fileSize = $_FILES["image_url"]["size"]/1024;
 			$fileType = $_FILES["image_url"]["type"];
 			$new_file_name='';
-            $new_file_name .= $emrand;
+
+            $new_file_name .= $eid;
+
 
             $config = array(
                 'file_name' => $new_file_name,
@@ -151,7 +153,8 @@ class Employee extends CI_Controller {
                 $img_url = $path['file_name'];
                 $data = array();
                 $data = array(
-                    'em_id' => $emrand,
+
+                    'em_id' => $eid,
                     'em_code' => $eid,
                     'des_id' => $deg,
                     'dep_id' => $dept,
@@ -190,28 +193,31 @@ class Employee extends CI_Controller {
         } else {
                 $data = array();
                 $data = array(
-                    'em_id' => $emrand,
+
+                    'em_id' => $eid,
+
                     'em_code' => $eid,
                     'des_id' => $deg,
                     'dep_id' => $dept,
                     'first_name' => $fname,
                     'last_name' => $lname,
-					'em_email' => $email,
-					'em_password'=>$password,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
+                    'em_email' => $email,
+                    'em_password'=>$password,
+                    'em_role'=>$role,
+                    'em_gender'=>$gender,
                     'status'=>'ACTIVE',
                     'em_phone'=>$contact,
-					'em_em_contact'=>$emcontact,
+                    'em_em_contact'=>$emcontact,
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
                     'em_blood_group'=> $blood,
-					'em_marital_status' => $marital,
-					'em_sss'=>$sss,
-					'em_philhealth'=>$philhealth,
+                    'em_marital_status' => $marital,
+                    'em_sss'=>$sss,
+                    'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
-					'em_tin'=>$tin,
+                    'em_tin'=>$tin,
                 );
                 if($id){
             $success = $this->employee_model->Update($data,$id); 
@@ -328,10 +334,10 @@ class Employee extends CI_Controller {
                     'em_em_contact'=>$emcontact,
                     'contactname' =>$contactname,
                     'em_sss'=>$sss,
-					'em_philhealth'=>$philhealth,
+                    'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
                     'em_blood_group'=> $blood,
-					'em_marital_status' => $marital
+                    'em_marital_status' => $marital
                 );
                 if($id){
             $success = $this->employee_model->Update($data,$id); 
@@ -347,22 +353,22 @@ class Employee extends CI_Controller {
                     'dep_id' => $dept,
                     'first_name' => $fname,
                     'last_name' => $lname,
-					'em_email' => $email,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
+                    'em_email' => $email,
+                    'em_role'=>$role,
+                    'em_gender'=>$gender,
                     'status'=>$status,
                     'em_phone'=>$contact,
-					'em_em_contact'=>$emcontact,
+                    'em_em_contact'=>$emcontact,
                     'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
                     'em_sss'=>$sss,
-					'em_philhealth'=>$philhealth,
+                    'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
-					'em_tin'=>$tin,
+                    'em_tin'=>$tin,
                     'em_blood_group'=> $blood,
-					'em_marital_status' => $marital
+                    'em_marital_status' => $marital
                 );
                 if($id){
             $success = $this->employee_model->Update($data,$id); 
@@ -390,7 +396,7 @@ class Employee extends CI_Controller {
 				$gender = $this->input->post('gender');
 				$contact = $this->input->post('contact');
 				$emcontact = $this->input->post('emcontact');
-				$contactname = $this->input->post('contactname');
+                $contactname = $this->input->post('contactname');
 				$dob = $this->input->post('dob');	
 				$joindate = $this->input->post('joindate');	
 				$username = $this->input->post('username');	
@@ -468,10 +474,10 @@ class Employee extends CI_Controller {
 												'em_joining_date'=>$joindate,
 												'em_image'=>$img_url,
 												'em_address'=>$address,
-                                                'em_sss'=>$sss,
-											    'em_philhealth'=>$philhealth,
-                                                'em_pagibig'=>$pagibig,
-											    'em_tin'=>$tin,
+                        'em_sss'=>$sss,
+											  'em_philhealth'=>$philhealth,
+                        'em_pagibig'=>$pagibig,
+											  'em_tin'=>$tin,
 												'em_blood_group'=> $blood,
 												'em_marital_status' => $marital
 											);
@@ -1225,7 +1231,10 @@ else{
                 $data = array(
                     'emp_id' => $em_id,
                     'type_id' => $type,
-                    'total' => $total
+                    'total' => $total,
+                    'totalnetpay' => $totalnetpay
+
+
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -1238,22 +1247,42 @@ else{
                 if(!empty($aid)){
                 $data1 = array();
                 $data1 = array(
+
+					// Addition
                     'salary_id' => $sid,
                     'basic' => $basic,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'conveyance' => $conveyance
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday,
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+                    'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
+
+
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);                    
                 }
                 if(!empty($did)){
-                 $data2 = array();
-                $data2 = array(
+
+               	 $data2 = array(
+					// Deduction
                     'salary_id' => $sid,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+                    'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
+
+
                 );
                 $success = $this->employee_model->Update_Deduction($did,$data2);                    
                 }
@@ -1267,19 +1296,40 @@ else{
                 $data1 = array();
                 $data1 = array(
                     'salary_id' => $insertId,
+
+
+                    // Addition
                     'basic' => $basic,
-                    'medical' => $medical,
-                    'house_rent' => $houserent,
-                    'conveyance' => $conveyance
+                    'restduty'=> $restduty,
+                    'straightduty'=> $straightduty,
+                    'specialholiday'=> $specialholiday,
+                    'legalholiday'=> $legalholiday,
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+                    'philhealth' => $philhealth,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
+
                 );
                 $success = $this->employee_model->Add_Addition($data1);
                 $data2 = array();
                 $data2 = array(
+
+
+                    // Deduction
                     'salary_id' => $insertId,
-                    'provident_fund' => $provident,
-                    'bima' => $bima,
-                    'tax' => $tax,
-                    'others' => $others
+                    'sss' => $sss,
+                    'sssprovident' => $sssprovident,
+					'philhealth' => $philhealth,
+                    'hdmf' => $hdmf,
+                    'whtax' => $whtax,
+                    'cashadvances' => $cashadvances,
+                    'totaldeduction' => $totaldeduction,
+                    'totalnetpay' => $totalnetpay
+
                 );
                 $success = $this->employee_model->Add_Deduction($data2); 
                 echo "Successfully Added";

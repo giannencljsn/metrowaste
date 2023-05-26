@@ -142,6 +142,7 @@
                                                     <div class="checkbox checkbox-info">
                                                         <input class="to-do" data-id="<?php echo $value->id?>" data-value="1" type="checkbox" id="<?php echo $value->id?>" checked>
                                                         <label class="task-done" for="<?php echo $value->id?>"><span><?php echo $value->to_dodata; ?></span></label>
+                                                        <a href="<?php echo base_url('dashboard/delete/'.$value->id); ?>"title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                                     </div> 
                                                     <?php } ?>                                                   
                                                 </li>
