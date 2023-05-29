@@ -35,15 +35,8 @@
 							<ul aria-expanded="false "class="collapse">
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
 							</ul>
-						</li>	
-						
-						<li>
-    <a href="<?php echo base_url(); ?>formcontroller">
-        <i class="mdi mdi-clipboard"></i>
-        <span class="hide-menu">Attendance</span>
-    </a>
-</li>
 
+						</li>				
 						<?php } else { ?>
 
 				<!-- Employees -->

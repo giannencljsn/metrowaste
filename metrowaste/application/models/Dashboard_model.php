@@ -21,6 +21,7 @@
 	public function UpdateTododata($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('to-do_list',$data);		
+
 	}   
     
 
@@ -29,5 +30,8 @@
         return $this->db->delete('to-do_list', ['id' => $id]);
     
       }
+
+	}        
+
     }
 ?>
