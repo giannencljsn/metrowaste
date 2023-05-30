@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="form-actions">
                                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                            <button type="button" class="btn btn-danger" name="cancel" onclick="refreshPage()">Cancel</button>
                                         </div>
                                     </form>
                             </div>
@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="form-actions">
                                             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                            <button type="button" class="btn btn-danger" name="cancel" onclick="refreshPage()">Cancel</button>
                                         </div>
                                     </form>
                             </div>
@@ -124,4 +124,11 @@
                         </div>
                     </div>
                 </div>
+            <!---last changes--->
+            <script>
+function refreshPage() {
+    window.location.href = "<?php echo site_url('Organization/department'); ?>";
+}
+</script>
+
     <?php $this->load->view('backend/footer'); ?>
