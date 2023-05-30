@@ -42,9 +42,7 @@
 
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>First Name</label>
-
-                                        <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
-
+                                        <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Last Name </label>
@@ -247,12 +245,10 @@
 											<input type="hidden" name="emcontact" id="emcontact"> 
 									</div>
                                     <div class="form-group col-md-3 m-t-20">
-
                                         <label>Emergency Contact Name</label>
                                         <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="15" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-
                                         <label>Date Of Birth </label>
                                         <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder=""> 
                                     </div>

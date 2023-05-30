@@ -93,8 +93,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact_1') . '-' . $this->input->post('contact_2');
 	$emcontact = $this->input->post('emcontact_1') . '-' . $this->input->post('emcontact_2');
-
-
+    $contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');	
@@ -156,8 +155,6 @@ class Employee extends CI_Controller {
                 $data = array(
 
                     'em_id' => $eid,
-
-                    'em_id' => $eid,
                     'em_code' => $eid,
                     'des_id' => $deg,
                     'dep_id' => $dept,
@@ -170,8 +167,7 @@ class Employee extends CI_Controller {
                     'status'=>'ACTIVE',
                     'em_phone'=>$contact,
 					'em_em_contact'=>$emcontact,
-
-
+                    'contactname' =>$contactname,
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address' =>$address,
@@ -258,8 +254,7 @@ class Employee extends CI_Controller {
 	$gender = $this->input->post('gender');
 	$contact = $this->input->post('contact');
 	$emcontact = $this->input->post('emcontact');
-
-
+	$contactname = $this->input->post('contactname');
 	$dob = $this->input->post('dob');	
 	$joindate = $this->input->post('joindate');	
     $address = $this->input->post('address');
@@ -337,10 +332,8 @@ class Employee extends CI_Controller {
                     'em_image'=>$img_url,
                     'em_address'=>$address,
                     'em_em_contact'=>$emcontact,
-
-
+                    'contactname' =>$contactname,
                     'em_sss'=>$sss,
-                    'em_philhealth'=>$philhealth,
                     'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
                     'em_blood_group'=> $blood,
@@ -363,9 +356,6 @@ class Employee extends CI_Controller {
                     'em_email' => $email,
                     'em_role'=>$role,
                     'em_gender'=>$gender,
-                    'em_email' => $email,
-                    'em_role'=>$role,
-                    'em_gender'=>$gender,
                     'status'=>$status,
                     'em_phone'=>$contact,
                     'em_em_contact'=>$emcontact,
@@ -375,12 +365,9 @@ class Employee extends CI_Controller {
                     'em_address'=>$address,
                     'em_sss'=>$sss,
                     'em_philhealth'=>$philhealth,
-                    'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
                     'em_tin'=>$tin,
-                    'em_tin'=>$tin,
                     'em_blood_group'=> $blood,
-                    'em_marital_status' => $marital
                     'em_marital_status' => $marital
                 );
                 if($id){
@@ -482,8 +469,7 @@ class Employee extends CI_Controller {
 												'status'=>$status,
 												'em_phone'=>$contact,
 												'em_em_contact'=>$emcontact,
-
-
+                                                'contactname' =>$contactname,
 												'em_birthday'=>$dob,
 												'em_joining_date'=>$joindate,
 												'em_image'=>$img_url,
@@ -515,8 +501,7 @@ class Employee extends CI_Controller {
 											'status'=>$status,
 											'em_phone'=>$contact,
 											'em_em_contact'=>$emcontact,
-
-
+                                            'contactname' =>$contactname,
 											'em_birthday'=>$dob,
 											'em_joining_date'=>$joindate,
 											'em_address'=>$address,
@@ -1250,10 +1235,6 @@ else{
                     'totalnetpay' => $totalnetpay
 
 
-                    'total' => $total,
-                    'totalnetpay' => $totalnetpay
-
-
                 );
             if(!empty($sid)){
                 $success = $this->employee_model->Update_Salary($sid,$data);
@@ -1268,24 +1249,8 @@ else{
                 $data1 = array(
 
 					// Addition
-
-					// Addition
                     'salary_id' => $sid,
                     'basic' => $basic,
-                    'restduty'=> $restduty,
-                    'straightduty'=> $straightduty,
-                    'specialholiday'=> $specialholiday,
-                    'legalholiday'=> $legalholiday,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-
-
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
@@ -1307,20 +1272,7 @@ else{
 
                	 $data2 = array(
 					// Deduction
-
-               	 $data2 = array(
-					// Deduction
                     'salary_id' => $sid,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-
-
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
                     'hdmf' => $hdmf,
@@ -1347,23 +1299,7 @@ else{
 
 
                     // Addition
-
-
-                    // Addition
                     'basic' => $basic,
-                    'restduty'=> $restduty,
-                    'straightduty'=> $straightduty,
-                    'specialholiday'=> $specialholiday,
-                    'legalholiday'=> $legalholiday,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
@@ -1384,19 +1320,7 @@ else{
 
 
                     // Deduction
-
-
-                    // Deduction
                     'salary_id' => $insertId,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-					'philhealth' => $philhealth,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
 					'philhealth' => $philhealth,

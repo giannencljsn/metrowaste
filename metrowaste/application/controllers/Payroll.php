@@ -298,36 +298,11 @@ class Payroll extends CI_Controller {
                     'totalnetpay' => $totalnetpay
 					
 
-                    'basic' => $basic,
-                    'restduty'=> $restduty,
-                    'straightduty'=> $straightduty,
-                    'specialholiday'=> $specialholiday,
-                    'legalholiday'=> $legalholiday,
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-					
-
                 );
                 $success = $this->employee_model->Update_Addition($aid,$data1);
                 $data2 = array();
                 $data2 = array(
                     'salary_id' => $sid,
-
-                    'sss' => $sss,
-                    'sssprovident' => $sssprovident,
-                    'hdmf' => $hdmf,
-                    'whtax' => $whtax,
-                    'philhealth' => $philhealth,
-                    'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
-
 
                     'sss' => $sss,
                     'sssprovident' => $sssprovident,
