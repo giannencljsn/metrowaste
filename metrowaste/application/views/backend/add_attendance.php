@@ -28,6 +28,7 @@
                                 <h4 class="m-b-0 text-white"><i class="fa fa-user-o" aria-hidden="true"></i> Employee List</h4>
                             </div>
 							<div class="card-body">
+							<form method="POST" action="<?php echo site_url('formController/process_selected'); ?>" id="attendanceForm">
     <div class="table-responsive">
         <table id="employees123" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -43,7 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-			<form method="POST" action="<?php echo site_url('formController/process_selected'); ?>" id="attendanceForm">
+			
                     <?php foreach($employee as $value): ?>
                     <tr>
                         <td>
@@ -91,37 +92,112 @@
             return false; // Prevent form submission
         }
     });
-</script>
-<script>
-   document.getElementById('attendanceForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
-      
-      // Get selected checkbox values
-      var selectedEmployees = [];
-      var checkboxes = document.getElementsByClassName('attendanceCheckbox');
-      for (var i = 0; i < checkboxes.length; i++) {
-         if (checkboxes[i].checked) {
-            selectedEmployees.push(checkboxes[i].value);
-         }
+</script><script>
+  document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get selected checkbox values and names
+    var selectedEmployees = [];
+    var selectedEmployeeNames = [];
+    var checkboxes = document.getElementsByClassName('attendanceCheckbox');
+    for (var i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        selectedEmployees.push(checkboxes[i].value);
+        selectedEmployeeNames.push(checkboxes[i].parentNode.parentNode.cells[0].textContent);
       }
-      
-      // Display selected values in the modal body
-      var modalBody = document.getElementById('myModal').querySelector('.modal-body');
-      modalBody.innerHTML = '<p>Selected Employees:</p><ul>';
-      selectedEmployees.forEach(function(employee) {
-         modalBody.innerHTML += '<li>' + employee + '</li>';
-      });
-      modalBody.innerHTML += '</ul>';
-      
-      // Show the modal
-      $('#myModal').modal('show');
-   });
+    }
+
+    // Update form action with selected employees' values
+    var holidayForm = document.getElementById('holidayform');
+    var employeeSelect = document.getElementsByName('emid')[0];
+    employeeSelect.innerHTML = ''; // Clear existing options
+    for (var k = 0; k < selectedEmployees.length; k++) {
+      var option = document.createElement('option');
+      option.value = selectedEmployees[k];
+      option.text = selectedEmployeeNames[k];
+      employeeSelect.appendChild(option);
+    }
+
+    // Display selected employees in the modal
+    var modalBody = document.querySelector('#myModal .modal-body');
+    modalBody.innerHTML = '';
+    for (var m = 0; m < selectedEmployeeNames.length; m++) {
+      var employeeName = selectedEmployeeNames[m];
+      var p = document.createElement('p');
+      p.textContent = employeeName;
+      modalBody.appendChild(p);
+    }
+
+    // Open the modal
+    $('#myModal').modal('show');
+  });
 </script>
+
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+	 							<div class="row">
+                    <div class="col-6">
+                        <div class="card card-outline-info">
+                            <div class="card-header">
+                                <h4 class="m-b-0 text-white"> Attendance </h4>
+                            </div>
+
+
+                           <div class="card-body">
+													 <form method="post" action="Add_Attendance" id="holidayform" enctype="multipart/form-data">
+                                    <div class="modal-body">
+			                                    <div class="form-group">
+			                                        <label>Employee</label>
+                                                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="emid" required>
+                                                   
+																								<?php if(!empty($attval->em_code)){ ?>
+                                                    <option value="<?php echo $attval->em_code ?>"><?php echo $attval->first_name.' '.$attval->last_name ?></option>           
+                                                   <?php } else { ?>
+                                                   <option value="#">Select Here</option>
+                                                    <?php foreach($employee as $value): ?>
+                                                    <option value="<?php echo $value->em_code ?>"><?php echo $value->first_name.' '.$value->last_name ?></option>
+                                                    <?php endforeach; ?>
+                                                    <?php } ?>
+                                                </select>
+			                                    </div>
+                                            <label>Select Date: </label>
+                                            <div id="" class="input-group date" >
+                                                <input name="attdate" class="form-control mydatetimepickerFull" value="<?php if(!empty($attval->atten_date)) { 
+                                                $old_date_timestamp = strtotime($attval->atten_date);
+                                                $new_date = date('Y-m-d', $old_date_timestamp);    
+                                                echo $new_date; } ?>" required>
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                        <div class="form-group" >
+                                           <label class="m-t-20">Sign In Time</label>
+                                            <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required>
+                                        </div>
+                                        <div class="form-group">
+                                        <label class="m-t-20">Sign Out Time</label>
+                                        <div class="input-group clockpicker">
+                                            <input type="text" name="signout" class="form-control" value="<?php if(!empty($attval->signout_time)) { echo  $attval->signout_time;} ?>">
+                                        </div>
+                                        </div> 
+                                        <div class="form-group">
+                                                    <label>Place</label>
+                                                <select class="form-control custom-select" data-placeholder="" tabindex="1" name="place" required>
+                                                    <option value="office" <?php if(isset($attval->place) && $attval->place == "office") { echo "selected"; } ?>>Office</option>
+                                                    <option value="field"  <?php if(isset($attval->place) && $attval->place == "field") { echo "selected"; } ?>>Field</option>
+                                                </select>
+                                        </div> 
+                                    </div>
+                                    <div class="modal-footer">
+                                    <input type="hidden" name="id" value="<?php if(!empty($attval->id)){ echo  $attval->id;} ?>" class="form-control" id="recipient-name1">                                       
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button type="submit" id="attendanceUpdate" class="btn btn-success">Submit</button>
+                                    </div>
+                                    </form>
+                            </div> 
+
                 </div>
 
 
