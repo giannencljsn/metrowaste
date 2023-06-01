@@ -69,7 +69,6 @@
         </table>
     </div>
 </div>
-
 <script>
     document.getElementById('selectAllCheckbox').addEventListener('change', function() {
         var checkboxes = document.getElementsByClassName('attendanceCheckbox');
@@ -78,22 +77,7 @@
         }
     });
 
-    document.getElementById('attendanceForm').addEventListener('submit', function() {
-        var checkboxes = document.getElementsByClassName('attendanceCheckbox');
-        var isChecked = false;
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                isChecked = true;
-                break;
-            }
-        }
-        if (!isChecked) {
-            alert('Please select at least one employee.');
-            return false; // Prevent form submission
-        }
-    });
-</script><script>
-  document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+   document.getElementById('attendanceForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
 
     // Get selected checkbox values and names
@@ -101,36 +85,52 @@
     var selectedEmployeeNames = [];
     var checkboxes = document.getElementsByClassName('attendanceCheckbox');
     for (var i = 0; i < checkboxes.length; i++) {
-      if (checkboxes[i].checked) {
-        selectedEmployees.push(checkboxes[i].value);
-        selectedEmployeeNames.push(checkboxes[i].parentNode.parentNode.cells[0].textContent);
-      }
+        if (checkboxes[i].checked) {
+            selectedEmployees.push(checkboxes[i].value);
+            selectedEmployeeNames.push(checkboxes[i].parentNode.parentNode.cells[0].textContent);
+        }
     }
 
-    // Update form action with selected employees' values
-    var holidayForm = document.getElementById('holidayform');
-    var employeeSelect = document.getElementsByName('emid')[0];
-    employeeSelect.innerHTML = ''; // Clear existing options
+    // Create a new select element for each selected employee
+    var employeeSelectContainer = document.getElementById('employeeSelectContainer');
+    employeeSelectContainer.innerHTML = ''; // Clear existing select elements
     for (var k = 0; k < selectedEmployees.length; k++) {
-      var option = document.createElement('option');
-      option.value = selectedEmployees[k];
-      option.text = selectedEmployeeNames[k];
-      employeeSelect.appendChild(option);
+        var selectElement = document.createElement('select');
+        selectElement.className = 'form-control';
+        selectElement.name = 'selected_employees[]';
+
+        var option = document.createElement('option');
+        option.value = selectedEmployees[k];
+        option.text = selectedEmployeeNames[k];
+        selectElement.appendChild(option);
+
+        employeeSelectContainer.appendChild(selectElement);
     }
 
-    // Display selected employees in the modal
-    var modalBody = document.querySelector('#myModal .modal-body');
-    modalBody.innerHTML = '';
-    for (var m = 0; m < selectedEmployeeNames.length; m++) {
-      var employeeName = selectedEmployeeNames[m];
-      var p = document.createElement('p');
-      p.textContent = employeeName;
-      modalBody.appendChild(p);
+    // Pass the form data to the controller
+    var formData = new FormData(this);
+    var selectElements = employeeSelectContainer.getElementsByTagName('select');
+    for (var j = 0; j < selectElements.length; j++) {
+        var selectName = 'selected_employees[]';
+        var selectValue = selectElements[j].value;
+        formData.append(selectName, selectValue);
     }
+
+    // Send the form data to the Add_Attendance controller
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Add_Attendance', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Output the response from the controller
+        } else {
+            console.log('Error: ' + xhr.status);
+        }
+    };
+    xhr.send(formData);
 
     // Open the modal
     $('#myModal').modal('show');
-  });
+});
 </script>
 
                                     </table>
@@ -148,22 +148,16 @@
 
 
                            <div class="card-body">
-													 <form method="post" action="Add_Attendance" id="holidayform" enctype="multipart/form-data">
+								<form method="post" action="Add_Attendance" id="holidayform" enctype="multipart/form-data">
                                     <div class="modal-body">
 			                                    <div class="form-group">
 			                                        <label>Employee</label>
-                                                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="emid" required>
-                                                   
-																								<?php if(!empty($attval->em_code)){ ?>
-                                                    <option value="<?php echo $attval->em_code ?>"><?php echo $attval->first_name.' '.$attval->last_name ?></option>           
-                                                   <?php } else { ?>
-                                                   <option value="#">Select Here</option>
-                                                    <?php foreach($employee as $value): ?>
-                                                    <option value="<?php echo $value->em_code ?>"><?php echo $value->first_name.' '.$value->last_name ?></option>
-                                                    <?php endforeach; ?>
-                                                    <?php } ?>
-                                                </select>
-			                                    </div>
+													<div id="employeeSelectContainer">
+														<select class="form-control custom-select" data-placeholder="" tabindex="1" name="selected_employees[]" required multiple>
+															<!-- Add options for employees here -->
+														</select>
+													</div>
+
                                             <label>Select Date: </label>
                                             <div id="" class="input-group date" >
                                                 <input name="attdate" class="form-control mydatetimepickerFull" value="<?php if(!empty($attval->atten_date)) { 
@@ -182,22 +176,24 @@
                                             <input type="text" name="signout" class="form-control" value="<?php if(!empty($attval->signout_time)) { echo  $attval->signout_time;} ?>">
                                         </div>
                                         </div> 
-                                        <div class="form-group">
-                                                    <label>Place</label>
-                                                <select class="form-control custom-select" data-placeholder="" tabindex="1" name="place" required>
-                                                    <option value="office" <?php if(isset($attval->place) && $attval->place == "office") { echo "selected"; } ?>>Office</option>
-                                                    <option value="field"  <?php if(isset($attval->place) && $attval->place == "field") { echo "selected"; } ?>>Field</option>
-                                                </select>
+										<div class="form-group">
+                                            <label>Place</label>
+                                            <select class="form-control custom-select" data-placeholder="" tabindex="1" name="place" required>
+                                                <option value="office" <?php if(isset($attval->place) && $attval->place == "office") { echo "selected"; } ?>>Office</option>
+                                                <option value="field"  <?php if(isset($attval->place) && $attval->place == "field") { echo "selected"; } ?>>Field</option>
+                                            </select>
                                         </div> 
                                     </div>
                                     <div class="modal-footer">
-                                    <input type="hidden" name="id" value="<?php if(!empty($attval->id)){ echo  $attval->id;} ?>" class="form-control" id="recipient-name1">                                       
+                                        <input type="hidden" name="id" value="<?php if(!empty($attval->id)){ echo  $attval->id;} ?>" class="form-control" id="recipient-name1">                                       
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         <button type="submit" id="attendanceUpdate" class="btn btn-success">Submit</button>
                                     </div>
-                                    </form>
+                                </form>
                             </div> 
 
+                        </div>
+                    </div>
                 </div>
 
 
