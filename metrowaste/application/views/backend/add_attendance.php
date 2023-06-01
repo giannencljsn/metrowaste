@@ -1,3 +1,4 @@
+
 <?php $this->load->view('backend/header'); ?>
 <?php $this->load->view('backend/sidebar'); ?>
          <div class="page-wrapper">
@@ -76,8 +77,8 @@
             checkboxes[i].checked = this.checked;
         }
     });
-
-   document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+// JavaScript
+document.getElementById('attendanceForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
 
     // Get selected checkbox values and names
@@ -97,7 +98,7 @@
     for (var k = 0; k < selectedEmployees.length; k++) {
         var selectElement = document.createElement('select');
         selectElement.className = 'form-control';
-        selectElement.name = 'selected_employees[]';
+        selectElement.name = 'emp_id[]'; // Change the name to 'emp_id[]'
 
         var option = document.createElement('option');
         option.value = selectedEmployees[k];
@@ -111,7 +112,7 @@
     var formData = new FormData(this);
     var selectElements = employeeSelectContainer.getElementsByTagName('select');
     for (var j = 0; j < selectElements.length; j++) {
-        var selectName = 'selected_employees[]';
+        var selectName = 'emp_id[]'; // Change the name to 'emp_id[]'
         var selectValue = selectElements[j].value;
         formData.append(selectName, selectValue);
     }
@@ -131,6 +132,7 @@
     // Open the modal
     $('#myModal').modal('show');
 });
+
 </script>
 
                                     </table>
@@ -148,48 +150,21 @@
 
 
                            <div class="card-body">
-								<form method="post" action="Add_Attendance" id="holidayform" enctype="multipart/form-data">
-                                    <div class="modal-body">
-			                                    <div class="form-group">
-			                                        <label>Employee</label>
-													<div id="employeeSelectContainer">
-														<select class="form-control custom-select" data-placeholder="" tabindex="1" name="selected_employees[]" required multiple>
-															<!-- Add options for employees here -->
-														</select>
-													</div>
-
-                                            <label>Select Date: </label>
-                                            <div id="" class="input-group date" >
-                                                <input name="attdate" class="form-control mydatetimepickerFull" value="<?php if(!empty($attval->atten_date)) { 
-                                                $old_date_timestamp = strtotime($attval->atten_date);
-                                                $new_date = date('Y-m-d', $old_date_timestamp);    
-                                                echo $new_date; } ?>" required>
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            </div>
-                                        <div class="form-group" >
-                                           <label class="m-t-20">Sign In Time</label>
-                                            <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required>
-                                        </div>
-                                        <div class="form-group">
-                                        <label class="m-t-20">Sign Out Time</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" name="signout" class="form-control" value="<?php if(!empty($attval->signout_time)) { echo  $attval->signout_time;} ?>">
-                                        </div>
-                                        </div> 
-										<div class="form-group">
-                                            <label>Place</label>
-                                            <select class="form-control custom-select" data-placeholder="" tabindex="1" name="place" required>
-                                                <option value="office" <?php if(isset($attval->place) && $attval->place == "office") { echo "selected"; } ?>>Office</option>
-                                                <option value="field"  <?php if(isset($attval->place) && $attval->place == "field") { echo "selected"; } ?>>Field</option>
-                                            </select>
-                                        </div> 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="hidden" name="id" value="<?php if(!empty($attval->id)){ echo  $attval->id;} ?>" class="form-control" id="recipient-name1">                                       
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                        <button type="submit" id="attendanceUpdate" class="btn btn-success">Submit</button>
-                                    </div>
-                                </form>
+						   <form method="post" action="Add_Attendance" id="attendanceForm" enctype="multipart/form-data">
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Employee</label>
+            <div id="employeeSelectContainer">
+                <!-- Add options for employees here dynamically -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <input type="hidden" name="id" value="<?php if (!empty($attval->id)) { echo $attval->id; } ?>" class="form-control" id="recipient-name1">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" id="attendanceUpdate" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</form>
                             </div> 
 
                         </div>
@@ -313,3 +288,4 @@ $(document).ready(function () {
 </div>
 
 <?php $this->load->view('backend/footer'); ?>
+
