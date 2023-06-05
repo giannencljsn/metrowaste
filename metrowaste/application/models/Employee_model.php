@@ -322,6 +322,28 @@
     $this->db->where('em_id', $emid);
     $this->db->delete('employee');
 }
+
+
+
+//THIS IS FOR ATTENDANCE LIST
+public function getEmployeeByEmCode($emCode) {
+  // called 'employees' in your database
+  
+  // Retrieve the employee data based on the provided em_code
+  $query = $this->db->get_where('employee', array('em_code' => $emCode));
+  
+  // Check if a row exists in the result
+  if ($query->num_rows() > 0) {
+      // Return the employee data as an object
+      return $query->row();
+  } else {
+      // No employee data found, return null
+      return null;
+  }
+}
+
+
+
        
     }
 ?>

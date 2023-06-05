@@ -127,20 +127,25 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
         formData.append('employee_name[]', selectOptionText);
     }
 
-    // Send the form data to the Add_Attendance controller
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'Add_Attendance', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log(xhr.responseText); // Output the response from the controller
-        } else {
-            console.log('Error: ' + xhr.status);
-        }
-    };
-    xhr.send(formData);
+   // Send the form data to the Add_Attendance controller
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'Add_Attendance', true);
+xhr.onload = function() {
+    if (xhr.status === 200) {
+        console.log(xhr.responseText); // Output the response from the controller
+        var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
 
-    // Open the modal
-    $('#myModal').modal('show');
+        if (response === "Successfully added!") {
+            alert(response); // Display the success message
+        }
+    } else {
+        console.log('Error: ' + xhr.status);
+    }
+};
+xhr.send(formData);
+
+// Open the modal
+$('#myModal').modal('show');
 });
 
 </script>

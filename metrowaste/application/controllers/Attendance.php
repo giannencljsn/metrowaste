@@ -108,29 +108,23 @@ class Attendance extends CI_Controller
 
         if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
             $attendanceData = array();
-            $uniqueEmployees = array(); // Track unique employees
 
             foreach ($emp_ids as $key => $em_id) {
-                // Check if the employee has already been added
-                if (!in_array($em_id, $uniqueEmployees)) {
-                    $attendanceData[] = array(
-                        'em_code' => $em_codes[$key],
-                        'employee_name' => $employeeNames[$key]
-                    );
-                    $uniqueEmployees[] = $em_id; // Add employee to the unique list
-                }
+                $attendanceData[] = array(
+                    'em_code' => $em_codes[$key],
+                    'employee_name' => $employeeNames[$key]
+                );
             }
 
             $success = $this->attendance_model->Add_AttendanceData($attendanceData);
 
             if ($success) {
-                echo "Successfully Updated!";
+                echo "Successfully added!";
             } else {
-                echo "Failed to update attendance.";
+                echo "Failed to add attendance.";
             }
-        } else {
-            echo "No employees selected.";
-        }
+        } 
+		echo "Successfully added!";
     } else {
         redirect(base_url(), 'refresh');
     }
@@ -138,58 +132,22 @@ class Attendance extends CI_Controller
 
 
 
+        //THIS IS FOR ATTENDANCE LIST
 
+        public function getAttendanceList()
+{
+    // Load the Attendance_model
+    $this->load->model('Attendance_model');
 
+    // Call the getAttendanceListData() method in the model to retrieve the attendance list data
+    $attendancelist = $this->Attendance_model->getAttendanceListData();
 
+    // Pass the attendance list data to the view
+    $data['attendancelist'] = $attendancelist;
 
-
-
-
-    function import()
-    {
-        $this->load->library('csvimport');
-        $file_data = $this->csvimport->get_array($_FILES["csv_file"]["tmp_name"]);
-        //echo $file_data;
-        foreach ($file_data as $row){
-            if($row["Check-in at"] > '0:00:00'){
-                $date = date('Y-m-d',strtotime($row["Date"]));
-                $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"],$date);
-                //print_r($duplicate);
-            if(!empty($duplicate)){
-            $data = array();
-            $data = array(
-                'signin_time' => $row["Check-in at"],
-                'signout_time' => $row["Check-out at"],
-                'working_hour' => $row["Work Duration"],
-                'absence' => $row["Absence Duration"],
-                'overtime' => $row["Overtime Duration"],
-                'status' => 'A',
-                'place' => 'office'
-            );
-            $this->attendance_model->bulk_Update($row["Employee No"],$date,$data);
-            } else {
-            $data = array();
-            $data = array(
-                'emp_id' => $row["Employee No"],
-                'atten_date' => date('Y-m-d',strtotime($row["Date"])),
-                'signin_time' => $row["Check-in at"],
-                'signout_time' => $row["Check-out at"],
-                'working_hour' => $row["Work Duration"],
-                'absence' => $row["Absence Duration"],
-                'overtime' => $row["Overtime Duration"],
-                'status' => 'A',
-                'place' => 'office'
-            ); 
-                    //echo count($data); 
-        $this->attendance_model->Add_AttendanceData($data);          
-        }
-        }
-            else {
-
-            }
-        }
-         echo "Successfully Updated"; 
-        }
+    // Load the view with the attendance data
+    $this->load->view('backend/attendance', $data);
+}
 
 }
 ?>

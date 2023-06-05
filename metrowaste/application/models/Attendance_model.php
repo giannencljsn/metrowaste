@@ -91,16 +91,36 @@ class Attendance_model extends CI_Model
     }
     public function getAllAttendance()
     {
-      $sql = "SELECT `attendance`.`id`, `emp_id`, `atten_date`, `signin_time`, `signout_time`,  TRUNCATE(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )/3600), 1) AS Hours,
-        CONCAT(`first_name`, ' ', `last_name`) AS name
-       FROM `attendance`
-        LEFT JOIN `employee` ON `attendance`.`emp_id` = `employee`.`em_code`
-        WHERE `attendance`.`status` = 'A'";
+      $sql = "SELECT `attendance`.`em_id`, `employee`.`em_id`, `date`, `sign_in`, `sign_out`, TRUNCATE(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out`) ) )/3600), 1) AS Hours
+			FROM `attendance`
+			LEFT JOIN `employee` ON `attendance`.`em_id` = `employee`.`em_id`
+			";
         $query  = $this->db->query($sql);
         $result = $query->result();
         return $result;
     }
-}
+
+
+
+		  //THIS IS FOR ATTENDANCE LIST 
+
+			public function getAttendanceListData() {
+				// Assuming you have a table called 'attendance' in your database
+				
+				// Retrieve the attendance list data from the 'attendance' table
+				$query = $this->db->get('attendance');
+				
+				// Check if any rows exist in the result
+				if ($query->num_rows() > 0) {
+						// Return the attendance list data as an array of objects
+						return $query->result();
+				} else {
+						// No attendance data found, return an empty array
+						return array();
+				}
+		}
+	}
+
 
 
 ?>
