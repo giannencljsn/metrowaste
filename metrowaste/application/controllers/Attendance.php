@@ -103,13 +103,16 @@ class Attendance extends CI_Controller
 {
     if ($this->session->userdata('user_login_access') != false) {
         $emp_ids = $this->input->post('emp_id');
+        $em_codes = $this->input->post('em_code');
+        $employeeNames = $this->input->post('employee_name');
 
-        if (!empty($emp_ids)) {
+        if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
             $attendanceData = array();
 
-            foreach ($emp_ids as $em_id) {
+            foreach ($emp_ids as $key => $em_id) {
                 $attendanceData[] = array(
-                    'emp_id' => $em_id
+                    'em_code' => $em_codes[$key],
+                    'employee_name' => $employeeNames[$key]
                 );
             }
 
@@ -120,13 +123,18 @@ class Attendance extends CI_Controller
             } else {
                 echo "Failed to update attendance.";
             }
-        } else {
-            echo "No employees selected.";
-        }
-    } else {
-        redirect(base_url(), 'refresh');
+       
+	} else {
+        echo "No employees selected.";
     }
+} else {
+    redirect(base_url(), 'refresh');
 }
+}
+
+
+
+
 
 
 

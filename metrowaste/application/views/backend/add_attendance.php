@@ -114,7 +114,11 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     for (var j = 0; j < selectElements.length; j++) {
         var selectName = 'emp_id[]'; // Change the name to 'emp_id[]'
         var selectValue = selectElements[j].value;
+        var selectOptionText = selectElements[j].options[selectElements[j].selectedIndex].text;
+
         formData.append(selectName, selectValue);
+        formData.append('em_code[]', selectValue);
+        formData.append('employee_name[]', selectOptionText);
     }
 
     // Send the form data to the Add_Attendance controller
