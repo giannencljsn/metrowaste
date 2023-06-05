@@ -56,23 +56,36 @@
                                             </tr>
                                         </tfoot> -->
                                         <tbody>
-                                           <?php foreach($attendancelist as $value): ?>
-                                            <tr>
-                                                <td><mark><?php echo $value->name; ?></mark></td>
-                                                <td><?php echo $value->emp_id; ?></td>
-                                                <td><?php echo $value->atten_date; ?></td>
-                                                <td><?php echo $value->signin_time; ?></td>
-                                                <td><?php echo $value->signout_time; ?></td>
-                                                <td><?php echo $value->Hours; ?></td>
-                                                <td class="jsgrid-align-center ">
-                                                <?php if($value->signout_time == '00:00:00') { ?>
-                                                    <a href="Save_Attendance?A=<?php echo $value->id; ?>" title="Edit" class="btn btn-sm btn-danger waves-effect waves-light" data-value="Approve" >Sign Out</a><br>                           
-                                                <?php } ?>
-                                                    <a href="Save_Attendance?A=<?php echo $value->id; ?>" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light" data-value="Approve" ><i class="fa fa-pencil-square-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
+    <?php foreach($attendancelist as $value): ?>
+        <tr>
+            <?php
+            // Retrieve the first name and last name of the employee from the database
+            $firstName = ''; 
+            $lastName = ''; 
+            
+            // 'Employees_model' for retrieving employee data
+            $this->load->model('employee_model');
+            $employeeData = $this->employee_model->getEmployeeByEmCode($value->em_code); 
+            
+            if ($employeeData !== null) {
+                $firstName = $employeeData->first_name;
+                $lastName = $employeeData->last_name;
+            }
+            
+            // Concatenate the first name and last name to display the full name
+            $fullName = $firstName . ' ' . $lastName;
+            ?>
+            
+            <td><mark><?php echo $fullName; ?></mark></td>
+            <td><?php echo $value->em_code; ?></td>
+            <td><?php echo $value->date; ?></td>
+            <td><?php echo $value->sign_in; ?></td>
+            <td><?php echo $value->sign_out; ?></td>
+            <td></td>              
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
                                     </table>
                                 </div>
                             </div>
