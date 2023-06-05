@@ -108,12 +108,17 @@ class Attendance extends CI_Controller
 
         if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
             $attendanceData = array();
+            $uniqueEmployees = array(); // Track unique employees
 
             foreach ($emp_ids as $key => $em_id) {
-                $attendanceData[] = array(
-                    'em_code' => $em_codes[$key],
-                    'employee_name' => $employeeNames[$key]
-                );
+                // Check if the employee has already been added
+                if (!in_array($em_id, $uniqueEmployees)) {
+                    $attendanceData[] = array(
+                        'em_code' => $em_codes[$key],
+                        'employee_name' => $employeeNames[$key]
+                    );
+                    $uniqueEmployees[] = $em_id; // Add employee to the unique list
+                }
             }
 
             $success = $this->attendance_model->Add_AttendanceData($attendanceData);
@@ -123,13 +128,12 @@ class Attendance extends CI_Controller
             } else {
                 echo "Failed to update attendance.";
             }
-       
-	} else {
-        echo "No employees selected.";
+        } else {
+            echo "No employees selected.";
+        }
+    } else {
+        redirect(base_url(), 'refresh');
     }
-} else {
-    redirect(base_url(), 'refresh');
-}
 }
 
 

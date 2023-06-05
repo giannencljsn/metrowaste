@@ -87,8 +87,14 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     var checkboxes = document.getElementsByClassName('attendanceCheckbox');
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            selectedEmployees.push(checkboxes[i].value);
-            selectedEmployeeNames.push(checkboxes[i].parentNode.parentNode.cells[0].textContent);
+            var employeeId = checkboxes[i].value;
+            var employeeName = checkboxes[i].parentNode.parentNode.cells[0].textContent;
+            
+            // Check if the employee is already selected
+            if (!selectedEmployees.includes(employeeId)) {
+                selectedEmployees.push(employeeId);
+                selectedEmployeeNames.push(employeeName);
+            }
         }
     }
 
