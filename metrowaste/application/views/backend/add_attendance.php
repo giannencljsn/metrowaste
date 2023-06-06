@@ -120,26 +120,6 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
         option.text = selectedEmployeeNames[k];
         selectElement.appendChild(option);
 
-        // Add hidden inputs for signin, signout, and attdate with the same values for all selected employees
-        var signinInput = document.createElement('input');
-        signinInput.type = 'hidden';
-        signinInput.name = 'signin[]'; // Change the name to 'signin[]'
-        signinInput.value = document.getElementsByName('signin')[0].value; // Get the value from the first 'signin' input
-
-        var signoutInput = document.createElement('input');
-        signoutInput.type = 'hidden';
-        signoutInput.name = 'signout[]'; // Change the name to 'signout[]'
-        signoutInput.value = document.getElementsByName('signout')[0].value; // Get the value from the first 'signout' input
-
-        var attdateInput = document.createElement('input');
-        attdateInput.type = 'hidden';
-        attdateInput.name = 'attdate[]'; // Change the name to 'attdate[]'
-        attdateInput.value = document.getElementsByName('attdate')[0].value; // Get the value from the first 'attdate' input
-
-        selectElement.appendChild(signinInput);
-        selectElement.appendChild(signoutInput);
-        selectElement.appendChild(attdateInput);
-
         employeeSelectContainer.appendChild(selectElement);
     }
 
@@ -149,38 +129,34 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     for (var j = 0; j < selectElements.length; j++) {
         var selectName = 'emp_id[]'; // Change the name to 'emp_id[]'
         var selectValue = selectElements[j].value;
-		var selectOptionText = selectElements[j].options[selectElements[j].selectedIndex].text;
+        var selectOptionText = selectElements[j].options[selectElements[j].selectedIndex].text;
 
-formData.append(selectName, selectValue);
-formData.append('em_code[]', selectValue);
-formData.append('employee_name[]', selectOptionText);
+        formData.append(selectName, selectValue);
+        formData.append('em_code[]', selectValue);
+        formData.append('employee_name[]', selectOptionText);
+    }
 
-// Append the same values for signin, signout, and attdate to the form data
-formData.append('signin[]', document.getElementsByName('signin')[0].value);
-formData.append('signout[]', document.getElementsByName('signout')[0].value);
-formData.append('attdate[]', document.getElementsByName('attdate')[0].value);
-}
+    // Send the form data to the Add_Attendance controller
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Add_Attendance', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Output the response from the controller
+            var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
 
-// Send the form data to the Add_Attendance controller
-var xhr = new XMLHttpRequest();
-xhr.open('POST', 'Add_Attendance', true);
-xhr.onload = function() {
-if (xhr.status === 200) {
-	console.log(xhr.responseText); // Output the response from the controller
-	var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
+            if (response === 'Successfully added!') {
+                alert(response); // Display the success message
+            }
+        } else {
+            console.log('Error: ' + xhr.status);
+        }
+    };
+    xhr.send(formData);
 
-	if (response === 'Successfully added!') {
-		alert(response); // Display the success message
-	}
-} else {
-	console.log('Error: ' + xhr.status);
-}
-};
-xhr.send(formData);
-
-// Open the modal
-$('#myModal').modal('show');
+    // Open the modal
+    $('#myModal').modal('show');
 });
+
 
 </script>
 
@@ -206,18 +182,11 @@ $('#myModal').modal('show');
             <div id="employeeSelectContainer">
                 <!-- Add options for employees here dynamically -->
             </div>
-        </div>
-        <div class="form-group">
-            <label>Sign In</label>
-            <input type="text" name="signin" class="form-control clockpicker" placeholder="Select Sign In Time">
-        </div>
-        <div class="form-group">
-            <label>Sign Out</label>
-            <input type="text" name="signout" class="form-control clockpicker" placeholder="Select Sign Out Time">
-        </div>
-        <div class="form-group">
-            <label>Attendance Date</label>
-            <input type="text" name="attdate" class="form-control datepicker" placeholder="Select Attendance Date">
+			<label>Select Date: </label>
+                                            <div id="" class="input-group date" >
+                                                <input name="attdate" class="form-control mydatetimepickerFull" value="" required>
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
         </div>
         <div class="modal-footer">
             <input type="hidden" name="id" value="<?php if (!empty($attval->id)) { echo $attval->id; } ?>" class="form-control" id="recipient-name1">
@@ -349,4 +318,3 @@ $(document).ready(function () {
 </div>
 
 <?php $this->load->view('backend/footer'); ?>
-
