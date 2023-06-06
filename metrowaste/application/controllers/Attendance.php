@@ -18,16 +18,6 @@ class Attendance extends CI_Controller
         $this->load->library('csvimport');
     }
     
-    public function Attendance()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            #$data['employee'] = $this->employee_model->emselect();
-            $data['attendancelist'] = $this->attendance_model->getAllAttendance();
-            $this->load->view('backend/attendance', $data);
-        } else {
-            redirect(base_url(), 'refresh');
-        }
-    }
 
     public function Save_Attendance()
     {
@@ -132,6 +122,7 @@ class Attendance extends CI_Controller
 
 
 
+
         //THIS IS FOR ATTENDANCE LIST
 
         public function getAttendanceList()
@@ -148,6 +139,7 @@ class Attendance extends CI_Controller
     // Load the view with the attendance data
     $this->load->view('backend/attendance', $data);
 }
+
 
 }
 ?>

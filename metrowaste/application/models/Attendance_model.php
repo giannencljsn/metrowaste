@@ -99,28 +99,28 @@ class Attendance_model extends CI_Model
         $result = $query->result();
         return $result;
     }
+   
 
 
 
-		  //THIS IS FOR ATTENDANCE LIST 
+    //THIS IS FOR ATTENDANCE LIST 
 
-			public function getAttendanceListData() {
-				// Assuming you have a table called 'attendance' in your database
-				
-				// Retrieve the attendance list data from the 'attendance' table
-				$query = $this->db->get('attendance');
-				
-				// Check if any rows exist in the result
-				if ($query->num_rows() > 0) {
-						// Return the attendance list data as an array of objects
-						return $query->result();
-				} else {
-						// No attendance data found, return an empty array
-						return array();
-				}
-		}
-	}
-
+    public function getAttendanceListData() {
+      // Assuming you have a table called 'attendance' in your database
+      
+      // Retrieve the attendance list data from the 'attendance' table
+      $query = $this->db->get('attendance');
+      
+      // Check if any rows exist in the result
+      if ($query->num_rows() > 0) {
+          // Return the attendance list data as an array of objects
+          return $query->result();
+      } else {
+          // No attendance data found, return an empty array
+          return array();
+      }
+  }
+}
 
 
 ?>
