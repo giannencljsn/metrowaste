@@ -268,7 +268,7 @@ public function getPinFromID($employeeID){
 
       public function totalHoursWorkedByEmployeeInAMonth($employeePIN, $start_date, $end_date)
     {
-      $sql = "SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$employeePIN') AND (`atten_date` BETWEEN '$start_date' AND '$end_date')";
+      $sql = "SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`em_code`='$employeePIN') AND (`date` BETWEEN '$start_date' AND '$end_date')";
         $query  = $this->db->query($sql);
         $result = $query->result();
         return $result;
@@ -299,7 +299,7 @@ public function getPinFromID($employeeID){
       $sql = "SELECT `employee`.*,
               (SELECT `des_name` FROM `designation` WHERE `employee`.`des_id` = `designation`.`id`) AS name, 
               (SELECT `dep_name` FROM `department` WHERE `employee`.`dep_id` = `department`.`id`) AS dep_name, `emp_salary`.`totalnetpay`, `bank_info`.*, `addition`.*, `deduction`.*, 
-              (SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$emid') AND (DATE_FORMAT(`attendance`.`atten_date`, '%m'))=MONTH(CURRENT_DATE())) AS hours_worked,COUNT(*) AS days FROM `employee`
+              (SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`em_code`='$emid') AND (DATE_FORMAT(`attendance`.`date`, '%m'))=MONTH(CURRENT_DATE())) AS hours_worked,COUNT(*) AS days FROM `employee`
               LEFT JOIN `department` ON `employee`.`dep_id`=`department`.`id` 
               LEFT JOIN `addition` ON `employee`.`em_id`=`addition`.`salary_id` 
               LEFT JOIN `deduction` ON `employee`.`em_id`=`deduction`.`salary_id` 
