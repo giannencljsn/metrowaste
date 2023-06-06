@@ -60,7 +60,6 @@ public function submit()
             'em_code' => $em_code,
             'employee_name' => $employee_name,
             'date' => $date,
-            'time' => $time
         );
 
         if ($sign_in_out == 'sign_out') {
