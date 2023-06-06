@@ -16,17 +16,24 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-    <?php echo form_open('formcontroller/submit'); ?>
-    <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" class="form-control" id="date" name="date" value="<?php echo $current_date; ?>" readonly>
-    </div>
-    <div class="form-group">
-        <label for="time">Time:</label>
-        <input type="time" class="form-control" id="time" name="time" value="<?php echo $current_time; ?>">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <?php echo form_close(); ?>
+    <form action="<?php echo base_url('formcontroller/submit'); ?>" method="post">
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" class="form-control" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly>
+        </div>
+        <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="time" class="form-control" id="time" name="time" value="<?php echo date('H:i:s'); ?>">
+        </div>
+        <div class="form-group">
+            <label for="sign_in_out">Sign In/Out:</label>
+            <select class="form-control" id="sign_in_out" name="sign_in_out">
+                <option value="sign_in">Sign In</option>
+                <option value="sign_out">Sign Out</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
 
 </div>
