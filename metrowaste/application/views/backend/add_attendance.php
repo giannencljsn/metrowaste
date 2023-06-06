@@ -89,13 +89,22 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
         if (checkboxes[i].checked) {
             var employeeId = checkboxes[i].value;
             var employeeName = checkboxes[i].parentNode.parentNode.cells[0].textContent;
-            
+
             // Check if the employee is already selected
             if (!selectedEmployees.includes(employeeId)) {
                 selectedEmployees.push(employeeId);
                 selectedEmployeeNames.push(employeeName);
             }
         }
+    }
+
+    // Display selected employee names in the modal body
+    var modalBody = document.getElementById('myModalContent').querySelector('.modal-body');
+    modalBody.innerHTML = ''; // Clear existing content
+    for (var j = 0; j < selectedEmployeeNames.length; j++) {
+        var employeeNameElement = document.createElement('p');
+        employeeNameElement.textContent = selectedEmployeeNames[j];
+        modalBody.appendChild(employeeNameElement);
     }
 
     // Create a new select element for each selected employee
@@ -127,26 +136,27 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
         formData.append('employee_name[]', selectOptionText);
     }
 
-   // Send the form data to the Add_Attendance controller
-var xhr = new XMLHttpRequest();
-xhr.open('POST', 'Add_Attendance', true);
-xhr.onload = function() {
-    if (xhr.status === 200) {
-        console.log(xhr.responseText); // Output the response from the controller
-        var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
+    // Send the form data to the Add_Attendance controller
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'Add_Attendance', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Output the response from the controller
+            var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
 
-        if (response === "Successfully added!") {
-            alert(response); // Display the success message
+            if (response === 'Successfully added!') {
+                alert(response); // Display the success message
+            }
+        } else {
+            console.log('Error: ' + xhr.status);
         }
-    } else {
-        console.log('Error: ' + xhr.status);
-    }
-};
-xhr.send(formData);
+    };
+    xhr.send(formData);
 
-// Open the modal
-$('#myModal').modal('show');
+    // Open the modal
+    $('#myModal').modal('show');
 });
+
 
 </script>
 
