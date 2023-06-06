@@ -95,6 +95,9 @@ class Attendance extends CI_Controller
         $emp_ids = $this->input->post('emp_id');
         $em_codes = $this->input->post('em_code');
         $employeeNames = $this->input->post('employee_name');
+        $signins = $this->input->post('signin'); // Retrieve the values of 'signin[]'
+        $signouts = $this->input->post('signout'); // Retrieve the values of 'signout[]'
+        $attdates = $this->input->post('attdate'); // Retrieve the values of 'attdate[]'
 
         if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
             $attendanceData = array();
@@ -102,7 +105,10 @@ class Attendance extends CI_Controller
             foreach ($emp_ids as $key => $em_id) {
                 $attendanceData[] = array(
                     'em_code' => $em_codes[$key],
-                    'employee_name' => $employeeNames[$key]
+                    'employee_name' => $employeeNames[$key],
+                    'sign_in' => $signins[$key], // Assign the value of 'signin[]'
+                    'sign_out' => $signouts[$key], // Assign the value of 'signout[]'
+                    'date' => $attdates[$key] // Assign the value of 'attdate[]'
                 );
             }
 
@@ -114,7 +120,7 @@ class Attendance extends CI_Controller
                 echo "Failed to add attendance.";
             }
         } 
-		echo "Successfully added!";
+        echo "Successfully added!";
     } else {
         redirect(base_url(), 'refresh');
     }
