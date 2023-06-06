@@ -11,9 +11,9 @@ class Attendance_model extends CI_Model
     }
    // Attendance_model.php
 	 public function Add_AttendanceData($data)
-	 {
-			 $this->db->insert_batch('attendance', $data);
-	 }
+{
+    $this->db->insert_batch('attendance', $data);
+}
 	 
 
 

@@ -95,14 +95,16 @@ class Attendance extends CI_Controller
         $emp_ids = $this->input->post('emp_id');
         $em_codes = $this->input->post('em_code');
         $employeeNames = $this->input->post('employee_name');
+        $dates = $this->input->post('date[]'); // Retrieve the dates array
 
-        if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
+        if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames) && !empty($dates)) {
             $attendanceData = array();
 
             foreach ($emp_ids as $key => $em_id) {
                 $attendanceData[] = array(
                     'em_code' => $em_codes[$key],
-                    'employee_name' => $employeeNames[$key]
+                    'employee_name' => $employeeNames[$key],
+                    'date' => $dates[$key] // Assign the corresponding date for each employee
                 );
             }
 
@@ -113,13 +115,13 @@ class Attendance extends CI_Controller
             } else {
                 echo "Failed to add attendance.";
             }
-        } 
-		echo "Successfully added!";
+        } else {
+            echo "Failed to add attendance.";
+        }
     } else {
         redirect(base_url(), 'refresh');
     }
 }
-
 
 
 
