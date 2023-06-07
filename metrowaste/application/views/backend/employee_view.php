@@ -124,34 +124,34 @@
                                                     <!---update 11/05/23--->
 
 
-                                                    <?php if($this->session->userdata('user_type') != 'EMPLOYEE'): ?>
-    <div class="form-group col-md-4 m-t-10">
-        <label>User Type </label>
-        <select name="role" class="form-control custom-select" >
-            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
-            <option value="ADMIN">Admin</option>
-        </select>
-    </div>
-<?php else: ?>
-    <input type="hidden" name="role" value="<?php echo $basic->em_role; ?>">
-<?php endif; ?>
+																								<?php if($this->session->userdata('user_type') != 'EMPLOYEE'): ?>
+												<div class="form-group col-md-4 m-t-10">
+													<label>User Type </label>
+													<select name="role" class="form-control custom-select" >
+														<option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
+														<option value="ADMIN">Admin</option>
+													</select>
+												</div>
+											<?php else: ?>
+												<input type="hidden" name="role" value="<?php echo $basic->em_role; ?>">
+											<?php endif; ?>
 
 
-<?php if($this->session->userdata('user_type') == 'EMPLOYEE'): ?>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Status </label>
-        <input type="text" name="status" value="<?php echo $basic->status; ?>" readonly class="form-control">
-    </div>
-<?php else: ?>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Status </label>
-        <select name="status" class="form-control custom-select" >
-            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
-            <option value="ACTIVE">ACTIVE</option>
-            <option value="INACTIVE">INACTIVE</option>
-        </select>
-    </div>
-<?php endif; ?>
+											<?php if($this->session->userdata('user_type') == 'EMPLOYEE'): ?>
+												<div class="form-group col-md-4 m-t-10">
+													<label>Status </label>
+													<input type="text" name="status" value="<?php echo $basic->status; ?>" readonly class="form-control">
+												</div>
+											<?php else: ?>
+												<div class="form-group col-md-4 m-t-10">
+													<label>Status </label>
+													<select name="status" class="form-control custom-select" >
+														<option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
+														<option value="ACTIVE">ACTIVE</option>
+														<option value="INACTIVE">INACTIVE</option>
+													</select>
+												</div>
+											<?php endif; ?>
 		                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Birth </label>
