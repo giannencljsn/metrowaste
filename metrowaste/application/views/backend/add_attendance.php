@@ -239,11 +239,9 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
 	var formData = new FormData(this);
     var selectElements = employeeSelectContainer.getElementsByTagName('select');
     for (var j = 0; j < selectElements.length; j++) {
-        var selectName = 'emp_id[]'; // Change the name to 'emp_id[]'
         var selectValue = selectElements[j].value;
         var selectOptionText = selectElements[j].options[selectElements[j].selectedIndex].text;
 
-        formData.append(selectName, selectValue);
         formData.append('em_code[]', selectValue);
         formData.append('employee_name[]', selectOptionText);
 
