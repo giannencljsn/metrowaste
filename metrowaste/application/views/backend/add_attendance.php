@@ -86,7 +86,7 @@
 
 
                            <div class="card-body">
-						   <form id="attendanceForm">
+						   <form method="POST" action="Add_Attendance" id="attendanceForm" enctype="multipart/form-data">
 							<div class="modal-body">
 								<div class="form-group">
 									<label>Employee</label>
@@ -123,35 +123,9 @@
                     </div>
                 </div>
                         
-                                    
-                                 
-
-
-
-
-<div id="myModalContent">
-   <!-- Form content goes here -->
-   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Selected Employees</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <!-- Selected employees will be displayed here -->
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-      </div>
-   </div>
-</div>
-
-</div>
-
+       
+				
+				
 <script>
     document.getElementById('selectAllCheckbox').addEventListener('change', function() {
         var checkboxes = document.getElementsByClassName('attendanceCheckbox');
@@ -234,42 +208,93 @@ document.getElementById('employeeForm').addEventListener('submit', function(even
 
 
 document.getElementById('attendanceForm').addEventListener('submit', function(event) {
-	event.preventDefault();
-	var employeeSelectContainer = document.getElementById('employeeSelectContainer');
-	var formData = new FormData(this);
-    var selectElements = employeeSelectContainer.getElementsByTagName('select');
-    for (var j = 0; j < selectElements.length; j++) {
-        var selectValue = selectElements[j].value;
-        var selectOptionText = selectElements[j].options[selectElements[j].selectedIndex].text;
+    event.preventDefault();
+    var formData = new FormData(this);
+
+    // Get the values of signin, signout, and attdate
+    var signinValue = document.getElementsByName('signin')[0].value;
+    var signoutValue = document.getElementsByName('signout')[0].value;
+    var attdateValue = document.getElementsByName('attdate')[0].value;
+
+    // Append the same values for signin, signout, and attdate to the form data for each employee
+    var employeeSelects = document.getElementsByName('emp_id[]');
+    for (var i = 0; i < employeeSelects.length; i++) {
+        var selectValue = employeeSelects[i].value;
+        var selectOptionText = employeeSelects[i].options[employeeSelects[i].selectedIndex].text;
 
         formData.append('em_code[]', selectValue);
         formData.append('employee_name[]', selectOptionText);
-
-        // Append the same values for signin, signout, and attdate to the form data
-        formData.append('signin[]', document.getElementsByName('signin')[0].value);
-        formData.append('signout[]', document.getElementsByName('signout')[0].value);
-        formData.append('attdate[]', document.getElementsByName('attdate')[0].value);
+        formData.append('signin[]', signinValue);
+        formData.append('signout[]', signoutValue);
+        formData.append('attdate[]', attdateValue);
     }
 
     // Send the form data to the Add_Attendance controller
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'Add_Attendance', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            console.log(xhr.responseText); // Output the response from the controller
-            var response = xhr.responseText.trim(); // Trim any leading/trailing whitespace
+    fetch('Add_Attendance', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+    if (data.message === 'Successfully added!') {
+        // Display the success message in the .message element
+        var successMessage = document.createElement('div');
+        successMessage.textContent = data.message;
+		console.log(successMessage.textContent);
+        successMessage.classList.add('success-message');
+        document.querySelector('.message').textContent = data.message;
+        document.body.appendChild(successMessage);
+        setTimeout(function() {
+            successMessage.remove();
+        }, 3000);
 
-            if (response === 'Successfully added!') {
-                alert(response); // Display the success message
-            }
-        } else {
-            console.log('Error: ' + xhr.status);
-        }
-    };
-    xhr.send(formData);
+        // Reset the form and reload the page after 3 seconds
+        setTimeout(function() {
+            document.getElementById('attendanceForm').reset();
+            location.reload();
+        }, 3000);
+    } else {
+        console.log('Error: ' + data.message);
+    }
 })
+.catch(error => {
+    console.error('Error:', error.message);
+	});
+});
+
+    xhr.send(formData);
 
 
 </script>
+
+
+
+                                 
+
+
+
+
+<div id="myModalContent">
+   <!-- Form content goes here -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Selected Employees</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <!-- Selected employees will be displayed here -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+</div>
 
 <?php $this->load->view('backend/footer'); ?>

@@ -373,25 +373,30 @@ var url = $(form).attr('action');
 // Create an FormData object
 var data = new FormData(formval);
 $.ajax({
-type: "POST",
-enctype: 'multipart/form-data',
-// url: "crud/Add_userInfo",
-url: url,
-data: data,
-processData: false,
-contentType: false,
-cache: false,
-timeout: 600000,
-success: function (response) {
-	console.log(response);            
-	$(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
-	$('form').trigger("reset");
-	window.setTimeout(function(){location.reload()},3000);
-},
-error: function (e) {
-	console.log(e);
-}
+    type: "POST",
+    enctype: 'multipart/form-data',
+    url: url,
+    data: data,
+    processData: false,
+    contentType: false,
+    cache: false,
+    timeout: 600000,
+    success: function (response) {
+        console.log(response);
+
+        // Update the message div with the response
+        $(".message").text(response).fadeIn('fast').delay(3000).fadeOut('fast');
+
+        $('form').trigger("reset");
+        window.setTimeout(function () {
+            location.reload()
+        }, 3000);
+    },
+    error: function (e) {
+        console.log(e);
+    }
 });
+
 }
 });
 });wordtune

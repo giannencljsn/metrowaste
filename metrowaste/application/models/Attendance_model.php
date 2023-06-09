@@ -91,9 +91,9 @@ class Attendance_model extends CI_Model
     }
     public function getAllAttendance()
     {
-      $sql = "SELECT `attendance`.`em_id`, `employee`.`em_id`, `date`, `sign_in`, `sign_out`, TRUNCATE(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out`) ) )/3600), 1) AS Hours
+      $sql = "SELECT `attendance`.`em_code`, `employee`.`em_code`, `date`, `sign_in`, `sign_out`, TRUNCATE(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out`) ) )/3600), 1) AS Hours
 			FROM `attendance`
-			LEFT JOIN `employee` ON `attendance`.`em_id` = `employee`.`em_id`
+			LEFT JOIN `employee` ON `attendance`.`em_code` = `employee`.`em_code`
 			";
         $query  = $this->db->query($sql);
         $result = $query->result();
