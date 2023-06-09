@@ -45,8 +45,15 @@ public function submit()
     // If an existing record is found, update the corresponding column
     if ($existingRecord) {
         if ($sign_in_out == 'sign_out') {
-            // Update the sign_out column for the existing record
-            $this->db->set('sign_out', $time);
+            // Calculate the working hour
+            $sign_in = $existingRecord->sign_in;
+            $sign_out = $time;
+             //06/09 update
+            $working_hour = $this->calculateWorkingHour($sign_in, $sign_out);
+
+            // Update the sign_out and working_hour columns for the existing record
+            $this->db->set('sign_out', $sign_out);
+            $this->db->set('working_hour', $working_hour);
             $this->db->where('em_code', $em_code);
             $this->db->where('date', $date);
             $this->db->update('attendance');
@@ -64,6 +71,7 @@ public function submit()
 
         if ($sign_in_out == 'sign_out') {
             $data['sign_out'] = $time;
+            $data['working_hour'] = '00:00'; // Set initial working hour as 00:00
         } else {
             $data['sign_in'] = $time;
         }
@@ -72,8 +80,26 @@ public function submit()
     }
 
     // success message
- 
+    // ...
 }
+ //06/09 update attendancelist working hour
+
+ private function calculateWorkingHour($sign_in, $sign_out) {
+    $sign_in_time = strtotime($sign_in);
+    $sign_out_time = strtotime($sign_out);
+    $working_seconds = $sign_out_time - $sign_in_time;
+    $working_hours = floor($working_seconds / 3600);
+    $working_minutes = floor(($working_seconds % 3600) / 60);
+    $working_hour = $working_hours;
+    if ($working_minutes > 0) {
+        $working_hour .= 'hr ' . $working_minutes . 'min';
+    } else {
+        $working_hour .= 'hr';
+    }
+
+    return $working_hour;
+}
+
 
     
     
