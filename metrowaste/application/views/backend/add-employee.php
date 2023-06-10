@@ -246,7 +246,7 @@
 									</div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Name</label>
-                                        <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="15" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
+                                        <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="30" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>

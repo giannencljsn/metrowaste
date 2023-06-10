@@ -4,15 +4,19 @@ class Attendance_model extends CI_Model
 {
     
     
-    function __consturct()
+    function __construct()
     {
         parent::__construct();
         
     }
-    public function Add_AttendanceData($data)
-    {
-        $this->db->insert('attendance', $data);
-    }
+   // Attendance_model.php
+	 public function Add_AttendanceData($data)
+{
+    $this->db->insert_batch('attendance', $data);
+}
+	 
+
+
     public function bulk_insert($data)
     {
         $this->db->insert_batch('attendance', $data);
@@ -81,6 +85,16 @@ class Attendance_model extends CI_Model
     public function getTotalAttendanceDataByID($employee_PIN, $date_from, $date_to)
     {
       $sql = "SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$employee_PIN') AND (`atten_date` BETWEEN '$date_from' AND '$date_to') AND (`attendance`.`status` = 'A')";
+        $query  = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
+    public function getAllAttendance()
+    {
+      $sql = "SELECT `attendance`.`em_id`, `employee`.`em_id`, `date`, `sign_in`, `sign_out`, TRUNCATE(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out`) ) )/3600), 1) AS Hours
+			FROM `attendance`
+			LEFT JOIN `employee` ON `attendance`.`em_id` = `employee`.`em_id`
+			";
         $query  = $this->db->query($sql);
         $result = $query->result();
         return $result;

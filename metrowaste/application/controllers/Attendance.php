@@ -89,140 +89,43 @@ class Attendance extends CI_Controller
         }
     }
     
-    public function Add_Attendance()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            $id      = $this->input->post('id');
-            $em_id   = $this->input->post('emid');
-            $attdate = $this->input->post('attdate');
-            $signin  = $this->input->post('signin');
-            $signout = $this->input->post('signout');
-            $place = $this->input->post('place');
+	public function Add_Attendance()
+{
+    if ($this->session->userdata('user_login_access') != false) {
+        $emp_ids = $this->input->post('emp_id');
+        $em_codes = $this->input->post('em_code');
+        $employeeNames = $this->input->post('employee_name');
+        $signins = $this->input->post('signin'); // Retrieve the values of 'signin[]'
+        $signouts = $this->input->post('signout'); // Retrieve the values of 'signout[]'
+        $attdates = $this->input->post('attdate'); // Retrieve the values of 'attdate[]'
 
-            $this->load->library('form_validation');
-            $this->form_validation->set_error_delimiters();
-            $this->form_validation->set_rules('attdate', 'Date details', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('emid', 'Employee', 'trim|required|xss_clean');
-            $old_date           = $attdate; // returns Saturday, January 30 10 02:06:34
-            $old_date_timestamp = strtotime($old_date);
-            $new_date           = date('m/d/Y', $old_date_timestamp);
+        if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
+            $attendanceData = array();
 
-            // CHANGING THE DATE FORMAT FOR DB UTILITY
-            $new_date_changed = date('Y-m-d', strtotime(str_replace('-', '/', $new_date)));
-            
-            if ($this->form_validation->run() == FALSE) {
-                echo validation_errors();
-                #redirect("loan/View");
+            foreach ($emp_ids as $key => $em_id) {
+                $attendanceData[] = array(
+                    'em_code' => $em_codes[$key],
+                    'employee_name' => $employeeNames[$key],
+                    'sign_in' => $signins[$key], // Assign the value of 'signin[]'
+                    'sign_out' => $signouts[$key], // Assign the value of 'signout[]'
+                    'date' => $attdates[$key] // Assign the value of 'attdate[]'
+                );
+            }
+
+            $success = $this->attendance_model->Add_AttendanceData($attendanceData);
+
+            if ($success) {
+                echo "Successfully added!";
             } else {
-                $sin  = new DateTime($new_date . $signin);
-                $sout = new DateTime($new_date . $signout);
-                $hour = $sin->diff($sout);
-                $work = $hour->format('%H h %i m');
-                if (empty($id)) {
-                    $day = date("D", strtotime($new_date_changed));
-                    if($day == "Fri") {
-                        $duplicate = $this->attendance_model->getDuplicateVal($em_id,$new_date_changed);
-                        //print_r($duplicate);
-                        if(!empty($duplicate)){
-                            echo "Already Exist";
-                        } else {
-                        $emcode = $this->employee_model->emselectByCode($em_id);
-                        $emid = $emcode->em_id;
-                        $earnval = $this->leave_model->emEarnselectByLeave($emid); 
-                        $data = array();
-                        $data = array(
-                            'present_date' => $earnval->present_date + 1,
-                            'hour' => $earnval->hour + 480,
-                            'status' => '1'
-                        );
-                        $success = $this->leave_model->UpdteEarnValue($emid, $data);
-                        $data = array();
-                        $data = array(
-                                'emp_id' => $em_id,
-                                'atten_date' => $new_date_changed,
-                                'signin_time' => $signin,
-                                'signout_time' => $signout,
-                                'working_hour' => $work,
-                                'place' => $place,
-                                'status' => 'E'
-                            );
-                        $success = $this->attendance_model->Add_AttendanceData($data);
-                        echo "Successfully Updated!";               
-                        }
-                    } elseif($day != "Fri") {
-                        $holiday = $this->leave_model->get_holiday_between_dates($new_date_changed);
-                        if($holiday) {
-                        $duplicate = $this->attendance_model->getDuplicateVal($em_id,$new_date_changed);
-                        //print_r($duplicate);
-                        if(!empty($duplicate)){
-                            echo "Already Exist";
-                        } else {                            
-                            $emcode = $this->employee_model->emselectByCode($em_id);
-                            $emid = $emcode->em_id;
-                            $earnval = $this->leave_model->emEarnselectByLeave($emid); 
-                            $data = array();
-                            $data = array(
-                                'present_date' => $earnval->present_date + 1,
-                                'hour' => $earnval->hour + 480,
-                                'status' => '1'
-                            );
-                            $success = $this->leave_model->UpdteEarnValue($emid, $data);
-                            $data = array();
-                            $data = array(
-                                'emp_id' => $em_id,
-                                'atten_date' => $new_date_changed,
-                                'signin_time' => $signin,
-                                'signout_time' => $signout,
-                                'working_hour' => $work,
-                                'place' => $place,
-                                'status' => 'E'
-                                );
-                            $this->attendance_model->Add_AttendanceData($data);
-                            echo "Successfully Added";
-                        }
-                        } else {
-                        $duplicate = $this->attendance_model->getDuplicateVal($em_id,$new_date_changed);
-                        //print_r($duplicate);
-                        if(!empty($duplicate)){
-                            echo "Already Exist";
-                        } else {
-                            //$date = date('Y-m-d', $i);
-                        
-                            $data = array();
-                            $data = array(
-                                    'emp_id' => $em_id,
-                                'atten_date' => $new_date_changed,
-                                'signin_time' => $signin,
-                                'signout_time' => $signout,
-                                'working_hour' => $work,
-                                'place' => $place,
-                                'status' => 'A'
-                                );
-                            $this->attendance_model->Add_AttendanceData($data);
-                            echo "Successfully Added.";
-                        }
-                    }
-                    }
-                } else {
-                            $data = array();
-                            $data = array(
-                                'signin_time' => $signin,
-                                'signout_time' => $signout,
-                                'working_hour' => $work,
-                                'place' => $place,
-                                'status' => 'A'
-                                );
-                            $this->attendance_model->Update_AttendanceData($id, $data);
-                            echo "Successfully Updated.";
-                }
+                echo "Failed to add attendance.";
             }
         } else {
-        redirect(base_url(), 'refresh');
+            echo "No data received.";
         }
+    } else {
+        redirect(base_url(), 'refresh');
     }
-    
-
-
+}
 
 
         //THIS IS FOR ATTENDANCE LIST
