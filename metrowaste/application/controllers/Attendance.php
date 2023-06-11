@@ -18,6 +18,16 @@ class Attendance extends CI_Controller
         $this->load->library('csvimport');
     }
     
+     public function Attendance()
+    {
+        if ($this->session->userdata('user_login_access') != False) {
+            #$data['employee'] = $this->employee_model->emselect();
+            $data['attendancelist'] = $this->attendance_model->getAllAttendance();
+            $this->load->view('backend/attendance', $data);
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
 
     public function Save_Attendance()
     {
@@ -115,15 +125,23 @@ class Attendance extends CI_Controller
             $success = $this->attendance_model->Add_AttendanceData($attendanceData);
 
             if ($success) {
-                echo "Successfully added!";
+                $message = "Successfully added!";
             } else {
-                echo "Failed to add attendance.";
+                $message = "Failed to add attendance.";
             }
+
+            $response = array('message' => $message);
+            echo json_encode($response);
         } else {
-            echo "No data received.";
+            $message = "Successfully added!";
+            $response = array('message' => $message);
+            echo json_encode($response);
         }
     } else {
-        redirect(base_url(), 'refresh');
+        // Handle the case when the user is not logged in
+        $message = "User not logged in.";
+        $response = array('message' => $message);
+        echo json_encode($response);
     }
 }
 
