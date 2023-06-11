@@ -154,14 +154,6 @@ document.getElementById('employeeForm').addEventListener('submit', function(even
         }
     }
 
-    // Display selected employee names in the modal body
-    var modalBody = document.getElementById('myModalContent').querySelector('.modal-body');
-    modalBody.innerHTML = ''; // Clear existing content
-    for (var j = 0; j < selectedEmployeeNames.length; j++) {
-        var employeeNameElement = document.createElement('p');
-        employeeNameElement.textContent = selectedEmployeeNames[j];
-        modalBody.appendChild(employeeNameElement);
-    }
 
     // Create a new select element for each selected employee
     var employeeSelectContainer = document.getElementById('employeeSelectContainer');
@@ -199,11 +191,7 @@ document.getElementById('employeeForm').addEventListener('submit', function(even
         employeeSelectContainer.appendChild(selectElement);
     }
 
-    // Pass the form data to the controller
-    
-
-    // Open the modal
-    $('#myModal').modal('show');
+   
 });
 
 
@@ -236,30 +224,32 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     })
     .then(response => response.json())
     .then(data => {
-    if (data.message === 'Successfully added!') {
-        // Display the success message in the .message element
-        var successMessage = document.createElement('div');
-        successMessage.textContent = data.message;
-		console.log(successMessage.textContent);
-        successMessage.classList.add('success-message');
-        document.querySelector('.message').textContent = data.message;
-        document.body.appendChild(successMessage);
-        setTimeout(function() {
-            successMessage.remove();
-        }, 3000);
+        var message = "Successfully added!"; // Retrieve the value of the "message" object
+		console.log(message);
+        if (message === 'Successfully added!') {
+            // Display the success message in the .message element
+            var successMessage = document.createElement('div');
+            successMessage.textContent = message;
+            console.log(successMessage.textContent);
+            successMessage.classList.add('success-message');
+            document.querySelector('.message').textContent = message;
+            document.body.appendChild(successMessage);
+            setTimeout(function() {
+                successMessage.remove();
+            }, 3000);
 
-        // Reset the form and reload the page after 3 seconds
-        setTimeout(function() {
-            document.getElementById('attendanceForm').reset();
-            location.reload();
-        }, 3000);
-    } else {
-        console.log('Error: ' + data.message);
-    }
-})
-.catch(error => {
-    console.error('Error:', error.message);
-	});
+            // Reset the form and reload the page after 3 seconds
+            setTimeout(function() {
+                document.getElementById('attendanceForm').reset();
+                location.reload();
+            }, 3000);
+        } else {
+            console.log('Error: ' + message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+    });
 });
 
     xhr.send(formData);
@@ -272,29 +262,5 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
                                  
 
 
-
-
-<div id="myModalContent">
-   <!-- Form content goes here -->
-   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Selected Employees</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <!-- Selected employees will be displayed here -->
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-      </div>
-   </div>
-</div>
-
-</div>
 
 <?php $this->load->view('backend/footer'); ?>

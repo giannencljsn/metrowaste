@@ -134,8 +134,8 @@ class Attendance extends CI_Controller
             echo json_encode($response);
         } else {
             $message = "Successfully added!";
-            $response = array('message' => $message);
-            echo json_encode($response);
+            
+            echo json_encode($message);
         }
     } else {
         // Handle the case when the user is not logged in
