@@ -80,6 +80,7 @@ public function submit()
     }
 
     // success message
+    echo "Successfully Submit";
     // ...
 }
  //06/09 update attendancelist working hour
