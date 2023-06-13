@@ -5,20 +5,67 @@
 </div>
 
 </div>
-
 <script>
-  // add an event listener to the form
-  document.getElementById("myForm").addEventListener("input", function() {
-    // check if all form inputs are valid
-    if (this.checkValidity()) {
-      // enable the submit button
-      document.getElementById("submitBtn").disabled = false;
-    } else {
-      // disable the submit button
-      document.getElementById("submitBtn").disabled = true;
+    // Function to check if all required fields are filled
+    function checkForm() {
+        var requiredFields = [
+            "fname",
+            "lname",
+            "eid",
+            "dept",
+            "deg",
+            "role",
+            "gender",
+            "maritalstat",
+            "blood",
+            "contact_1",
+            "contact_2",
+            "emcontact_1", // Added emcontact_1 to requiredFields
+            "emcontact_2", // Added emcontact_2 to requiredFields
+            "contactname",
+            "dob",
+            "joindate",
+            "email",
+            "password",
+            "confirm"
+            
+        ];
+
+        var allFieldsFilled = true;
+
+        for (var i = 0; i < requiredFields.length; i++) {
+            var field = document.forms["myForm"][requiredFields[i]];
+            if (field.value === "") {
+                allFieldsFilled = false;
+                break;
+            }
+        }
+
+        var submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = !allFieldsFilled;
     }
-  });
+
+    // Call checkForm function on form field change
+    var formFields = document.getElementsByClassName("form-control");
+    for (var i = 0; i < formFields.length; i++) {
+        formFields[i].addEventListener("input", checkForm);
+    }
+
+    // Function to show/hide password
+    function showPassword() {
+        var passwordInput = document.getElementById("password");
+        var cpasswordInput = document.getElementById("cpassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            cpasswordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+            cpasswordInput.type = "password";
+        }
+    }
 </script>
+
 <!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
 
 <script>

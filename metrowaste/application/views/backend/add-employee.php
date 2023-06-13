@@ -236,13 +236,13 @@
 									<div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Number </label>
                                         <div class="input-group">
-                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
+                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)" required>
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
+                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)" required>
 										</div>
-											<input type="hidden" name="emcontact" id="emcontact"> 
+											<input type="hidden" name="emcontact" id="emcontact" required> 
 									</div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Emergency Contact Name</label>
