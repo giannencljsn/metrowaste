@@ -147,7 +147,7 @@
 		                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Birth </label>
-				                                        <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" value="<?php echo $basic->em_birthday; ?>" > 
+				                                        <input type="date" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?>  id="example-email2" name="dob" class="form-control" placeholder="" value="<?php echo $basic->em_birthday; ?>"> 
 				                                    </div>
 				                                
 				                                    <div class="form-group col-md-4 m-t-10">
