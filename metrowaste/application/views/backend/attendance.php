@@ -81,7 +81,7 @@
             <td><?php echo $value->date; ?></td>
             <td><?php echo $value->sign_in; ?></td>
             <td><?php echo $value->sign_out; ?></td>
-            <!-- <td><?php echo $value->working_hour; ?></td>  -->
+            <td><?php echo $value->working_hour; ?></td> 
             <td></td>             
             </td>
         </tr>

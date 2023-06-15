@@ -113,12 +113,27 @@ class Attendance extends CI_Controller
             $attendanceData = array();
 
             foreach ($emp_ids as $key => $em_id) {
+                $sign_in = $signins[$key]; // Assign the value of 'signin[]'
+                $sign_out = $signouts[$key]; // Assign the value of 'signout[]'
+                $date = $attdates[$key]; // Assign the value of 'attdate[]'
+
+                // Calculate the time difference
+                $sign_in_time = strtotime($sign_in);
+                $sign_out_time = strtotime($sign_out);
+                $time_diff = $sign_out_time - $sign_in_time;
+                $hours = floor($time_diff / 3600);
+                $minutes = floor(($time_diff % 3600) / 60);
+
+                // Format the working hour
+                $working_hour = sprintf("%02d h %02d m", $hours, $minutes);
+
                 $attendanceData[] = array(
                     'em_code' => $em_codes[$key],
                     'employee_name' => $employeeNames[$key],
-                    'sign_in' => $signins[$key], // Assign the value of 'signin[]'
-                    'sign_out' => $signouts[$key], // Assign the value of 'signout[]'
-                    'date' => $attdates[$key] // Assign the value of 'attdate[]'
+                    'sign_in' => $sign_in,
+                    'sign_out' => $sign_out,
+                    'date' => $date,
+                    'working_hour' => $working_hour
                 );
             }
 
@@ -144,6 +159,7 @@ class Attendance extends CI_Controller
         echo json_encode($response);
     }
 }
+
 
 
         //THIS IS FOR ATTENDANCE LIST
