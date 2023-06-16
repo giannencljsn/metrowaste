@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             <label for="time">Time:</label>
-            <input type="time" class="form-control" id="time" name="time" value="<?php echo date('H:i:s'); ?>">
+            <input type="time" class="form-control" id="time" name="time" value="<?php echo date('H:i'); ?>">
         </div>
         <div class="form-group">
             <label for="sign_in_out">Sign In/Out:</label>
