@@ -299,4 +299,241 @@
                         </div>
                     </div>
                 </div>
+
+<script>
+    // Function to check if all required fields are filled
+    function checkForm() {
+        var requiredFields = [
+            "fname",
+            "lname",
+            "eid",
+            "dept",
+            "deg",
+            "role",
+            "gender",
+            "maritalstat",
+            "blood",
+            "contact_1",
+            "contact_2",
+            "emcontact_1", // Added emcontact_1 to requiredFields
+            "emcontact_2", // Added emcontact_2 to requiredFields
+            "contactname",
+            "dob",
+            "joindate",
+            "email",
+            "password",
+            "confirm"
+            
+        ];
+
+        var allFieldsFilled = true;
+
+        for (var i = 0; i < requiredFields.length; i++) {
+            var field = document.forms["myForm"][requiredFields[i]];
+            if (field.value === "") {
+                allFieldsFilled = false;
+                break;
+            }
+        }
+
+        var submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = !allFieldsFilled;
+    }
+
+    // Call checkForm function on form field change
+    var formFields = document.getElementsByClassName("form-control");
+    for (var i = 0; i < formFields.length; i++) {
+        formFields[i].addEventListener("input", checkForm);
+    }
+
+    // Function to show/hide password
+    function showPassword() {
+        var passwordInput = document.getElementById("password");
+        var cpasswordInput = document.getElementById("cpassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            cpasswordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+            cpasswordInput.type = "password";
+        }
+    }
+</script>
+
+<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
+
+<script>
+		function validateForm(event){
+            event.preventDefault();
+
+            var form = event.target;
+            var isValid = true;
+
+            // Validate Name Field
+            var firstName = form["fname"].value;
+            if(firstName == "" || firstName.length < 3 || firstName.length > 30){
+                alert("Please enter minimum 3 characters for First Name. ");
+                isValid = false; 
+            }
+
+            var lastName = form["lname"].value;
+            if(lastName == "" || lastName.length < 3 || lastName.length > 30){
+                alert("Please enter minimum 3 characters for Last Name.");
+                isValid = false;
+            }
+
+            // Validate Password and Confirm Password Fields
+            var password = form["password"].value;
+            var cpassword = form["confirm"].value;
+            if(password != cpassword){
+                alert("Passwords do not match.");
+                isValid = false;
+            }
+
+            // Validate Image Field
+            var image = form["image_url"].files[0];
+            var reader = new FileReader();
+
+            reader.readAsDataURL(image);
+            reader.onload = function(event) {
+                var img = new Image();
+                img.src = event.target.result;
+                img.onload = function () {
+                    var fileSize = image.size / 1024 / 1024; //in MB
+                    var fileType = image.type;
+                    var maxWidth = 800;
+                    var maxHeight = 800;
+                    if(
+                        fileType != "image/jpeg" &&
+                        fileType != "image/png" &&
+                        fileType != "image/gif"
+
+                    ) {
+                        alert("Please select a valid image file (JPEG, PNG, or GIF).");
+                        isValid = false;  //set isValid to false if validation fails
+                    } else if (fileSize > 2){
+                        alert("Please select an image file smaller than 2MB.");
+                        isValid = false; //set isValid to false if validation fails
+                    } else if (img.width > maxWidth || img.height > maxHeight){
+                        alert(
+                            "Please select an image with dimensions not exceeding " +
+                            maxWidth + 
+                            "px x"  + 
+                            maxHeight +
+                            "px."
+
+                        );
+                        isValid = false
+                    }
+
+                    if (isValid) {
+                        form.submit(); //submit the form if validation succeeds 
+                    }
+
+                };
+            };
+
+        }
+
+        // document.addEventListener("DOMContentLoaded", function (){
+        //     var forms = document.getElementsByTagName("form");
+        //     for(var i = 0; i < forms.length; i++){
+        //         forms[i].addEventListener("submit", validateForm);
+        //     }
+        // });
+
+</script>
+
+
+
+
+<!-- TOGGLE PASSWORD VISIBILITY -->
+									
+<script>
+	function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+</script>
+<!-- Check password security -->
+<script>
+var myInput = document.getElementById("password");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("cpassword");
+const errorMessage = document.getElementById("error-message");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("pvalid");
+  } else {
+    letter.classList.remove("pvalid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("pvalid");
+  } else {
+    capital.classList.remove("pvalid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("pvalid");
+  } else {
+    number.classList.remove("pvalid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("pvalid");
+  } else {
+    length.classList.remove("pvalid");
+    length.classList.add("invalid");
+  }
+
+  confirmPassword.addEventListener("input", () => {
+  if (confirmPassword.value !== password.value) {
+    errorMessage.textContent = "Passwords not match";
+    errorMessage.style.color ="red";
+    confirmPassword.setCustomValidity("Passwords do not match");
+  } else {
+    errorMessage.textContent = "";
+    confirmPassword.setCustomValidity("");
+  }
+});
+}
+</script>
+
 <?php $this->load->view('backend/footer'); ?>
