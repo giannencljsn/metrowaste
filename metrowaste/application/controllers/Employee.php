@@ -228,7 +228,7 @@ class Employee extends CI_Controller {
             $success = $this->employee_model->Add($data);
             #$this->confirm_mail_send($email,$pass_hash);        
             echo "Successfully Added";
-            redirect('employee/Add_employee');                     
+            // redirect('employee/Add_employee');                     
                 }
             }
             }
