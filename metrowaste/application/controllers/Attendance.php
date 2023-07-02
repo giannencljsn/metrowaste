@@ -64,40 +64,22 @@ class Attendance extends CI_Controller
         return $this->attendance_model->getPINFromID($employee_ID);
     }
     
-    public function Get_attendance_data_for_report()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            $date_from   = $this->input->post('date_from');
-            $date_to   = $this->input->post('date_to');
-            $employee_id   = $this->input->post('employee_id');
-            $employee_PIN = $this->getPINFromID($employee_id)->em_code;
-            $attendance_data = $this->attendance_model->getAttendanceDataByID($employee_PIN, $date_from, $date_to);
-            $data['attendance'] = $attendance_data;
-            $attendance_hours = $this->attendance_model->getTotalAttendanceDataByID($employee_PIN, $date_from, $date_to);
-            if(!empty($attendance_data)){
-            $data['name'] = $attendance_data[0]->name;
-            $data['days'] = count($attendance_data);
-            $data['hours'] = $attendance_hours;                
-            }
-            echo json_encode($data);
-
-            /*foreach ($attendance_data as $row) {
-                $row =  
-                    "<tr>
-                        <td>$numbering</td>
-                        <td>$row->first_name $row->first_name</td>
-                        <td>$row->atten_date</td>
-                        <td>$row->signin_time</td>
-                        <td>$row->signout_time</td>
-                        <td>$row->working_hour</td>
-                        <td>Type</td>
-                    </tr>";
-            }*/
-            
-        } else {
-            redirect(base_url(), 'refresh');
-        }
-    }
+	public function Get_attendance_data_for_report()
+	{
+		if ($this->session->userdata('user_login_access') != false) {
+			$date_from = $this->input->post('date_from');
+			$date_to = $this->input->post('date_to');
+			$employee_id = $this->input->post('employee_id');
+	
+			$attendance_data = $this->attendance_model->getAttendanceDataByDateRange($employee_id, $date_from, $date_to);
+	
+			$data['attendance'] = $attendance_data;
+			echo json_encode($data);
+		} else {
+			redirect(base_url(), 'refresh');
+		}
+	}
+	
     
 	public function Add_Attendance()
 {

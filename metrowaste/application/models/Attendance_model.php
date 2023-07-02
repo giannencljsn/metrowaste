@@ -70,17 +70,15 @@ class Attendance_model extends CI_Model
       return $result;
     }
 
-    public function getAttendanceDataByID($employee_id, $date_from, $date_to)
-    {
-      $sql    = "SELECT `attendance`.*,
-      `employee`.`em_id`, CONCAT(`first_name`, ' ', `last_name`) AS name,`em_code`, TRUNCATE((ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600, 1) AS Hours
-      FROM `attendance`
-      LEFT JOIN `employee` ON `attendance`.`emp_id` = `employee`.`em_code` 
-      WHERE (`attendance`.`emp_id` = '$employee_id') AND (`atten_date` BETWEEN '$date_from' AND '$date_to') AND (`attendance`.`status` = 'A')";
-        $query  = $this->db->query($sql);
-        $result = $query->result();
-        return $result;
-    }
+		public function getAttendanceDataByDateRange($employee_id, $date_from, $date_to)
+{
+    $sql = "SELECT `employee_name`, `sign_in`, `sign_out`, `date`, `working_hour`
+            FROM `attendance`
+            WHERE `em_code` = ? AND `date` BETWEEN ? AND ?";
+    $query = $this->db->query($sql, array($employee_id, $date_from, $date_to));
+    $result = $query->result();
+    return $result;
+}
 
     public function getTotalAttendanceDataByID($employee_PIN, $date_from, $date_to)
     {

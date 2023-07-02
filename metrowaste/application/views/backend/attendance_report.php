@@ -26,28 +26,29 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Attendance Report</h4>
-                                <form method="post" action="Get_attendance_data_for_report" class="form-material row">
-                                    <div class="form-group col-md-3">
-                                        <input type="text" name="date_from" id="date_from" class="form-control mydatetimepickerFull" placeholder="from">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <input type="text" name="date_to" id="date_to" class="form-control mydatetimepickerFull" placeholder="to">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <select class="form-control custom-select"  tabindex="1" name="emid" id="employee_id" required>
-                                        <option>Employee</option>
-                                         <?php foreach($employee as $value): ?>
-                                         <option value="<?php echo $value->em_id; ?>">
-                                            <?php echo $value->first_name ?>
-                                            <?php echo $value->last_name ?>
-                                         </option>
-                                         <?php endforeach; ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        <input type="submit" class="btn btn-success" value="Submit" name="submit" id="getAtdReport">
-                                    </div>
-                                </form>
+                                <form method="post" action="<?php echo base_url('Attendance/Get_attendance_data_for_report'); ?>" class="form-material row">
+    <div class="form-group col-md-3">
+        <input type="text" name="date_from" id="date_from" class="form-control mydatetimepickerFull" placeholder="from">
+    </div>
+    <div class="form-group col-md-3">
+        <input type="text" name="date_to" id="date_to" class="form-control mydatetimepickerFull" placeholder="to">
+    </div>
+    <div class="form-group col-md-3">
+		<select class="form-control custom-select"  tabindex="1" name="employee_id" id="employee_id" required>
+			<option>Employee</option>
+			<?php foreach($employee as $value): ?>
+				<option value="<?php echo $value->em_code; ?>">
+					<?php echo $value->first_name ?>
+					<?php echo $value->last_name ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+
+    </div>
+    <div class="col-md-3 form-group">
+        <input type="submit" class="btn btn-success" value="Submit" name="submit" id="getAtdReportBtn">
+    </div>
+</form>
                             </div>
                         </div>
                     </div>
@@ -102,7 +103,7 @@
 <?php $this->load->view('backend/footer'); ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#getAtdReport").click(function(e) {
+        $("#getAtdReportBtn").click(function(e) {
             e.preventDefault(e);
             // Get the record's ID via attribute
             var date_from = $('#date_from').val();
@@ -139,12 +140,10 @@
                     "aaData": tableData,
                     "columns": [
                         { "data": "em_code" },
-                        { "data": "name" },
-                        { "data": "atten_date" },
-                        { "data": "signin_time" },
-                        { "data": "signout_time" },
-                        { "data": "Hours" },
-                        { "data": "place" }
+                        { "data": "employee_name" },
+                        { "data": "date" },
+                        { "data": "sign_in" },
+                        { "data": "sign_out" }
                     ]
                 });
             });
