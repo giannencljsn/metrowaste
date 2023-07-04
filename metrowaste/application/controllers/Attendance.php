@@ -65,20 +65,23 @@ class Attendance extends CI_Controller
     }
     
 	public function Get_attendance_data_for_report()
-	{
-		if ($this->session->userdata('user_login_access') != false) {
-			$date_from = $this->input->post('date_from');
-			$date_to = $this->input->post('date_to');
-			$employee_id = $this->input->post('employee_id');
-	
-			$attendance_data = $this->attendance_model->getAttendanceDataByDateRange($employee_id, $date_from, $date_to);
-	
-			$data['attendance'] = $attendance_data;
-			echo json_encode($data);
-		} else {
-			redirect(base_url(), 'refresh');
-		}
-	}
+{
+    if ($this->session->userdata('user_login_access') != false) {
+        $date_from = $this->input->post('date_from');
+        $date_to = $this->input->post('date_to');
+        $employee_id = $this->input->post('employee_id');
+
+        $attendance_data = $this->attendance_model->getAttendanceDataByDateRange($employee_id, $date_from, $date_to);
+
+        $data['attendance'] = $attendance_data;
+        $html = $this->load->view('backend/attendance_report_data', $data, true);
+
+        // Return the HTML response as JSON
+        echo json_encode(array('html' => $html));
+    } else {
+        redirect(base_url(), 'refresh');
+    }
+}
 	
     
 	public function Add_Attendance()

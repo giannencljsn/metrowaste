@@ -26,128 +26,56 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Attendance Report</h4>
-                                <form method="post" action="<?php echo base_url('Attendance/Get_attendance_data_for_report'); ?>" class="form-material row">
-    <div class="form-group col-md-3">
-        <input type="text" name="date_from" id="date_from" class="form-control mydatetimepickerFull" placeholder="from">
-    </div>
-    <div class="form-group col-md-3">
-        <input type="text" name="date_to" id="date_to" class="form-control mydatetimepickerFull" placeholder="to">
-    </div>
-    <div class="form-group col-md-3">
-		<select class="form-control custom-select"  tabindex="1" name="employee_id" id="employee_id" required>
-			<option>Employee</option>
-			<?php foreach($employee as $value): ?>
-				<option value="<?php echo $value->em_code; ?>">
-					<?php echo $value->first_name ?>
-					<?php echo $value->last_name ?>
-				</option>
-			<?php endforeach; ?>
-		</select>
+								<form method="post" action="<?php echo base_url('Attendance/Get_attendance_data_for_report'); ?>" class="form-material row" id="attendanceForm">
+										<div class="form-group col-md-3">
+											<input type="text" name="date_from" id="date_from" class="form-control mydatetimepickerFull" placeholder="from">
+										</div>
+										<div class="form-group col-md-3">
+											<input type="text" name="date_to" id="date_to" class="form-control mydatetimepickerFull" placeholder="to">
+										</div>
+										<div class="form-group col-md-3">
+											<select class="form-control custom-select"  tabindex="1" name="employee_id" id="employee_id" required>
+												<option>Employee</option>
+												<?php foreach($employee as $value): ?>
+													<option value="<?php echo $value->em_code; ?>">
+														<?php echo $value->first_name ?>
+														<?php echo $value->last_name ?>
+													</option>
+												<?php endforeach; ?>
+											</select>
+										</div>
+										<div class="col-md-3 form-group">
+											<input type="submit" class="btn btn-success" value="Submit" name="submit" id="getAtdReportBtn">
+										</div>
+									</form>
+ 
 
-    </div>
-    <div class="col-md-3 form-group">
-        <input type="submit" class="btn btn-success" value="Submit" name="submit" id="getAtdReportBtn">
-    </div>
-</form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body EmployeeInfo">
-                                <h3 class="employee_name">Employee</h3>
-                                Worked <span class="hours"></span> Hours in <span class="days"></span> days
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Full attendance</h4>
-                                <div class="table-responsive ">
-                                  <table id="example234" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                                    <thead>
-                                      <tr>
-                                        <th>PIN </th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>In</th>
-                                        <th>Out</th>
-                                        <th>Hour</th>
-                                        <th>Place</th>
-                                      </tr>
-                                    </thead>
-                                    <!-- <tfoot>
-                                    <tr>
-                                        <th>PIN </th>
-                                        <th>Name</th>
-                                        <th>Date</th>
-                                        <th>In</th>
-                                        <th>Out</th>
-                                        <th>Hour</th>
-                                        <th>Place</th>
-                                    </tr>
-                                    </tfoot> -->
-                                    <tbody class="leave">
-                                    
-                                    </tbody>
-                                  </table>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-<?php $this->load->view('backend/footer'); ?>
-<script type="text/javascript">
+<!-- Display the attendance data -->
+<div id="attendanceDataContainer"></div>
+
+
+<!-- ...remaining JavaScript code... -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
     $(document).ready(function() {
-        $("#getAtdReportBtn").click(function(e) {
-            e.preventDefault(e);
-            // Get the record's ID via attribute
-            var date_from = $('#date_from').val();
-            var date_to = $('#date_to').val();
-            var employee_id = $('#employee_id').val();
-
+        $('#attendanceForm').submit(function(e) {
+            e.preventDefault(); // Prevent form submission
+            
             $.ajax({
-                url: 'Get_attendance_data_for_report',
-                method: 'POST',
-                data: {
-                    date_from: date_from,
-                    date_to: date_to,
-                    employee_id: employee_id
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(response) {
+                    // Update the container with the returned HTML
+                    $('#attendanceDataContainer').html(response.html);
                 }
-            }).done(function(response) {
-
-                var data = JSON.parse(response);
-
-                //console.log(data);
-
-                var infoContainer = $('.EmployeeInfo'),
-                    name          = $('.EmployeeInfo .employee_name'),
-                    hours         = $('.EmployeeInfo .hours'),
-                    days          = $('.EmployeeInfo .days');
-
-                name.text(data.name);
-                hours.text(Math.abs(data.hours[0].Hours));
-                days.text(data.days);
-                
-                var tableData = data.attendance;
-                //console.log(tableData);
-                $('#example234').dataTable( {
-                    "bDestroy":true,
-                    "aaData": tableData,
-                    "columns": [
-                        { "data": "em_code" },
-                        { "data": "employee_name" },
-                        { "data": "date" },
-                        { "data": "sign_in" },
-                        { "data": "sign_out" }
-                    ]
-                });
             });
         });
     });
 </script>
-                          
+
+
+				
+<?php $this->load->view('backend/footer'); ?>
+
