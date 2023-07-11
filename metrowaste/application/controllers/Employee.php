@@ -106,7 +106,7 @@ class Employee extends CI_Controller {
 	$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
 	$pagibig = $this->input->post('pagibig_1') . '-' . $this->input->post('pagibig_2') . '-' . $this->input->post('pagibig_3');		
 	$tin =  $this->input->post('tin_1') . '-' . $this->input->post('tin_2') . '-' . $this->input->post('tin_3'). '-' . $this->input->post('tin_4');	
-	$blood = $this->input->post('blood');
+
 	$marital = $this->input->post('maritalstat');		
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
@@ -176,7 +176,7 @@ class Employee extends CI_Controller {
 					'em_philhealth'=>$philhealth,
 					'em_pagibig'=>$pagibig,
 					'em_tin'=>$tin,
-                    'em_blood_group'=> $blood,
+                    
 					'em_marital_status' => $marital
                 );
                 if($id){
@@ -212,7 +212,7 @@ class Employee extends CI_Controller {
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
-                    'em_blood_group'=> $blood,
+                 
                     'em_marital_status' => $marital,
                     'em_sss'=>$sss,
                     'em_philhealth'=>$philhealth,
@@ -268,7 +268,6 @@ class Employee extends CI_Controller {
 	$pagibig = $this->input->post('pagibig');		
 	$tin = $this->input->post('tin');		
 	$status = $this->input->post('status');		
-	$blood = $this->input->post('blood');
 	$marital = $this->input->post('maritalstat');
 
         $this->load->library('form_validation');
@@ -336,7 +335,6 @@ class Employee extends CI_Controller {
                     'em_sss'=>$sss,
                     'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
-                    'em_blood_group'=> $blood,
                     'em_marital_status' => $marital
                 );
                 if($id){
@@ -367,7 +365,6 @@ class Employee extends CI_Controller {
                     'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
                     'em_tin'=>$tin,
-                    'em_blood_group'=> $blood,
                     'em_marital_status' => $marital
                 );
                 if($id){
@@ -410,7 +407,6 @@ class Employee extends CI_Controller {
 				$pagibig = $this->input->post('pagibig');		
 				$tin = $this->input->post('tin');		
 				$status = $this->input->post('status');		
-				$blood = $this->input->post('blood');
 				
 				$marital = $this->input->post('maritalstat');
 				$this->load->library('form_validation');
@@ -474,11 +470,10 @@ class Employee extends CI_Controller {
 												'em_joining_date'=>$joindate,
 												'em_image'=>$img_url,
 												'em_address'=>$address,
-                        'em_sss'=>$sss,
-											  'em_philhealth'=>$philhealth,
-                        'em_pagibig'=>$pagibig,
-											  'em_tin'=>$tin,
-												'em_blood_group'=> $blood,
+                        						'em_sss'=>$sss,
+											 	'em_philhealth'=>$philhealth,
+                        						'em_pagibig'=>$pagibig,
+											  	'em_tin'=>$tin,
 												'em_marital_status' => $marital
 											);
 								if($id){
@@ -509,7 +504,6 @@ class Employee extends CI_Controller {
 											'em_philhealth'=>$philhealth,
                                             'em_pagibig'=>$pagibig,
 											'em_tin'=>$tin,
-											'em_blood_group'=> $blood,
 											'em_marital_status' => $marital
 										);
 

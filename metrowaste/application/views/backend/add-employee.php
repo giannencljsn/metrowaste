@@ -134,20 +134,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Blood Group </label>
-                                        <select name="blood" class="form-control custom-select">
-                                            <option>Select Blood Group</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="AB+">AB+</option>
-                                        </select>
-                                    </div>
-                                  
+                                    
 
 									<div class="form-group col-md-3 m-t-20">
 										<label>PHILHEALTH (12 digits)</label>
@@ -312,7 +299,6 @@
             "role",
             "gender",
             "maritalstat",
-            "blood",
             "contact_1",
             "contact_2",
             "emcontact_1", // Added emcontact_1 to requiredFields
