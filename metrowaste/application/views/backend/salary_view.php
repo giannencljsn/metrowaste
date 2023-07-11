@@ -339,7 +339,7 @@ $this->load->view('backend/sidebar');
 
             <div class="modal-footer">
               <input type="hidden" name="action" value="add" class="form-control" id="formAction">              
-              <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                      
+              <!-- <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                       -->
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close
               </button>
               <button type="submit" class="btn btn-success">Submit
@@ -356,7 +356,7 @@ $(document).ready(function () {
           $(document).on('keyup','.hours_worked',function() {
             var finalsalary = 0;  
             //var total;  
-            var deduction = 0; 
+          
             var rows = this.closest('#generatePayrollForm div');
              
             var hrate = parseFloat($('.hrate').val()); 
@@ -364,12 +364,13 @@ $(document).ready(function () {
             var loan = parseFloat($('.loan').val());  
             var hwork =parseFloat($('.hours_worked').val());
             var thour =parseFloat($('.thour').val());
-              
+            var deduction = parseFloat($('.deduction').val());
+
               finalsalary = (hwork*hrate) - loan;
               $(".total_paid").val(finalsalary.toFixed(2));
               var total = thour - hwork;
-              var deduction = (total*hrate) + loan;
-              $(".diduction").val(deduction.toFixed(2));
+              
+              $(".deduction").val(deduction.toFixed(2));
               $(".wpay").html(total.toFixed(2));
 
               console.log(loan);
@@ -393,7 +394,7 @@ $(document).ready(function () {
       var loan = parseFloat($('.loan').val());
       var hwork = parseFloat($('.hours_worked').val());
       var thour = parseFloat($('.thour').val());
-      var deduction = parseFloat($('.deduction').val()) || 0;
+      var deduction = parseFloat($('.deduction').val());
 
       var basicSalary = parseFloat($('[name="basic"]').val());
       var totalPaid = basicSalary - (deduction + loan);
@@ -429,8 +430,8 @@ $(document).ready(function () {
         if (response.addition == 0) {
           $('#generatePayrollForm').find('[id="addition"]').val('').hide().end();
         }
-        if (response.diduction == 0) {
-          $('#generatePayrollForm').find('[id="diduction"]').val('').hide().end();
+        if (response.deduction == 0) {
+          $('#generatePayrollForm').find('[id="deduction"]').val('').hide().end();
         }
         if (response.loan == 0) {
           $('#generatePayrollForm').find('[id="loan"]').val('').hide().end();

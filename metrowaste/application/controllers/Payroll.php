@@ -984,14 +984,13 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         if($this->session->userdata('user_login_access') != False) {
 
         $eid = $this->input->post('eid');
-
         $month = $this->month_number_to_name($this->input->post('month'));
         $basic = $this->input->post('basic');
         $year = $this->input->post('year');
         $hours_worked = $this->input->post('hours_worked');
         $addition = $this->input->post('addition');
-        $diduction = $this->input->post('diduction');
-        $loan_id = $this->input->post('loan_id');
+        $diduction = $this->input->post('deduction');
+        
         $loan = $this->input->post('loan');
         $total_paid = $this->input->post('total_paid');
         $paydate = $this->input->post('paydate');

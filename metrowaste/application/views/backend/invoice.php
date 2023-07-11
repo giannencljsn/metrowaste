@@ -201,17 +201,18 @@
                                                         if($d > 0) { echo round($d,2).'PHP'; }
                                                     ?>        
                                                 </td>
+								
                                                 
                                             </tr>
-                                            <!--<tr>
-                                                <td>Without Pay( <?php echo $work_h_diff ?> hrs)</td>
+                                            <tr>
+                                                <td>Loan</td>
                                                 <td class="text-right"> </td>
                                                 <td class="text-right"> <?php
-                                                        /*if($d > 0) { echo round($d,2).'PHP'; }*/
-                                                        echo $salary_info->diduction .'PHP';
+                                                       
+                                                        echo $salary_info->loan .'PHP';
                                                     ?> </td>
                                                 
-                                            </tr>-->
+                                            </tr>
                                            
                                         </tbody>
                                         <tfoot class="tfoot-light">
@@ -220,7 +221,7 @@
                                                 <th class="text-right"><?php $total_add = $addition[0]->basic + $addition[0]->restduty + $addition[0]->straightduty 
 																						+ $addition[0]->specialholiday + $addition[0]-> legalholiday; echo round($total_add,2); ?>PHP</th>
                                                 <th class="text-right"><?php $total_did = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth 
-																						+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances; echo round($total_did,2); ?>PHP</th>
+																						+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances + $salary_info->diduction + $salary_info->loan; echo round($total_did,2); ?>PHP</th>
                                             </tr>
                                             <tr>
                                                 <th></th>
