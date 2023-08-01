@@ -88,19 +88,7 @@
 				                                        <label>Last Name </label>
 				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Employee's LastName" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" readonly> 
 				                                    </div>
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>Blood Group </label>
-                                                        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_blood_group; ?>" class="form-control custom-select" readonly>
-                                                            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                        </select>
-                                                    </div>
+                                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Gender </label>
 				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" readonly>

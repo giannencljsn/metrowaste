@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 06:42 PM
+-- Generation Time: Aug 01, 2023 at 11:56 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -55,7 +55,8 @@ INSERT INTO `addition` (`addi_id`, `salary_id`, `basic`, `restduty`, `straightdu
 (51, 53, '20000', '100', '100', '100', '100', '100', '100', '100', '100', '100', '100', '600', '19800'),
 (52, 54, '10000', '40', '80', '120', '160', '100', '100', '100', '100', '100', '100', '600', '9800'),
 (53, 55, '10000', '100', '100', '100', '100', '100', '100', '100', '100', '100', '100', '600', '9800'),
-(54, 56, '20000', '100', '100', '100', '100', '100', '100', '100', '100', '100', '100', '600', '19800');
+(54, 56, '20000', '100', '100', '100', '100', '100', '100', '100', '100', '100', '100', '600', '19800'),
+(55, 57, '35000', '500', '500', '500', '500', '100', '100', '100', '100', '100', '100', '600', '36400');
 
 -- --------------------------------------------------------
 
@@ -129,8 +130,8 @@ CREATE TABLE `attendance` (
   `em_code` varchar(100) DEFAULT NULL,
   `employee_name` varchar(100) DEFAULT NULL,
   `date` varchar(100) DEFAULT NULL,
-  `sign_in` varchar(100) DEFAULT NULL,
-  `sign_out` varchar(100) DEFAULT NULL,
+  `sign_in` time DEFAULT NULL,
+  `sign_out` time DEFAULT NULL,
   `working_hour` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -139,7 +140,69 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`em_id`, `em_code`, `employee_name`, `date`, `sign_in`, `sign_out`, `working_hour`) VALUES
-(2139, 'EMP - 80464', 'Ryan', '2023-06-16', '08:00', '17:00', '9hr');
+(2182, 'Seo1523', 'Yeji Seo', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2183, 'EMP - 15845', 'Franchesca Navarro', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2184, 'EMP - 93849', 'Namjoon Kim', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2185, 'EMP - 11270', 'Kendall Jenner', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2186, 'EMP - 14524', 'Rica Perez', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2187, 'EMP - 94451', 'Justin Timberlake', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2188, 'EMP - 57675', 'Jc Chasez', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2189, 'EMP - 71158', 'Ashley Tisdale', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2190, 'EMP - 62489', 'Jennie Kim', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2191, 'EMP - 98708', 'Roseanne Park', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2192, 'EMP - 67873', 'Lalisa Manobal', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2193, 'EMP - 56208', 'Gianne Juson', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2194, 'EMP - 31887', 'Julius Babao', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2195, 'EMP - 89156', 'Anthony Perez', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2196, 'EMP - 49688', 'Millie Brown', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2197, 'EMP - 44083', 'Paula Abdul', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2198, 'EMP - 27978', 'Hoseok Jung', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2199, 'EMP - 57732', 'Wena Relos', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2200, 'EMP - 41057', 'Jane Oineza', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2201, 'EMP - 46773', 'David Licauco', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2202, 'EMP - 47526', 'Alexandra Botez', '2023-05-01', '08:00:00', '17:00:00', '09 h 00 m'),
+(2203, 'Seo1523', 'Yeji Seo', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2204, 'EMP - 15845', 'Franchesca Navarro', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2205, 'EMP - 93849', 'Namjoon Kim', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2206, 'EMP - 11270', 'Kendall Jenner', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2207, 'EMP - 14524', 'Rica Perez', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2208, 'EMP - 94451', 'Justin Timberlake', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2209, 'EMP - 57675', 'Jc Chasez', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2210, 'EMP - 71158', 'Ashley Tisdale', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2211, 'EMP - 62489', 'Jennie Kim', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2212, 'EMP - 98708', 'Roseanne Park', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2213, 'EMP - 67873', 'Lalisa Manobal', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2214, 'EMP - 56208', 'Gianne Juson', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2215, 'EMP - 31887', 'Julius Babao', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2216, 'EMP - 89156', 'Anthony Perez', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2217, 'EMP - 49688', 'Millie Brown', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2218, 'EMP - 44083', 'Paula Abdul', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2219, 'EMP - 27978', 'Hoseok Jung', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2220, 'EMP - 57732', 'Wena Relos', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2221, 'EMP - 41057', 'Jane Oineza', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2222, 'EMP - 46773', 'David Licauco', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2223, 'EMP - 47526', 'Alexandra Botez', '2023-06-30', '08:00:00', '17:00:00', '09 h 00 m'),
+(2224, 'Seo1523', 'Yeji Seo', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2225, 'EMP - 15845', 'Franchesca Navarro', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2226, 'EMP - 93849', 'Namjoon Kim', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2227, 'EMP - 11270', 'Kendall Jenner', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2228, 'EMP - 14524', 'Rica Perez', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2229, 'EMP - 94451', 'Justin Timberlake', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2230, 'EMP - 57675', 'Jc Chasez', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2231, 'EMP - 71158', 'Ashley Tisdale', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2232, 'EMP - 62489', 'Jennie Kim', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2233, 'EMP - 98708', 'Roseanne Park', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2234, 'EMP - 67873', 'Lalisa Manobal', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2235, 'EMP - 56208', 'Gianne Juson', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2236, 'EMP - 31887', 'Julius Babao', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2237, 'EMP - 89156', 'Anthony Perez', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2238, 'EMP - 49688', 'Millie Brown', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2239, 'EMP - 44083', 'Paula Abdul', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2240, 'EMP - 27978', 'Hoseok Jung', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2241, 'EMP - 57732', 'Wena Relos', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2242, 'EMP - 41057', 'Jane Oineza', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2243, 'EMP - 46773', 'David Licauco', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m'),
+(2244, 'EMP - 47526', 'Alexandra Botez', '2023-05-03', '08:00:00', '17:00:00', '09 h 00 m');
 
 -- --------------------------------------------------------
 
@@ -203,7 +266,8 @@ INSERT INTO `deduction` (`de_id`, `salary_id`, `sss`, `sssprovident`, `philhealt
 (23, 53, '100', '100', '100', '100', '100', '100', '600', '19800'),
 (24, 54, '100', '100', '100', '100', '100', '100', '600', '9800'),
 (25, 55, '100', '100', '100', '100', '100', '100', '600', '9800'),
-(26, 56, '100', '100', '100', '100', '100', '100', '600', '19800');
+(26, 56, '100', '100', '100', '100', '100', '100', '600', '19800'),
+(27, 57, '100', '100', '100', '100', '100', '100', '600', '36400');
 
 -- --------------------------------------------------------
 
@@ -321,7 +385,6 @@ CREATE TABLE `employee` (
   `em_em_contact` varchar(12) DEFAULT NULL,
   `contactname` varchar(30) NOT NULL,
   `em_birthday` varchar(128) DEFAULT NULL,
-  `em_blood_group` enum('O+','O-','A+','A-','B+','B-','AB+','OB+') DEFAULT NULL,
   `em_joining_date` varchar(128) DEFAULT NULL,
   `em_contact_end` varchar(11) DEFAULT NULL,
   `em_image` varchar(128) DEFAULT NULL,
@@ -338,23 +401,28 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `contactname`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
-(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '12', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL),
-(97, 'EMP - 35627', 'EMP - 35627', 2, 3, 'Mark', 'Feehily', 'mark_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Married', '09-438921380', '09-321321321', 'Mr Feehily', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '21-348218394-1', '4812-4890-4809', '38-0938210-4', '498-489-489-31209', NULL, NULL, NULL),
-(98, 'EMP - 74560', 'EMP - 74560', 5, 3, 'Gwen', 'Mcstephen', 'gwen_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-392109390', '09-830218309', 'Mrs Mcstephen', '1992-01-01', 'O+', '2023-06-21', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(99, 'EMP - 60645', 'EMP - 60645', 10, 3, 'Jerrymei', 'Bautista', 'jerrymei_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-480932184', '09-480932184', 'Mrs Bautista', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '12-413481234-1', '4821-4809-4809', '38-4890318-1', '432-589-489-43109', NULL, NULL, NULL),
-(100, 'EMP - 19747', 'EMP - 19747', 5, 3, 'Jungkook', 'Jeon', 'jungkook_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Married', '09-140921898', '09-498310984', 'Mrs Jeon', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '12-123124124-2', '3124-4315-5436', '32-4321412-1', '431-542-542-65336', NULL, NULL, NULL),
-(101, 'EMP - 94000', 'EMP - 94000', 6, 3, 'Melissa', 'Hart', 'melissa_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-480919230', '48-409831209', 'Mrs Hart', '1991-01-01', 'O+', '2023-06-21', NULL, 'EMP_-_94000.jpg', '12-483218491-4', '5418-3409-4890', '48-8493021-4', '489-480-849-84109', NULL, NULL, NULL),
-(102, 'EMP - 61862', 'EMP - 61862', 6, 3, 'Franchesca', 'Navarro', 'cheska_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-432890482', '09-094382094', 'Mrs Navarro', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(103, 'EMP - 10963', 'EMP - 10963', 5, 3, 'George', 'Stub', 'george_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-382093092', '09-389218309', 'Mrs Stub', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(104, 'EMP - 93511', 'EMP - 93511', 4, 3, 'Troy', 'Bolton', 'troy_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Married', '09-842390804', '09-093482109', 'Mrs Bolton', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(105, 'EMP - 32582', 'EMP - 32582', 6, 3, 'Beverly', 'Hills', 'beverly_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-839218302', '09-309218034', 'Mrs Hills', '1991-01-01', 'O+', '2023-06-21', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(106, 'EMP - 90860', 'EMP - 90860', 7, 3, 'Ericka', 'Delacruz', 'ericka_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-382190830', '09-389021809', 'Mrs Delacruz', '1991-01-01', 'O+', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(107, 'EMP - 93763', 'EMP - 93763', 5, 3, 'Eric', 'Delacruz', 'eric_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-348921840', '09-498213948', 'Mrs Delacruz', '1991-01-01', 'O+', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(108, 'EMP - 62993', 'EMP - 62993', 2, 3, 'Namjoon', 'Kim', 'namjoon_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-839283021', '09-380219830', 'Mr Kim', '1991-01-01', 'O+', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(109, 'EMP - 21213', 'EMP - 21213', 4, 3, 'Michelle', 'Branch', 'michelle_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Married', '09-480932894', '09-940234230', 'Mr Branch', '1991-01-01', 'O+', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(110, 'EMP - 94329', 'EMP - 94329', 2, 3, 'Jin', 'Kim', 'jin_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-321893092', '09-382910803', 'Mrs Kim', '1991-01-01', 'O+', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
-(111, 'EMP - 76976', 'EMP - 76976', 2, 3, 'Michelle', 'Santos', 'michelle123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-392183098', '09-839201830', 'Mrs Santos', '1991-01-01', 'O+', '2023-05-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL);
+INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `contactname`, `em_birthday`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
+(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '', '2023-04-19', '2023-04-19', '', 'Seo15231.jpg', '12', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL),
+(115, 'EMP - 15845', 'EMP - 15845', 4, 3, 'Franchesca', 'Navarro', 'cheska_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-483280499', '09-493218490', 'Mrs Navarro', '1991-01-01', '2023-06-22', NULL, 'EMP_-_15845.jpg', '--', '4902-9431-4821', '43-4832098-1', '---', NULL, NULL, NULL),
+(116, 'EMP - 93849', 'EMP - 93849', 3, 3, 'Namjoon', 'Kim', 'namjoon_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-483928409', '09-489320840', 'Mrs Kim', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(117, 'EMP - 11270', 'EMP - 11270', 3, 3, 'Kendall', 'Jenner', 'kendall_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-483921849', '09-398543275', 'Mr jenner', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(118, 'EMP - 14524', 'EMP - 14524', 3, 3, 'Rica', 'Perez', 'rica_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-321423489', '09-849032840', 'Mrs Perez', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(119, 'EMP - 94451', 'EMP - 94451', 6, 3, 'Justin', 'Timberlake', 'justin_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-483928409', '09-453284238', 'Mrs Timberlake', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(120, 'EMP - 57675', 'EMP - 57675', 5, 3, 'Jc ', 'Chasez', 'jc_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-483921840', '09-578347568', 'Mrs Chasez', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(121, 'EMP - 71158', 'EMP - 71158', 3, 3, 'Ashley', 'Tisdale', 'ashley_123', 'e341d33863fcd656b1a546c8cdfda7b9b73e5c3b', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Married', '09-490324098', '09-852348509', 'Mr Tisdale', '1991-01-01', '2023-06-22', NULL, 'EMP_-_71158.jpg', '--', '--', '--', '---', NULL, NULL, NULL),
+(122, 'EMP - 62489', 'EMP - 62489', 9, 3, 'Jennie', 'Kim', 'jennie_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Married', '09-892384908', '09-740827528', 'Mrs Kim', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(123, 'EMP - 98708', 'EMP - 98708', 7, 3, 'Roseanne', 'Park', 'rose_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-824573486', '09-752570928', 'Mrs Park', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(124, 'EMP - 67873', 'EMP - 67873', 3, 3, 'Lalisa', 'Manobal', 'lisa_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-586903586', '75-572489570', 'Mrs Manobal', '1991-01-01', '2023-06-22', NULL, NULL, '37-548927589-4', '--', '74-8209385-1', '---', NULL, NULL, NULL),
+(125, 'EMP - 56208', 'EMP - 56208', 2, 2, 'Gianne', 'Juson', 'gianne_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-358028509', '09-867348963', 'Mrs Juson', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(126, 'EMP - 31887', 'EMP - 31887', 9, 3, 'Julius', 'Babao', 'julius_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-743824792', '09-436890538', 'Mr Babao', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(127, 'EMP - 89156', 'EMP - 89156', 6, 3, 'Anthony', 'Perez', 'anthony_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-832058490', '09-938904386', 'Mrs Perez', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(128, 'EMP - 49688', 'EMP - 49688', 2, 3, 'Millie', 'Brown', 'millie_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-473829758', '09-572496572', 'Mrs Brown', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(129, 'EMP - 44083', 'EMP - 44083', 4, 3, 'Paula', 'Abdul', 'paula_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-548275827', '09-572489529', 'Mrs Abdul', '1991-01-01', '2023-06-22', NULL, 'EMP_-_44083.jpg', '--', '--', '--', '---', NULL, NULL, NULL),
+(130, 'EMP - 27978', 'EMP - 27978', 8, 3, 'Hoseok', 'Jung', 'hoseok_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-859048502', '09-852485028', 'Mrs Hoseok', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(131, 'EMP - 57732', 'EMP - 57732', 9, 3, 'Wena', 'Relos', 'wena_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-485902485', '09-859208590', 'Mrs Relos', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL),
+(132, 'EMP - 41057', 'EMP - 41057', 10, 3, 'Jane', 'Oineza', 'jane_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-574386734', '09-650397609', 'Mr Oineza', '1999-01-01', '2023-06-22', NULL, 'EMP_-_41057.jpg', '--', '--', '--', '---', NULL, NULL, NULL),
+(133, 'EMP - 46773', 'EMP - 46773', 6, 3, 'David', 'Licauco', 'david_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Married', '09-849237598', '09-743874938', 'Mrs licauco', '1991-01-01', '2023-06-22', NULL, NULL, '34-473829479-3', '4783-8497-8947', '47-4987389-4', '438-478-847-47389', NULL, NULL, NULL),
+(134, 'EMP - 47526', 'EMP - 47526', 8, 3, 'Alexandra ', 'Botez', 'alex_123', '25c2c9afdd83b8d34234aa2881cc341c09689aaa', 'EMPLOYEE', NULL, 'ACTIVE', 'Female', 'Single', '09-232834908', '09-594902852', 'Mrs Botez', '1991-01-01', '2023-06-22', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -465,7 +533,8 @@ INSERT INTO `emp_salary` (`id`, `emp_id`, `type_id`, `total`, `totalnetpay`) VAL
 (53, 'EMP - 11905', 2, '20400.00', '19800'),
 (54, 'EMP - 87976', 4, '10400.00', '9800'),
 (55, 'EMP - 32964', 2, '10400.00', '9800'),
-(56, 'EMP - 68475', 1, '20400.00', '19800');
+(56, 'EMP - 68475', 1, '20400.00', '19800'),
+(57, 'EMP - 56208', 4, '37000.00', '36400');
 
 -- --------------------------------------------------------
 
@@ -617,13 +686,7 @@ CREATE TABLE `pay_salary` (
 --
 
 INSERT INTO `pay_salary` (`pay_id`, `emp_id`, `type_id`, `month`, `year`, `paid_date`, `total_days`, `basic`, `loan`, `total_pay`, `addition`, `diduction`, `status`, `paid_type`) VALUES
-(14, 'EMP - 11905', 0, 'February', '2023', '2023-02-28', '192', '59800', '0', '59800.32', 0, 0, 'Paid', 'Hand Cash'),
-(16, 'EMP - 87976', 0, 'May', '2023', '2023-05-31', '216', '9800', '0', '9799.92', 0, 0, 'Paid', 'Hand Cash'),
-(17, 'EMP - 32964', 0, 'May', '2023', '2023-07-31', '216', '9800', '0', '9799.92', 0, 0, 'Process', 'Bank'),
-(18, 'EMP - 11905', 0, 'May', '2023', '2023-05-31', '215', '19800', '0', '19709.05', 0, 92, 'Paid', 'Hand Cash'),
-(19, 'EMP - 68475', 0, 'May', '2023', '2023-06-30', '200', '19800', '0', '18334.00', 0, 1467, 'Paid', 'Bank'),
-(20, 'EMP - 11905', 0, 'July', '2023', '2023-07-31', '100', '19800', '0', '9167.00', 0, 10634, 'Process', 'Hand Cash'),
-(21, 'EMP - 68475', 0, 'June', '2023', '2023-06-30', '100', '19800', '0', '9900.00', 0, 9900, 'Paid', 'Hand Cash');
+(24, 'EMP - 56208', 0, 'May', '2023', '2023-05-31', '50', '36400', '60', '36280.00', 0, 60, 'Paid', 'Hand Cash');
 
 -- --------------------------------------------------------
 
@@ -891,7 +954,7 @@ ALTER TABLE `to-do_list`
 -- AUTO_INCREMENT for table `addition`
 --
 ALTER TABLE `addition`
-  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -909,7 +972,7 @@ ALTER TABLE `assign_leave`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `em_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2140;
+  MODIFY `em_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2245;
 
 --
 -- AUTO_INCREMENT for table `bank_info`
@@ -921,7 +984,7 @@ ALTER TABLE `bank_info`
 -- AUTO_INCREMENT for table `deduction`
 --
 ALTER TABLE `deduction`
-  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -951,7 +1014,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
@@ -981,7 +1044,7 @@ ALTER TABLE `emp_penalty`
 -- AUTO_INCREMENT for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `field_visit`
@@ -1017,7 +1080,7 @@ ALTER TABLE `notice`
 -- AUTO_INCREMENT for table `pay_salary`
 --
 ALTER TABLE `pay_salary`
-  MODIFY `pay_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `pay_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `salary_type`
