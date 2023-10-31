@@ -227,41 +227,39 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     }
 
     // Send the form data to the Add_Attendance controller
-    fetch('Add_Attendance', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        var message = "Successfully added!"; // Retrieve the value of the "message" object
-		console.log(message);
-        if (message === 'Successfully added!') {
-            // Display the success message in the .message element
-            var successMessage = document.createElement('div');
-            successMessage.textContent = message;
-            console.log(successMessage.textContent);
-            successMessage.classList.add('success-message');
-            document.querySelector('.message').textContent = message;
-            document.body.appendChild(successMessage);
-            setTimeout(function() {
-                successMessage.remove();
-            }, 3000);
+fetch('Add_Attendance', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    var message = data.message; // Retrieve the value of the "message" object from the response
+    console.log(message);
+    if (message === 'Successfully added!') {
+        // Display the success message in the .message element
+        var successMessage = document.querySelector('.message');
+        successMessage.textContent = message;
+        successMessage.classList.add('success-message');
+        setTimeout(function() {
+            successMessage.textContent = ''; // Clear the success message after a few seconds
+        }, 3000);
 
-            // Reset the form and reload the page after 3 seconds
-            setTimeout(function() {
-                document.getElementById('attendanceForm').reset();
-                location.reload();
-            }, 3000);
-        } else {
-            console.log('Error: ' + message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error.message);
-    });
+        // Reset the form and reload the page after 3 seconds
+        setTimeout(function() {
+            document.getElementById('attendanceForm').reset();
+            location.reload();
+        }, 3000);
+    } else {
+        console.log('Error: ' + message);
+    }
+})
+.catch(error => {
+    console.error('Error:', error.message);
 });
 
-    xhr.send(formData);
+});
+
+   
 
 
 </script>

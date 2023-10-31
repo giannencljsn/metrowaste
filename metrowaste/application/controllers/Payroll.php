@@ -1045,51 +1045,51 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
                     $success = $this->payroll_model->updatePaidSalaryData($payID, $data);
 
-                    // Do the loan update
-                    if($success && $status == "Paid") {
-                        $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
+                    // // Do the loan update
+                    // if($success && $status == "Paid") {
+                    //     $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
 
-                        // loan_id and loan fields already grabbed
-                        if (!empty($loan_info)) {
+                    //     // loan_id and loan fields already grabbed
+                    //     if (!empty($loan_info)) {
 
-                            $period = $loan_info->install_period - 1;
-                            $number = $loan_info->loan_number;
-                            $data = array();
-                            $data = array(
+                    //         $period = $loan_info->install_period - 1;
+                    //         $number = $loan_info->loan_number;
+                    //         $data = array();
+                    //         $data = array(
 
-                                'emp_id' => $eid,
-                                'loan_id' => $loan_id,
-                                'loan_number' => $number,
-                                'install_amount' => $loan,
-                                /*'pay_amount' => $payment,*/
-                                'app_date' => $paydate,
-                                /*'receiver' => $receiver,*/
-                                'install_no' => $period
-                                /*'notes' => $notes*/
-                            );
+                    //             'emp_id' => $eid,
+                    //             'loan_id' => $loan_id,
+                    //             'loan_number' => $number,
+                    //             'install_amount' => $loan,
+                    //             /*'pay_amount' => $payment,*/
+                    //             'app_date' => $paydate,
+                    //             /*'receiver' => $receiver,*/
+                    //             'install_no' => $period
+                    //             /*'notes' => $notes*/
+                    //         );
 
-                            $success_installment = $this->loan_model->Add_installData($data);
+                    //         $success_installment = $this->loan_model->Add_installData($data);
 
-                            $totalpay = $loan_info->total_pay + $loan;
-                            $totaldue = $loan_info->amount - $totalpay;
-                            $period = $loan_info->install_period - 1;
-                            $loan_status = $loan_info->status;
+                    //         $totalpay = $loan_info->total_pay + $loan;
+                    //         $totaldue = $loan_info->amount - $totalpay;
+                    //         $period = $loan_info->install_period - 1;
+                    //         $loan_status = $loan_info->status;
 
-                            if ($period == '1') {
-                                $loan_status = 'Done';
-                            }
+                    //         if ($period == '1') {
+                    //             $loan_status = 'Done';
+                    //         }
 
-                            $data = array();
-                            $data = array(
-                                'total_pay'         => $totalpay,
-                                'total_due'         => $totaldue,
-                                'install_period'    => $period,
-                                'status'            => $loan_status
-                            );
+                    //         $data = array();
+                    //         $data = array(
+                    //             'total_pay'         => $totalpay,
+                    //             'total_due'         => $totaldue,
+                    //             'install_period'    => $period,
+                    //             'status'            => $loan_status
+                    //         );
 
-                            $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
-                        }
-                    }
+                    //         $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
+                    //     }
+                    // }
 
                     echo "Successfully added";
 
@@ -1102,49 +1102,49 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                 if($success && $status == "Paid") {
 
                     // Input Status
-                        $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
+                        // $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
                         
                         // loan_id and loan fields already grabbed
-                        if (!empty($loan_info)) {
+                        // if (!empty($loan_info)) {
 
-                            $period = $loan_info->install_period - 1;
-                            $number = $loan_info->loan_number;
-                            $data = array();
-                            $data = array(
+                        //     $period = $loan_info->install_period - 1;
+                        //     $number = $loan_info->loan_number;
+                        //     $data = array();
+                        //     $data = array(
 
-                                'emp_id' => $eid,
+                        //         'emp_id' => $eid,
 
-                                'loan_id' => $loan_id,
-                                'loan_number' => $number,
-                                'install_amount' => $loan,
-                                /*'pay_amount' => $payment,*/
-                                'app_date' => $paydate,
-                                /*'receiver' => $receiver,*/
-                                'install_no' => $period
-                                /*'notes' => $notes*/
-                            );
+                        //         'loan_id' => $loan_id,
+                        //         'loan_number' => $number,
+                        //         'install_amount' => $loan,
+                        //         /*'pay_amount' => $payment,*/
+                        //         'app_date' => $paydate,
+                        //         /*'receiver' => $receiver,*/
+                        //         'install_no' => $period
+                        //         /*'notes' => $notes*/
+                        //     );
 
-                            $success_installment = $this->loan_model->Add_installData($data);
+                        //     $success_installment = $this->loan_model->Add_installData($data);
 
-                            $totalpay = $loan_info->total_pay + $loan;
-                            $totaldue = $loan_info->amount - $totalpay;
-                            $period = $loan_info->install_period - 1;
-                            $loan_status = $loan_info->status;
+                        //     $totalpay = $loan_info->total_pay + $loan;
+                        //     $totaldue = $loan_info->amount - $totalpay;
+                        //     $period = $loan_info->install_period - 1;
+                        //     $loan_status = $loan_info->status;
 
-                            if ($period == '0') {
-                                $loan_status = 'Done';
-                            }
+                        //     if ($period == '0') {
+                        //         $loan_status = 'Done';
+                        //     }
 
-                            $data = array();
-                            $data = array(
-                                'total_pay'         => $totalpay,
-                                'total_due'         => $totaldue,
-                                'install_period'    => $period,
-                                'status'            => $loan_status
-                            );
+                        //     $data = array();
+                        //     $data = array(
+                        //         'total_pay'         => $totalpay,
+                        //         'total_due'         => $totaldue,
+                        //         'install_period'    => $period,
+                        //         'status'            => $loan_status
+                        //     );
 
-                            $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
-                        }
+                        //     $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
+                        // }
 
                     echo "Successfully added";
                 }
@@ -1291,7 +1291,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['addition'] = round($addition, 2);
         $data['diduction'] = round($diduction, 2);
         $data['loan_amount'] = $loan_amount;
-        $data['loan_id'] = $loan_id;
+        // $data['loan_id'] = $loan_id;
         $data['final_salary'] = round($final_salary, 2);
         $data['rate'] = round($hourly_rate, 2);   
         echo json_encode($data);

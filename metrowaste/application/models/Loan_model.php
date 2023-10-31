@@ -61,10 +61,10 @@
   		$result = $query->row();
   		return $result;  
     }
-    public function update_LoanData($loan_id, $data){
-  		$this->db->where('id', $loan_id);
-  		$this->db->update('loan', $data);
-    }
+    // public function update_LoanData($loan_id, $data){
+  	// 	$this->db->where('id', $loan_id);
+  	// 	$this->db->update('loan', $data);
+    // }
     public function update_LoanDataVal($id,$data){
   		$this->db->where('id', $id);
   		$this->db->update('loan',$data);  
