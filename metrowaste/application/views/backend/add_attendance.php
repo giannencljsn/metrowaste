@@ -104,8 +104,17 @@
 								</div>
 								<div class="form-group">
 									<label>Attendance Date</label>
-									<input type="text" name="attdate" class="form-control datepicker" placeholder="Select Attendance Date">
+									<input type="text" name="attdate" class="form-control datepicker" placeholder="YYYY-MM-DD">
 								</div>
+												<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+													<script>
+														// Initialize Flatpickr
+														flatpickr(".datepicker", {
+															dateFormat: "Y-m-d",
+															altInput: true,
+															altFormat: "Y-m-d",
+														});
+													</script>
 								<div class="modal-footer">
 									<input type="hidden" name="id" value="<?php if (!empty($attval->id)) { echo $attval->id; } ?>" class="form-control" id="recipient-name1">
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

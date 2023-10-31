@@ -156,7 +156,7 @@ $this->load->view('backend/sidebar');
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
           <div class="modal-header">
-            <h4 class="modal-title" id="">Salary Arrangement
+            <h4 class="modal-title" id="" style="color:black;">Salary Arrangement
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;
@@ -222,10 +222,19 @@ $this->load->view('backend/sidebar');
                 <label class="control-label text-left col-md-5">Basic Salary
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="basic" class="form-control" id="" value="">
+                <input type="text" name="basic" class="form-control basic_salary" id="" value="">
 								
               </div> 
-              </div>                                     
+              </div> 
+							 
+									<div class="form-group row" id="deduction">
+										<label class="control-label text-left col-md-5">Deduction</label>
+										<div class="col-md-7">
+											<input type="text" name="deduction" class="form-control deduction" value="">
+										</div>
+									</div>
+								
+								                                 
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Working hours
                 </label>
@@ -263,19 +272,14 @@ $this->load->view('backend/sidebar');
                 </div>
               </div>              
               </div>
-              <div class="col-md-6">
-								<div class="form-group row" id="deduction">
-									<label class="control-label text-left col-md-5">Deduction</label>
-									<div class="col-md-7">
-										<input type="text" name="deduction" class="form-control deduction" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="">
-									</div>
-								</div>
-								<div class="form-group row" id="loan">
+             
+
+								<!-- <div class="form-group row" id="loan">
 									<label class="control-label text-left col-md-5">Loan</label>
 									<div class="col-md-7">
 										<input type="text" name="loan" class="form-control loan" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="">
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group row">
 									<label class="control-label text-left col-md-5">Final Salary</label>
 									<div class="col-md-7">
@@ -283,20 +287,7 @@ $this->load->view('backend/sidebar');
 									</div>
 								</div>
 							</div>
-              <!--<div class="form-group row">
-                <label class="control-label text-left col-md-5">Status
-                </label>
-                <div class="col-md-7">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="status" required>
-                  <option value="#">Select Here
-                  </option>
-                  <option value="Paid">Paid
-                  </option>
-                  <option value="Process">Process
-                  </option>
-                </select>    
-              </div>     
-              </div>-->
+              
                                 <div class="form-group row">
                                     <label class="control-label text-left col-md-5">Status</label><br>
                                     <div class="col-md-7">
@@ -306,22 +297,9 @@ $this->load->view('backend/sidebar');
                                     <label for="radio_2">Process</label>
                                     </div>
                                 </div>                            
-              </div>              
+                         
               </div>   
-              <!--<div class="form-group row" style="margin-top: 25px;">
-                <label class="control-label text-left col-md-3">Paid Type
-                </label>
-                <div class="col-md-9">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="paid_type" required>
-                  <option value="#">Select Here
-                  </option>
-                  <option value="Hand Cash">Hand Cash
-                  </option>
-                  <option value="Bank">Bank
-                  </option>
-                </select>
-                </div>                 
-              </div>-->
+           
                                 <div class="form-group row" style="margin-top: 25px;">
                                     <label class="control-label text-left col-md-3">Paid Type</label><br>
                                     <div class="col-md-9">
@@ -349,7 +327,7 @@ $this->load->view('backend/sidebar');
         </div>
       </div>
     </div>
-
+		</div>  
     <script>
 
 $(document).ready(function () {
@@ -391,15 +369,16 @@ $(document).ready(function () {
   $(document).ready(function() {
     $(document).on('keyup', '.hours_worked', function() {
       var hrate = parseFloat($('.hrate').val());
-      var loan = parseFloat($('.loan').val());
+      // var loan = parseFloat($('.loan').val());
       var hwork = parseFloat($('.hours_worked').val());
       var thour = parseFloat($('.thour').val());
       var deduction = parseFloat($('.deduction').val());
 
       var basicSalary = parseFloat($('[name="basic"]').val());
-      var totalPaid = basicSalary - (deduction + loan);
+      var totalPaid = basicSalary - deduction;
 
-      $('[name="total_paid"]').val(totalPaid.toFixed(2));
+      // $('[name="total_paid"]').val(basicSalary.toFixed(2));
+			$('[name="total_paid"]').val(basicSalary - deduction);
       $('.wpay').html((thour - hwork).toFixed(2));
     });
 
