@@ -124,6 +124,7 @@
 													<select name="role" class="form-control custom-select" >
 														<option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
 														<option value="ADMIN">Admin</option>
+														<option value="EMPLOYEE">Employee</option>
 													</select>
 												</div>
 											<?php else: ?>
