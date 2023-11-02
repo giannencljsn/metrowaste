@@ -83,8 +83,7 @@ class Attendance extends CI_Controller
     }
 }
 	
-    
-	public function Add_Attendance()
+public function Add_Attendance()
 {
     if ($this->session->userdata('user_login_access') != false) {
         $emp_ids = $this->input->post('emp_id');
@@ -102,39 +101,48 @@ class Attendance extends CI_Controller
                 $sign_out = $signouts[$key]; // Assign the value of 'signout[]'
                 $date = $attdates[$key]; // Assign the value of 'attdate[]'
 
-                // Calculate the time difference
-                $sign_in_time = strtotime($sign_in);
-                $sign_out_time = strtotime($sign_out);
-                $time_diff = $sign_out_time - $sign_in_time;
-                $hours = floor($time_diff / 3600);
-                $minutes = floor(($time_diff % 3600) / 60);
+                // Check if 'signin' is not empty
+                if (!empty($sign_in)) {
+                    $attendanceData[] = array(
+                        'em_code' => $em_codes[$key],
+                        'employee_name' => $employeeNames[$key],
+                        'sign_in' => $sign_in,
+                        'date' => $date
+                    );
+                }
 
-                // Format the working hour
-                $working_hour = sprintf("%02d h %02d m", $hours, $minutes);
+                // Check if 'signout' is not empty
+                if (!empty($sign_out)) {
+                    // Retrieve the existing 'sign_in' value from the 'attendance' table
+                    $existing_sign_in = $this->attendance_model->getSignIn($em_codes[$key], $date);
 
-                $attendanceData[] = array(
-                    'em_code' => $em_codes[$key],
-                    'employee_name' => $employeeNames[$key],
-                    'sign_in' => $sign_in,
-                    'sign_out' => $sign_out,
-                    'date' => $date,
-                    'working_hour' => $working_hour
-                );
+                    // Ensure 'existing_sign_in' and 'sign_out' are in the correct time format (HH:MM:SS)
+                    $existing_sign_in = date('H:i:s', strtotime($existing_sign_in));
+                    $sign_out = date('H:i:s', strtotime($sign_out));
+
+                    // Calculate the time difference and format the working hour
+                    $existing_sign_in_time = strtotime($existing_sign_in);
+                    $sign_out_time = strtotime($sign_out);
+                    $time_diff = $sign_out_time - $existing_sign_in_time;
+                    $hours = floor($time_diff / 3600);
+                    $minutes = floor(($time_diff % 3600) / 60);
+                    $working_hour = sprintf("%02d h %02d m", $hours, $minutes);
+
+                    // Update the 'sign_out' field and 'working_hour' in the 'attendance' table based on 'attdate' and 'em_code'
+                    $this->attendance_model->UpdateAttendance($em_codes[$key], $date, $sign_out, $working_hour);
+                }
             }
 
-            $success = $this->attendance_model->Add_AttendanceData($attendanceData);
-
-            if ($success) {
-                $message = "Successfully added!";
-            } else {
-                $message = "Failed to add attendance.";
+            if (!empty($attendanceData)) {
+                // Insert "signin" data
+                $this->attendance_model->Add_AttendanceData($attendanceData);
             }
 
+            $message = "Successfully added/updated!";
             $response = array('message' => $message);
             echo json_encode($response);
         } else {
             $message = "Successfully added!";
-            
             echo json_encode($message);
         }
     } else {
@@ -144,6 +152,14 @@ class Attendance extends CI_Controller
         echo json_encode($response);
     }
 }
+
+
+
+
+
+
+
+
 
 
 

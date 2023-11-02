@@ -15,7 +15,30 @@ class Attendance_model extends CI_Model
     $this->db->insert_batch('attendance', $data);
 }
 	 
+//Update attendance
 
+public function UpdateAttendance($em_code, $date, $sign_out, $working_hour) {
+	$this->db->where('em_code', $em_code);
+	$this->db->where('date', $date);
+	$this->db->update('attendance', array('sign_out' => $sign_out, 'working_hour' => $working_hour));
+}
+
+public function getSignIn($em_code, $date) {
+	$this->db->select('sign_in');
+	$this->db->from('attendance');
+	$this->db->where('em_code', $em_code);
+	$this->db->where('date', $date);
+	$query = $this->db->get();
+
+	if ($query->num_rows() > 0) {
+			$row = $query->row();
+			return $row->sign_in;
+	} else {
+			return null; // Return null or any appropriate value if the record is not found
+	}
+}
+
+//Update attendance
 
     public function bulk_insert($data)
     {
