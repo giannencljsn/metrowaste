@@ -25,7 +25,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li> <a class="dashboard-link" href="<?php echo base_url();?>" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+                        <li> <a class="dashboard-link" href="<?php echo base_url();?>" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard</span></a></li>
 						<!-- IF USER IS EMPLOYEE -->
 						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
@@ -37,12 +37,12 @@
 							</ul>
 						</li>	
 						
-						<li>
-    <a href="<?php echo base_url(); ?>formcontroller">
-        <i class="mdi mdi-clipboard"></i>
-        <span class="hide-menu">Attendance</span>
-    </a>
-</li>
+						<!-- <li id="attendance-menu" style="display: none;">
+        <a href="<?php echo base_url(); ?>formcontroller">
+            <i class="mdi mdi-clipboard"></i>
+            <span class="hide-menu">Attendance</span>
+        </a>
+    </li> -->
 
 						<?php } else { ?>
 
@@ -95,6 +95,8 @@
                         </li>
 				<!-- Notice -->
 						<li> <a href="<?php echo base_url()?>notice/All_notice" ><i class="mdi mdi-clipboard"></i><span class="hide-menu">Notice <span class="hide-menu"></a></li>
+						<!-- Button Employee attendance backup -->
+						<button type="button" class="btn-attendance"><a href="#" class="text-white"><i class="" aria-hidden="true"></i>Turn On Employee Attendance</a></button>
 						<?php } ?>
 					</ul>
                 </nav>
@@ -102,3 +104,61 @@
             </div>
             <!-- End Sidebar scroll-->
         </aside>
+
+		<!-- Bootstrap Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="confirmationModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This will turn on employee attendance button for the employee users! Click OK to confirm.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="modalOkBtn">OK</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalCancelBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+		<script>
+$(document).ready(function() {
+    // Variable to track the visibility state
+    var isAttendanceMenuVisible = false;
+
+    // Function to toggle visibility
+    function toggleAttendanceMenu() {
+        if (isAttendanceMenuVisible) {
+            $("#attendance-menu").hide();
+        } else {
+            // Show confirmation modal
+            $('#confirmationModal').modal('show');
+        }
+    }
+
+    // Attach click event to the button
+    $(".btn-attendance").on("click", function() {
+        toggleAttendanceMenu();
+    });
+
+    // Attach click event to the modal OK button
+    $("#modalOkBtn").on("click", function() {
+        // Toggle visibility when OK is clicked
+        $("#attendance-menu").show();
+        // Update the visibility state
+        isAttendanceMenuVisible = true;
+        // Hide the modal
+        $('#confirmationModal').modal('hide');
+    });
+
+    // Attach click event to the modal Cancel button
+    $("#modalCancelBtn").on("click", function() {
+        // Hide the modal
+        $('#confirmationModal').modal('hide');
+    });
+});
+</script>
