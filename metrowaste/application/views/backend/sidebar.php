@@ -45,7 +45,7 @@
                 <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?>
                     <li>
                         <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id); ?>" aria-expanded="false">
-                            <i class="mdi mdi-account-multiple"></i><span class="hide-menu">22Employees</span>
+                            <i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span>
                         </a>
                     </li>
 
@@ -93,7 +93,7 @@
 
                         <!-- Payroll -->
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">22Payroll</span></a>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Payroll</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url(); ?>Payroll/Salary_List">Payroll List</a></li>
                                 <li><a href="<?php echo base_url(); ?>Payroll/Generate_salary">Generate Payslip</a></li>
