@@ -92,14 +92,16 @@ public function submit()
     $working_hours = floor($working_seconds / 3600);
     $working_minutes = floor(($working_seconds % 3600) / 60);
     $working_hour = $working_hours;
+
     if ($working_minutes > 0) {
         $working_hour .= 'hr ' . $working_minutes . 'min';
-    } else {
+    } elseif ($working_minutes == 0) {
         $working_hour .= 'hr';
     }
 
     return $working_hour;
 }
+
 
 
     
