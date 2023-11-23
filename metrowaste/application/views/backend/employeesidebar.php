@@ -24,26 +24,32 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li> <a class="dashboard-link" href="<?php echo base_url();?>" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+                        
 						<!-- IF USER IS EMPLOYEE -->
+						<li class="nav-devider"></li>
+                        <li> <a class="dashboard-link" href="<?php echo base_url();?>employee_dashboard/Dashboard" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
 						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
 						</li>
 				
-						<li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">Leave </span></a>
+						<li>
+							<a href="" class="has-arrow waves-effect waves-dark">
+								<i class="mdi mdi-rocket"></i> <span class="hide-menu">Leave</span>
+							</a>
+						
 							<ul aria-expanded="false "class="collapse">
+								
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
 							</ul>
-						</li>	
-						
+							
+						</li>
 						<li>
-    <a href="<?php echo base_url(); ?>formcontroller">
-        <i class="mdi mdi-clipboard"></i>
-        <span class="hide-menu">Attendance</span>
-    </a>
-</li>
-
+                        <a href="<?php echo base_url(); ?>formcontroller">
+                        <i class="mdi mdi-clipboard"></i>
+                        <span class="hide-menu">Attendance</span>
+                        </a>
+                        </li>
+						
 						<?php } else { ?>
 
 				<!-- Employees -->
@@ -63,7 +69,7 @@
 				<!-- Attendance -->
 						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Attendance</span></a>
 							<ul aria-expanded="false" class="collapse"> 
-                            <li><a href="<?php echo base_url(); ?>attendance/getAttendanceList">Attendance List</a></li>
+								<li><a href="<?php echo base_url(); ?>attendance/Attendance">Attendance List</a></li>
 								<li><a href="<?php echo base_url(); ?>attendance/Save_Attendance">Add Attendance</a></li>
 								<li><a href="<?php echo base_url(); ?>attendance/Attendance_Report">Attendance Report</a></li>
 							</ul>	
@@ -83,14 +89,6 @@
                                 <li><a href="<?php echo base_url(); ?>leave/leavetypes"> Leave Type</a></li>
                                 <li><a href="<?php echo base_url(); ?>leave/Application"> Leave Application </a></li>
                                 <li><a href="<?php echo base_url(); ?>leave/Leave_report"> Report </a></li>
-                            </ul>
-                        </li>
-						 <!---Organization--->
-						 <!---update 11/05/23--->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fa fa-building-o"></i><span class="hide-menu">Organization </span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="<?php echo base_url();?>organization/Department">Department </a></li>
-                                <li><a href="<?php echo base_url();?>organization/Designation">Designation</a></li>
                             </ul>
                         </li>
 				<!-- Notice -->

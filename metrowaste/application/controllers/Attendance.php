@@ -154,15 +154,6 @@ public function Add_Attendance()
 }
 
 
-
-
-
-
-
-
-
-
-
         //THIS IS FOR ATTENDANCE LIST
 
         public function getAttendanceList()

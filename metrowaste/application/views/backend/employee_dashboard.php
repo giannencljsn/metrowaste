@@ -1,5 +1,5 @@
 <?php $this->load->view('backend/header'); ?>
-<?php $this->load->view('backend/sidebar'); ?>
+<?php $this->load->view('backend/employeesidebar'); ?>
       <div class="page-wrapper">
             <div class="message"></div>
             <div class="row page-titles">
