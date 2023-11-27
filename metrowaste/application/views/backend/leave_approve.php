@@ -154,9 +154,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span style="color:red" id="total"></span>
-                                    <div class="span pull-right">
-                                        <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
-                                    </div>
+                                    
                                     <br>
                                 </div>
                                 <div class="form-group">
@@ -243,25 +241,7 @@
 
 
 
-<script>
-    $(document).ready(function () {
 
-        $('.fetchLeaveTotal').on('click', function (e) {
-            e.preventDefault();
-            var selectedEmployeeID = $('.selectedEmployeeID').val();
-            var leaveTypeID = $('.assignleave').val();
-            //console.log(selectedEmployeeID, leaveTypeID);
-            $.ajax({
-                url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
-                method: 'GET',
-                data: '',
-            }).done(function (response) {
-                //console.log(response);
-                $("#total").html(response);
-            });
-        });
-    });
-</script>
         <script>
         /*DATETIME PICKER*/
           $("#bbbSubmit").on("click", function(event){
