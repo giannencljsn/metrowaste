@@ -373,6 +373,7 @@ class Employee extends CI_Controller {
                 if($id){
             $success = $this->employee_model->Update($data,$id); 
             $this->session->set_flashdata('feedback','Successfully Updated');
+            $this->employee_model->checkAndDeleteInactiveEmployees();
             echo "Successfully Updated";
                 }
             }
