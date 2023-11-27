@@ -17,11 +17,13 @@ class Attendance_model extends CI_Model
 	 
 //Update attendance
 
-public function UpdateAttendance($em_code, $date, $sign_out, $working_hour) {
-	$this->db->where('em_code', $em_code);
-	$this->db->where('date', $date);
-	$this->db->update('attendance', array('sign_out' => $sign_out, 'working_hour' => $working_hour));
+public function UpdateAttendance($em_code, $date, $sign_out, $working_hour)
+{
+    $this->db->where('em_code', $em_code);
+    $this->db->where('date', $date);
+    $this->db->update('attendance', array('sign_out' => $sign_out, 'working_hour' => $working_hour));
 }
+
 
 public function getSignIn($em_code, $date) {
 	$this->db->select('sign_in');
