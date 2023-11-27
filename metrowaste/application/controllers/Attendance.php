@@ -118,6 +118,10 @@ public function Add_Attendance()
                     $existing_sign_in_time = new DateTime($existing_sign_in);
                     $sign_out_time = new DateTime($sign_out);
                     $time_diff = $existing_sign_in_time->diff($sign_out_time);
+
+                    // Subtract 1 hour directly from the hours property
+                    $time_diff->h -= 1;
+
                     $working_hour = $time_diff->format('%h h %i m');
 
                     $this->attendance_model->UpdateAttendance($em_codes[$key], $date, $sign_out, $working_hour);
@@ -141,9 +145,6 @@ public function Add_Attendance()
         echo json_encode($response);
     }
 }
-
-
-
 
 
 
