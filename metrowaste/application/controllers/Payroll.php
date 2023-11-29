@@ -1311,4 +1311,19 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     }        
     }
 
+
+
+			/**Manage Salary per Hour function dummy muna*/
+		public function Manage_Salaries_Per_Hour(){
+
+			if($this->session->userdata('user_login_access') != False) {
+				$data['designation'] = $this->employee_model->desselect();
+				$this->load->view('backend/salary_manage',$data);
+				}
+			else{
+				redirect(base_url() , 'refresh');
+			}          
+		}
+
 }
+
