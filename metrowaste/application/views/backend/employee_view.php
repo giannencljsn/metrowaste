@@ -621,13 +621,13 @@
                                             <div class="form-group col-md-6 m-t-5">
                                                 <label class="control-label">Salary Type</label>
                                                 <select class="form-control <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> custom-select" data-placeholder="Choose a Category" tabindex="1" name="typeid" required>
-                                                <!-- <option selected>Choose Type...</option> -->
+                                                <option selected>Choose Type...</option>
                                                    <?php if(empty($salaryvalue->salary_type)){ ?>
                                                     <?php } else { ?>
-                                                    <option value="<?php echo $salaryvalue->id; ?>"><?php echo $salaryvalue->salary_type; ?></option>                         <?php } ?>                                      
-                                                   <?php foreach($typevalue as $value): ?>
+                                                    <option value="<?php echo $salaryvalue->id; ?>"><?php echo $salaryvalue->salary_type; ?></option> <?php } ?>                                      
+                                                   <!-- <?php foreach($typevalue as $value): ?>
                                                     <option value="<?php echo $value->id; ?>"><?php echo $value->salary_type; ?></option>
-                                                    <?php endforeach; ?>
+                                                    <?php endforeach; ?> -->
                                                 </select>
                                             </div> 
 											<!-- Basic Salary -->
@@ -677,7 +677,7 @@
 												   </div>
 													<!-- Total Salary -->
 												<div class="form-group col-md-6 m-t-5">
-			                                        <label><b>Total Salary</b></label>
+			                                        <label><b>Total Addition</b></label>
 			                                        <input type="text" name="total" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line total" placeholder="Total Salary" value="<?php if(!empty($salaryvalue->total)) echo $salaryvalue->total ?>" minlength="3" onkeypress="return /[0-9]/i.test(event.key)"  required> 
 			                                    </div>
 												<!-- Total Salary -->
@@ -721,7 +721,7 @@
 			                                       
 			                                    </div>
 												<div class="form-group col-md-6 m-t-5">
-			                                        <label><b>Total Net Pay<b></label>
+			                                        <label><b>Total Salary Per Hour<b></label>
 			                                        <input type="text" name="totalnetpay" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line totalnetpay" placeholder="Total Net Pay" value="<?php if(!empty($salaryvalue->totalnetpay)) echo $salaryvalue->totalnetpay?>">
 			                                    </div>
 												
@@ -759,10 +759,11 @@
                 </div>
 		
 				<script type="text/javascript">
+					//Total Addition
 					$(document).ready(function() {
-						$('.basic, .restduty, .straightduty, .specialholiday, .legalholiday, .absences').on('input', function() {
+						$('.restduty, .straightduty, .specialholiday, .legalholiday, .absences').on('input', function() {
 							var sum = 0;
-							$('.basic, .restduty, .straightduty, .specialholiday, .legalholiday').each(function() {
+							$('.restduty, .straightduty, .specialholiday, .legalholiday').each(function() {
 							var val = parseFloat($(this).val());
 							sum += isNaN(val) ? 0 : val;
 							});
@@ -788,10 +789,9 @@
 
 					//Total Net Pay
 						$(document).ready(function(){
-						$('.total, .sss, .sssprovident, .philhealth, .hdmf, .whtax, .cashadvances').on('change', function() {
-							var total = parseInt($('.total').val()) || 0;
-							var totalDeduction = parseInt($('.totaldeduction').val()) || 0;
-							var totalNetPay = total - totalDeduction;
+						$('.basic').on('change', function() {
+							var totalBasic = parseInt($('.basic').val()) || 0;
+							var totalNetPay = totalBasic;
 							$('.totalnetpay').val(totalNetPay);
 						});
 						});
@@ -799,15 +799,7 @@
 					</script>
 
 
-          <!-- <script type="text/javascript">
-        //   $('.total').on('input',function() {
-        //     var amount = parseInt($('.total').val());
-        //     $('.basic').val((amount * .50 ? amount * .50 : 0).toFixed(2));
-        //     $('.houserent').val((amount * .40 ? amount * .40 : 0).toFixed(2));
-        //     $('.medical').val((amount * .05 ? amount * .05 : 0).toFixed(2));
-        //     $('.conveyance').val((amount * .05 ? amount * .05 : 0).toFixed(2));
-        //   });
-          </script> -->
+        
 
 
 <?php $this->load->view('backend/em_modal'); ?>                

@@ -101,7 +101,7 @@ $this->load->view('backend/sidebar');
                     <th>Full Name
 
                     </th>
-										<th>Total Net Pay
+										<th>Salary Per Hour
                     </th>
                     <th>Action
                     </th>
