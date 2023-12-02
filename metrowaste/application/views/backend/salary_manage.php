@@ -12,78 +12,14 @@
                     </ol>
                 </div>
             </div>
-            <div class="message"></div>
+            <div class="message" style="display: none;"></div>
+				<?php
+				if ($this->session->flashdata('success_message')) {
+					echo '<div class="alert alert-success">' . $this->session->flashdata('success_message') . '</div>';
+				}
+				?>
             <div class="container-fluid">         
     <div class="row">
-        <div class="col-lg-5">
-            <?php if (isset($editdesignation)) { ?>
-                <div class="card card-outline-info">
-                    <div class="card-header">
-                        <h4 class="m-b-0 text-white">Edit Designation</h4>
-                    </div>
-                    
-                    <?php echo validation_errors(); ?>
-                    <?php echo $this->upload->display_errors(); ?>
-                    <?php echo $this->session->flashdata('feedback'); ?>
-                    
-
-                    <div class="card-body">
-                            <form method="post" action="<?php echo base_url();?>organization/Update_des" enctype="multipart/form-data">
-                                <div class="form-body">
-                                    <div class="row ">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Designation Name</label>
-                                                <input type="text" name="designation" id="firstName" value="<?php  echo $editdesignation->des_name;?>" class="form-control" placeholder="">
-                                                <input type="hidden" name="id" value="<?php  echo $editdesignation->id;?>">
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                    <button type="button" class="btn btn-danger" name="cancel" onclick="refreshPage()">Cancel</button>
-                                </div>
-                            </form>
-                    </div>
-                </div>
-                <?php } else { ?>                        
-
-                <div class="card card-outline-info">
-                    <div class="card-header">
-                        <h4 class="m-b-0 text-white">Add Designation</h4>
-                    </div>
-                    
-                    <?php echo validation_errors(); ?>
-                    <?php echo $this->upload->display_errors(); ?>
-                    <?php echo $this->session->flashdata('feedback'); ?>
-                    
-
-                    <div class="card-body">
-                            <form method="post" action="Save_des" enctype="multipart/form-data">
-                                <div class="form-body">
-                                    <div class="row ">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Designation Name</label>
-                                                <input type="text" name="designation" id="firstName" value="" class="form-control" placeholder="" minlength="3" required>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                </div>
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                    <button type="button" class="btn btn-danger" name="cancel" onclick="refreshPage()">Cancel</button>
-                                </div>
-                            </form>
-                    </div>
-                </div>
-            <?php }?>
-        </div>
 
         <div class="col-7">
             <div class="card card-outline-info">
@@ -92,40 +28,49 @@
                 </div>
                 <div><?php echo $this->session->flashdata('delsuccess');?></div>
                 <div class="card-body">
-                    <div class="table-responsive ">
-                        <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>Designation </th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>Designation </th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
-                            <tbody>
-                                <?php foreach ($designation as $value) {?>
-                                <tr>
-                                    <td><?php echo $value->des_name;?></td>
-                                    <td class="jsgrid-align-center ">
-                                        <a href="<?php echo base_url();?>organization/Edit_des/<?php echo $value->id?>" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a onclick="return confirm('Are you sure to delete this data?')"  href="<?php echo base_url();?>organization/des_delete/<?php echo $value->id;?>" title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
-                                    </td>
-                                </tr>
-                                <?php }?>
-                            </tbody>
-                        </table>
-                    </div>
+					<form method="post" action="<?php echo base_url('SalaryController/updateSalary'); ?>">
+					<div class="table-responsive">
+						<table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th>Designation </th>
+									<th>Add Salary Per Hour</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($designation as $value) { ?>
+									<tr>
+										<td><?php echo $value->des_name; ?></td>
+										<td>
+											<input type="number" name="salary_per_hr[]" value="<?php echo $value->salary_per_hr; ?>" pattern="[0-9]+(\.[0-9]+)?">
+											<input type="hidden" name="designation[]" value="<?php echo $value->id; ?>" >
+										</td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+						<div class="form-actions col-md-12">
+							<button type="submit" id="submitBtn" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+							<button type="button" class="btn btn-danger">
+								<a href="#" class="text-white">Cancel</a>
+							</button>
+						</div>
+					</div>
+				</form>	
+				<script>
+// Add a script to show the message div after form submission
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if the message div contains any text, then display it
+    var messageDiv = document.querySelector('.message');
+    if (messageDiv.innerText.trim() !== '') {
+        messageDiv.style.display = 'block';
+    }
+});
+</script>
+
                 </div>
             </div>
         </div>
     </div>
-    <script>
-function refreshPage() {
-    window.location.href = "<?php echo site_url('Organization/designation'); ?>";
-}
-</script>
+    
     <?php $this->load->view('backend/footer'); ?>
