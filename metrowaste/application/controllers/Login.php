@@ -56,30 +56,30 @@ class Login extends CI_Controller {
 	else{
         //Validating login
         $login_status = $this->validate_login($email, $password);
-        $response['login_status'] = $login_status;
-        if ($login_status == 'success') {
-        	if($remember){
-        		setcookie('email',$email,time() + (86400 * 30));
-        		setcookie('password',$this->input->post('password'),time() + (86400 * 30));
-        		redirect(base_url() . 'login', 'refresh');
+        // $response['login_status'] = $login_status;
+        // if ($login_status == 'success') {
+        // 	if($remember){
+        // 		setcookie('email',$email,time() + (86400 * 30));
+        // 		setcookie('password',$this->input->post('password'),time() + (86400 * 30));
+        // 		redirect(base_url() . 'login', 'refresh');
         		
-        	} else {
-        		if(isset($_COOKIE['email']))
-        		{
-        			setcookie('email',' ');
-        		}
-        		if(isset($_COOKIE['password']))
-        		{
-        			setcookie('password',' ');
-        		}        		
-        		redirect(base_url() . 'login', 'refresh');
-        	}
+        // 	} else {
+        // 		if(isset($_COOKIE['email']))
+        // 		{
+        // 			setcookie('email',' ');
+        // 		}
+        // 		if(isset($_COOKIE['password']))
+        // 		{
+        // 			setcookie('password',' ');
+        // 		}        		
+        // 		redirect(base_url() . 'login', 'refresh');
+        // 	}
         
-        }
-		else{
-			$this->session->set_flashdata('feedback','UserEmail or Password is Invalid');
-			redirect(base_url() . 'login', 'refresh');
-		}
+        // }
+		// else{
+		// 	$this->session->set_flashdata('feedback','UserEmail or Password is Invalid');
+		// 	redirect(base_url() . 'login', 'refresh');
+		// }
 	}
 	}
     //Validating login from request

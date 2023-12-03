@@ -536,7 +536,7 @@
                                     <div class="card-body">
 				                                <form class="row" action="Reset_Password_Hr" method="post" enctype="multipart/form-data">
 				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
+				                                        <label>New Password</label>
 				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
 				                                    </div>
 				                                    <div class="form-group col-md-6 m-t-20">

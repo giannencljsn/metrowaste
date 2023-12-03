@@ -658,7 +658,8 @@ class Employee extends CI_Controller {
         $em_id = $this->input->post('emid');
         $certificate = $this->input->post('name');
         $institute = $this->input->post('institute');
-        $eduresult = $this->input->post('result');
+
+		$eduresult = $this->input->post('result');
         $eduyear = $this->input->post('year');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
@@ -1075,7 +1076,7 @@ else{
     $filetitle = $this->input->post('title');    		
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('title', 'title', 'trim|required|min_length[10]|max_length[120]|xss_clean');
+        $this->form_validation->set_rules('title', 'title', 'trim|required|min_length[3]|max_length[120]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();

@@ -49,7 +49,7 @@
                             </div>
                             <div>
                                 <hr> </div>
-                            <div class="card-body"> <small class="text-muted">Email address </small>
+                            <!-- <div class="card-body"> <small class="text-muted">Email address </small>
                                 <h6><?php echo $basic->em_email; ?></h6> <small class="text-muted p-t-30 db">Phone</small>
                                 <h6><?php echo $basic->em_phone; ?></h6> 
                                 <small class="text-muted p-t-30 db">Social Profile</small>
@@ -58,7 +58,7 @@
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->twitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>" target="_blank"><i class="fa fa-skype"></i></a>
                                 <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->google_Plus)) echo $socialmedia->google_Plus ?>" target="_blank"><i class="fa fa-google"></i></a>
-                            </div>
+                            </div> -->
                         </div>                                                    
                                                 </div>
 											
@@ -82,11 +82,11 @@
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>First Name</label>
-				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" readonly> 
+				                                        <input type="text" class="form-control form-control-line" placeholder="Employee's FirstName" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="1" readonly> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Last Name </label>
-				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Employee's LastName" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" readonly> 
+				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Employee's LastName" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="1" readonly> 
 				                                    </div>
                                                     
 				                                    <div class="form-group col-md-4 m-t-10">
@@ -148,15 +148,15 @@
 				                                        <label>Date Hired </label>
 				                                        <input type="date" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> id="example-email2" name="joindate" class="form-control" value="<?php echo $basic->em_joining_date; ?>" placeholder="" readonly> 
 				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
+				                                    <!-- <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contract End Date</label>
 				                                        <input type="date" id="example-email2" name="leavedate" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_contact_end; ?>" placeholder="" readonly> 
-				                                    </div>
+				                                    </div> -->
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Username</label>
 				                                        <input type="text" id="example-email2" name="email" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_email; ?>" placeholder="email@mail.com" minlength="7" readonly> 
 				                                    </div>
-				                                    <div class="form-group col-md-12 m-t-10">
+				                                    <!-- <div class="form-group col-md-12 m-t-10">
 													<?php if(!empty($basic->em_image)){ ?>
 														<img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basic->em_image; ?>" class="img-circle" width="150" />
 														<?php } else { ?>
@@ -164,7 +164,7 @@
 														<?php } ?>
                                                         <label>Image </label>
                                                         <input type="file" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="image_url" class="form-control" value=""> 
-                                                    </div>
+                                                    </div> -->
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
 				                                    <div class="form-actions col-md-12">
