@@ -310,5 +310,13 @@ public function getPinFromID($employeeID){
       return $result;
     }   
 
+		//Get salary by designation
+		public function GetSalaryByDesignationId($designationId) {
+			$query = $this->db->select('salary_per_hr')
+					->get_where('designation', array('id' => $designationId));
+			return $query->row();
+	}
+	
+
 }
 

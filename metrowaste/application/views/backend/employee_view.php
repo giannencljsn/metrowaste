@@ -621,21 +621,40 @@
                                             <div class="form-group col-md-6 m-t-5">
                                                 <label class="control-label">Salary Type</label>
                                                 <select class="form-control <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> custom-select" data-placeholder="Choose a Category" tabindex="1" name="typeid" required>
-                                                <option selected>Choose Type...</option>
+                                                <!-- <option selected>Choose Type...</option> -->
                                                    <?php if(empty($salaryvalue->salary_type)){ ?>
                                                     <?php } else { ?>
                                                     <option value="<?php echo $salaryvalue->id; ?>"><?php echo $salaryvalue->salary_type; ?></option> <?php } ?>                                      
-                                                   <!-- <?php foreach($typevalue as $value): ?>
+                                                   <?php foreach($typevalue as $value): ?>
                                                     <option value="<?php echo $value->id; ?>"><?php echo $value->salary_type; ?></option>
-                                                    <?php endforeach; ?> -->
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div> 
 											<!-- Basic Salary -->
-											<div class="form-group col-md-6 m-t-5">
-			                                        <label>Basic</label>
-			                                        <input type="text" name="basic" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="<?php if(!empty($salaryvalue->basic)) echo $salaryvalue->basic ?>" onkeypress="return /[0-9]/i.test(event.key)"> 
-			                                    </div> 
-			                                   
+											
+											<div class="form-group col-md-4 m-t-10">
+    <label>Designation</label>
+    <select name="deg" class="form-control custom-select">
+        <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_id; ?></option>
+        <!-- Add other options as needed -->
+    </select>
+</div>
+
+<!-- Display corresponding salary_per_hr -->
+<div>
+    <?php if (isset($designation_salary)): ?>
+        <p>Salary Per Hour: <?php echo $designation_salary->salary_per_hr; ?></p>
+    <?php endif; ?>
+</div>
+            
+<div class="form-group col-md-6 m-t-5">
+    <label>Basic</label>
+    <input type="text" name="basic" <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="" onkeypress="return /[0-9]/i.test(event.key)">
+</div>
+
+<!-- TRIAL AND ERROR -->
+
+
 												<!-- Basic Salary End-->
 
                                                 </div>
@@ -757,7 +776,7 @@
                     </div>
                     <!-- Column -->
                 </div>
-		
+				
 				<script type="text/javascript">
 					//Total Addition
 					$(document).ready(function() {

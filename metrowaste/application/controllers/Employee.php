@@ -537,6 +537,11 @@ class Employee extends CI_Controller {
         $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
             $year = date('Y');
         $data['Leaveinfo'] = $this->employee_model->GetLeaveiNfo($id,$year);
+
+		
+		// Fetch salary_per_hr based on des_id
+        $des_id = $data['basic']->des_id;
+        $data['designation_salary'] = $this->payroll_model->GetSalaryByDesignationId($des_id);
         $this->load->view('backend/employee_view',$data);
         }
     else{
