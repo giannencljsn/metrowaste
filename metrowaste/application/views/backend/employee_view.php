@@ -640,10 +640,11 @@
     </select>
 </div>
 
-<!-- Display corresponding salary_per_hr -->
+<!-- Display corresponding salary_per_hr in an input field -->
 <div>
     <?php if (isset($designation_salary)): ?>
-        <p>Salary Per Hour: <?php echo $designation_salary->salary_per_hr; ?></p>
+        <label for="salaryPerHour">Salary Per Hour</label>
+        <input type="text" id="salaryPerHour" name="salaryPerHour" class="form-control" value="<?php echo $designation_salary->salary_per_hr; ?>" readonly>
     <?php endif; ?>
 </div>
             
