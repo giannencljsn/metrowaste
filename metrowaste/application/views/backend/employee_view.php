@@ -21,13 +21,13 @@
                         <div class="card">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs profile-tab" role="tablist">
-                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab" style="font-size: 14px;">  Personal Info </a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab" style="font-size: 14px;"> Address </a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#education" role="tab" style="font-size: 14px;"> Education</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#experience" role="tab" style="font-size: 14px;"> Experience</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#bank" role="tab" style="font-size: 14px;"> Bank Account</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#document" role="tab" style="font-size: 14px;"> Document</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#salary" role="tab" style="font-size: 14px;"> Salary</a> </li>
+                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab" >  Personal Info </a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab" > Address </a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#education" role="tab" > Education</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#experience" role="tab" > Experience</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#bank" role="tab" > Bank Account</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#document" role="tab" > Document</a> </li>
+                                <li class="nav-item"> <Salary class="nav-link" data-toggle="tab" href="#salary" role="tab" >Salary</a> </li>
                                
                                 
                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>

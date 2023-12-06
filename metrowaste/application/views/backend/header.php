@@ -65,6 +65,9 @@
 			#exampleModalLabel1{
 				color: black !important;
 			}
+			.nav-link active, .nav-link{
+						font-size: 14px; 
+			}
 	</style>
 
 </head>
