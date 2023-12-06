@@ -61,6 +61,10 @@
 			content: "✖";
 			}
 			
+
+			#exampleModalLabel1{
+				color: black !important;
+			}
 	</style>
 
 </head>
