@@ -65,7 +65,7 @@
                                						
                             				
                                                 <div class="col-md-8">
-				                                <form class="row" action="Update" method="post" enctype="multipart/form-data">
+				                                <form class="row" action="Update_Status" method="post" enctype="multipart/form-data">
 												
 												<?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
                                                     <div class="form-group col-md-4 m-t-10">
@@ -138,7 +138,7 @@
 				                                        <label>Designation </label>
 				                                        <select name="deg" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" readonly>
 				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
-                                            <?Php foreach($degvalue as $value): ?>
+                                            <?php foreach($degvalue as $value): ?>
                                             <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
                                             <?php endforeach; ?>
 				                                        </select>

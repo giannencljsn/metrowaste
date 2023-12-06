@@ -161,6 +161,11 @@
 		$this->db->where('em_id', $id);
 		$this->db->update('employee',$data);        
     }
+
+		public function Update_Status($data, $id){
+			$this->db->where('em_id', $id);
+			return $this->db->update('employee', $data);
+	}
     public function Update_Education($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('education',$data);        
