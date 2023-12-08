@@ -562,6 +562,8 @@ class Leave extends CI_Controller
 						);
 	
 						$this->leave_model->UpdteEarnValue($employeeId, $data);
+						 // Set success message for approval
+						 $this->session->set_flashdata('success_message', 'Successfully Approved');
 					} else {
 						// If not taken yet
 						$data = array(
@@ -576,10 +578,11 @@ class Leave extends CI_Controller
 				}
 	
 				// Set success message in session and redirect
-				echo "Leave status updated successfully!";
+			
 				redirect(base_url("empLeave/leaveApplicationList"));
 			} else {
-				echo "Oops, something went wrong. Please try again later.";
+				// Set error message in session
+				$this->session->set_flashdata('error_message', 'Oops, something went wrong. Please try again later.');
 			}
 		}
 	}

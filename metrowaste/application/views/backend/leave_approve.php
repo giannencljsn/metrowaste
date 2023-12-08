@@ -278,28 +278,46 @@
 <script>
 $(".Status").on("click", function (event) {
     event.preventDefault();
-    console.log($(this).attr('data-value'));
+
+    // Store the reference to $(this) in a variable
+    var $this = $(this);
+
     $.ajax({
         url: "approveLeaveStatus",
         type: "POST",
         data: {
-            'employeeId': $(this).attr('data-employeeId'),
-            'lid': $(this).attr('data-id'),
-            'lvalue': $(this).attr('data-value'),
-            'duration': $(this).attr('data-duration'),
-            'type': $(this).attr('data-type')
+            'employeeId': $this.attr('data-employeeId'),
+            'lid': $this.attr('data-id'),
+            'lvalue': $this.attr('data-value'),
+            'duration': $this.attr('data-duration'),
+            'type': $this.attr('data-type')
         },
         success: function (response) {
-            // No need to show any message as success message is set in flashdata
-            window.location.reload();
+            var message = "";
+            if ($this.attr('data-value') === 'Approve') {
+                message = 'Successfully Approved';
+            } else if ($this.attr('data-value') === 'Rejected') {
+                message = 'Successfully Rejected';
+            }
+
+            // Log the message to the console
+            console.log(message);
+
+            // Display the success message in div.message
+          $(".message").html(message).show();
+
+            // Reload the page after a delay (if needed)
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000); // Reload after 2 seconds (adjust as needed)
         },
         error: function (response) {
             console.error(response);
         }
     });
 });
-
 </script>
+
 
 
 <script type="text/javascript">
