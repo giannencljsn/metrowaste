@@ -209,10 +209,10 @@
 		}
 
 
-    public function Update_Media($id,$data){
-		$this->db->where('id', $id);
-		$this->db->update('social_media',$data);        
-    }
+    // public function Update_Media($id,$data){
+		// $this->db->where('id', $id);
+		// $this->db->update('social_media',$data);        
+    // }
     public function AddParmanent_Address($data){
         $this->db->insert('address',$data);
     } 
@@ -244,12 +244,12 @@
         $result = $query->result();
         return $result; 
     }
-    public function GetSocialValue($id){
-        $sql = "SELECT * FROM `social_media` WHERE `emp_id`='$id'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result; 
-    }
+    // public function GetSocialValue($id){
+    //     $sql = "SELECT * FROM `social_media` WHERE `emp_id`='$id'";
+    //     $query = $this->db->query($sql);
+    //     $result = $query->row();
+    //     return $result; 
+    // }
     public function GetEduValue($id){
         $sql = "SELECT * FROM `education` WHERE `id`='$id'";
         $query = $this->db->query($sql);
@@ -306,9 +306,9 @@
     public function Add_Assign_Leave($data){
     $this->db->insert('assign_leave',$data);
   }
-    public function Insert_Media($data){
-    $this->db->insert('social_media',$data);
-  }
+  //   public function Insert_Media($data){
+  //   $this->db->insert('social_media',$data);
+  // }
     public function desselect(){
   	$query = $this->db->get('designation');
   	$result = $query->result();

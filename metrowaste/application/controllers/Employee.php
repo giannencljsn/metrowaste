@@ -422,7 +422,7 @@ class Employee extends CI_Controller {
         $data['typevalue'] = $this->payroll_model->GetsalaryType();
         $data['leavetypes'] = $this->leave_model->GetleavetypeInfo();    
         $data['salaryvalue'] = $this->employee_model->GetsalaryValue($id);
-        $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
+        // $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
             $year = date('Y');
         $data['Leaveinfo'] = $this->employee_model->GetLeaveiNfo($id,$year);
 
@@ -452,7 +452,7 @@ class Employee extends CI_Controller {
         $data['typevalue'] = $this->payroll_model->GetsalaryType();
         $data['leavetypes'] = $this->leave_model->GetleavetypeInfo();    
         $data['salaryvalue'] = $this->employee_model->GetsalaryValue($id);
-        $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
+        // $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
             $year = date('Y');
         $data['Leaveinfo'] = $this->employee_model->GetLeaveiNfo($id,$year);
         $this->load->view('backend/inactive_edit',$data);
