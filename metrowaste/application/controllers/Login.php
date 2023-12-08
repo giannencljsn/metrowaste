@@ -99,9 +99,9 @@ class Login extends CI_Controller {
 
 			//Redirect based on user type
 			if($row->em_role == 'ADMIN'){
-				redirect(base_url() . 'admin_dashboard/dashboard');
+				redirect(base_url() . 'dashboard/dashboard');
 			} elseif($row->em_role == 'EMPLOYEE'){
-				redirect(base_url() . 'employee_dashboard/dashboard');
+				redirect(base_url() . 'dashboard/dashboard');
 			}
 			
 
