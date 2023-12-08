@@ -523,59 +523,68 @@ class Leave extends CI_Controller
 
 
     /*Approve and update leave status*/
-    public function approveLeaveStatus() {
-        if ($this->session->userdata('user_login_access') != False) {
-            $employeeId = $this->input->post('employeeId');
-            $id       = $this->input->post('lid');
-            $value    = $this->input->post('lvalue');
-            $duration = $this->input->post('duration');
-            $type     = $this->input->post('type');
-            $this->load->library('form_validation');
-            $this->form_validation->set_error_delimiters();
-            
-            $data    = array();
-            $data    = array(
-                'leave_status' => $value
-            );
-            $success = $this->leave_model->updateAplicationAsResolved($id, $data);
-            if ($value == 'Approve') {
-                $determineIfNew = $this->leave_model->determineIfNewLeaveAssign($employeeId, $type);
-                //How much taken
-                $totalHour = $this->leave_model->getLeaveTypeTotal($employeeId, $type);
-                //If already taken some
-                if($determineIfNew  > 0) {
-                    $total    = $totalHour[0]->totalTaken + $duration;
-                    $data     = array();
-                    $data     = array(
-                        'hour' => $total
-                    );
-            $success  = $this->leave_model->updateLeaveAssignedInfo($employeeId, $type, $data);
-            $earnval = $this->leave_model->emEarnselectByLeave($employeeId); 
-              $data = array();
-              $data = array(
-                        'present_date' => $earnval->present_date - ($duration/8),
-                        'hour' => $earnval->hour - $duration
-                    );
-            $success = $this->leave_model->UpdteEarnValue($employeeId,$data);                     
-            echo "Updated successfully";
-                } else {
-                //If not taken yet
-                    $data     = array();
-                    $data = array(
-                        'emp_id' => $employeeId,
-                        'type_id' => $type,
-                        'hour' => $duration,
-                        'dateyear' => date('Y')
-                    );
-                    $success  = $this->leave_model->insertLeaveAssignedInfo($data);
-                    echo "Updated successfully";
-                }
-            } else {
-                echo "Updated successfully";
-            }
-        }
-    }
-
+	public function approveLeaveStatus() {
+		if ($this->session->userdata('user_login_access') != False) {
+			$employeeId = $this->input->post('employeeId');
+			$id         = $this->input->post('lid');
+			$value      = $this->input->post('lvalue');
+			$duration   = $this->input->post('duration');
+			$type        = $this->input->post('type');
+	
+			$data = array(
+				'leave_status' => $value
+			);
+	
+			$success = $this->leave_model->updateAplicationAsResolved($id, $data);
+	
+			if ($success) {
+				if ($value == 'Approve') {
+					$determineIfNew = $this->leave_model->determineIfNewLeaveAssign($employeeId, $type);
+	
+					// How much taken
+					$totalHour = $this->leave_model->getLeaveTypeTotal($employeeId, $type);
+	
+					// If already taken some
+					if ($determineIfNew > 0) {
+						$total = $totalHour[0]->totalTaken + $duration;
+	
+						$data = array(
+							'hour' => $total
+						);
+	
+						$this->leave_model->updateLeaveAssignedInfo($employeeId, $type, $data);
+	
+						$earnval = $this->leave_model->emEarnselectByLeave($employeeId);
+	
+						$data = array(
+							'present_date' => $earnval->present_date - ($duration / 8),
+							'hour' => $earnval->hour - $duration
+						);
+	
+						$this->leave_model->UpdteEarnValue($employeeId, $data);
+					} else {
+						// If not taken yet
+						$data = array(
+							'emp_id' => $employeeId,
+							'type_id' => $type,
+							'hour' => $duration,
+							'dateyear' => date('Y')
+						);
+	
+						$this->leave_model->insertLeaveAssignedInfo($data);
+					}
+				}
+	
+				// Set success message in session and redirect
+				echo "Leave status updated successfully!";
+				redirect(base_url("empLeave/leaveApplicationList"));
+			} else {
+				echo "Oops, something went wrong. Please try again later.";
+			}
+		}
+	}
+	
+	
     public function LeaveAssign()
     {
         if ($this->session->userdata('user_login_access') != False) {
