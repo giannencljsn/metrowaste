@@ -36,7 +36,7 @@
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
+                                    <!-- <th>ID</th> -->
                                         <th>Name</th>
                                         <th>PIN</th>
                                         <th>Leave Type</th>
@@ -45,7 +45,7 @@
                                         <th>End Date</th>
                                         <th>Duration</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 <!-- <tfoot>
@@ -64,7 +64,7 @@
                                 <tbody>
                                     <?php foreach($application as $value): ?>
                                     <tr style="vertical-align:top">
-                                        <td><?php echo $value->id; ?></td>
+                                        <!-- <td><?php echo $value->id; ?></td> -->
                                         <td><mark><?php echo $value->first_name.' '.$value->last_name ?></mark></td>
                                         <td><?php echo $value->em_code; ?></td>
                                         <td><?php echo $value->name; ?></td>
