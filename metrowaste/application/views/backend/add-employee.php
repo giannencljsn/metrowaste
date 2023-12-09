@@ -41,11 +41,11 @@
 							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
 
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>First Name</label>
+                                        <label><span id="required-fields-red">*</span>First Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Last Name </label>
+                                        <label><span id="required-fields-red">*</span>Last Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <!----- RANDOM PIN NO. ----->
@@ -88,8 +88,8 @@
 
 
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Department</label>
-                                        <select name="dept" value="" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Department(<span id="required-fields-red">required</span>)</label>
+                                        <select name="dept" value="" class="form-control custom-select" required>
                                             <option>Select Department</option>
                                             <?Php foreach($depvalue as $value): ?>
                                              <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
@@ -97,8 +97,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Designation </label>
-                                        <select name="deg" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Designation (<span id="required-fields-red">required</span>)</label>
+                                        <select name="deg" class="form-control custom-select" required>
                                             <option>Select Designation</option>
                                             <?Php foreach($degvalue as $value): ?>
                                             <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
@@ -106,8 +106,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Role </label>
-                                        <select name="role" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Role (<span id="required-fields-red">required</span>)</label>
+                                        <select name="role" class="form-control custom-select" required>
                                             <option>Select Role</option>
                                             <option value="ADMIN">Admin</option>
                                             <option value="EMPLOYEE">Employee</option>
@@ -115,16 +115,16 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Gender </label>
-                                        <select name="gender" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Gender (<span id="required-fields-red">required</span>)</label>
+                                        <select name="gender" class="form-control custom-select" required>
                                             <option>Select Gender</option>
                                             <option value="MALE">Male</option>
                                             <option value="FEMALE">Female</option>
                                         </select>
                                     </div>
 									<div class="form-group col-md-3 m-t-20">
-                                        <label>Marital Status</label>
-                                        <select name="maritalstat" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Marital Status(<span id="required-fields-red">required</span>)</label>
+                                        <select name="maritalstat" class="form-control custom-select" required>
                                             <option>Select Status</option>
 											<option value="Single">Single</option>
 											<option value="Married">Married</option>
@@ -209,19 +209,19 @@
 											<input type="hidden" name="tin" id="tin">
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Contact Number</label>
+                                        <label><span id="required-fields-red">*</span>Contact Number (<span id="required-fields-red">required</span>)</label>
 										<div class="input-group">
-                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
+                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)" required>
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
+                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)" required>
 										</div>
 											<input type="hidden" name="contact" id="contact">	
 									</div>
                                 
 									<div class="form-group col-md-3 m-t-20">
-                                        <label>Emergency Contact Number </label>
+                                        <label><span id="required-fields-red">*</span>Emergency Contact Number (<span id="required-fields-red">required</span>)</label>
                                         <div class="input-group">
                                         	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)" required>
                                             <div class="input-group-prepend">
@@ -232,25 +232,25 @@
 											<input type="hidden" name="emcontact" id="emcontact" required> 
 									</div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Emergency Contact Name</label>
+                                        <label><span id="required-fields-red">*</span>Emergency Contact Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="30" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Of Birth </label>
-                                        <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder=""> 
+                                        <label><span id="required-fields-red">*</span>Date Of Birth (<span id="required-fields-red">required</span>)</label>
+                                        <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder="" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Hired </label>
-                                        <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
+                                        <label><span id="required-fields-red">*</span>Date Hired (<span id="required-fields-red">required</span>)</label>
+                                        <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder="" required> 
                                     </div>
                                
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Username </label>
+                                        <label><span id="required-fields-red">*</span>Username (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" id="example-email2" name="email" class="form-control" pattern="^[a-zA-Z0-9_]*$"placeholder="username" minlength="3"
-										title="Must contain at least 3 characters" > 
+										title="Must contain at least 3 characters" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Password </label>
+                                        <label><span id="required-fields-red">*</span>Password (<span id="required-fields-red">required</span>)</label>
                                         <input type="password" name="password" id="password" class="form-control" value="" placeholder="**********" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 										title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" minlength="8"required>
 										<input type="checkbox" onclick="showPassword()" style="position: initial; opacity: 100;">Show Password
@@ -260,7 +260,7 @@
 
 									
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Confirm Password </label>
+                                        <label><span id="required-fields-red">*</span>Confirm Password (<span id="required-fields-red">required</span>)</label>
                                         <input type="password" name="confirm" id="cpassword" class="form-control" value="" placeholder="**********" minlength="8"required> 
                                         <p id="error-message"></p>
                                     </div>

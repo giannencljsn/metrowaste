@@ -68,6 +68,11 @@
 			.nav-link active, .nav-link{
 						font-size: 14px; 
 			}
+
+			#required-fields-red{
+				color:red;
+				font-style:italic;
+			}
 	</style>
 
 </head>
