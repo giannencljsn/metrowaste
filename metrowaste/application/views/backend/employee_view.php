@@ -641,17 +641,17 @@
 </div>
 
 <!-- Display corresponding salary_per_hr in an input field -->
-<div>
-    <?php if (isset($designation_salary)): ?>
-        <label for="salaryPerHour">Salary Per Hour</label>
-        <input type="text" id="salaryPerHour" name="salaryPerHour" class="form-control" value="<?php echo $designation_salary->salary_per_hr; ?>" readonly>
-    <?php endif; ?>
-</div>
-            
 <div class="form-group col-md-6 m-t-5">
+			<label><b>Total Salary Per Hour<b></label>
+			    <input type="text" name="totalnetpay" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line totalnetpay" placeholder="Total Net Pay"  value="<?php echo $designation_salary->salary_per_hr; ?>" readonly>
+</div>
+												
+
+            
+<!-- <div class="form-group col-md-6 m-t-5">
     <label>Basic</label>
     <input type="text" name="basic" <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> class="form-control form-control-line basic" placeholder="Basic..." value="" onkeypress="return /[0-9]/i.test(event.key)">
-</div>
+</div> -->
 
 <!-- TRIAL AND ERROR -->
 
@@ -740,10 +740,6 @@
 												<div class="form-group col-md-6 m-t-5">
 			                                       
 			                                    </div>
-												<div class="form-group col-md-6 m-t-5">
-			                                        <label><b>Total Salary Per Hour<b></label>
-			                                        <input type="text" name="totalnetpay" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line totalnetpay" placeholder="Total Net Pay" value="<?php if(!empty($salaryvalue->totalnetpay)) echo $salaryvalue->totalnetpay?>">
-			                                    </div>
 												
 
 
@@ -807,14 +803,7 @@
 							});
 							});
 
-					//Total Net Pay
-						$(document).ready(function(){
-						$('.basic').on('change', function() {
-							var totalBasic = parseInt($('.basic').val()) || 0;
-							var totalNetPay = totalBasic;
-							$('.totalnetpay').val(totalNetPay);
-						});
-						});
+		
 
 					</script>
 
