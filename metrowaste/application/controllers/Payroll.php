@@ -1174,8 +1174,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         foreach($employees as $employee){
 
             $full_name = $this->get_full_name($employee->first_name, $employee->last_name);
-            // Loan
-            $has_loan = $this->payroll_model->hasLoanOrNot($employee->em_id);
+
 
             echo "<tr>
                     <td>$employee->em_code</td>
@@ -1187,7 +1186,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                 data-id='$employee->em_id' 
                                 data-month='$month' 
                                 data-year='$year' 
-                                data-has_loan='$has_loan' 
+                               
                                 class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' 
                                 data-toggle='modal'
                                 data-target='#salaryGenerateModal'>
@@ -1202,7 +1201,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
         $data['addition'] = $addition;
         $data['diduction'] = $diduction;
-        $data['loan'] = $loan_amount;
+        // $data['loan'] = $loan_amount;
         echo json_encode($data);
         }
         else{
