@@ -67,34 +67,27 @@
                                         <td>
                                             
                                             <!-- Duration filtering -->
+                                            <!-- Duration filtering -->
                                             <?php
-                                                if($value->leave_duration > 8) {
-                                                    $originalDays = $value->leave_duration;
-                                                    $days = $originalDays / 8;
-                                                    $hour = 0;
-                                                    // 120 / 8 = 15 // 15 day
-                                                    // 13 - (1*8) = 5 hour
-
-                                                    if(is_float($days)) {
-                                                        
-                                                        $days = floor($days); // 1
-                                                        $hour = $value->leave_duration - ($days * 8); // 5
-                                                    }
-                                                } else {
-                                                    $days = 0;
-                                                    $hour = $value->leave_duration;
-                                                }
-                                                
+                                            if ($value->leave_duration >= 24) {
+                                                $originalHours = $value->leave_duration;
+                                                $days = floor($originalHours / 24); // Calculate full days
+                                                $remainingHours = $originalHours % 24; // Calculate remaining hours
 
                                                 $daysDenom = ($days == 1) ? " day " : " days ";
-                                                $hourDenom = ($hour == 1) ? " hour " : " hours ";
-
-                                                if($days > 0) {
+                                                $hourDenom = ($remainingHours == 1) ? " hour " : " hours ";
+ 
+                                                if ($days > 0) {
                                                     echo $days . $daysDenom;
-                                                } else {
-                                                    echo $hour . $hourDenom;
                                                 }
-                                            ?>
+
+                                                if ($remainingHours > 0) {
+                                                    echo $remainingHours . $hourDenom;
+                                                }
+                                            } else {
+                                                echo $value->leave_duration . " hours";
+                                            }
+                                        ?>
 
                                         </td>
                                         <td><?php echo $value->leave_status; ?></td>

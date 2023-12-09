@@ -317,13 +317,13 @@ namespace BiometricApp
 
                                         string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-                                        // Check if an entry with the employee ID exists for today
-                                        MySqlCommand checkCmd = new MySqlCommand("SELECT * FROM attendance WHERE date = @currentDate AND em_code = @employeeId", conn);
-                                        checkCmd.Parameters.AddWithValue("@currentDate", currentDate);
-                                        checkCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
+                                    // Check if an entry with the employee ID exists for today
+                                    MySqlCommand checkCmd = new MySqlCommand("SELECT * FROM attendance WHERE date = @currentDate AND em_code = @employeeId", conn);
+                                    checkCmd.Parameters.AddWithValue("@currentDate", currentDate);
+                                    checkCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
 
-                                        using (MySqlDataReader reader = checkCmd.ExecuteReader())
-                                        {
+                                    using (MySqlDataReader reader = checkCmd.ExecuteReader())
+                                    {
                                         if (reader.HasRows)
                                         {
                                             reader.Read();
@@ -331,21 +331,27 @@ namespace BiometricApp
                                             DateTime signInDateTime = DateTime.Parse(signInTimeStr);
                                             DateTime currentTime = DateTime.Now;
                                             TimeSpan timeDifference = currentTime - signInDateTime;
+
+                                            // Subtract 1 hour from the total working hours
                                             int totalMinutes = (int)timeDifference.TotalMinutes;
+                                            totalMinutes -= 60;
+
                                             int hours = totalMinutes / 60;
                                             int minutes = totalMinutes % 60;
 
                                             reader.Close();
 
+                                            // Update the sign-out time and working hours in the database
                                             MySqlCommand updateCmd = new MySqlCommand("UPDATE attendance SET sign_out = @currentTime, working_hour = @workingHours WHERE date = @currentDate AND em_code = @employeeId", conn);
-                                            updateCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("hh:mm tt"));
+                                            updateCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("HH:mm"));
                                             updateCmd.Parameters.AddWithValue("@workingHours", $"{hours} {(hours == 1 ? "hour" : "hours")} {minutes} {(minutes == 1 ? "minute" : "minutes")}");
                                             updateCmd.Parameters.AddWithValue("@currentDate", currentDate);
                                             updateCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
                                             updateCmd.ExecuteNonQuery();
 
-                                            MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-out Time: " + DateTime.Now.ToString("hh:mm tt"));
+                                            MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-out Time: " + DateTime.Now.ToString("HH:mm"));
                                             count++;
+
                                         }
 
                                         else
@@ -356,11 +362,11 @@ namespace BiometricApp
                                                 insertCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
                                                 insertCmd.Parameters.AddWithValue("@employeeName", lstFullNames[i].ToString());
                                                 insertCmd.Parameters.AddWithValue("@currentDate", currentDate);
-                                                insertCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("hh:mm tt"));
+                                                insertCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("HH:mm"));
                                                 insertCmd.ExecuteNonQuery();
 
 
-                                            MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-in Time: " + DateTime.Now.ToString("hh:mm tt"));
+                                            MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-in Time: " + DateTime.Now.ToString("HH:mm"));
                                             count++;
 
                                         }
