@@ -204,30 +204,22 @@
 								
                                                 
                                             </tr>
-                                            <tr>
-                                                <td>Loan</td>
-                                                <td class="text-right"> </td>
-                                                <td class="text-right"> <?php
-                                                       
-                                                        echo $salary_info->loan .'PHP';
-                                                    ?> </td>
-                                                
-                                            </tr>
+                                           
                                            
                                         </tbody>
                                         <tfoot class="tfoot-light">
-                                            <tr>
+                                            <!-- <tr>
                                                 <th>Total</th>
                                                 <th class="text-right"><?php $total_add = $addition[0]->basic + $addition[0]->restduty + $addition[0]->straightduty 
 																						+ $addition[0]->specialholiday + $addition[0]-> legalholiday; echo round($total_add,2); ?>PHP</th>
                                                 <th class="text-right"><?php $total_did = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth 
-																						+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances + $salary_info->diduction + $salary_info->loan; echo round($total_did,2); ?>PHP</th>
-                                            </tr>
-                                            <tr>
+																						+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances + $salary_info->diduction; echo round($total_did,2); ?>PHP</th>
+                                            </tr> -->
+                                            <!-- <tr>
                                                 <th></th>
                                                 <th class="text-right">Net Pay</th>
                                                 <th class="text-right"><?php echo $salary_info->total_pay/*round($total_add - $total_did,2)*/; ?>PHP</th>
-                                            </tr>
+                                            </tr> -->
                                         </tfoot>
                                     </table>
                                 </div>

@@ -56,18 +56,8 @@
         $result = $query->row();
         return $result;         
     } 
-    public function GetLoanValueByID($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result;         
-    } 
-    public function hasLoanOrNot($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result ? 1 : 0;    
-    } 
+    
+    
     public function GetHolidayByYear($dateval){
         $sql = "SELECT * FROM `holiday` WHERE `holiday`.`year`= '$dateval'";
         $query = $this->db->query($sql);
