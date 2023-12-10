@@ -802,6 +802,26 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         return $fridays;
     }
 
+	private function count_weekends($month, $year) {
+		// Calculate the total number of days in the month
+		$total_days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+	
+		// Initialize a counter for weekends
+		$weekend_count = 0;
+	
+		// Loop through each day in the month
+		for ($day = 1; $day <= $total_days_in_month; $day++) {
+			// Get the day of the week for the current day
+			$day_of_week = date('N', strtotime("$year-$month-$day"));
+	
+			// Check if the day is a Saturday (6) or Sunday (7)
+			if ($day_of_week == 6 || $day_of_week == 7) {
+				$weekend_count++;
+			}
+		}
+	
+		return $weekend_count;
+	}
     private function total_days_in_a_month($month, $year) {
         return cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
@@ -1060,12 +1080,14 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $employeePIN = $this->getPinFromID($employeeID);
 
         // Count Friday
-        $fridays = $this->count_friday($month, $year);
+        // $fridays = $this->count_friday($month, $year);
+		 // Count weekends
+		 $weekend_count = $this->count_weekends($month, $year);
 
         $month_holiday_count = $this->payroll_model->getNumberOfHolidays($month, $year);
 
-        // Total holidays and friday count
-        $total_days_off = $fridays + $month_holiday_count->total_days;
+        // Total holidays and weekends count
+        $total_days_off =  $weekend_count + $month_holiday_count->total_days;
 
         // Total days in the month
         $total_days_in_the_month = $this->total_days_in_a_month($month, $year);
@@ -1112,7 +1134,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
        
 
         // Final Salary
-        $final_salary = $employee_salary + $addition - $diduction;
+        $final_salary = $employee_salary * $employee_actually_worked;
 
         // Sending 
         $data = array();
