@@ -1121,7 +1121,8 @@ else{
                     'emp_id' => $em_id,
                     'type_id' => $type,
                     'total' => $total,
-                    'totalnetpay' => $totalnetpay
+                    'totalnetpay' => $totalnetpay,
+					'totaldeduction' => $totaldeduction
 
 
                 );
@@ -1151,7 +1152,7 @@ else{
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
                     'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
+                    // 'totalnetpay' => $totalnetpay
 
 
                 );

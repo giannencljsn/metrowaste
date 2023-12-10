@@ -223,7 +223,8 @@ class Payroll extends CI_Controller {
                     /*'type_id' => $type,*/
                     'basic' => $basic,
                     'total' => $total,
-                    'totalnetpay' => $totalnetpay
+                    'totalnetpay' => $totalnetpay,
+					'totaldeduction' => $totaldeduction
 
                 );
             if(!empty($sid)){
@@ -248,7 +249,7 @@ class Payroll extends CI_Controller {
                     'whtax' => $whtax,
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
+                    // 'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 					
 
@@ -264,7 +265,7 @@ class Payroll extends CI_Controller {
                     'whtax' => $whtax,
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
+                    // 'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 
                 );
@@ -1089,6 +1090,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         if($employee_salary) {
 
             $employee_salary = $employee_salary->totalnetpay;
+			
 
         }
 
@@ -1097,8 +1099,15 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         
         // $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
 
-        $addition = 100;
-        $diduction = 69;
+        $addition = $this->payroll_model->GetsalaryValueByID($employeeID);
+		if($addition){
+			$addition = $addition->total;
+		}
+
+        $diduction = $this->payroll_model->GetsalaryValueByID($employeeID);
+		if($diduction){
+			$diduction = $diduction->totaldeduction;
+		}
         
        
 
@@ -1111,7 +1120,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['total_work_hours'] = $total_work_hours;
         $data['employee_actually_worked'] = $employee_actually_worked;
         $data['wpay'] =$total_work_hours - $employee_actually_worked;
-        $data['addition'] = round($addition, 2);
+        $data['addition'] = $addition;
         $data['deduction'] = $diduction ;
       
        
