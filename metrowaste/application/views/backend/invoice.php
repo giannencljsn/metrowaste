@@ -120,11 +120,7 @@
                                             </tr>
                                         </thead>
                                         <tbody style="border: 1px solid #ececec;">
-                                            <tr>
-                                                <td>Basic Salary</td>
-                                                <td class="text-right"><?php echo $addition[0]->basic; ?>PHP</td>
-                                                <td class="text-right">  </td>
-                                            </tr>
+                                            
                                             <tr>
                                                 <td>Rest duty</td>
                                                 <td class="text-right"> <?php echo $addition[0]->restduty; ?> PHP</td>
