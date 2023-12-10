@@ -307,5 +307,17 @@ public function getPinFromID($employeeID){
 	}
 	
 
+	public function getTotalEmployeeWorkHours($employeeID) {
+    $this->db->select_sum('working_hour', 'total_employee_work_hours');
+    $this->db->where('em_code', $employeeID);
+    $query = $this->db->get('attendance');
+
+    if ($query->num_rows() > 0) {
+        return $query->row()->total_employee_work_hours;
+    }
+
+    return 0;
+}
+
 }
 

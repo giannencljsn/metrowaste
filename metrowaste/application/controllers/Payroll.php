@@ -1086,6 +1086,8 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
         $month_holiday_count = $this->payroll_model->getNumberOfHolidays($month, $year);
 
+
+
         // Total holidays and weekends count
         $total_days_off =  $weekend_count + $month_holiday_count->total_days;
 
@@ -1102,7 +1104,13 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $start_date = date('Y-m-d', $result);
         $end_date = $year . '-' . $month . '-' . $total_days_in_the_month;
 
+
+
         // Employee actually worked
+
+		 // Get the total working hours
+		 $total_employee_work_hours = $this->payroll_model->getTotalEmployeeWorkHours($employeeID);
+
         $employee_actually_worked =  120;
             //echo json_encode($start_date);
         //Get his monthly salary
@@ -1134,14 +1142,14 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
        
 
         // Final Salary
-        $final_salary = $employee_salary * $employee_actually_worked;
+        $final_salary = $employee_salary * $total_employee_work_hours;
 
         // Sending 
         $data = array();
         $data['basic_salary'] = $employee_salary;
         $data['total_work_hours'] = $total_work_hours;
-        $data['employee_actually_worked'] = $employee_actually_worked;
-        $data['wpay'] =$total_work_hours - $employee_actually_worked;
+        $data['employee_actually_worked'] =  $total_employee_work_hours;
+        $data['wpay'] = $total_work_hours -  $total_employee_work_hours;
         $data['addition'] = $addition;
         $data['deduction'] = $diduction ;
       
