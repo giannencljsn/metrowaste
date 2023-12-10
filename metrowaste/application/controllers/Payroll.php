@@ -42,15 +42,7 @@ class Payroll extends CI_Controller {
             #$data['settingsvalue'] = $this->dashboard_model->GetSettingsValue();
             $this->load->view('login');
     }
-    public function Salary_Type(){
-        if($this->session->userdata('user_login_access') != False) { 
-        $data['typevalue'] = $this->payroll_model->GetsalaryType();
-        $this->load->view('backend/salary_type',$data);
-        }
-        else{
-            redirect(base_url() , 'refresh');
-        }        
-    }
+   
    /* public function Salary_List(){
         if($this->session->userdata('user_login_access') != False) { 
         
@@ -1088,7 +1080,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $end_date = $year . '-' . $month . '-' . $total_days_in_the_month;
 
         // Employee actually worked
-        $employee_actually_worked = $this->hours_worked_by_employee($employeePIN->em_code, $start_date, $end_date);  // in hours
+        $employee_actually_worked =  120;
             //echo json_encode($start_date);
         //Get his monthly salary
         $employee_salary = $this->payroll_model->GetsalaryValueByID($employeeID);
@@ -1101,20 +1093,13 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         }
 
         // Hourly rate for the month
-        $hourly_rate = $employee_salary / $total_work_hours;
+        // $hourly_rate = $employee_salary / $total_work_hours;
         
-        $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
+        // $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
 
-        $addition = 0;
-        $diduction = 0;
-        if($work_hour_diff < 0) {
-            $addition = abs($work_hour_diff) * $hourly_rate;
-        } else if($work_hour_diff > 0) {
-            // 80 is > 0 which means he worked less, so diduction = 80 hrs
-            // so 80 * hourly rate 208 taka = 17500
-            $diduction = abs($work_hour_diff) * $hourly_rate;
-        }
-
+        $addition = 100;
+        $diduction = 69;
+        
        
 
         // Final Salary
@@ -1124,14 +1109,14 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data = array();
         $data['basic_salary'] = $employee_salary;
         $data['total_work_hours'] = $total_work_hours;
-        $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
-        $data['wpay'] =$total_work_hours - $employee_actually_worked[0]->Hours;
+        $data['employee_actually_worked'] = $employee_actually_worked;
+        $data['wpay'] =$total_work_hours - $employee_actually_worked;
         $data['addition'] = round($addition, 2);
-        $data['diduction'] = round($diduction, 2);
+        $data['deduction'] = $diduction ;
       
        
         $data['final_salary'] = round($final_salary, 2);
-        $data['rate'] = round($hourly_rate, 2);   
+      
         echo json_encode($data);
         }
         else{

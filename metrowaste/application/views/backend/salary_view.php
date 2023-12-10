@@ -34,16 +34,7 @@ $this->load->view('backend/sidebar');
             </i> Add Payroll 
           </a>
         </button> -->
-        <button type="button" class="btn btn-primary">
-          <i class="fa fa-bars">
-          </i>
-          <a href="<?php
-                   echo base_url();
-                   ?>Payroll/Salary_Type" class="text-white">
-            <i class="" aria-hidden="true">
-            </i>   Salary Types
-          </a>
-        </button>
+      
       </div>
     </div> 
     <div class="row">
@@ -226,6 +217,13 @@ $this->load->view('backend/sidebar');
 								
               </div> 
               </div> 
+							<div class="form-group row" id="addition">
+                <label class="control-label text-left col-md-5">Addition
+                </label>
+                <div class="col-md-7">
+                <input type="text" name="addition" class="form-control" id="" value="">
+              	</div>
+              </div>
 							 
 									<div class="form-group row" id="deduction">
 										<label class="control-label text-left col-md-5">Deduction</label>
@@ -257,13 +255,7 @@ $this->load->view('backend/sidebar');
                 <input type="hidden" name="hrate" class="form-control hrate" id="hrate" value=''>
                 </div>
               </div>                                    
-              <div class="form-group row" id="addition">
-                <label class="control-label text-left col-md-5">Addition
-                </label>
-                <div class="col-md-7">
-                <input type="text" name="addition" class="form-control" id="" value="">
-              </div>
-              </div>
+             
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Pay Date
                 </label>
@@ -419,11 +411,11 @@ $(document).ready(function () {
         $('#generatePayrollForm').find('[name="basic"]').val(response.basic_salary).attr('readonly', true).end();
         var totalPaid = parseFloat(response.basic_salary) - parseFloat(response.deduction) - parseFloat(response.loan);
         $('#generatePayrollForm').find('[name="total_paid"]').val(response.final_salary).attr('readonly', true).end();
-        // $('#generatePayrollForm').find('[name="month_work_hours"]').val(response.total_work_hours).end();
-        $('#generatePayrollForm').find('[name="month_work_hours"]').end();
+        $('#generatePayrollForm').find('[name="month_work_hours"]').val(response.total_work_hours).end();
+
         $('#generatePayrollForm').find('[name="hours_worked"]').val(response.employee_actually_worked)/*.attr('readonly', true)*/ .end();
         $('#generatePayrollForm').find('[name="addition"]').val(response.addition).end();
-        $('#generatePayrollForm').find('[name="deduction"]').end();
+        $('#generatePayrollForm').find('[name="deduction"]').val(response.deduction).end();
         $('#generatePayrollForm').find('[class="wpay"]').html(response.wpay).end();
         $('#generatePayrollForm').find('[name="loan"]').end();
         $('#generatePayrollForm').find('[name="loan_id"]').val(response.loan_id).end();
