@@ -121,26 +121,36 @@ $this->load->view('backend/sidebar');
 
 
     <script>
-        // Populate the payroll table to generate the payroll for each individual
-      $("#BtnSubmit").on("click", function(event){
+         // Populate the payroll table to generate the payroll for each individual
+    $("#BtnSubmit").on("click", function (event) {
         event.preventDefault();
         var depid = $('#depid').val();
         var datetime = $('.mydatetimepicker').val();
-        
+
         $.ajax({
-          url: "load_employee_by_deptID_for_pay?date_time="+datetime+"&dep_id="+depid,
-          type:"GET",
-          dataType:'',
-          data:'data',          
-          success: function(response) {
-            // console.log(response);
-            $('.payroll').html(response);
-          },
-          error: function(response) {
-            
-          }
+            url: "load_employee_by_deptID_for_pay?date_time=" + datetime + "&dep_id=" + depid,
+            type: "GET",
+            dataType: '',
+            data: 'data',
+            success: function (response) {
+                // Clear and destroy the existing DataTable
+                $('#example23').DataTable().clear().destroy();
+
+                // Update the table body with new data
+                $('.payroll').html(response);
+
+                // Reinitialize DataTable with new data
+                $('#example23').DataTable({
+                    "aaSorting": [[1, 'asc']],
+                    dom: 'Bfrtip',
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                });
+            },
+            error: function (response) {
+                // Handle error if needed
+            }
         });
-      });
+    });
     </script>
 
     <div class="modal fade" id="generatePayrollModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
