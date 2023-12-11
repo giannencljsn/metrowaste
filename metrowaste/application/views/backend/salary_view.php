@@ -220,7 +220,7 @@ $this->load->view('backend/sidebar');
               <div class="row well"> 
               <div class="col-md-6">                                    
               <div class="form-group row">
-                <label class="control-label text-left col-md-5">Basic Salary
+                <label class="control-label text-left col-md-5">Salary per Hour
                 </label>
                 <div class="col-md-7">
                 <input type="text" name="basic" class="form-control basic_salary" id="" value="">
@@ -231,14 +231,14 @@ $this->load->view('backend/sidebar');
                 <label class="control-label text-left col-md-5">Addition
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="addition" class="form-control" id="" value="">
+                <input type="text" name="addition" class="form-control" id="" value="" readonly>
               	</div>
               </div>
 							 
 									<div class="form-group row" id="deduction">
 										<label class="control-label text-left col-md-5">Deduction</label>
 										<div class="col-md-7">
-											<input type="text" name="deduction" class="form-control deduction" value="">
+											<input type="text" name="deduction" class="form-control deduction" value="" readonly>
 										</div>
 									</div>
 								
@@ -247,14 +247,14 @@ $this->load->view('backend/sidebar');
                 <label class="control-label text-left col-md-5">Working hours
                 </label>
                 <div class="col-md-7">
-                    <input type="text" name="month_work_hours" class="form-control thour" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="" >
+                    <input type="text" name="month_work_hours" class="form-control thour" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="" readonly>
                 </div>
               </div>                                       
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Hours worked
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="hours_worked" class="form-control hours_worked" id="" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="">
+                <input type="text" name="hours_worked" class="form-control hours_worked" id="" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="" readonly>
                 <span>Work Without Pay:</span><span class="wpay"></span> <span>hrs</span>
                 </div>
               </div>                                       

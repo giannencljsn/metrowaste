@@ -607,8 +607,12 @@ class Payroll extends CI_Controller {
         } else if($work_hour_diff > 0) {
             $diduction = abs($work_hour_diff) * $hourly_rate;
         }
-        
-         // Sending 
+
+
+		$total_pay_hours = $addition[0]->totalnetpay *  $salary_info->total_days;
+        $total_earnings_employee = $addition[0]->restduty + $addition[0]->straightduty + $addition[0]->specialholiday + $addition[0]->legalholiday ;
+        $final_pay_employee = $total_pay_hours + $total_earnings_employee;
+		// Sending 
        
 $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvaluebyid, (array) $salarypaybyid, (array) $salaryvalue);
 
@@ -674,7 +678,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                             <td>:$bankinfo->bank_name</td>";
                                              } else {
                                             echo "<td>Pay Type</td>
-                                            <td>: Hand Cash</td>";
+                                            <td>: $salary_info->paid_type</td>";
                                             }
                                         echo "</tr>";
                                          if(!empty($bankinfo->bank_name)){
@@ -706,8 +710,8 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 										
 											
                                             <tr>
-                                                <td>Basic Salary</td>
-												<td class='text-right'>". $addition[0]->basic; echo "PHP</td>
+                                                <td>Salary Per Hour</td>
+												<td class='text-right'>". $addition[0]->totalnetpay; echo "PHP</td>
 												<td class='text-right'></td>
                                             </tr>
 										
@@ -763,9 +767,44 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 											<tr>
 												<td>Working Hour ($salary_info->total_days hrs)</td>
 												<td class='text-right'>
+											
+												$total_pay_hours PHP
+													
 												</td>
 												<td class='text-right'>
-														$salary_info->diduction PHP 
+														
+												</td>
+												
+											</tr>
+											
+											<tr>
+												<td>Total Earnings</td>
+												<td class='text-right'>
+												$total_earnings_employee PHP
+												</td>
+												<td class='text-right'>
+														
+												</td>
+												
+											</tr>
+											<tr>
+												<td>Final Pay</td>
+												<td class='text-right'>
+												$final_pay_employee PHP
+												</td>
+												<td class='text-right'>
+												$salary_info->diduction PHP 		
+												</td>
+												
+											</tr>
+											
+											<tr ></tr>
+												<td>Total Net Pay</td>
+												<td class='text-right'>$salary_info->total_pay PHP</td>
+												
+												
+												<td class='text-right'>
+													
 												</td>
 												
 											</tr>
