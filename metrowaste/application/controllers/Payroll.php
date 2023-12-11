@@ -1142,7 +1142,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
        
 
         // Final Salary
-        $final_salary = $employee_salary * $total_employee_work_hours;
+        $final_salary = ($employee_salary * $total_employee_work_hours + $addition) - $diduction;
 
         // Sending 
         $data = array();

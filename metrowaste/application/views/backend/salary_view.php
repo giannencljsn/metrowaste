@@ -261,9 +261,9 @@ $this->load->view('backend/sidebar');
               <div class="form-group row" style="display:none">
                 <label class="control-label text-left col-md-5">
                 </label>
-                <div class="col-md-7">
+                <!-- <div class="col-md-7">
                 <input type="hidden" name="hrate" class="form-control hrate" id="hrate" value=''>
-                </div>
+                </div> -->
               </div>                                    
              
               <div class="form-group row">

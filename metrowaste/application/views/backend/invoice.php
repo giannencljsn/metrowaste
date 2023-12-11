@@ -92,7 +92,7 @@
                                             <td>: <?php echo $bankinfo->bank_name; ?></td>
                                             <?php } else { ?>
                                             <td>Pay Type</td>
-                                            <td>: <?php echo 'Hand Cash'; ?></td>
+                                            <td>: <?php echo $salary_info->paid_type; ?></td>
                                             <?php } ?>
                                         </tr>
                                         <?php if(!empty($bankinfo->bank_name)){ ?>
@@ -120,7 +120,11 @@
                                             </tr>
                                         </thead>
                                         <tbody style="border: 1px solid #ececec;">
-                                            
+										<tr>
+                                                <td>Salary Per Hour</td>
+                                                <td class="text-right"> <?php echo $addition[0]->totalnetpay; ?> PHP</td>
+                                                <td class="text-right">  </td>
+                                            </tr>
                                             <tr>
                                                 <td>Rest duty</td>
                                                 <td class="text-right"> <?php echo $addition[0]->restduty; ?> PHP</td>
@@ -188,14 +192,13 @@
                                             <tr>
                                                 <td>Working Hour (<?php echo $salary_info->total_days; ?> hrs)</td>
                                                 <td class="text-right">
-                                                    <?php
-                                                        if($a > 0) { echo round($a,2).'PHP'; }
-                                                    ?>
+												<?php
+    $total_work_hours = $addition[0]->totalnetpay *  $salary_info->total_days ;
+    echo number_format($total_work_hours, 2) . " PHP";
+    ?>
                                                 </td>
                                                 <td class="text-right">
-                                                    <?php
-                                                        if($d > 0) { echo round($d,2).'PHP'; }
-                                                    ?>        
+                                                           
                                                 </td>
 								
                                                 
@@ -205,27 +208,38 @@
                                         </tbody>
                                         <tfoot class="tfoot-light">
                                             <tr>
-											<th>Total</th>
-<th class="text-right">
-    <?php
-    $total_add = $addition[0]->restduty + $addition[0]->straightduty 
-                + $addition[0]->specialholiday + $addition[0]->legalholiday;
-    echo number_format($total_add, 2) . " PHP";
+												<th>Total</th>
+													<th class="text-right">
+														<?php
+														$total_add = $addition[0]->restduty + $addition[0]->straightduty 
+																	+ $addition[0]->specialholiday + $addition[0]->legalholiday;
+														echo number_format($total_add, 2) . " PHP";
+														?>
+													</th>
+													<th class="text-right">
+														<?php
+														$total_deduction = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth 
+																		+ $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances;
+														echo number_format($total_deduction, 2) . " PHP";
+														?>
+													</th>
+                                            </tr>
+											<tr>
+												<th>Final Earnings</th>
+													<th class="text-right">
+													<?php
+    $final_work_hours = ($addition[0]->totalnetpay *  $salary_info->total_days) + $total_add ;
+    echo number_format($final_work_hours, 2) . " PHP";
     ?>
-</th>
-<th class="text-right">
-    <?php
-    $total_deduction = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth 
-                      + $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances + $salary_info->diduction;
-    echo number_format($total_deduction, 2) . " PHP";
-    ?>
-</th>
-
+													</th>
+													<th class="text-right">
+														
+													</th>
                                             </tr>
                                             <tr>
-                                                <th></th>
-                                                <th class="text-right">Net Pay</th>
-                                                <th class="text-right"><?php echo $salary_info->total_pay/*round($total_add - $total_did,2)*/; ?>PHP</th>
+                                                <th><strong>Total Net Pay</strong</th>
+                                                <th class="text-right"></th>
+                                                <th class="text-right"><strong><?php echo $salary_info->total_pay ?>PHP</strong></th>
                                             </tr>
                                         </tfoot>
                                     </table>
