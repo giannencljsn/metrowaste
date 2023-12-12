@@ -106,7 +106,7 @@ class Employee extends CI_Controller {
 	$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
 	$pagibig = $this->input->post('pagibig_1') . '-' . $this->input->post('pagibig_2') . '-' . $this->input->post('pagibig_3');		
 	$tin =  $this->input->post('tin_1') . '-' . $this->input->post('tin_2') . '-' . $this->input->post('tin_3'). '-' . $this->input->post('tin_4');	
-	$blood = $this->input->post('blood');
+
 	$marital = $this->input->post('maritalstat');		
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
@@ -176,7 +176,7 @@ class Employee extends CI_Controller {
 					'em_philhealth'=>$philhealth,
 					'em_pagibig'=>$pagibig,
 					'em_tin'=>$tin,
-                    'em_blood_group'=> $blood,
+                    
 					'em_marital_status' => $marital
                 );
                 if($id){
@@ -212,7 +212,7 @@ class Employee extends CI_Controller {
                     'em_birthday'=>$dob,
                     'em_joining_date'=>$joindate,
                     'em_address'=>$address,
-                    'em_blood_group'=> $blood,
+                 
                     'em_marital_status' => $marital,
                     'em_sss'=>$sss,
                     'em_philhealth'=>$philhealth,
@@ -228,7 +228,7 @@ class Employee extends CI_Controller {
             $success = $this->employee_model->Add($data);
             #$this->confirm_mail_send($email,$pass_hash);        
             echo "Successfully Added";
-            #redirect('employee/Add_employee');                     
+            // redirect('employee/Add_employee');                     
                 }
             }
             }
@@ -268,7 +268,6 @@ class Employee extends CI_Controller {
 	$pagibig = $this->input->post('pagibig');		
 	$tin = $this->input->post('tin');		
 	$status = $this->input->post('status');		
-	$blood = $this->input->post('blood');
 	$marital = $this->input->post('maritalstat');
 
         $this->load->library('form_validation');
@@ -336,7 +335,6 @@ class Employee extends CI_Controller {
                     'em_sss'=>$sss,
                     'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
-                    'em_blood_group'=> $blood,
                     'em_marital_status' => $marital
                 );
                 if($id){
@@ -367,7 +365,6 @@ class Employee extends CI_Controller {
                     'em_philhealth'=>$philhealth,
                     'em_pagibig'=>$pagibig,
                     'em_tin'=>$tin,
-                    'em_blood_group'=> $blood,
                     'em_marital_status' => $marital
                 );
                 if($id){
@@ -384,148 +381,33 @@ class Employee extends CI_Controller {
 	       }        
 		}
 
-	
-		public function Update_Inactive(){
-			if($this->session->userdata('user_login_access') != False) {    
-				$eid = $this->input->post('eid');    
-				$id = $this->input->post('emid');    
-				$fname = $this->input->post('fname');
-				$lname = $this->input->post('lname');
-				$dept = $this->input->post('dept');
-				$deg = $this->input->post('deg');
-				$role = $this->input->post('role');
-				$gender = $this->input->post('gender');
-				$contact = $this->input->post('contact');
-				$emcontact = $this->input->post('emcontact');
-                $contactname = $this->input->post('contactname');
-				$dob = $this->input->post('dob');	
-				$joindate = $this->input->post('joindate');	
-				$username = $this->input->post('username');	
-				$email = $this->input->post('email');
-					
-				$password = $this->input->post('password');	
-				$confirm = $this->input->post('confirm');	
-				$address = $this->input->post('address');			
-				$sss = $this->input->post('sss');		
-				$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
-				$pagibig = $this->input->post('pagibig');		
-				$tin = $this->input->post('tin');		
-				$status = $this->input->post('status');		
-				$blood = $this->input->post('blood');
-				
-				$marital = $this->input->post('maritalstat');
-				$this->load->library('form_validation');
-				$this->form_validation->set_error_delimiters();
-				$this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+		public function Update_Status(){
+			if ($this->session->userdata('user_login_access') != false) {
+				$id = $this->input->post('emid');
+				$status = $this->input->post('status');
 		
-				$this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
+				$data = array(
+					'status' => $status
+				);
 		
+				$this->load->model('employee_model'); // Load your employee model
 		
-				if ($this->form_validation->run() == FALSE) {
-					echo validation_errors();
-					#redirect("employee/view?I=" .base64_encode($eid));
-							} else {
-								if($_FILES['image_url']['name']){
-								$file_name = $_FILES['image_url']['name'];
-								$fileSize = $_FILES["image_url"]["size"]/1024;
-								$fileType = $_FILES["image_url"]["type"];
-								$new_file_name='';
-								$new_file_name .= $id;
-					
-								$config = array(
-									'file_name' => $new_file_name,
-									'upload_path' => "./assets/images/users",
-									'allowed_types' => "gif|jpg|png|jpeg",
-									'overwrite' => False,
-									'max_size' => "20240000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-									'max_height' => "600",
-									'max_width' => "600"
-								);
-						
-								$this->load->library('Upload', $config);
-								$this->upload->initialize($config);                
-								if (!$this->upload->do_upload('image_url')) {
-									echo $this->upload->display_errors();
-									#redirect("employee/view?I=" .base64_encode($eid));
-								}
-				
-								else {
-									$employee = $this->employee_model->GetBasic($id);
-									$checkimage = "./assets/images/users/$employee->em_image";                 
-											if(file_exists($checkimage)){
-											unlink($checkimage);
-											}
-											$path = $this->upload->data();
-											$img_url = $path['file_name'];
-											$data = array();
-											$data = array(
-												'em_code' => $eid,
-												'des_id' => $deg,
-												'dep_id' => $dept,
-												'first_name' => $fname,
-												'last_name' => $lname,
-												'em_email' => $email,
-												'em_role'=>$role,
-												'em_gender'=>$gender,
-												'status'=>$status,
-												'em_phone'=>$contact,
-												'em_em_contact'=>$emcontact,
-                                                'contactname' =>$contactname,
-												'em_birthday'=>$dob,
-												'em_joining_date'=>$joindate,
-												'em_image'=>$img_url,
-												'em_address'=>$address,
-                        'em_sss'=>$sss,
-											  'em_philhealth'=>$philhealth,
-                        'em_pagibig'=>$pagibig,
-											  'em_tin'=>$tin,
-												'em_blood_group'=> $blood,
-												'em_marital_status' => $marital
-											);
-								if($id){
-							$success = $this->employee_model->Update($data,$id); 
-							$this->session->set_flashdata('feedback','Successfully Updated');
-							echo "Successfully Updated";
-								}
-							}
-							} else {
-										$data = array();
-										$data = array(
-											'em_code' => $eid,
-											'des_id' => $deg,
-											'dep_id' => $dept,
-											'first_name' => $fname,
-											'last_name' => $lname,
-											'em_email' => $email,
-											'em_role'=>$role,
-											'em_gender'=>$gender,
-											'status'=>$status,
-											'em_phone'=>$contact,
-											'em_em_contact'=>$emcontact,
-                                            'contactname' =>$contactname,
-											'em_birthday'=>$dob,
-											'em_joining_date'=>$joindate,
-											'em_address'=>$address,
-											'em_sss'=>$sss,
-											'em_philhealth'=>$philhealth,
-                                            'em_pagibig'=>$pagibig,
-											'em_tin'=>$tin,
-											'em_blood_group'=> $blood,
-											'em_marital_status' => $marital
-										);
-
-										//IF
-										if($id){
-											$success = $this->employee_model->Update($data,$id); 
-											$this->session->set_flashdata('feedback','Successfully Updated');
-											echo "Successfully Updated";
-											}
-										}
-							}
-			} else{
-				redirect(base_url() , 'refresh');
-				   }        
+				if ($id) {
+					$success = $this->employee_model->Update_Status($data, $id);
+					if ($success) {
+						$this->session->set_flashdata('feedback', 'Status Successfully Updated');
+						echo "Status Successfully Updated";
+					} else {
+						echo "Failed to update status";
+					}
+				} else {
+					echo "Invalid employee ID";
 				}
+			} else {
+				redirect(base_url(), 'refresh');
+			}
+		}
+		
 
 
     public function view(){
@@ -541,9 +423,14 @@ class Employee extends CI_Controller {
         $data['typevalue'] = $this->payroll_model->GetsalaryType();
         $data['leavetypes'] = $this->leave_model->GetleavetypeInfo();    
         $data['salaryvalue'] = $this->employee_model->GetsalaryValue($id);
-        $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
+        // $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
             $year = date('Y');
         $data['Leaveinfo'] = $this->employee_model->GetLeaveiNfo($id,$year);
+
+		
+		// Fetch salary_per_hr based on des_id
+        $des_id = $data['basic']->des_id;
+        $data['designation_salary'] = $this->payroll_model->GetSalaryByDesignationId($des_id);
         $this->load->view('backend/employee_view',$data);
         }
     else{
@@ -566,7 +453,7 @@ class Employee extends CI_Controller {
         $data['typevalue'] = $this->payroll_model->GetsalaryType();
         $data['leavetypes'] = $this->leave_model->GetleavetypeInfo();    
         $data['salaryvalue'] = $this->employee_model->GetsalaryValue($id);
-        $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
+        // $data['socialmedia'] = $this->employee_model->GetSocialValue($id);
             $year = date('Y');
         $data['Leaveinfo'] = $this->employee_model->GetLeaveiNfo($id,$year);
         $this->load->view('backend/inactive_edit',$data);
@@ -660,7 +547,8 @@ class Employee extends CI_Controller {
         $em_id = $this->input->post('emid');
         $certificate = $this->input->post('name');
         $institute = $this->input->post('institute');
-        $eduresult = $this->input->post('result');
+
+		$eduresult = $this->input->post('result');
         $eduyear = $this->input->post('year');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
@@ -1077,7 +965,7 @@ else{
     $filetitle = $this->input->post('title');    		
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('title', 'title', 'trim|required|min_length[10]|max_length[120]|xss_clean');
+        $this->form_validation->set_rules('title', 'title', 'trim|required|min_length[3]|max_length[120]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -1233,7 +1121,8 @@ else{
                     'emp_id' => $em_id,
                     'type_id' => $type,
                     'total' => $total,
-                    'totalnetpay' => $totalnetpay
+                    'totalnetpay' => $totalnetpay,
+					'totaldeduction' => $totaldeduction
 
 
                 );
@@ -1263,7 +1152,7 @@ else{
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
                     'totaldeduction' => $totaldeduction,
-                    'totalnetpay' => $totalnetpay
+                    // 'totalnetpay' => $totalnetpay
 
 
                 );

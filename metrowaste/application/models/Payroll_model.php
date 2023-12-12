@@ -26,18 +26,17 @@
         $result = $query->row();
         return $result;         
     }
-    public function GetDepEmployee($depid){
-    $sql = "SELECT `employee`.*,
-
-			`emp_salary`.`totalnetpay`
-
-      FROM `employee`
-      LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
-      WHERE `employee`.`dep_id`='$depid'";
-        $query = $this->db->query($sql);
-        $result = $query->result();
-        return $result;         
-    } 
+		public function GetDepEmployee($depid){
+			$sql = "SELECT `employee`.*,
+									`emp_salary`.`totalnetpay`
+							FROM `employee`
+							LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
+							WHERE `employee`.`dep_id`='$depid' AND `employee`.`status`='ACTIVE'";
+			$query = $this->db->query($sql);
+			$result = $query->result();
+			return $result;
+	}
+	
 
 
 		public function GetDepEmployee2($depid){
@@ -57,18 +56,8 @@
         $result = $query->row();
         return $result;         
     } 
-    public function GetLoanValueByID($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result;         
-    } 
-    public function hasLoanOrNot($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result ? 1 : 0;    
-    } 
+    
+    
     public function GetHolidayByYear($dateval){
         $sql = "SELECT * FROM `holiday` WHERE `holiday`.`year`= '$dateval'";
         $query = $this->db->query($sql);
@@ -309,6 +298,26 @@ public function getPinFromID($employeeID){
       $result = $query->result();
       return $result;
     }   
+
+		//Get salary by designation
+		public function GetSalaryByDesignationId($designationId) {
+			$query = $this->db->select('salary_per_hr')
+					->get_where('designation', array('id' => $designationId));
+			return $query->row();
+	}
+	
+
+	public function getTotalEmployeeWorkHours($employeeID) {
+    $this->db->select_sum('working_hour', 'total_employee_work_hours');
+    $this->db->where('em_code', $employeeID);
+    $query = $this->db->get('attendance');
+
+    if ($query->num_rows() > 0) {
+        return $query->row()->total_employee_work_hours;
+    }
+
+    return 0;
+}
 
 }
 

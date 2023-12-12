@@ -147,9 +147,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span style="color:red" id="total"></span>
-                                    <div class="span pull-right">
-                                        <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
-                                    </div>
+                                    
                                     <br>
                                 </div>
                                 <div class="form-group">
@@ -227,7 +225,7 @@
                             <div class="modal-footer">
                                 <input type="hidden" name="id" class="form-control" id="recipient-name1" required> 
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                               
                             </div>
                             </form>
                         </div>
@@ -236,25 +234,7 @@
 
 
 
-<script>
-    $(document).ready(function () {
 
-        $('.fetchLeaveTotal').on('click', function (e) {
-            e.preventDefault();
-            var selectedEmployeeID = $('.selectedEmployeeID').val();
-            var leaveTypeID = $('.assignleave').val();
-            //console.log(selectedEmployeeID, leaveTypeID);
-            $.ajax({
-                url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
-                method: 'GET',
-                data: '',
-            }).done(function (response) {
-                //console.log(response);
-                $("#total").html(response);
-            });
-        });
-    });
-</script>
         <script>
         /*DATETIME PICKER*/
           $("#bbbSubmit").on("click", function(event){
@@ -289,31 +269,49 @@
         });
         </script>
 <script>
-  $(".Status").on("click", function(event){
-      event.preventDefault();
-      // console.log($(this).attr('data-value'));
-      $.ajax({
-          url: "approveLeaveStatus",
-          type:"POST",
-          data:
-          {
-              'employeeId': $(this).attr('data-employeeId'),
-              'lid': $(this).attr('data-id'),
-              'lvalue': $(this).attr('data-value'),
-              'duration': $(this).attr('data-duration'),
-              'type': $(this).attr('data-type')
-          },
-          success: function(response) {
-            // console.log(response);
-            $(".message").fadeIn('fast').delay(30000).fadeOut('fast').html(response);
-            window.setTimeout(function(){location.reload()}, 30000);
-          },
-          error: function(response) {
-            //console.error();
-          }
-      });
-  });           
+$(".Status").on("click", function (event) {
+    event.preventDefault();
+
+    // Store the reference to $(this) in a variable
+    var $this = $(this);
+
+    $.ajax({
+        url: "approveLeaveStatus",
+        type: "POST",
+        data: {
+            'employeeId': $this.attr('data-employeeId'),
+            'lid': $this.attr('data-id'),
+            'lvalue': $this.attr('data-value'),
+            'duration': $this.attr('data-duration'),
+            'type': $this.attr('data-type')
+        },
+        success: function (response) {
+            var message = "";
+            if ($this.attr('data-value') === 'Approve') {
+                message = 'Successfully Approved';
+            } else if ($this.attr('data-value') === 'Rejected') {
+                message = 'Successfully Rejected';
+            }
+
+            // Log the message to the console
+            console.log(message);
+
+            // Display the success message in div.message
+          $(".message").html(message).show();
+
+            // Reload the page after a delay (if needed)
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000); // Reload after 2 seconds (adjust as needed)
+        },
+        error: function (response) {
+            console.error(response);
+        }
+    });
+});
 </script>
+
+
 
 <script type="text/javascript">
             $(document).ready(function() {

@@ -41,11 +41,11 @@
 							<form name="myForm" id="myForm" class="row" method="post" action="<?php echo base_url('employee/Save');?>" enctype="multipart/form-data" >
 
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>First Name</label>
+                                        <label><span id="required-fields-red">*</span>First Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" name="fname"class="form-control form-control-line" placeholder="Employee's First Name" minlength="2" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Last Name </label>
+                                        <label><span id="required-fields-red">*</span>Last Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" id="" name="lname" class="form-control form-control-line" value="" placeholder="Employee's Last Name" minlength="2" onkeypress="return /^[a-zA-Z]+$/.test(event.key)" required> 
                                     </div>
                                     <!----- RANDOM PIN NO. ----->
@@ -88,8 +88,8 @@
 
 
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Department</label>
-                                        <select name="dept" value="" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Department(<span id="required-fields-red">required</span>)</label>
+                                        <select name="dept" value="" class="form-control custom-select" required>
                                             <option>Select Department</option>
                                             <?Php foreach($depvalue as $value): ?>
                                              <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
@@ -97,8 +97,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Designation </label>
-                                        <select name="deg" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Designation (<span id="required-fields-red">required</span>)</label>
+                                        <select name="deg" class="form-control custom-select" required>
                                             <option>Select Designation</option>
                                             <?Php foreach($degvalue as $value): ?>
                                             <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
@@ -106,8 +106,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Role </label>
-                                        <select name="role" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Role (<span id="required-fields-red">required</span>)</label>
+                                        <select name="role" class="form-control custom-select" required>
                                             <option>Select Role</option>
                                             <option value="ADMIN">Admin</option>
                                             <option value="EMPLOYEE">Employee</option>
@@ -115,16 +115,16 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Gender </label>
-                                        <select name="gender" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Gender (<span id="required-fields-red">required</span>)</label>
+                                        <select name="gender" class="form-control custom-select" required>
                                             <option>Select Gender</option>
                                             <option value="MALE">Male</option>
                                             <option value="FEMALE">Female</option>
                                         </select>
                                     </div>
 									<div class="form-group col-md-3 m-t-20">
-                                        <label>Marital Status</label>
-                                        <select name="maritalstat" class="form-control custom-select">
+                                        <label><span id="required-fields-red">*</span>Marital Status(<span id="required-fields-red">required</span>)</label>
+                                        <select name="maritalstat" class="form-control custom-select" required>
                                             <option>Select Status</option>
 											<option value="Single">Single</option>
 											<option value="Married">Married</option>
@@ -134,20 +134,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Blood Group </label>
-                                        <select name="blood" class="form-control custom-select">
-                                            <option>Select Blood Group</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="AB+">AB+</option>
-                                        </select>
-                                    </div>
-                                  
+                                    
 
 									<div class="form-group col-md-3 m-t-20">
 										<label>PHILHEALTH (12 digits)</label>
@@ -222,48 +209,50 @@
 											<input type="hidden" name="tin" id="tin">
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Contact Number</label>
+                                        <label><span id="required-fields-red">*</span>Contact Number (<span id="required-fields-red">required</span>)</label>
 										<div class="input-group">
-                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
+                                        	<input type="text" name="contact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)" required>
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
+                                            <input type="text" name="contact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)" required>
 										</div>
 											<input type="hidden" name="contact" id="contact">	
 									</div>
                                 
 									<div class="form-group col-md-3 m-t-20">
-                                        <label>Emergency Contact Number </label>
+                                        <label><span id="required-fields-red">*</span>Emergency Contact Number (<span id="required-fields-red">required</span>)</label>
                                         <div class="input-group">
-                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)">
+                                        	<input type="text" name="emcontact_1" class="form-control" minlength="2" maxlength="2" placeholder="09" value="09" onkeypress="return /[0-9]/i.test(event.key)" required>
                                             <div class="input-group-prepend">
                                             <span class="input-group-text">-</span>
 											</div>
-                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
+                                            <input type="text" name="emcontact_2" class="form-control" minlength="9" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)" required>
 										</div>
-											<input type="hidden" name="emcontact" id="emcontact"> 
+											<input type="hidden" name="emcontact" id="emcontact" required> 
 									</div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Emergency Contact Name</label>
+                                        <label><span id="required-fields-red">*</span>Emergency Contact Name (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" name="contactname"class="form-control form-control-line" placeholder="Emergency Contact Name" minlength="2" maxlength="30" onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Of Birth </label>
-                                        <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder=""> 
+                                        <label><span id="required-fields-red">*</span>Date Of Birth (<span id="required-fields-red">required</span>)</label>
+                                        <input type="date" name="dob" id="example-email2" name="example-email" class="form-control" placeholder="" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Date Hired </label>
-                                        <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder=""> 
+                                        <label><span id="required-fields-red">*</span>Date Hired (<span id="required-fields-red">required</span>)</label>
+                                        <input type="date" name="joindate" id="example-email2" name="example-email" class="form-control" placeholder="" required> 
                                     </div>
                                
                                     <div class="form-group col-md-3 m-t-20">
+
                                     <label><span id="required-fields-red">*</span>Email (<span id="required-fields-red">required</span>)</label>
                                         <input type="text" id="example-email2" name="email" class="form-control" placeholder="email" minlength="3"
 										 required> 
+
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Password </label>
+                                        <label><span id="required-fields-red">*</span>Password (<span id="required-fields-red">required</span>)</label>
                                         <input type="password" name="password" id="password" class="form-control" value="" placeholder="**********" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 										title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" minlength="8"required>
 										<input type="checkbox" onclick="showPassword()" style="position: initial; opacity: 100;">Show Password
@@ -273,7 +262,7 @@
 
 									
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Confirm Password </label>
+                                        <label><span id="required-fields-red">*</span>Confirm Password (<span id="required-fields-red">required</span>)</label>
                                         <input type="password" name="confirm" id="cpassword" class="form-control" value="" placeholder="**********" minlength="8"required> 
                                         <p id="error-message"></p>
                                     </div>
@@ -299,4 +288,240 @@
                         </div>
                     </div>
                 </div>
+
+<script>
+    // Function to check if all required fields are filled
+    function checkForm() {
+        var requiredFields = [
+            "fname",
+            "lname",
+            "eid",
+            "dept",
+            "deg",
+            "role",
+            "gender",
+            "maritalstat",
+            "contact_1",
+            "contact_2",
+            "emcontact_1", // Added emcontact_1 to requiredFields
+            "emcontact_2", // Added emcontact_2 to requiredFields
+            "contactname",
+            "dob",
+            "joindate",
+            "email",
+            "password",
+            "confirm"
+            
+        ];
+
+        var allFieldsFilled = true;
+
+        for (var i = 0; i < requiredFields.length; i++) {
+            var field = document.forms["myForm"][requiredFields[i]];
+            if (field.value === "") {
+                allFieldsFilled = false;
+                break;
+            }
+        }
+
+        var submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = !allFieldsFilled;
+    }
+
+    // Call checkForm function on form field change
+    var formFields = document.getElementsByClassName("form-control");
+    for (var i = 0; i < formFields.length; i++) {
+        formFields[i].addEventListener("input", checkForm);
+    }
+
+    // Function to show/hide password
+    function showPassword() {
+        var passwordInput = document.getElementById("password");
+        var cpasswordInput = document.getElementById("cpassword");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            cpasswordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+            cpasswordInput.type = "password";
+        }
+    }
+</script>
+
+<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
+
+<script>
+		function validateForm(event){
+            event.preventDefault();
+
+            var form = event.target;
+            var isValid = true;
+
+            // Validate Name Field
+            var firstName = form["fname"].value;
+            if(firstName == "" || firstName.length < 3 || firstName.length > 30){
+                alert("Please enter minimum 3 characters for First Name. ");
+                isValid = false; 
+            }
+
+            var lastName = form["lname"].value;
+            if(lastName == "" || lastName.length < 3 || lastName.length > 30){
+                alert("Please enter minimum 3 characters for Last Name.");
+                isValid = false;
+            }
+
+            // Validate Password and Confirm Password Fields
+            var password = form["password"].value;
+            var cpassword = form["confirm"].value;
+            if(password != cpassword){
+                alert("Passwords do not match.");
+                isValid = false;
+            }
+
+            // Validate Image Field
+            var image = form["image_url"].files[0];
+            var reader = new FileReader();
+
+            reader.readAsDataURL(image);
+            reader.onload = function(event) {
+                var img = new Image();
+                img.src = event.target.result;
+                img.onload = function () {
+                    var fileSize = image.size / 1024 / 1024; //in MB
+                    var fileType = image.type;
+                    var maxWidth = 800;
+                    var maxHeight = 800;
+                    if(
+                        fileType != "image/jpeg" &&
+                        fileType != "image/png" &&
+                        fileType != "image/gif"
+
+                    ) {
+                        alert("Please select a valid image file (JPEG, PNG, or GIF).");
+                        isValid = false;  //set isValid to false if validation fails
+                    } else if (fileSize > 2){
+                        alert("Please select an image file smaller than 2MB.");
+                        isValid = false; //set isValid to false if validation fails
+                    } else if (img.width > maxWidth || img.height > maxHeight){
+                        alert(
+                            "Please select an image with dimensions not exceeding " +
+                            maxWidth + 
+                            "px x"  + 
+                            maxHeight +
+                            "px."
+
+                        );
+                        isValid = false
+                    }
+
+                    if (isValid) {
+                        form.submit(); //submit the form if validation succeeds 
+                    }
+
+                };
+            };
+
+        }
+
+        // document.addEventListener("DOMContentLoaded", function (){
+        //     var forms = document.getElementsByTagName("form");
+        //     for(var i = 0; i < forms.length; i++){
+        //         forms[i].addEventListener("submit", validateForm);
+        //     }
+        // });
+
+</script>
+
+
+
+
+<!-- TOGGLE PASSWORD VISIBILITY -->
+									
+<script>
+	function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+</script>
+<!-- Check password security -->
+<script>
+var myInput = document.getElementById("password");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("cpassword");
+const errorMessage = document.getElementById("error-message");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("pvalid");
+  } else {
+    letter.classList.remove("pvalid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("pvalid");
+  } else {
+    capital.classList.remove("pvalid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("pvalid");
+  } else {
+    number.classList.remove("pvalid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("pvalid");
+  } else {
+    length.classList.remove("pvalid");
+    length.classList.add("invalid");
+  }
+
+  confirmPassword.addEventListener("input", () => {
+  if (confirmPassword.value !== password.value) {
+    errorMessage.textContent = "Passwords not match";
+    errorMessage.style.color ="red";
+    confirmPassword.setCustomValidity("Passwords do not match");
+  } else {
+    errorMessage.textContent = "";
+    confirmPassword.setCustomValidity("");
+  }
+});
+}
+</script>
+
 <?php $this->load->view('backend/footer'); ?>

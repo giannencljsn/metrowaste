@@ -34,16 +34,7 @@ $this->load->view('backend/sidebar');
             </i> Add Payroll 
           </a>
         </button> -->
-        <button type="button" class="btn btn-primary">
-          <i class="fa fa-bars">
-          </i>
-          <a href="<?php
-                   echo base_url();
-                   ?>Payroll/Salary_Type" class="text-white">
-            <i class="" aria-hidden="true">
-            </i>   Salary Types
-          </a>
-        </button>
+      
       </div>
     </div> 
     <div class="row">
@@ -62,7 +53,8 @@ $this->load->view('backend/sidebar');
                                 <form method="post" action="" id="salaryform" class="form-material row">
                   <div class="form-group col-md-4">
                     <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" id="depid" name="depid" style="margin-top: 21px;" required>
-                      <option value="#">Department
+                      <option value="#" disabled selected> 
+												Choose Department
                       </option>
                       <?php foreach ($department as $value): ?>
                       <option value="<?php echo $value->id; ?>">
@@ -100,7 +92,7 @@ $this->load->view('backend/sidebar');
                     <th>Full Name
 
                     </th>
-										<th>Total Net Pay
+										<th>Salary Per Hour
                     </th>
                     <th>Action
                     </th>
@@ -129,33 +121,43 @@ $this->load->view('backend/sidebar');
 
 
     <script>
-        // Populate the payroll table to generate the payroll for each individual
-      $("#BtnSubmit").on("click", function(event){
+         // Populate the payroll table to generate the payroll for each individual
+    $("#BtnSubmit").on("click", function (event) {
         event.preventDefault();
         var depid = $('#depid').val();
         var datetime = $('.mydatetimepicker').val();
-        
+
         $.ajax({
-          url: "load_employee_by_deptID_for_pay?date_time="+datetime+"&dep_id="+depid,
-          type:"GET",
-          dataType:'',
-          data:'data',          
-          success: function(response) {
-            // console.log(response);
-            $('.payroll').html(response);
-          },
-          error: function(response) {
-            
-          }
+            url: "load_employee_by_deptID_for_pay?date_time=" + datetime + "&dep_id=" + depid,
+            type: "GET",
+            dataType: '',
+            data: 'data',
+            success: function (response) {
+                // Clear and destroy the existing DataTable
+                $('#example23').DataTable().clear().destroy();
+
+                // Update the table body with new data
+                $('.payroll').html(response);
+
+                // Reinitialize DataTable with new data
+                $('#example23').DataTable({
+                    "aaSorting": [[1, 'asc']],
+                    dom: 'Bfrtip',
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                });
+            },
+            error: function (response) {
+                // Handle error if needed
+            }
         });
-      });
+    });
     </script>
 
     <div class="modal fade" id="generatePayrollModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
           <div class="modal-header">
-            <h4 class="modal-title" id="">Salary Arrangement
+            <h4 class="modal-title" id="" style="color:black;">Salary Arrangement
             </h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;
@@ -218,42 +220,52 @@ $this->load->view('backend/sidebar');
               <div class="row well"> 
               <div class="col-md-6">                                    
               <div class="form-group row">
-                <label class="control-label text-left col-md-5">Basic Salary
+                <label class="control-label text-left col-md-5">Salary per Hour
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="basic" class="form-control" id="" value="">
+                <input type="text" name="basic" class="form-control basic_salary" id="" value="">
 								
               </div> 
-              </div>                                     
+              </div> 
+							<div class="form-group row" id="addition">
+                <label class="control-label text-left col-md-5">Addition
+                </label>
+                <div class="col-md-7">
+                <input type="text" name="addition" class="form-control" id="" value="" readonly>
+              	</div>
+              </div>
+							 
+									<div class="form-group row" id="deduction">
+										<label class="control-label text-left col-md-5">Deduction</label>
+										<div class="col-md-7">
+											<input type="text" name="deduction" class="form-control deduction" value="" readonly>
+										</div>
+									</div>
+								
+								                                 
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Working hours
                 </label>
                 <div class="col-md-7">
-                    <input type="text" name="month_work_hours" class="form-control thour" value="" readonly>
+                    <input type="text" name="month_work_hours" class="form-control thour" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="" readonly>
                 </div>
               </div>                                       
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Hours worked
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="hours_worked" class="form-control hours_worked" id="" value="">
+                <input type="text" name="hours_worked" class="form-control hours_worked" id="" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="" readonly>
                 <span>Work Without Pay:</span><span class="wpay"></span> <span>hrs</span>
                 </div>
               </div>                                       
               <div class="form-group row" style="display:none">
                 <label class="control-label text-left col-md-5">
                 </label>
-                <div class="col-md-7">
+                <!-- <div class="col-md-7">
                 <input type="hidden" name="hrate" class="form-control hrate" id="hrate" value=''>
-                </div>
+                </div> -->
               </div>                                    
-              <div class="form-group row" id="addition">
-                <label class="control-label text-left col-md-5">Addition
-                </label>
-                <div class="col-md-7">
-                <input type="text" name="addition" class="form-control" id="" value="">
-              </div>
-              </div>
+             
               <div class="form-group row">
                 <label class="control-label text-left col-md-5">Pay Date
                 </label>
@@ -262,42 +274,22 @@ $this->load->view('backend/sidebar');
                 </div>
               </div>              
               </div>
-              <div class="col-md-6">                                     
-              <div class="form-group row" id="diduction">
-                <label class="control-label text-left col-md-5">Deduction
-                </label>
-                <div class="col-md-7">
-                <input type="text" name="diduction" class="form-control diduction" id="" value="">
-              </div>                                      
-              </div>                                      
-              <div class="form-group row" id="loan">
-                <label class="control-label text-left col-md-5">Loan
-                </label>
-                <div class="col-md-7">
-                  <input type="text" name="loan" class="form-control loan" id="" value="">
-                </div>
-              </div>                                    
-              <div class="form-group row">
-                <label class="control-label text-left col-md-5">Final Salary
-                </label>
-                <div class="col-md-7">
-                   <input type="text" name="total_paid" class="form-control total_paid" id="" value="" required>
-                </div>
-              </div>
-              <!--<div class="form-group row">
-                <label class="control-label text-left col-md-5">Status
-                </label>
-                <div class="col-md-7">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="status" required>
-                  <option value="#">Select Here
-                  </option>
-                  <option value="Paid">Paid
-                  </option>
-                  <option value="Process">Process
-                  </option>
-                </select>    
-              </div>     
-              </div>-->
+             
+
+								<!-- <div class="form-group row" id="loan">
+									<label class="control-label text-left col-md-5">Loan</label>
+									<div class="col-md-7">
+										<input type="text" name="loan" class="form-control loan" pattern="[0-9]*" inputmode="numeric" onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="">
+									</div>
+								</div> -->
+								<div class="form-group row">
+									<label class="control-label text-left col-md-5">Final Salary</label>
+									<div class="col-md-7">
+										<input type="text" name="total_paid" class="form-control total_paid" value="" required>
+									</div>
+								</div>
+							</div>
+              
                                 <div class="form-group row">
                                     <label class="control-label text-left col-md-5">Status</label><br>
                                     <div class="col-md-7">
@@ -307,22 +299,9 @@ $this->load->view('backend/sidebar');
                                     <label for="radio_2">Process</label>
                                     </div>
                                 </div>                            
-              </div>              
+                         
               </div>   
-              <!--<div class="form-group row" style="margin-top: 25px;">
-                <label class="control-label text-left col-md-3">Paid Type
-                </label>
-                <div class="col-md-9">
-                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="paid_type" required>
-                  <option value="#">Select Here
-                  </option>
-                  <option value="Hand Cash">Hand Cash
-                  </option>
-                  <option value="Bank">Bank
-                  </option>
-                </select>
-                </div>                 
-              </div>-->
+           
                                 <div class="form-group row" style="margin-top: 25px;">
                                     <label class="control-label text-left col-md-3">Paid Type</label><br>
                                     <div class="col-md-9">
@@ -340,7 +319,7 @@ $this->load->view('backend/sidebar');
 
             <div class="modal-footer">
               <input type="hidden" name="action" value="add" class="form-control" id="formAction">              
-              <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                      
+              <!-- <input type="hidden" name="loan_id" value="" class="form-control" id="loanID">                                       -->
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close
               </button>
               <button type="submit" class="btn btn-success">Submit
@@ -350,12 +329,14 @@ $this->load->view('backend/sidebar');
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-          $(document).ready(function () {
+		</div>  
+    <script>
+
+$(document).ready(function () {
           $(document).on('keyup','.hours_worked',function() {
             var finalsalary = 0;  
             //var total;  
-            var deduction = 0; 
+          
             var rows = this.closest('#generatePayrollForm div');
              
             var hrate = parseFloat($('.hrate').val()); 
@@ -363,12 +344,13 @@ $this->load->view('backend/sidebar');
             var loan = parseFloat($('.loan').val());  
             var hwork =parseFloat($('.hours_worked').val());
             var thour =parseFloat($('.thour').val());
-              
+            var deduction = parseFloat($('.deduction').val());
+
               finalsalary = (hwork*hrate) - loan;
               $(".total_paid").val(finalsalary.toFixed(2));
               var total = thour - hwork;
-              var deduction = (total*hrate) + loan;
-              $(".diduction").val(deduction.toFixed(2));
+              
+              $(".deduction").val(deduction.toFixed(2));
               $(".wpay").html(total.toFixed(2));
 
               console.log(loan);
@@ -383,59 +365,81 @@ $this->load->view('backend/sidebar');
 
           });
         });
-          </script>
-    <script type="text/javascript">
+          
+    </script>
+    <script>
+  $(document).ready(function() {
+    $(document).on('keyup', '.hours_worked', function() {
+      var hrate = parseFloat($('.hrate').val());
+      // var loan = parseFloat($('.loan').val());
+      var hwork = parseFloat($('.hours_worked').val());
+      var thour = parseFloat($('.thour').val());
+      var deduction = parseFloat($('.deduction').val());
+
+      var basicSalary = parseFloat($('[name="basic"]').val());
+      var totalPaid = basicSalary - deduction;
+
+      // $('[name="total_paid"]').val(basicSalary.toFixed(2));
+			$('[name="total_paid"]').val(basicSalary - deduction);
+      $('.wpay').html((thour - hwork).toFixed(2));
+    });
+
     // Populate salary data on generate salary click
-      $(document).ready(function () {
+    $(document).on('click', ".salaryGenerateModal", function(e) {
+      e.preventDefault(e);
 
-        $(document).on('click', ".salaryGenerateModal", function (e) {
-          e.preventDefault(e);
+      $('#generatePayrollModal').modal('show');
 
-          $('#generatePayrollModal').modal('show');
+      var emid = $(this).data('id');
+      var month = $(this).data('month');
+      var year = $(this).data('year');
+      var has_loan = $(this).data('has_loan');
 
-          var emid = $(this).data('id');
-          var month = $(this).data('month');
-          var year = $(this).data('year');
-          var has_loan = $(this).data('has_loan');
+      console.log(has_loan);
 
-          console.log(has_loan);
+      $('#generatePayrollForm').find('[name="eid"]').val(emid).attr('readonly', true).end();
+      $('#generatePayrollForm').find('[name="month"]').val(Math.abs(month)).attr('readonly', true).end();
 
-          $('#generatePayrollForm').find('[name="eid"]').val(emid).attr('readonly', true).end();
-          $('#generatePayrollForm').find('[name="month"]').val(Math.abs(month)).attr('readonly', true).end();
+      $.ajax({
+        url: 'generate_payroll_for_each_employee?month=' + month + '&year=' + year + '&employeeID=' + emid,
+        method: 'GET',
+        data: '',
+        dataType: 'json',
+      }).done(function(response) {
+        console.log(response);
 
-          $.ajax({
-            url: 'generate_payroll_for_each_employee?month='+month+'&year='+year+'&employeeID='+emid,
-            method: 'GET',
-            data: '',
-            dataType: 'json',
-          }).done(function (response) {
-            console.log(response);
+        if (response.addition == 0) {
+          $('#generatePayrollForm').find('[id="addition"]').val('').hide().end();
+        }
+        if (response.deduction == 0) {
+          $('#generatePayrollForm').find('[id="deduction"]').val('').hide().end();
+        }
+        if (response.loan == 0) {
+          $('#generatePayrollForm').find('[id="loan"]').val('').hide().end();
+        }
 
-            if(response.addition == 0) {
-                $('#generatePayrollForm').find('[id="addition"]').val('').hide().end();
-            }
-            if(response.diduction == 0) {
-                $('#generatePayrollForm').find('[id="diduction"]').val('').hide().end();
-            }
-            if(response.loan == 0) {
-                $('#generatePayrollForm').find('[id="loan"]').val('').hide().end();
-            }
+        $('#generatePayrollForm').find('[name="basic"]').val(response.basic_salary).attr('readonly', true).end();
+        var totalPaid = parseFloat(response.basic_salary) - parseFloat(response.deduction) - parseFloat(response.loan);
+        $('#generatePayrollForm').find('[name="total_paid"]').val(response.final_salary).attr('readonly', true).end();
+        $('#generatePayrollForm').find('[name="month_work_hours"]').val(response.total_work_hours).end();
 
-            $('#generatePayrollForm').find('[name="basic"]').val(response.basic_salary).attr('readonly', true).end();
-            $('#generatePayrollForm').find('[name="month_work_hours"]').val(response.total_work_hours).attr('readonly', true).end();
-            $('#generatePayrollForm').find('[name="hours_worked"]').val(response.employee_actually_worked)/*.attr('readonly', true)*/.end();
-            $('#generatePayrollForm').find('[name="addition"]').val(response.addition).end();
-            $('#generatePayrollForm').find('[name="diduction"]').val(response.diduction).end();
-            $('#generatePayrollForm').find('[class="wpay"]').html(response.wpay).end();
-            $('#generatePayrollForm').find('[name="loan"]').val(response.loan_amount).prop('readonly', true).end();
-            $('#generatePayrollForm').find('[name="loan_id"]').val(response.loan_id).end();
-            $('#generatePayrollForm').find('[name="total_paid"]').val(response.final_salary).end();
-            $('#generatePayrollForm').find('[name="year"]').val(year).end();
-            $('#generatePayrollForm').find('[name="hrate"]').val(response.rate).end();
+        $('#generatePayrollForm').find('[name="hours_worked"]').val(response.employee_actually_worked)/*.attr('readonly', true)*/ .end();
+        $('#generatePayrollForm').find('[name="addition"]').val(response.addition).end();
+        $('#generatePayrollForm').find('[name="deduction"]').val(response.deduction).end();
+        $('#generatePayrollForm').find('[class="wpay"]').html(response.wpay).end();
+        $('#generatePayrollForm').find('[name="loan"]').end();
+        $('#generatePayrollForm').find('[name="loan_id"]').val(response.loan_id).end();
+        $('#generatePayrollForm').find('[name="year"]').val(year).end();
+        $('#generatePayrollForm').find('[name="hrate"]').val(response.rate).end();
       });
-});
-        });
-    </script>                             
+    });
+
+    var totalPaidValue = $('[name="total_paid"]').val();
+    console.log(typeof totalPaidValue);
+  });
+</script>
+
+
     <?php
 $this->load->view('backend/footer');
 ?>

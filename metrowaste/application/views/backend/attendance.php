@@ -20,7 +20,7 @@
                 <div class="row m-b-10"> 
                     <div class="col-12">
                         <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Save_Attendance" class="text-white"><i class="" aria-hidden="true"></i> Add Attendance </a></button>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="#" class="text-white" data-toggle="modal" data-target="#Bulkmodal"><i class="" aria-hidden="true"></i>  Add Bulk Attendance</a></button>
+                    
                         <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Attendance_Report" class="text-white"><i class="" aria-hidden="true"></i> Attendance Report </a></button>
                     </div>
                 </div>  
@@ -81,7 +81,7 @@
             <td><?php echo $value->date; ?></td>
             <td><?php echo $value->sign_in; ?></td>
             <td><?php echo $value->sign_out; ?></td>
-            <?php echo $value->working_hour; ?></td>
+            <td><?php echo $value->working_hour; ?></td> 
             <td></td>             
             </td>
         </tr>
