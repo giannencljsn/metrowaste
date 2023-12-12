@@ -25,7 +25,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li> <a class="dashboard-link" href="<?php echo base_url();?>" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
+                        <li> <a class="dashboard-link" href="<?php echo base_url(); ?>dashboard/dashboard" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a></li>
 						<!-- IF USER IS EMPLOYEE -->
 						<?php if($this->session->userdata('user_type')=='EMPLOYEE') { ?>
 						<li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id);?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees</span></a>
@@ -37,12 +37,7 @@
 							</ul>
 						</li>	
 						
-						<li>
-    <a href="<?php echo base_url(); ?>formcontroller">
-        <i class="mdi mdi-clipboard"></i>
-        <span class="hide-menu">Attendance</span>
-    </a>
-</li>
+						
 
 						<?php } else { ?>
 
@@ -72,14 +67,17 @@
 				<!-- Payroll -->
 						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Payroll</span></a>
 							<ul aria-expanded="false" class="collapse">
-								<li><a href="<?php echo base_url(); ?>Payroll/Salary_List">Payroll List</a></li>
+																<!-- Manage salaries by hour -->
+																<li><a href="<?php echo base_url();?>Payroll/Manage_Salaries_Per_Hour">Manage Salary Per Hour</a></li>
 								<li><a href="<?php echo base_url(); ?>Payroll/Generate_salary">Generate Payslip</a></li>
+								<li><a href="<?php echo base_url(); ?>Payroll/Salary_List">Payroll List</a></li>
 								<li><a href="<?php echo base_url(); ?>Payroll/Payslip_Report">Payslip Report</a></li>
 							</ul>
 						</li>	
 				<!-- Leave -->
 						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-off"></i><span class="hide-menu">Leave </span></a>
                             <ul aria-expanded="false" class="collapse">
+								<li><a href="<?php echo base_url(); ?>leave/Holidays"> Holiday </a></li>
                                 <li><a href="<?php echo base_url(); ?>leave/leavetypes"> Leave Type</a></li>
                                 <li><a href="<?php echo base_url(); ?>leave/Application"> Leave Application </a></li>
                                 <li><a href="<?php echo base_url(); ?>leave/Leave_report"> Report </a></li>

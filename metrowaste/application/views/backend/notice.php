@@ -75,8 +75,8 @@
                                                 <textarea class="form-control" name="title" id="message-text1" required minlength="5" maxlength="150"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label">Document</label>
-                                                <label for="recipient-name1" class="control-label">Title</label>
+                                                <label class="control-label">Document Title</label>
+                                               
                                                 <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
                                             </div>
                                             <div class="form-group">

@@ -28,7 +28,7 @@ class Payroll extends CI_Controller {
         $this->load->model('payroll_model');
         $this->load->model('settings_model');    
         $this->load->model('organization_model');    
-        $this->load->model('loan_model');
+
 		
     
 
@@ -42,15 +42,7 @@ class Payroll extends CI_Controller {
             #$data['settingsvalue'] = $this->dashboard_model->GetSettingsValue();
             $this->load->view('login');
     }
-    public function Salary_Type(){
-        if($this->session->userdata('user_login_access') != False) { 
-        $data['typevalue'] = $this->payroll_model->GetsalaryType();
-        $this->load->view('backend/salary_type',$data);
-        }
-        else{
-            redirect(base_url() , 'refresh');
-        }        
-    }
+   
    /* public function Salary_List(){
         if($this->session->userdata('user_login_access') != False) { 
         
@@ -113,7 +105,7 @@ class Payroll extends CI_Controller {
         // $data['salaryvaluebyid'] = $this->payroll_model->Get_Salary_Value($id);
         // $data['salarypayvaluebyid'] = $this->payroll_model->Get_Salarypay_Value($id);
         $data['salaryvalue'] = $this->payroll_model->GetsalaryValueByID($id);
-        $data['loanvaluebyid'] = $this->payroll_model->GetLoanValueByID($id);
+      
         echo json_encode($data);
         }
     else{
@@ -143,8 +135,8 @@ class Payroll extends CI_Controller {
             $basic = $this->input->post('basic');
             $totalday = $this->input->post('month_work_hours');
             $totalday = $this->input->post('hours_worked');
-            $loan = $this->input->post('loan');
-            $loanid = $this->input->post('loan_id');
+         
+          
             $total = $this->input->post('total_paid');
             $paydate = $this->input->post('paydate');
             $status = $this->input->post('status');
@@ -167,55 +159,17 @@ class Payroll extends CI_Controller {
                         'paid_date' => $paydate,
                         'total_days' => $totalday,
                         'basic' => $basic,
-                        'loan' => $loan,
+                   
                         'total_pay' => $total,
                         'status' => $status,
                         'paid_type' => $paid_type
                     );
                 if(empty($id)){
                     $success = $this->payroll_model->insert_Salary_Pay($data);
-                   if(empty($loanid)){
-                        #$loaninfo = $this->payroll_model->GetloanInfo($emid);
-                        echo "Successfully Added";
-                    } else {
-                        $loanvalue = $this->loan_model->GetLoanValuebyLId($loanid);              
-                        #$loaninfo = $this->payroll_model->GetloanInfo($emid);
-                        if(!empty($loanvalue)){
-                    $period = $loanvalue->install_period - 1;
-                    $number = $loanvalue->loan_number;
-                    $data = array();
-                    $data = array(
-                        'emp_id' => $emid,
-                        'loan_id' => $loanid,
-                        'loan_number' => $number,
-                        'install_amount' => $loan,
-                        /*'pay_amount' => $payment,*/
-                        'app_date' => $paydate,
-                        /*'receiver' => $receiver,*/
-                        'install_no' => $period
-                        /*'notes' => $notes*/
-                    );                         
-                $success = $this->loan_model->Add_installData($data);
-                $totalpay = $loanvalue->total_pay + $loan;
-                $totaldue = $loanvalue->amount - $totalpay;
-                 /*$period = $loanvalue->install_period - 1;*/
-                    if($period == '1'){
-                        $status = 'Done';
-                    }                        
-                $data = array();
-                $data = array(
-                'total_pay'=>$totalpay,
-                'total_due'=>$totaldue,
-                'install_period'=>$period,
-                'status'=>'Done'
-                );
-                $success = $this->loan_model->update_LoanData($loanid,$data);
-                    } else {
-                     echo "Successfully added But your Loan number is not available";   
-                    }
+					echo "Successfully Added";
                 }
-                echo "Successfully Added";
-                } else {
+             
+                 else {
                     $success = $this->payroll_model->Update_SalaryPayInfo($id,$data);
                     echo "Successfully Updated";
                 }
@@ -269,7 +223,8 @@ class Payroll extends CI_Controller {
                     /*'type_id' => $type,*/
                     'basic' => $basic,
                     'total' => $total,
-                    'totalnetpay' => $totalnetpay
+                    'totalnetpay' => $totalnetpay,
+					'totaldeduction' => $totaldeduction
 
                 );
             if(!empty($sid)){
@@ -294,7 +249,7 @@ class Payroll extends CI_Controller {
                     'whtax' => $whtax,
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
+                    // 'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 					
 
@@ -310,7 +265,7 @@ class Payroll extends CI_Controller {
                     'whtax' => $whtax,
                     'philhealth' => $philhealth,
                     'cashadvances' => $cashadvances,
-                    'totaldeduction' => $totaldeduction,
+                    // 'totaldeduction' => $totaldeduction,
                     'totalnetpay' => $totalnetpay
 
                 );
@@ -461,7 +416,7 @@ class Payroll extends CI_Controller {
         $data['salaryvaluebyid']    = $this->payroll_model->Get_Salary_Value($eid); // 24
         $data['salarypaybyid']      = $this->payroll_model->Get_SalaryID($eid);
         $data['salaryvalue']        = $this->payroll_model->GetsalaryValueByID($eid); // 25000
-        $data['loanvaluebyid']      = $this->payroll_model->GetLoanValueByID($eid);
+       
         $data['settingsvalue']      = $this->settings_model->GetSettingsValue();
 
         $data['addition'] = $this->payroll_model->getAdditionDataBySalaryID($data['salaryvalue']->id);
@@ -469,7 +424,7 @@ class Payroll extends CI_Controller {
         //$data['diduction'] = $this->payroll_model->getDiductionDataBySalaryID($data['salaryvalue']->id);
 
         //$month = date('m');
-        //$data['loanInfo']      = $this->payroll_model->getLoanInfoInvoice($id, $month);
+       
         $data['otherInfo']      = $this->payroll_model->getOtherInfo($eid);
         $data['bankinfo']      = $this->payroll_model->GetBankInfo($eid);
 
@@ -539,11 +494,7 @@ class Payroll extends CI_Controller {
         } else if($work_hour_diff > 0) {
             $diduction = abs($work_hour_diff) * $hourly_rate;
         }
-        // Loan
-        $loan_amount = $this->payroll_model->GetLoanValueByID($id_em);
-        if($loan_amount) {
-            $loan_amount = $loan_amount->installment;
-        }
+       
          // Sending 
         
         $data['a'] = $addition;
@@ -578,7 +529,7 @@ class Payroll extends CI_Controller {
         $salaryvaluebyid    = $this->payroll_model->Get_Salary_Value($eid); // 24
         $salarypaybyid      = $this->payroll_model->Get_SalaryID($eid);
         $salaryvalue        = $this->payroll_model->GetsalaryValueByID($eid); // 25000
-        $loanvaluebyid      = $this->payroll_model->GetLoanValueByID($eid);
+       
         $settingsvalue      = $this->settings_model->GetSettingsValue();
 
         $addition = $this->payroll_model->getAdditionDataBySalaryID($salaryvalue->id);
@@ -589,7 +540,7 @@ class Payroll extends CI_Controller {
 
         //print_r($salary_info);
         //$month = date('m');
-        //$data['loanInfo']      = $this->payroll_model->getLoanInfoInvoice($id, $month);
+        
         $otherInfo      = $this->payroll_model->getOtherInfo($eid);
         $bankinfo      = $this->payroll_model->GetBankInfo($eid);
         //print_r($salary_info);
@@ -656,14 +607,14 @@ class Payroll extends CI_Controller {
         } else if($work_hour_diff > 0) {
             $diduction = abs($work_hour_diff) * $hourly_rate;
         }
-        // Loan
-        $loan_amount = $this->payroll_model->GetLoanValueByID($id_em);
-        if($loan_amount) {
-            $loan_amount = $loan_amount->installment;
-        }
-         // Sending 
+
+
+		$total_pay_hours = $addition[0]->totalnetpay *  $salary_info->total_days;
+        $total_earnings_employee = $addition[0]->restduty + $addition[0]->straightduty + $addition[0]->specialholiday + $addition[0]->legalholiday ;
+        $final_pay_employee = $total_pay_hours + $total_earnings_employee;
+		// Sending 
        
-$obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvaluebyid, (array) $salarypaybyid, (array) $salaryvalue, (array) $loanvaluebyid);
+$obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvaluebyid, (array) $salarypaybyid, (array) $salaryvalue);
 
         $dd = date('j F Y',strtotime($salary_info->paid_date));
         
@@ -727,7 +678,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                             <td>:$bankinfo->bank_name</td>";
                                              } else {
                                             echo "<td>Pay Type</td>
-                                            <td>: Hand Cash</td>";
+                                            <td>: $salary_info->paid_type</td>";
                                             }
                                         echo "</tr>";
                                          if(!empty($bankinfo->bank_name)){
@@ -759,8 +710,8 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 										
 											
                                             <tr>
-                                                <td>Basic Salary</td>
-												<td class='text-right'>". $addition[0]->basic; echo "PHP</td>
+                                                <td>Salary Per Hour</td>
+												<td class='text-right'>". $addition[0]->totalnetpay; echo "PHP</td>
 												<td class='text-right'></td>
                                             </tr>
 										
@@ -816,9 +767,44 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 											<tr>
 												<td>Working Hour ($salary_info->total_days hrs)</td>
 												<td class='text-right'>
+											
+												$total_pay_hours PHP
+													
 												</td>
 												<td class='text-right'>
-														$salary_info->diduction PHP 
+														
+												</td>
+												
+											</tr>
+											
+											<tr>
+												<td>Total Earnings</td>
+												<td class='text-right'>
+												$total_earnings_employee PHP
+												</td>
+												<td class='text-right'>
+														
+												</td>
+												
+											</tr>
+											<tr>
+												<td>Final Pay</td>
+												<td class='text-right'>
+												$final_pay_employee PHP
+												</td>
+												<td class='text-right'>
+												$salary_info->diduction PHP 		
+												</td>
+												
+											</tr>
+											
+											<tr ></tr>
+												<td>Total Net Pay</td>
+												<td class='text-right'>$salary_info->total_pay PHP</td>
+												
+												
+												<td class='text-right'>
+													
 												</td>
 												
 											</tr>
@@ -828,19 +814,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                         </tbody>
 									
 										
-                                        <tfoot class='tfoot-light'>
-                                            <tr>
-                                                <th>Total</th>
-                                                <th class='text-right'>". $total_add = $addition[0]->basic + $addition[0]->restduty + $addition[0]->straightduty + $addition[0]->specialholiday + $addition[0]-> legalholiday;  round($total_add,2); echo "PHP</th>
-                                                <th class='text-right'>".$total_did = $addition[0]->sss + $addition[0]->sssprovident + $addition[0]->philhealth + $addition[0]->hdmf + $addition[0]->whtax + $addition[0]->cashadvances;  round($total_did,2); echo"PHP</th>
-
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th class='text-right'>Net Pay</th>
-                                                <th class='text-right'>$salary_info->total_pay PHP</th>
-                                            </tr>
-                                        </tfoot>
+                                       
                                     </table>
                                 </div>
                             </div>
@@ -867,6 +841,26 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         return $fridays;
     }
 
+	private function count_weekends($month, $year) {
+		// Calculate the total number of days in the month
+		$total_days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+	
+		// Initialize a counter for weekends
+		$weekend_count = 0;
+	
+		// Loop through each day in the month
+		for ($day = 1; $day <= $total_days_in_month; $day++) {
+			// Get the day of the week for the current day
+			$day_of_week = date('N', strtotime("$year-$month-$day"));
+	
+			// Check if the day is a Saturday (6) or Sunday (7)
+			if ($day_of_week == 6 || $day_of_week == 7) {
+				$weekend_count++;
+			}
+		}
+	
+		return $weekend_count;
+	}
     private function total_days_in_a_month($month, $year) {
         return cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
@@ -938,11 +932,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             $diduction = abs($work_hour_diff) * $hourly_rate;
         }
 
-        // Loan
-        $loan_amount = $this->payroll_model->GetLoanValueByID($employeeID);
-        if($loan_amount) {
-            $loan_amount = $loan_amount->installment;
-        }
+       
 
 		// Get their deduction
 		$employee_deduction = $this->payroll_model->getDiductionDataBySalaryID($employeeID);
@@ -958,7 +948,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
         $data['addition'] = $addition;
         $data['diduction'] = $diduction;
-        $data['loan'] = $loan_amount;
+   
 
 	
 	
@@ -984,15 +974,14 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         if($this->session->userdata('user_login_access') != False) {
 
         $eid = $this->input->post('eid');
-
         $month = $this->month_number_to_name($this->input->post('month'));
         $basic = $this->input->post('basic');
         $year = $this->input->post('year');
         $hours_worked = $this->input->post('hours_worked');
         $addition = $this->input->post('addition');
-        $diduction = $this->input->post('diduction');
-        $loan_id = $this->input->post('loan_id');
-        $loan = $this->input->post('loan');
+        $diduction = $this->input->post('deduction');
+        
+     
         $total_paid = $this->input->post('total_paid');
         $paydate = $this->input->post('paydate');
         $status = $this->input->post('status');
@@ -1017,7 +1006,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                 'paid_date' => $paydate,
                 'total_days' => $hours_worked,
                 'basic' => $basic,
-                'loan' => $loan,
+       
                 'total_pay' => $total_paid,
                 'addition' => $addition,
                 'diduction' => $diduction,
@@ -1046,51 +1035,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
 
                     $success = $this->payroll_model->updatePaidSalaryData($payID, $data);
 
-                    // Do the loan update
-                    if($success && $status == "Paid") {
-                        $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
-
-                        // loan_id and loan fields already grabbed
-                        if (!empty($loan_info)) {
-
-                            $period = $loan_info->install_period - 1;
-                            $number = $loan_info->loan_number;
-                            $data = array();
-                            $data = array(
-
-                                'emp_id' => $eid,
-                                'loan_id' => $loan_id,
-                                'loan_number' => $number,
-                                'install_amount' => $loan,
-                                /*'pay_amount' => $payment,*/
-                                'app_date' => $paydate,
-                                /*'receiver' => $receiver,*/
-                                'install_no' => $period
-                                /*'notes' => $notes*/
-                            );
-
-                            $success_installment = $this->loan_model->Add_installData($data);
-
-                            $totalpay = $loan_info->total_pay + $loan;
-                            $totaldue = $loan_info->amount - $totalpay;
-                            $period = $loan_info->install_period - 1;
-                            $loan_status = $loan_info->status;
-
-                            if ($period == '1') {
-                                $loan_status = 'Done';
-                            }
-
-                            $data = array();
-                            $data = array(
-                                'total_pay'         => $totalpay,
-                                'total_due'         => $totaldue,
-                                'install_period'    => $period,
-                                'status'            => $loan_status
-                            );
-
-                            $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
-                        }
-                    }
+                   
 
                     echo "Successfully added";
 
@@ -1099,63 +1044,15 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             } else {
                 $success = $this->payroll_model->insertPaidSalaryData($data);
 
-                // Do the loan update
-                if($success && $status == "Paid") {
-
-                    // Input Status
-                        $loan_info = $this->loan_model->GetLoanValuebyLId($loan_id);
-                        
-                        // loan_id and loan fields already grabbed
-                        if (!empty($loan_info)) {
-
-                            $period = $loan_info->install_period - 1;
-                            $number = $loan_info->loan_number;
-                            $data = array();
-                            $data = array(
-
-                                'emp_id' => $eid,
-
-                                'loan_id' => $loan_id,
-                                'loan_number' => $number,
-                                'install_amount' => $loan,
-                                /*'pay_amount' => $payment,*/
-                                'app_date' => $paydate,
-                                /*'receiver' => $receiver,*/
-                                'install_no' => $period
-                                /*'notes' => $notes*/
-                            );
-
-                            $success_installment = $this->loan_model->Add_installData($data);
-
-                            $totalpay = $loan_info->total_pay + $loan;
-                            $totaldue = $loan_info->amount - $totalpay;
-                            $period = $loan_info->install_period - 1;
-                            $loan_status = $loan_info->status;
-
-                            if ($period == '0') {
-                                $loan_status = 'Done';
-                            }
-
-                            $data = array();
-                            $data = array(
-                                'total_pay'         => $totalpay,
-                                'total_due'         => $totaldue,
-                                'install_period'    => $period,
-                                'status'            => $loan_status
-                            );
-
-                            $success_loan = $this->loan_model->update_LoanData($loan_id, $data);
-                        }
-
+               
                     echo "Successfully added";
                 }
+				redirect(base_url() , 'refresh');
             }
-        }
+    
+
     }
-    else {
-            redirect(base_url() , 'refresh');
-        }        
-    }
+}
 
     // Generate the list of employees by dept. to generate their payments
     public function load_employee_by_deptID_for_pay(){
@@ -1175,8 +1072,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         foreach($employees as $employee){
 
             $full_name = $this->get_full_name($employee->first_name, $employee->last_name);
-            // Loan
-            $has_loan = $this->payroll_model->hasLoanOrNot($employee->em_id);
+
 
             echo "<tr>
                     <td>$employee->em_code</td>
@@ -1188,7 +1084,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
                                 data-id='$employee->em_id' 
                                 data-month='$month' 
                                 data-year='$year' 
-                                data-has_loan='$has_loan' 
+                               
                                 class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' 
                                 data-toggle='modal'
                                 data-target='#salaryGenerateModal'>
@@ -1203,7 +1099,7 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
         $data['addition'] = $addition;
         $data['diduction'] = $diduction;
-        $data['loan'] = $loan_amount;
+       
         echo json_encode($data);
         }
         else{
@@ -1223,12 +1119,16 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $employeePIN = $this->getPinFromID($employeeID);
 
         // Count Friday
-        $fridays = $this->count_friday($month, $year);
+        // $fridays = $this->count_friday($month, $year);
+		 // Count weekends
+		 $weekend_count = $this->count_weekends($month, $year);
 
         $month_holiday_count = $this->payroll_model->getNumberOfHolidays($month, $year);
 
-        // Total holidays and friday count
-        $total_days_off = $fridays + $month_holiday_count->total_days;
+
+
+        // Total holidays and weekends count
+        $total_days_off =  $weekend_count + $month_holiday_count->total_days;
 
         // Total days in the month
         $total_days_in_the_month = $this->total_days_in_a_month($month, $year);
@@ -1243,8 +1143,14 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         $start_date = date('Y-m-d', $result);
         $end_date = $year . '-' . $month . '-' . $total_days_in_the_month;
 
+
+
         // Employee actually worked
-        $employee_actually_worked = $this->hours_worked_by_employee($employeePIN->em_code, $start_date, $end_date);  // in hours
+
+		 // Get the total working hours
+		 $total_employee_work_hours = $this->payroll_model->getTotalEmployeeWorkHours($employeeID);
+
+        $employee_actually_worked =  120;
             //echo json_encode($start_date);
         //Get his monthly salary
         $employee_salary = $this->payroll_model->GetsalaryValueByID($employeeID);
@@ -1253,48 +1159,42 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         if($employee_salary) {
 
             $employee_salary = $employee_salary->totalnetpay;
+			
 
         }
 
         // Hourly rate for the month
-        $hourly_rate = $employee_salary / $total_work_hours;
+        // $hourly_rate = $employee_salary / $total_work_hours;
         
-        $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
+        // $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
 
-        $addition = 0;
-        $diduction = 0;
-        if($work_hour_diff < 0) {
-            $addition = abs($work_hour_diff) * $hourly_rate;
-        } else if($work_hour_diff > 0) {
-            // 80 is > 0 which means he worked less, so diduction = 80 hrs
-            // so 80 * hourly rate 208 taka = 17500
-            $diduction = abs($work_hour_diff) * $hourly_rate;
-        }
+        $addition = $this->payroll_model->GetsalaryValueByID($employeeID);
+		if($addition){
+			$addition = $addition->total;
+		}
 
-        // Loan
-        $loan_amount = 0;
-        $loan_id = 0;
-        $loan_info = $this->payroll_model->GetLoanValueByID($employeeID);
-        if($loan_info) {
-            $loan_amount = $loan_info->installment;
-            $loan_id = $loan_info->id;
-        }
+        $diduction = $this->payroll_model->GetsalaryValueByID($employeeID);
+		if($diduction){
+			$diduction = $diduction->totaldeduction;
+		}
+        
+       
 
         // Final Salary
-        $final_salary = $employee_salary + $addition - $diduction - $loan_amount;
+        $final_salary = ($employee_salary * $total_employee_work_hours + $addition) - $diduction;
 
         // Sending 
         $data = array();
         $data['basic_salary'] = $employee_salary;
         $data['total_work_hours'] = $total_work_hours;
-        $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
-        $data['wpay'] =$total_work_hours - $employee_actually_worked[0]->Hours;
-        $data['addition'] = round($addition, 2);
-        $data['diduction'] = round($diduction, 2);
-        $data['loan_amount'] = $loan_amount;
-        $data['loan_id'] = $loan_id;
+        $data['employee_actually_worked'] =  $total_employee_work_hours;
+        $data['wpay'] = $total_work_hours -  $total_employee_work_hours;
+        $data['addition'] = $addition;
+        $data['deduction'] = $diduction ;
+      
+       
         $data['final_salary'] = round($final_salary, 2);
-        $data['rate'] = round($hourly_rate, 2);   
+      
         echo json_encode($data);
         }
         else{
@@ -1312,4 +1212,19 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     }        
     }
 
+
+
+			/**Manage Salary per Hour function dummy muna*/
+		public function Manage_Salaries_Per_Hour(){
+
+			if($this->session->userdata('user_login_access') != False) {
+				$data['designation'] = $this->employee_model->desselect();
+				$this->load->view('backend/salary_manage',$data);
+				}
+			else{
+				redirect(base_url() , 'refresh');
+			}          
+		}
+
 }
+

@@ -104,8 +104,17 @@
 								</div>
 								<div class="form-group">
 									<label>Attendance Date</label>
-									<input type="text" name="attdate" class="form-control datepicker" placeholder="Select Attendance Date">
+									<input type="text" name="attdate" class="form-control datepicker" placeholder="YYYY-MM-DD">
 								</div>
+												<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+													<script>
+														// Initialize Flatpickr
+														flatpickr(".datepicker", {
+															dateFormat: "Y-m-d",
+															altInput: true,
+															altFormat: "Y-m-d",
+														});
+													</script>
 								<div class="modal-footer">
 									<input type="hidden" name="id" value="<?php if (!empty($attval->id)) { echo $attval->id; } ?>" class="form-control" id="recipient-name1">
 									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -154,14 +163,6 @@ document.getElementById('employeeForm').addEventListener('submit', function(even
         }
     }
 
-    // Display selected employee names in the modal body
-    var modalBody = document.getElementById('myModalContent').querySelector('.modal-body');
-    modalBody.innerHTML = ''; // Clear existing content
-    for (var j = 0; j < selectedEmployeeNames.length; j++) {
-        var employeeNameElement = document.createElement('p');
-        employeeNameElement.textContent = selectedEmployeeNames[j];
-        modalBody.appendChild(employeeNameElement);
-    }
 
     // Create a new select element for each selected employee
     var employeeSelectContainer = document.getElementById('employeeSelectContainer');
@@ -199,11 +200,7 @@ document.getElementById('employeeForm').addEventListener('submit', function(even
         employeeSelectContainer.appendChild(selectElement);
     }
 
-    // Pass the form data to the controller
-    
-
-    // Open the modal
-    $('#myModal').modal('show');
+   
 });
 
 
@@ -230,22 +227,21 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
     }
 
     // Send the form data to the Add_Attendance controller
-    fetch('Add_Attendance', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-    if (data.message === 'Successfully added!') {
+fetch('Add_Attendance', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    var message = data.message; // Retrieve the value of the "message" object from the response
+    console.log(message);
+    if (message === 'Successfully added!') {
         // Display the success message in the .message element
-        var successMessage = document.createElement('div');
-        successMessage.textContent = data.message;
-		console.log(successMessage.textContent);
+        var successMessage = document.querySelector('.message');
+        successMessage.textContent = message;
         successMessage.classList.add('success-message');
-        document.querySelector('.message').textContent = data.message;
-        document.body.appendChild(successMessage);
         setTimeout(function() {
-            successMessage.remove();
+            successMessage.textContent = ''; // Clear the success message after a few seconds
         }, 3000);
 
         // Reset the form and reload the page after 3 seconds
@@ -254,15 +250,16 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
             location.reload();
         }, 3000);
     } else {
-        console.log('Error: ' + data.message);
+        console.log('Error: ' + message);
     }
 })
 .catch(error => {
     console.error('Error:', error.message);
-	});
 });
 
-    xhr.send(formData);
+});
+
+   
 
 
 </script>
@@ -272,29 +269,5 @@ document.getElementById('attendanceForm').addEventListener('submit', function(ev
                                  
 
 
-
-
-<div id="myModalContent">
-   <!-- Form content goes here -->
-   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Selected Employees</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <!-- Selected employees will be displayed here -->
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         </div>
-      </div>
-   </div>
-</div>
-
-</div>
 
 <?php $this->load->view('backend/footer'); ?>

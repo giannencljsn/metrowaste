@@ -29,6 +29,8 @@
     <link href="<?php echo base_url(); ?>assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+	 <!-- Include Flatpickr CSS Calendar-->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
     <!-- Daterange picker plugins css -->
@@ -59,6 +61,18 @@
 			content: "✖";
 			}
 			
+
+			#exampleModalLabel1{
+				color: black !important;
+			}
+			.nav-link active, .nav-link{
+						font-size: 14px; 
+			}
+
+			#required-fields-red{
+				color:red;
+				font-style:italic;
+			}
 	</style>
 
 </head>

@@ -11,7 +11,7 @@ class Attendance extends CI_Controller
         $this->load->model('login_model');
         $this->load->model('dashboard_model');
         $this->load->model('employee_model');
-        $this->load->model('loan_model');
+      
         $this->load->model('settings_model');
         $this->load->model('leave_model');
         $this->load->model('attendance_model');
@@ -64,86 +64,92 @@ class Attendance extends CI_Controller
         return $this->attendance_model->getPINFromID($employee_ID);
     }
     
-    public function Get_attendance_data_for_report()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            $date_from   = $this->input->post('date_from');
-            $date_to   = $this->input->post('date_to');
-            $employee_id   = $this->input->post('employee_id');
-            $employee_PIN = $this->getPINFromID($employee_id)->em_code;
-            $attendance_data = $this->attendance_model->getAttendanceDataByID($employee_PIN, $date_from, $date_to);
-            $data['attendance'] = $attendance_data;
-            $attendance_hours = $this->attendance_model->getTotalAttendanceDataByID($employee_PIN, $date_from, $date_to);
-            if(!empty($attendance_data)){
-            $data['name'] = $attendance_data[0]->name;
-            $data['days'] = count($attendance_data);
-            $data['hours'] = $attendance_hours;                
-            }
-            echo json_encode($data);
+	public function Get_attendance_data_for_report()
+{
+    if ($this->session->userdata('user_login_access') != false) {
+        $date_from = $this->input->post('date_from');
+        $date_to = $this->input->post('date_to');
+        $employee_id = $this->input->post('employee_id');
 
-            /*foreach ($attendance_data as $row) {
-                $row =  
-                    "<tr>
-                        <td>$numbering</td>
-                        <td>$row->first_name $row->first_name</td>
-                        <td>$row->atten_date</td>
-                        <td>$row->signin_time</td>
-                        <td>$row->signout_time</td>
-                        <td>$row->working_hour</td>
-                        <td>Type</td>
-                    </tr>";
-            }*/
-            
-        } else {
-            redirect(base_url(), 'refresh');
-        }
+        $attendance_data = $this->attendance_model->getAttendanceDataByDateRange($employee_id, $date_from, $date_to);
+
+        $data['attendance'] = $attendance_data;
+        $html = $this->load->view('backend/attendance_report_data', $data, true);
+
+        // Return the HTML response as JSON
+        echo json_encode(array('html' => $html));
+    } else {
+        redirect(base_url(), 'refresh');
     }
-    
-	public function Add_Attendance()
+}
+	
+public function Add_Attendance()
 {
     if ($this->session->userdata('user_login_access') != false) {
         $emp_ids = $this->input->post('emp_id');
         $em_codes = $this->input->post('em_code');
         $employeeNames = $this->input->post('employee_name');
-        $signins = $this->input->post('signin'); // Retrieve the values of 'signin[]'
-        $signouts = $this->input->post('signout'); // Retrieve the values of 'signout[]'
-        $attdates = $this->input->post('attdate'); // Retrieve the values of 'attdate[]'
+        $signins = $this->input->post('signin');
+        $signouts = $this->input->post('signout');
+        $attdates = $this->input->post('attdate');
 
         if (!empty($emp_ids) && !empty($em_codes) && !empty($employeeNames)) {
             $attendanceData = array();
 
             foreach ($emp_ids as $key => $em_id) {
-                $attendanceData[] = array(
-                    'em_code' => $em_codes[$key],
-                    'employee_name' => $employeeNames[$key],
-                    'sign_in' => $signins[$key], // Assign the value of 'signin[]'
-                    'sign_out' => $signouts[$key], // Assign the value of 'signout[]'
-                    'date' => $attdates[$key] // Assign the value of 'attdate[]'
-                );
+                $sign_in = $signins[$key];
+                $sign_out = $signouts[$key];
+                $date = $attdates[$key];
+
+                if (!empty($sign_in)) {
+                    $attendanceData[] = array(
+                        'em_code' => $em_codes[$key],
+                        'employee_name' => $employeeNames[$key],
+                        'sign_in' => $sign_in,
+                        'date' => $date
+                    );
+                }
+
+                if (!empty($sign_out)) {
+                    $existing_sign_in = $this->attendance_model->getSignIn($em_codes[$key], $date);
+                    $existing_sign_in = date('H:i:s', strtotime($existing_sign_in));
+                    $sign_out = date('H:i:s', strtotime($sign_out));
+
+                    $existing_sign_in_time = new DateTime($existing_sign_in);
+                    $sign_out_time = new DateTime($sign_out);
+                    $time_diff = $existing_sign_in_time->diff($sign_out_time);
+
+                    // Subtract 1 hour directly from the hours property
+                    $time_diff->h -= 1;
+
+                    $working_hour = $time_diff->format('%h h %i m');
+
+                    $this->attendance_model->UpdateAttendance($em_codes[$key], $date, $sign_out, $working_hour);
+                }
             }
 
-            $success = $this->attendance_model->Add_AttendanceData($attendanceData);
-
-            if ($success) {
-                $message = "Successfully added!";
-            } else {
-                $message = "Failed to add attendance.";
+            if (!empty($attendanceData)) {
+                $this->attendance_model->Add_AttendanceData($attendanceData);
             }
 
+            $message = "Successfully added/updated!";
             $response = array('message' => $message);
             echo json_encode($response);
         } else {
             $message = "Successfully added!";
-            $response = array('message' => $message);
-            echo json_encode($response);
+            echo json_encode($message);
         }
     } else {
-        // Handle the case when the user is not logged in
         $message = "User not logged in.";
         $response = array('message' => $message);
         echo json_encode($response);
     }
 }
+
+
+
+
+
 
 
         //THIS IS FOR ATTENDANCE LIST
