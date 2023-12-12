@@ -64,6 +64,11 @@
 						</div>
 					</div>
 
+					<div class="form-group text-center m-t-20">
+    <div class="col-xs-12">
+        <a href="<?php echo site_url('ForgotPassword'); ?>">Forgot Password?</a>
+    </div>
+</div>
 					
 				</form>
 
