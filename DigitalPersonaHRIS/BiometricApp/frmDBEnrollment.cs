@@ -165,6 +165,8 @@ namespace BiometricApp
         /// Cancel the capture and then close the reader.
         /// </summary>
         /// <param name="OnCaptured">Delegate to unhook as handler of the On_Captured event </param>
+        /// 
+        // Method to cancel capture and close the reader
         public void CancelCaptureAndCloseReader(Reader.CaptureCallback OnCaptured)
         {
             using (Tracer tracer = new Tracer("Form_Main::CancelCaptureAndCloseReader"))
@@ -247,16 +249,18 @@ namespace BiometricApp
             CurrentReader = _readers[cboReaders.SelectedIndex];
             if (!OpenReader())
             {
+                // Close the form if unable to open the reader
                 //this.Close();
             }
 
             if (!StartCaptureAsync(this.OnCaptured))
             {
+                // Close the form if unable to start capture
                 //this.Close();
             }
 
 
-           
+
         }
         /// <summary>
         /// Open a device and check result for errors.
@@ -349,6 +353,8 @@ namespace BiometricApp
 
                     if (count >= 4)
                     {
+                        // Create an enrollment from the captured fingerprints
+
                         resultEnrollment = DPUruNet.Enrollment.CreateEnrollmentFmd(Constants.Formats.Fmd.ANSI, preenrollmentFmds);
 
                         if (resultEnrollment.ResultCode == Constants.ResultCode.DP_SUCCESS)
@@ -420,8 +426,10 @@ namespace BiometricApp
             CancelCaptureAndCloseReader(this.OnCaptured);
         }
 
+        //event handler for the save button
         private void button1_Click(object sender, EventArgs e)
-        {
+        {   
+            //check if an enrollment has been captured
             if (resultEnrollment != null)
             {
                 try

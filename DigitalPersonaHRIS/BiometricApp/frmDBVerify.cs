@@ -1,4 +1,5 @@
-﻿using DPUruNet;
+﻿//Libraries
+using DPUruNet;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace BiometricApp
 {
     public partial class frmDBVerify : Form
     {
+        //Connection fot sql database
         public MySqlConnection conn = new MySqlConnection("Server=localhost;Database=hrsystemci;Uid=root;");
 
         public frmDBVerify()
@@ -36,6 +38,8 @@ namespace BiometricApp
             }
         }
         private ReaderCollection _readers;
+
+        //handle for accessing the fingerprint scanner 
         private void LoadScanners()
         {
             cboReaders.Text = string.Empty;
@@ -81,6 +85,8 @@ namespace BiometricApp
         /// Open a device and check result for errors.
         /// </summary>
         /// <returns>Returns true if successful; false if unsuccessful</returns>
+        /// 
+        //opening fingerprint reader
         public bool OpenReader()
         {
             using (Tracer tracer = new Tracer("Form_Main::OpenReader"))
@@ -93,6 +99,7 @@ namespace BiometricApp
 
                 if (result != Constants.ResultCode.DP_SUCCESS)
                 {
+                    //display error if open fails
                     MessageBox.Show("Error:  " + result);
                     reset = true;
                     return false;
@@ -104,8 +111,10 @@ namespace BiometricApp
         /// <summary>
         /// Check quality of the resulting capture.
         /// </summary>
+        /// fingerprint capture function
         public bool CheckCaptureResult(CaptureResult captureResult)
         {
+            //code for checking if the fingerprint capture was successful
             using (Tracer tracer = new Tracer("Form_Main::CheckCaptureResult"))
             {
                 if (captureResult.Data == null || captureResult.ResultCode != Constants.ResultCode.DP_SUCCESS)
@@ -153,6 +162,8 @@ namespace BiometricApp
         /// Check the device status before starting capture.
         /// </summary>
         /// <returns></returns>
+        /// 
+        /// function to handle status of  the fingerprint
         public void GetStatus()
         {
             using (Tracer tracer = new Tracer("Form_Main::GetStatus"))
@@ -175,6 +186,7 @@ namespace BiometricApp
                 }
                 else if ((currentReader.Status.Status != Constants.ReaderStatuses.DP_STATUS_READY))
                 {
+                    //showing the status of fingerprint reader if not ready
                     throw new Exception("Reader Status - " + currentReader.Status.Status);
                 }
             }
@@ -190,19 +202,25 @@ namespace BiometricApp
             {
                 try
                 {
+                    //check if the fingerprint status is ready then proceed
                     GetStatus();
 
                     Constants.ResultCode captureResult = currentReader.CaptureAsync(Constants.Formats.Fid.ANSI, Constants.CaptureProcessing.DP_IMG_PROC_DEFAULT, currentReader.Capabilities.Resolutions[0]);
+                    // Check if the capture operation was unsuccessful
                     if (captureResult != Constants.ResultCode.DP_SUCCESS)
                     {
+                        // Set the 'reset' flag to true indicating a need for resetting
                         reset = true;
+                        // Throw an exception with the error message containing the result
                         throw new Exception("" + captureResult);
                     }
-
+                    // If the capture was successful, return true
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    // Catch any exceptions that  during the capture process
+                    // Display an error message in a MessageBox
                     MessageBox.Show("Error:  " + ex.Message);
                     return false;
                 }
@@ -243,6 +261,8 @@ namespace BiometricApp
         /// Handler for when a fingerprint is captured.
         /// </summary>
         /// <param name="captureResult">contains info and data on the fingerprint capture</param>
+        /// 
+        // a fingerprint is captured functiion.
         public void OnCaptured(CaptureResult captureResult)
         {
             try
@@ -250,23 +270,26 @@ namespace BiometricApp
                 // Check capture quality and throw an error if bad.
                 if (!CheckCaptureResult(captureResult)) return;
 
-                // Create bitmap
+                // Create a bitmap for each view in the capture result and send it as a message
                 foreach (Fid.Fiv fiv in captureResult.Data.Views)
                 {
                     SendMessage(Action.SendBitmap, CreateBitmap(fiv.RawImage, fiv.Width, fiv.Height));
                 }
 
-                //Verification Code
+                // Verification Code
                 try
                 {
                     // Check capture quality and throw an error if bad.
                     if (!CheckCaptureResult(captureResult)) return;
 
+                    // Send a message indicating that a finger was captured
                     SendMessage(Action.SendMessage, "A finger was captured.");
 
+                    // Convert the captured fingerprint data to an Fmd (Fingerprint Minutiae Data)
                     DataResult<Fmd> resultConversion = FeatureExtraction.CreateFmdFromFid(captureResult.Data, Constants.Formats.Fmd.ANSI);
                     if (resultConversion.ResultCode != Constants.ResultCode.DP_SUCCESS)
                     {
+                        // Handle conversion errors  and throw an exception
                         if (resultConversion.ResultCode != Constants.ResultCode.DP_TOO_SMALL_AREA)
                         {
                             Reset = true;
@@ -274,13 +297,15 @@ namespace BiometricApp
                         throw new Exception(resultConversion.ResultCode.ToString());
                     }
 
+                    // Store the converted Fmd for later comparison
                     firstFinger = resultConversion.Data;
 
+                    // Connect to the MySQL database
                     using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=hrsystemci;Uid=root;"))
                     {
                         conn.Open();
 
-                        // Use MySqlCommand and MySqlDataAdapter for MySQL
+                        // Retrieve employee fingerprint data from the database
                         MySqlCommand cmd = new MySqlCommand("SELECT ef.*, e.first_name, e.last_name " +
                                                            "FROM employee_fingerprint ef " +
                                                            "LEFT JOIN employee e ON ef.employee_id = e.em_id", conn);
@@ -288,34 +313,41 @@ namespace BiometricApp
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
 
+                        // Lists to store employee IDs and full names
                         List<string> lstledgerIds = new List<string>();
                         List<string> lstFullNames = new List<string>();
 
                         count = 0;
 
+                        // Process each employee's fingerprint template
                         if (dt.Rows.Count > 0)
                         {
                             for (int i = 0; i < dt.Rows.Count; i++)
                             {
+                                // lists with employee IDs and full names
                                 lstledgerIds.Add(dt.Rows[i]["employee_id"].ToString());
                                 string firstName = dt.Rows[i]["first_name"].ToString();
                                 string lastName = dt.Rows[i]["last_name"].ToString();
                                 string fullName = $"{firstName} {lastName}";
                                 lstFullNames.Add(fullName);
+
+                                // Deserialize stored fingerprint template from the database
                                 Fmd val = Fmd.DeserializeXml(dt.Rows[i]["fingerprint"].ToString());
+
+                                // Compare the captured fingerprint with the stored template
                                 CompareResult compare = Comparison.Compare(firstFinger, 0, val, 0);
                                 if (compare.ResultCode != Constants.ResultCode.DP_SUCCESS)
                                 {
+                                    // Handle comparison errors, and throw an exception
                                     Reset = true;
                                     throw new Exception(compare.ResultCode.ToString());
                                 }
+
+                                // If the fingerprints match, update attendance records
                                 if (Convert.ToDouble(compare.Score.ToString()) == 0)
                                 {
-                                  
-                                  
-                                        
-
-                                        string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+                                    // Obtain the current date
+                                    string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
                                     // Check if an entry with the employee ID exists for today
                                     MySqlCommand checkCmd = new MySqlCommand("SELECT * FROM attendance WHERE date = @currentDate AND em_code = @employeeId", conn);
@@ -326,6 +358,7 @@ namespace BiometricApp
                                     {
                                         if (reader.HasRows)
                                         {
+                                            // Entry exists, update sign-out time and working hours
                                             reader.Read();
                                             string signInTimeStr = reader["sign_in"].ToString();
                                             DateTime signInDateTime = DateTime.Parse(signInTimeStr);
@@ -349,44 +382,47 @@ namespace BiometricApp
                                             updateCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
                                             updateCmd.ExecuteNonQuery();
 
+                                            // Display a message
                                             MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-out Time: " + DateTime.Now.ToString("HH:mm"));
                                             count++;
-
                                         }
-
                                         else
                                         {
-                                                // Entry does not exist, insert a new record
-                                                reader.Close();
-                                                MySqlCommand insertCmd = new MySqlCommand("INSERT INTO attendance (em_code, employee_name,  date, sign_in) VALUES (@employeeId, @employeeName, @currentDate, @currentTime)", conn);
-                                                insertCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
-                                                insertCmd.Parameters.AddWithValue("@employeeName", lstFullNames[i].ToString());
-                                                insertCmd.Parameters.AddWithValue("@currentDate", currentDate);
-                                                insertCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("HH:mm"));
-                                                insertCmd.ExecuteNonQuery();
+                                            // Entry does not exist
+                                            reader.Close();
+                                            MySqlCommand insertCmd = new MySqlCommand("INSERT INTO attendance (em_code, employee_name,  date, sign_in) VALUES (@employeeId, @employeeName, @currentDate, @currentTime)", conn);
+                                            insertCmd.Parameters.AddWithValue("@employeeId", lstledgerIds[i].ToString());
+                                            insertCmd.Parameters.AddWithValue("@employeeName", lstFullNames[i].ToString());
+                                            insertCmd.Parameters.AddWithValue("@currentDate", currentDate);
+                                            insertCmd.Parameters.AddWithValue("@currentTime", DateTime.Now.ToString("HH:mm"));
+                                            insertCmd.ExecuteNonQuery();
 
-
+                                            // Display a message
                                             MessageBox.Show("Employee ID is: " + lstledgerIds[i].ToString() + "\nSign-in Time: " + DateTime.Now.ToString("HH:mm"));
                                             count++;
-
                                         }
-                                        }
-                                    
+                                    }
 
                                     break; // Exit the loop after processing the matched employee
                                 }
-                            }
-
-                            if (count == 0)
-                            {
-                                SendMessage(Action.SendMessage, "Fingerprint not registered.");
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    // Handle exceptions during verification and display an error message
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions during capture result checking and display an error message
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        MessageBox.Show(ex.Message);
                 }
             }
             catch (Exception ex)
