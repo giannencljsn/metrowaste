@@ -258,9 +258,9 @@
                                     </div>
                                
                                     <div class="form-group col-md-3 m-t-20">
-                                        <label>Username </label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" pattern="^[a-zA-Z0-9_]*$"placeholder="username" minlength="3"
-										title="Must contain at least 3 characters" > 
+                                    <label><span id="required-fields-red">*</span>Email (<span id="required-fields-red">required</span>)</label>
+                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="email" minlength="3"
+										 required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Password </label>
