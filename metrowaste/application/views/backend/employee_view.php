@@ -632,13 +632,7 @@
                                             </div> 
 											<!-- Basic Salary -->
 											
-											<div class="form-group col-md-4 m-t-10">
-    <label>Designation</label>
-    <select name="deg" class="form-control custom-select">
-        <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_id; ?></option>
-        <!-- Add other options as needed -->
-    </select>
-</div>
+											
 
 <!-- Display corresponding salary_per_hr in an input field -->
 <div class="form-group col-md-6 m-t-5">
