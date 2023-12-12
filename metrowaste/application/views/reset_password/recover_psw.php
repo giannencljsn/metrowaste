@@ -142,15 +142,18 @@ if(isset($_POST["recover"])){
 
         // HTML body
         $mail->isHTML(true);
-        $mail->Subject="Recover your password";
+        $mail->Subject = "Recover your password";
+        // url
+        $resetPasswordUrl = site_url('forgotPassword/resetPassword');
+        
         $mail->Body = "<b>Dear User</b>
-    <h3>We received a request to reset your password.</h3>
-    <p>Kindly click the below link to reset your password</p>
-    http://localhost/metrowaste-testBranch/metrowaste/forgotPassword/resetPassword
-    <br><br>
-    <p>With regards,</p>
-    <b>Metrowaste</b>";
-
+            <h3>We received a request to reset your password.</h3>
+            <p>Kindly click the below link to reset your password</p>
+            <a href='$resetPasswordUrl'>$resetPasswordUrl</a>
+            <br><br>
+            <p>With regards,</p>
+            <b>Metrowaste</b>";
+            
         if(!$mail->send()){
             ?>
             <script>

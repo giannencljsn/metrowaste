@@ -116,7 +116,7 @@ if (!$connect) {
         ?>
         <script>
             alert("<?php echo "Your password has been successfully reset"?>");
-            window.location.href = 'http://localhost/metrowaste-testBranch/metrowaste/';
+            window.location.href = '<?php echo base_url(); ?>';
         </script>
         <?php
     }else{
