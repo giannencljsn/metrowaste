@@ -307,9 +307,13 @@ public function getPinFromID($employeeID){
 	}
 	
 
-	public function getTotalEmployeeWorkHours($employeeID) {
+	public function getTotalEmployeeWorkHours($employeeID, $month) {
     $this->db->select_sum('working_hour', 'total_employee_work_hours');
     $this->db->where('em_code', $employeeID);
+    
+    // Add condition to filter by month
+    $this->db->where("MONTH(date)", $month);
+
     $query = $this->db->get('attendance');
 
     if ($query->num_rows() > 0) {
