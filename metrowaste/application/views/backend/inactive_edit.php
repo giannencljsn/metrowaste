@@ -77,7 +77,7 @@
                                                     </div>
                                                     <?php } ?>			
 				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Employee PIN </label>
+				                                        <label>Employee ID </label>
 				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" readonly> 
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">

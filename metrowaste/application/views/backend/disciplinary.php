@@ -38,7 +38,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>PIN</th>
+                                                <th>ID</th>
                                                 <th>Date Reported</th>
                                                 <th>Date of Incident</th>
                                                 <th>Description</th>
