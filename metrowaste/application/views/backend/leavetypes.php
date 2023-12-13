@@ -35,7 +35,7 @@
                                     <tr>
                                     
                                         <th>Leave Type</th>
-                                        <th>Number Of Days</th>
+                                      
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -52,7 +52,7 @@
                                     <!-- <tr>
                                         <td><?php echo $value->type_id; ?></td> -->
                                         <td><?php echo $value->name ?></td>
-                                        <td><?php echo $value->leave_day ?></td>
+                                      
                                         <td class="jsgrid-align-center ">
                                             <a href="" title="Edit" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-primary waves-effect waves-light leavetype" data-id="<?php echo $value->type_id; ?>"><i class="fa fa-pencil-square-o"></i></a>
                                             <a onclick="confirm('Are you sure, you want to delete this?')" href="LeavetypeDelet?D=<?php echo $value->type_id; ?>" title="Delete" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
@@ -80,19 +80,8 @@
                                 <label class="control-label">Leave name</label>
                                 <input type="text" name="leavename" class="form-control" id="recipient-name1" minlength="1" maxlength="35" value="" required>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Day</label>
-                                <input type="text" name="leaveday" class="form-control" id="recipient-name1" value="">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">status</label>
-                                <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="status" required>
-                                    <option value="">Select Here</option>
-                                    <option value="1">Active</option>
-                                    <option value="0">InActive</option>
-                                </select>
-                            </div>
                             
+                           
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" value="" class="form-control" id="recipient-name1">

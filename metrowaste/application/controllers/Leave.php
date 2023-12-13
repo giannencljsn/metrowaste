@@ -119,8 +119,8 @@ class Leave extends CI_Controller
         if ($this->session->userdata('user_login_access') != False) {
             $id     = $this->input->post('id');
             $name   = $this->input->post('leavename');
-            $nodays = $this->input->post('leaveday');
-            $status = $this->input->post('status');
+            
+           
             $this->form_validation->set_error_delimiters();
             $this->form_validation->set_rules('leavename', 'leave name', 'trim|required|min_length[1]|max_length[220]|xss_clean');
             
@@ -131,8 +131,8 @@ class Leave extends CI_Controller
                 $data = array();
                 $data = array(
                     'name' => $name,
-                    'leave_day' => $nodays,
-                    'status' => $status
+                    
+                    
                 );
                 if (empty($id)) {
                     $success = $this->leave_model->Add_leave_Info($data);
@@ -514,6 +514,7 @@ class Leave extends CI_Controller
                         <td>$value->leave_duration hours</td>
                         <td>$value->start_date</td>
                         <td>$value->end_date</td>
+						<td>$value->leave_status</td>
                     </tr>";
             }
         } else {

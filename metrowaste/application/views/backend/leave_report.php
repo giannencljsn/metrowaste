@@ -58,6 +58,8 @@
                                         <th>Duration</th>
                                         <th>Start</th>
                                         <th>End</th>
+                                        <th>Status</th>
+
                                         <!--<th>Total</th>-->
                                     </tr>
                                 </thead>
