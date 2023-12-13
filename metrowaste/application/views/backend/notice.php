@@ -34,6 +34,7 @@
                                                 <th>Title</th>
                                                 <th>File</th>
                                                 <th>Date</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -51,6 +52,9 @@
                                                 <td><?php echo $value->title; ?></td>
                                                 <td><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url; ?>" target="_blank"><?php echo $value->file_url; ?></a></td>
                                                 <td><?php echo $value->date; ?></td>
+                                                <td>
+                                                <a href="<?php echo base_url('notice/delete/'.$value->id); ?>"title="Delete" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+                                                </td>
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>

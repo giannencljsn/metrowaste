@@ -22,6 +22,11 @@ class Notice_model extends CI_Model{
 		$result =$query->result();
         return $result;        
     }
+
+    public function deleteNotice($id){
+        return $this->db->delete('notice', ['id' => $id]);
+    
+      }
           
 }
 ?>
