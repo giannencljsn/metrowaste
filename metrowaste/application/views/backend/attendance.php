@@ -36,7 +36,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>PIN</th>
+                                                <th>ID</th>
                                                 <th>Date </th>
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
