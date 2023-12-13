@@ -247,7 +247,7 @@
                                     <div class="form-group col-md-3 m-t-20">
 
                                     <label><span id="required-fields-red">*</span>Email (<span id="required-fields-red">required</span>)</label>
-                                        <input type="text" id="example-email2" name="email" class="form-control" placeholder="email" minlength="3"
+                                        <input type="email" id="example-email2" name="email" class="form-control" placeholder="email" minlength="3"
 										 required> 
 
                                     </div>

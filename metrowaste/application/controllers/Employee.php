@@ -117,13 +117,14 @@ class Employee extends CI_Controller {
 
 
 
-    // Check if password and confirm password match
-    if ($password != $confirm) {
-        $this->session->set_flashdata('formdata', 'Password and Confirm Password do not match');
-        echo "Password and Confirm Password do not match";
-        return; // Exit the function if passwords do not match
-    }
+ 
         if ($this->form_validation->run() == FALSE) {
+			   // Check if password and confirm password match
+			   if ($password != $confirm) {
+				$this->session->set_flashdata('formdata', 'Password and Confirm Password do not match');
+				echo "Password and Confirm Password do not match";
+				return; // Exit the function if passwords do not match
+			}
             echo validation_errors();
 
 			} else {
