@@ -31,6 +31,15 @@
 
 	<!-- Main login background image -->
 	<section id="wrapper" class="login-register login-sidebar" style="background-image:url(<?php echo base_url();?>assets/images/metrowaste-bg-pic.png">
+	<?php if ($this->session->flashdata('feedback')): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?php echo $this->session->flashdata('feedback'); ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php endif; ?>
+	<section id="wrapper" class="login-register login-sidebar" style="background-image:url(<?php echo base_url();?>assets/images/metrowaste-bg-pic.png">
 
 		<div class="login-box card"> 
 			<div class="card-body login page">
