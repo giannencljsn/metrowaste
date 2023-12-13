@@ -1107,100 +1107,133 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
         }        
     }
 
-    public function generate_payroll_for_each_employee(){
+    public function load_employee_by_deptID_for_pay(){
 
         if($this->session->userdata('user_login_access') != False) {  
+
         // Get the month and year
-        $month = $this->input->get('month');
-        $year = $this->input->get('year');
-        $employeeID = $this->input->get('employeeID');
+        $date_time = $this->input->get('date_time');
+        $dep_id = $this->input->get('dep_id');
 
-        // Get employee PIN
-        $employeePIN = $this->getPinFromID($employeeID);
+        $year = explode('-', $date_time);
+        $month = $year[0];
+        $year = $year[1];
 
-        // Count Friday
-        // $fridays = $this->count_friday($month, $year);
-		 // Count weekends
-		 $weekend_count = $this->count_weekends($month, $year);
+        $employees = $this->payroll_model->GetDepEmployee($dep_id);
 
-        $month_holiday_count = $this->payroll_model->getNumberOfHolidays($month, $year);
+        foreach($employees as $employee){
 
+            $full_name = $this->get_full_name($employee->first_name, $employee->last_name);
 
 
-        // Total holidays and weekends count
-        $total_days_off =  $weekend_count + $month_holiday_count->total_days;
+            echo "<tr>
+                    <td>$employee->em_code</td>
+                    <td>$full_name</td>
 
-        // Total days in the month
-        $total_days_in_the_month = $this->total_days_in_a_month($month, $year);
+					<td>$employee->totalnetpay</td>
 
-        $total_work_days = $total_days_in_the_month - $total_days_off;
-
-        $total_work_hours = $total_work_days * 8;
-            $sdate = 01;
-        //Format date for hours count in the hours_worked_by_employee() function
-        //$start_date = $year . '-' . $month . '-' . date('d');
-        $result = strtotime("{$year}-{$month}-01");
-        $start_date = date('Y-m-d', $result);
-        $end_date = $year . '-' . $month . '-' . $total_days_in_the_month;
-
-
-
-        // Employee actually worked
-
-		 // Get the total working hours
-		 $total_employee_work_hours = $this->payroll_model->getTotalEmployeeWorkHours($employeeID);
-
-        $employee_actually_worked =  120;
-            //echo json_encode($start_date);
-        //Get his monthly salary
-        $employee_salary = $this->payroll_model->GetsalaryValueByID($employeeID);
-
-
-        if($employee_salary) {
-
-            $employee_salary = $employee_salary->totalnetpay;
-			
-
+                    <td><a href=''
+                                data-id='$employee->em_id' 
+                                data-month='$month' 
+                                data-year='$year' 
+                               
+                                class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' 
+                                data-toggle='modal'
+                                data-target='#salaryGenerateModal'>
+                        Generate Salary</a></td>
+                </tr>";
         }
-
-        // Hourly rate for the month
-        // $hourly_rate = $employee_salary / $total_work_hours;
-        
-        // $work_hour_diff = abs($total_work_hours) - abs($employee_actually_worked[0]->Hours); // 96 - 16 = 80
-
-        $addition = $this->payroll_model->GetsalaryValueByID($employeeID);
-		if($addition){
-			$addition = $addition->total;
-		}
-
-        $diduction = $this->payroll_model->GetsalaryValueByID($employeeID);
-		if($diduction){
-			$diduction = $diduction->totaldeduction;
-		}
-        
-       
-
-        // Final Salary
-        $final_salary = ($employee_salary * $total_employee_work_hours + $addition) - $diduction;
 
         // Sending 
         $data = array();
         $data['basic_salary'] = $employee_salary;
         $data['total_work_hours'] = $total_work_hours;
-        $data['employee_actually_worked'] =  $total_employee_work_hours;
-        $data['wpay'] = $total_work_hours -  $total_employee_work_hours;
+        $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
         $data['addition'] = $addition;
-        $data['deduction'] = $diduction ;
-      
+        $data['diduction'] = $diduction;
        
-        $data['final_salary'] = round($final_salary, 2);
-      
         echo json_encode($data);
         }
         else{
             redirect(base_url() , 'refresh');
-        }      
+        }        
     }
+
+    public function generate_payroll_for_each_employee() {
+        if ($this->session->userdata('user_login_access') != false) {
+            // Get the month and year
+            $month = $this->input->get('month');
+            $year = $this->input->get('year');
+            $employeeID = $this->input->get('employeeID');
+    
+            // Get employee PIN
+            $employeePIN = $this->getPinFromID($employeeID);
+    
+            // Count Friday
+            // $fridays = $this->count_friday($month, $year);
+            // Count weekends
+            $weekend_count = $this->count_weekends($month, $year);
+    
+            $month_holiday_count = $this->payroll_model->getNumberOfHolidays($month, $year);
+    
+            // Total holidays and weekends count
+            $total_days_off = $weekend_count + $month_holiday_count->total_days;
+    
+            // Total days in the month
+            $total_days_in_the_month = $this->total_days_in_a_month($month, $year);
+    
+            $total_work_days = $total_days_in_the_month - $total_days_off;
+    
+            $total_work_hours = $total_work_days * 8;
+            $sdate = 01;
+    
+            // Format date for hours count in the hours_worked_by_employee() function
+            $result = strtotime("{$year}-{$month}-01");
+            $start_date = date('Y-m-d', $result);
+            $end_date = $year . '-' . $month . '-' . $total_days_in_the_month;
+    
+            // Employee actually worked
+            // Get the total working hours for the specific month
+            $total_employee_work_hours = $this->payroll_model->getTotalEmployeeWorkHours($employeeID, $month);
+    
+            $employee_actually_worked = 120;
+    
+            // Get his monthly salary
+            $employee_salary = $this->payroll_model->GetsalaryValueByID($employeeID);
+    
+            if ($employee_salary) {
+                $employee_salary = $employee_salary->totalnetpay;
+            }
+    
+            $addition = $this->payroll_model->GetsalaryValueByID($employeeID);
+            if ($addition) {
+                $addition = $addition->total;
+            }
+    
+            $deduction = $this->payroll_model->GetsalaryValueByID($employeeID);
+            if ($deduction) {
+                $deduction = $deduction->totaldeduction;
+            }
+    
+            // Final Salary
+            $final_salary = ($employee_salary * $total_employee_work_hours + $addition) - $deduction;
+    
+            // Sending
+            $data = array();
+            $data['basic_salary'] = $employee_salary;
+            $data['total_work_hours'] = $total_work_hours;
+            $data['employee_actually_worked'] = $total_employee_work_hours;
+            $data['wpay'] = $total_work_hours - $total_employee_work_hours;
+            $data['addition'] = $addition;
+            $data['deduction'] = $deduction;
+            $data['final_salary'] = round($final_salary, 2);
+    
+            echo json_encode($data);
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+    
     public function Payslip_Report(){
         if($this->session->userdata('user_login_access') != False) {  
         $data=array();    
