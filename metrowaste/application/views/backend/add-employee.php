@@ -291,48 +291,56 @@
 
 <script>
     // Function to check if all required fields are filled
-    function checkForm() {
-        var requiredFields = [
-            "fname",
-            "lname",
-            "eid",
-            "dept",
-            "deg",
-            "role",
-            "gender",
-            "maritalstat",
-            "contact_1",
-            "contact_2",
-            "emcontact_1", // Added emcontact_1 to requiredFields
-            "emcontact_2", // Added emcontact_2 to requiredFields
-            "contactname",
-            "dob",
-            "joindate",
-            "email",
-            "password",
-            "confirm"
-            
-        ];
+function checkForm() {
+    var requiredFields = [
+        "fname",
+        "lname",
+        "eid",
+        "dept",
+        "deg",
+        "role",
+        "gender",
+        "maritalstat",
+        "contact_1",
+        "contact_2",
+        "emcontact_1", // Added emcontact_1 to requiredFields
+        "emcontact_2", // Added emcontact_2 to requiredFields
+        "contactname",
+        "dob",
+        "joindate",
+        "email",
+        "password",
+        "confirm"
+    ];
 
-        var allFieldsFilled = true;
+    var allFieldsFilled = true;
 
-        for (var i = 0; i < requiredFields.length; i++) {
-            var field = document.forms["myForm"][requiredFields[i]];
-            if (field.value === "") {
-                allFieldsFilled = false;
-                break;
-            }
+    for (var i = 0; i < requiredFields.length; i++) {
+        var field = document.forms["myForm"][requiredFields[i]];
+        if (field.value === "") {
+            allFieldsFilled = false;
+            break;
         }
-
-        var submitBtn = document.getElementById("submitBtn");
-        submitBtn.disabled = !allFieldsFilled;
     }
+
+    // Check if the password and confirm fields are not empty
+    var passwordField = document.forms["myForm"]["password"];
+    var confirmPasswordField = document.forms["myForm"]["confirm"];
+
+    if (passwordField.value === "" || confirmPasswordField.value === "") {
+        allFieldsFilled = false;
+    }
+
+    var submitBtn = document.getElementById("submitBtn");
+    submitBtn.disabled = !allFieldsFilled;
+}
 
     // Call checkForm function on form field change
     var formFields = document.getElementsByClassName("form-control");
     for (var i = 0; i < formFields.length; i++) {
         formFields[i].addEventListener("input", checkForm);
     }
+
 
     // Function to show/hide password
     function showPassword() {
