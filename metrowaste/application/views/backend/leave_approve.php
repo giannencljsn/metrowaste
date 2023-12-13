@@ -32,7 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>Employee Name</th>
-                                        <th>PIN</th>
+                                        <th>ID</th>
                                         <th>Leave Type</th>
                                         <th>Apply Date</th>
                                         <th>Start Date</th>
@@ -67,34 +67,27 @@
                                         <td>
                                             
                                             <!-- Duration filtering -->
+                                            <!-- Duration filtering -->
                                             <?php
-                                                if($value->leave_duration > 8) {
-                                                    $originalDays = $value->leave_duration;
-                                                    $days = $originalDays / 8;
-                                                    $hour = 0;
-                                                    // 120 / 8 = 15 // 15 day
-                                                    // 13 - (1*8) = 5 hour
-
-                                                    if(is_float($days)) {
-                                                        
-                                                        $days = floor($days); // 1
-                                                        $hour = $value->leave_duration - ($days * 8); // 5
-                                                    }
-                                                } else {
-                                                    $days = 0;
-                                                    $hour = $value->leave_duration;
-                                                }
-                                                
+                                            if ($value->leave_duration >= 24) {
+                                                $originalHours = $value->leave_duration;
+                                                $days = floor($originalHours / 24); // Calculate full days
+                                                $remainingHours = $originalHours % 24; // Calculate remaining hours
 
                                                 $daysDenom = ($days == 1) ? " day " : " days ";
-                                                $hourDenom = ($hour == 1) ? " hour " : " hours ";
-
-                                                if($days > 0) {
+                                                $hourDenom = ($remainingHours == 1) ? " hour " : " hours ";
+ 
+                                                if ($days > 0) {
                                                     echo $days . $daysDenom;
-                                                } else {
-                                                    echo $hour . $hourDenom;
                                                 }
-                                            ?>
+
+                                                if ($remainingHours > 0) {
+                                                    echo $remainingHours . $hourDenom;
+                                                }
+                                            } else {
+                                                echo $value->leave_duration . " hours";
+                                            }
+                                        ?>
 
                                         </td>
                                         <td><?php echo $value->leave_status; ?></td>
@@ -154,9 +147,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span style="color:red" id="total"></span>
-                                    <div class="span pull-right">
-                                        <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
-                                    </div>
+                                    
                                     <br>
                                 </div>
                                 <div class="form-group">
@@ -234,7 +225,7 @@
                             <div class="modal-footer">
                                 <input type="hidden" name="id" class="form-control" id="recipient-name1" required> 
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                               
                             </div>
                             </form>
                         </div>
@@ -243,25 +234,7 @@
 
 
 
-<script>
-    $(document).ready(function () {
 
-        $('.fetchLeaveTotal').on('click', function (e) {
-            e.preventDefault();
-            var selectedEmployeeID = $('.selectedEmployeeID').val();
-            var leaveTypeID = $('.assignleave').val();
-            //console.log(selectedEmployeeID, leaveTypeID);
-            $.ajax({
-                url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
-                method: 'GET',
-                data: '',
-            }).done(function (response) {
-                //console.log(response);
-                $("#total").html(response);
-            });
-        });
-    });
-</script>
         <script>
         /*DATETIME PICKER*/
           $("#bbbSubmit").on("click", function(event){
@@ -296,31 +269,49 @@
         });
         </script>
 <script>
-  $(".Status").on("click", function(event){
-      event.preventDefault();
-      // console.log($(this).attr('data-value'));
-      $.ajax({
-          url: "approveLeaveStatus",
-          type:"POST",
-          data:
-          {
-              'employeeId': $(this).attr('data-employeeId'),
-              'lid': $(this).attr('data-id'),
-              'lvalue': $(this).attr('data-value'),
-              'duration': $(this).attr('data-duration'),
-              'type': $(this).attr('data-type')
-          },
-          success: function(response) {
-            // console.log(response);
-            $(".message").fadeIn('fast').delay(30000).fadeOut('fast').html(response);
-            window.setTimeout(function(){location.reload()}, 30000);
-          },
-          error: function(response) {
-            //console.error();
-          }
-      });
-  });           
+$(".Status").on("click", function (event) {
+    event.preventDefault();
+
+    // Store the reference to $(this) in a variable
+    var $this = $(this);
+
+    $.ajax({
+        url: "approveLeaveStatus",
+        type: "POST",
+        data: {
+            'employeeId': $this.attr('data-employeeId'),
+            'lid': $this.attr('data-id'),
+            'lvalue': $this.attr('data-value'),
+            'duration': $this.attr('data-duration'),
+            'type': $this.attr('data-type')
+        },
+        success: function (response) {
+            var message = "";
+            if ($this.attr('data-value') === 'Approve') {
+                message = 'Successfully Approved';
+            } else if ($this.attr('data-value') === 'Rejected') {
+                message = 'Successfully Rejected';
+            }
+
+            // Log the message to the console
+            console.log(message);
+
+            // Display the success message in div.message
+          $(".message").html(message).show();
+
+            // Reload the page after a delay (if needed)
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000); // Reload after 2 seconds (adjust as needed)
+        },
+        error: function (response) {
+            console.error(response);
+        }
+    });
+});
 </script>
+
+
 
 <script type="text/javascript">
             $(document).ready(function() {

@@ -26,18 +26,17 @@
         $result = $query->row();
         return $result;         
     }
-    public function GetDepEmployee($depid){
-    $sql = "SELECT `employee`.*,
-
-			`emp_salary`.`totalnetpay`
-
-      FROM `employee`
-      LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
-      WHERE `employee`.`dep_id`='$depid'";
-        $query = $this->db->query($sql);
-        $result = $query->result();
-        return $result;         
-    } 
+		public function GetDepEmployee($depid){
+			$sql = "SELECT `employee`.*,
+									`emp_salary`.`totalnetpay`
+							FROM `employee`
+							LEFT JOIN `emp_salary` ON `employee`.`em_id`=`emp_salary`.`emp_id`
+							WHERE `employee`.`dep_id`='$depid' AND `employee`.`status`='ACTIVE'";
+			$query = $this->db->query($sql);
+			$result = $query->result();
+			return $result;
+	}
+	
 
 
 		public function GetDepEmployee2($depid){
@@ -57,18 +56,8 @@
         $result = $query->row();
         return $result;         
     } 
-    public function GetLoanValueByID($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result;         
-    } 
-    public function hasLoanOrNot($id){
-        $sql = "SELECT * FROM `loan` WHERE `loan`.`emp_id`= '$id' AND `status`='Granted' AND `status` != 'Done'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result ? 1 : 0;    
-    } 
+    
+    
     public function GetHolidayByYear($dateval){
         $sql = "SELECT * FROM `holiday` WHERE `holiday`.`year`= '$dateval'";
         $query = $this->db->query($sql);
@@ -268,7 +257,7 @@ public function getPinFromID($employeeID){
 
       public function totalHoursWorkedByEmployeeInAMonth($employeePIN, $start_date, $end_date)
     {
-      $sql = "SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$employeePIN') AND (`atten_date` BETWEEN '$start_date' AND '$end_date')";
+      $sql = "SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`em_code`='$employeePIN') AND (`date` BETWEEN '$start_date' AND '$end_date')";
         $query  = $this->db->query($sql);
         $result = $query->result();
         return $result;
@@ -299,7 +288,7 @@ public function getPinFromID($employeeID){
       $sql = "SELECT `employee`.*,
               (SELECT `des_name` FROM `designation` WHERE `employee`.`des_id` = `designation`.`id`) AS name, 
               (SELECT `dep_name` FROM `department` WHERE `employee`.`dep_id` = `department`.`id`) AS dep_name, `emp_salary`.`totalnetpay`, `bank_info`.*, `addition`.*, `deduction`.*, 
-              (SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `signin_time`, `signout_time` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`emp_id`='$emid') AND (DATE_FORMAT(`attendance`.`atten_date`, '%m'))=MONTH(CURRENT_DATE())) AS hours_worked,COUNT(*) AS days FROM `employee`
+              (SELECT TRUNCATE((SUM(ABS(( TIME_TO_SEC( TIMEDIFF( `sign_in`, `sign_out` ) ) )))/3600), 1) AS Hours FROM `attendance` WHERE (`attendance`.`em_code`='$emid') AND (DATE_FORMAT(`attendance`.`date`, '%m'))=MONTH(CURRENT_DATE())) AS hours_worked,COUNT(*) AS days FROM `employee`
               LEFT JOIN `department` ON `employee`.`dep_id`=`department`.`id` 
               LEFT JOIN `addition` ON `employee`.`em_id`=`addition`.`salary_id` 
               LEFT JOIN `deduction` ON `employee`.`em_id`=`deduction`.`salary_id` 
@@ -309,6 +298,30 @@ public function getPinFromID($employeeID){
       $result = $query->result();
       return $result;
     }   
+
+		//Get salary by designation
+		public function GetSalaryByDesignationId($designationId) {
+			$query = $this->db->select('salary_per_hr')
+					->get_where('designation', array('id' => $designationId));
+			return $query->row();
+	}
+	
+
+	public function getTotalEmployeeWorkHours($employeeID, $month) {
+    $this->db->select_sum('working_hour', 'total_employee_work_hours');
+    $this->db->where('em_code', $employeeID);
+    
+    // Add condition to filter by month
+    $this->db->where("MONTH(date)", $month);
+
+    $query = $this->db->get('attendance');
+
+    if ($query->num_rows() > 0) {
+        return $query->row()->total_employee_work_hours;
+    }
+
+    return 0;
+}
 
 }
 

@@ -6,181 +6,6 @@
 
 </div>
 
-<script>
-  // add an event listener to the form
-  document.getElementById("myForm").addEventListener("input", function() {
-    // check if all form inputs are valid
-    if (this.checkValidity()) {
-      // enable the submit button
-      document.getElementById("submitBtn").disabled = false;
-    } else {
-      // disable the submit button
-      document.getElementById("submitBtn").disabled = true;
-    }
-  });
-</script>
-<!-- STOP PAGE FROM REFRESHING IF FORM FAILS -->
-
-<script>
-		function validateForm(event) {
-		event.preventDefault(); // prevent the default form submission behavior
-		
-		var isValid = true; // introduce a variable to keep track of the validation status
-
-		// Validate Name Field
-		var firstName = document.forms["myForm"]["fname"].value;
-		if (firstName == "" || firstName.length < 3 || firstName.length > 30) {
-			alert("Please enter minimum 3 characters for First Name.");
-			isValid = false; // set isValid to false if validation fails
-		}
-
-		var lastName = document.forms["myForm"]["lname"].value;
-		if (lastName == "" || lastName.length < 3 || lastName.length > 30) {
-			alert("Please enter minimum 3 characters for Last Name..");
-			isValid = false; // set isValid to false if validation fails
-		}
-
-		// // Validate Username Field
-		// var email = document.forms["myForm"]["email"].value;
-		// var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex pattern for valid email format
-		// if (email == "" || email.length < 3 || email.length > 100 || !emailRegex.test(email) || /[^\w\s]/.test(email)) {
-		// 	alert("Please enter a valid Username without special characters");
-		// 	isValid = false; // set isValid to false if validation fails
-		// }
-
-
-		// Validate Password and Confirm Password Fields
-		var password = document.forms["myForm"]["password"].value;
-		var cpassword = document.forms["myForm"]["confirm"].value;
-		if (password != cpassword) {
-			alert("Passwords do not match.");
-			isValid = false; // set isValid to false if validation fails
-		}
-		
-		// Validate Image Field
-		var image = document.forms["myForm"]["image_url"].files[0];
-		var reader = new FileReader();
-		reader.readAsDataURL(image);
-		reader.onload = function (event) {
-			var img = new Image();
-			img.src = event.target.result;
-			img.onload = function () {
-			var fileSize = image.size / 1024 / 1024; // in MB
-			var fileType = image.type;
-			var maxWidth = 800;
-			var maxHeight = 800;
-			if (fileType != 'image/jpeg' && fileType != 'image/png' && fileType != 'image/gif') {
-				alert("Please select a valid image file (JPEG, PNG, or GIF).");
-				isValid = false; // set isValid to false if validation fails
-			} else if (fileSize > 2) {
-				alert("Please select an image file smaller than 2MB.");
-				isValid = false; // set isValid to false if validation fails
-			} else if (img.width > maxWidth || img.height > maxHeight) {
-				alert("Please select an image with dimensions not exceeding " + maxWidth + "px x " + maxHeight + "px.");
-				isValid = false; // set isValid to false if validation fails
-			}
-			if (isValid) {
-				document.getElementById("myForm").submit(); // submit the form if validation succeeds
-			}
-			};
-		};
-		}
-
-		document.getElementById("myForm").addEventListener("submit", validateForm);
-
-</script>
-
-
-
-
-<!-- TOGGLE PASSWORD VISIBILITY -->
-									
-<script>
-	function showPassword() {
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-
-</script>
-<!-- Check password security -->
-<script>
-var myInput = document.getElementById("password");
-var letter = document.getElementById("letter");
-var capital = document.getElementById("capital");
-var number = document.getElementById("number");
-var length = document.getElementById("length");
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("cpassword");
-const errorMessage = document.getElementById("error-message");
-
-// When the user clicks on the password field, show the message box
-myInput.onfocus = function() {
-  document.getElementById("message").style.display = "block";
-}
-
-// When the user clicks outside of the password field, hide the message box
-myInput.onblur = function() {
-  document.getElementById("message").style.display = "none";
-}
-
-// When the user starts to type something inside the password field
-myInput.onkeyup = function() {
-  // Validate lowercase letters
-  var lowerCaseLetters = /[a-z]/g;
-  if(myInput.value.match(lowerCaseLetters)) {  
-    letter.classList.remove("invalid");
-    letter.classList.add("pvalid");
-  } else {
-    letter.classList.remove("pvalid");
-    letter.classList.add("invalid");
-  }
-  
-  // Validate capital letters
-  var upperCaseLetters = /[A-Z]/g;
-  if(myInput.value.match(upperCaseLetters)) {  
-    capital.classList.remove("invalid");
-    capital.classList.add("pvalid");
-  } else {
-    capital.classList.remove("pvalid");
-    capital.classList.add("invalid");
-  }
-
-  // Validate numbers
-  var numbers = /[0-9]/g;
-  if(myInput.value.match(numbers)) {  
-    number.classList.remove("invalid");
-    number.classList.add("pvalid");
-  } else {
-    number.classList.remove("pvalid");
-    number.classList.add("invalid");
-  }
-  
-  // Validate length
-  if(myInput.value.length >= 8) {
-    length.classList.remove("invalid");
-    length.classList.add("pvalid");
-  } else {
-    length.classList.remove("pvalid");
-    length.classList.add("invalid");
-  }
-
-  confirmPassword.addEventListener("input", () => {
-  if (confirmPassword.value !== password.value) {
-    errorMessage.textContent = "Passwords not match";
-    errorMessage.style.color ="red";
-    confirmPassword.setCustomValidity("Passwords do not match");
-  } else {
-    errorMessage.textContent = "";
-    confirmPassword.setCustomValidity("");
-  }
-});
-}
-</script>
-
 
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/popper.min.js"></script>
@@ -373,25 +198,30 @@ var url = $(form).attr('action');
 // Create an FormData object
 var data = new FormData(formval);
 $.ajax({
-type: "POST",
-enctype: 'multipart/form-data',
-// url: "crud/Add_userInfo",
-url: url,
-data: data,
-processData: false,
-contentType: false,
-cache: false,
-timeout: 600000,
-success: function (response) {
-	console.log(response);            
-	$(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
-	$('form').trigger("reset");
-	window.setTimeout(function(){location.reload()},3000);
-},
-error: function (e) {
-	console.log(e);
-}
+    type: "POST",
+    enctype: 'multipart/form-data',
+    url: url,
+    data: data,
+    processData: false,
+    contentType: false,
+    cache: false,
+    timeout: 600000,
+    success: function (response) {
+        console.log(response);
+
+        // Update the message div with the response
+        $(".message").text(response).fadeIn('fast').delay(3000).fadeOut('fast');
+
+        $('form').trigger("reset");
+        window.setTimeout(function () {
+            location.reload()
+        }, 3000);
+    },
+    error: function (e) {
+        console.log(e);
+    }
 });
+
 }
 });
 });wordtune

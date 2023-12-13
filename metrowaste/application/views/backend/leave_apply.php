@@ -36,16 +36,16 @@
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                    <th>ID</th>
+                                    <!-- <th>ID</th> -->
                                         <th>Name</th>
-                                        <th>PIN</th>
+                                        <th>ID</th>
                                         <th>Leave Type</th>
                                         <th>Apply Date</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                         <th>Duration</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 <!-- <tfoot>
@@ -64,7 +64,7 @@
                                 <tbody>
                                     <?php foreach($application as $value): ?>
                                     <tr style="vertical-align:top">
-                                        <td><?php echo $value->id; ?></td>
+                                        <!-- <td><?php echo $value->id; ?></td> -->
                                         <td><mark><?php echo $value->first_name.' '.$value->last_name ?></mark></td>
                                         <td><?php echo $value->em_code; ?></td>
                                         <td><?php echo $value->name; ?></td>
@@ -125,9 +125,7 @@
                             </div>
                             <div class="form-group">
                                 <span style="color:red" id="total"></span>
-                                <div class="span pull-right">
-                                    <button class="btn btn-info fetchLeaveTotal">Fetch Total Leave</button>
-                                </div>
+                               
                                 <br>
                             </div>
                             <div class="form-group">
@@ -202,25 +200,7 @@
                 </div>
             </div>
         </div>
-<script>
-    $(document).ready(function () {
 
-        $('.fetchLeaveTotal').on('click', function (e) {
-            e.preventDefault();
-            var selectedEmployeeID = $('.selectedEmployeeID').val();
-            var leaveTypeID = $('.assignleave').val();
-            console.log(selectedEmployeeID, leaveTypeID);
-            $.ajax({
-                url: 'LeaveAssign?leaveID=' + leaveTypeID + '&employeeID=' +selectedEmployeeID,
-                method: 'GET',
-                data: '',
-            }).done(function (response) {
-                //console.log(response);
-                $("#total").html(response);
-            });
-        });
-    });
-</script>
         <script type="text/javascript">
             $('#duration').on('input', function() {
                 var day = parseInt($('#duration').val());

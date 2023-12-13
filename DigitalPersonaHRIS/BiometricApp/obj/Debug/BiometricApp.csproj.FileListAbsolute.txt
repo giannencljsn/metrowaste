@@ -1,0 +1,168 @@
+c:\users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\bin\Debug\BiometricApp.exe.config
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csprojResolveAssemblyReference.cache
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Capabilities.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Capture.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Enrollment.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.EnrollmentControl.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Form_Main.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.frmDBEnrollment.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Identification.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.IdentificationControl.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.Properties.Resources.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.ReaderSelection.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Stream.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Verification.resources
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.GenerateResource.Cache
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\bin\Debug\BiometricApp.exe
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\bin\Debug\BiometricApp.pdb
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.exe
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.pdb
+C:\Users\circu\documents\visual studio 2013\Projects\BiometricApp\BiometricApp\obj\Debug\BiometricApp.frmDBVerify.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\BiometricApp.exe.config
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\BiometricApp.exe
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\BiometricApp.pdb
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPCtlUruNet.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPCtlXUru.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPUruNet.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPXUru.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPCtlUruNet.xml
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPCtlXUru.xml
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPUruNet.xml
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\DPXUru.xml
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Capabilities.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Capture.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Enrollment.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.EnrollmentControl.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Form_Main.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.frmDBEnrollment.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.frmDBVerify.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Identification.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.IdentificationControl.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.Properties.Resources.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.ReaderSelection.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Stream.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\UareUSampleCSharp.Verification.resources
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.GenerateResource.cache
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.csproj.CopyComplete
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.exe
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.pdb
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\MySql.Data.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\System.Memory.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\System.Buffers.dll
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\bin\Debug\MySql.Data.xml
+C:\Users\User\Desktop\hris data\BiometricApp\BiometricApp\obj\Debug\BiometricApp.hris_biometric.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe.config
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.pdb
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\MySql.Data.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Memory.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Buffers.dll
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.xml
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.xml
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.xml
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.xml
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\MySql.Data.xml
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capabilities.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capture.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Enrollment.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.EnrollmentControl.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Form_Main.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBEnrollment.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBVerify.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.hris_biometric.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Identification.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.IdentificationControl.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.Properties.Resources.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.ReaderSelection.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Stream.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Verification.resources
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.GenerateResource.cache
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CopyComplete
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.exe
+C:\Users\User\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.pdb
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe.config
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.pdb
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Memory.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Buffers.dll
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.xml
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.xml
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.xml
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.xml
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\bin\Debug\MySql.Data.xml
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.AssemblyReference.cache
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capabilities.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capture.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Enrollment.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.EnrollmentControl.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Form_Main.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBEnrollment.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBVerify.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.hris_biometric.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Identification.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.IdentificationControl.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.Properties.Resources.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.ReaderSelection.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Stream.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Verification.resources
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.GenerateResource.cache
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CoreCompileInputs.cache
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CopyComplete
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.exe
+C:\Users\Nel\Desktop\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.pdb
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe.config
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.exe
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\BiometricApp.pdb
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Memory.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\System.Buffers.dll
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlUruNet.xml
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPCtlXUru.xml
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPUruNet.xml
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\DPXUru.xml
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\bin\Debug\MySql.Data.xml
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.AssemblyReference.cache
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capabilities.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Capture.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Enrollment.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.EnrollmentControl.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Form_Main.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBEnrollment.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.frmDBVerify.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.hris_biometric.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Identification.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.IdentificationControl.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.Properties.Resources.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.ReaderSelection.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Stream.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\UareUSampleCSharp.Verification.resources
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.GenerateResource.cache
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CoreCompileInputs.cache
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.csproj.CopyComplete
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.exe
+C:\Users\Nel\Documents\WebDevelopmentFile\AllFingerPrintFolder\DigitalPersonaHRIS\BiometricApp\obj\Debug\BiometricApp.pdb

@@ -26,16 +26,7 @@ $this->load->view('backend/sidebar');
   <div class="container-fluid">
     <div class="row m-b-10"> 
       <div class="col-12">
-        <button type="button" class="btn btn-primary">
-          <i class="fa fa-bars">
-          </i>
-          <a href="<?php
-                   echo base_url();
-                   ?>Payroll/Salary_Type" class="text-white">
-            <i class="" aria-hidden="true">
-            </i>   Payroll List
-          </a>
-        </button>
+       
       </div>
     </div> 
     <div class="row">

@@ -161,6 +161,11 @@
 		$this->db->where('em_id', $id);
 		$this->db->update('employee',$data);        
     }
+
+		public function Update_Status($data, $id){
+			$this->db->where('em_id', $id);
+			return $this->db->update('employee', $data);
+	}
     public function Update_Education($id,$data){
 		$this->db->where('id', $id);
 		$this->db->update('education',$data);        
@@ -204,10 +209,10 @@
 		}
 
 
-    public function Update_Media($id,$data){
-		$this->db->where('id', $id);
-		$this->db->update('social_media',$data);        
-    }
+    // public function Update_Media($id,$data){
+		// $this->db->where('id', $id);
+		// $this->db->update('social_media',$data);        
+    // }
     public function AddParmanent_Address($data){
         $this->db->insert('address',$data);
     } 
@@ -239,12 +244,12 @@
         $result = $query->result();
         return $result; 
     }
-    public function GetSocialValue($id){
-        $sql = "SELECT * FROM `social_media` WHERE `emp_id`='$id'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result; 
-    }
+    // public function GetSocialValue($id){
+    //     $sql = "SELECT * FROM `social_media` WHERE `emp_id`='$id'";
+    //     $query = $this->db->query($sql);
+    //     $result = $query->row();
+    //     return $result; 
+    // }
     public function GetEduValue($id){
         $sql = "SELECT * FROM `education` WHERE `id`='$id'";
         $query = $this->db->query($sql);
@@ -301,9 +306,9 @@
     public function Add_Assign_Leave($data){
     $this->db->insert('assign_leave',$data);
   }
-    public function Insert_Media($data){
-    $this->db->insert('social_media',$data);
-  }
+  //   public function Insert_Media($data){
+  //   $this->db->insert('social_media',$data);
+  // }
     public function desselect(){
   	$query = $this->db->get('designation');
   	$result = $query->result();
@@ -322,6 +327,43 @@
     $this->db->where('em_id', $emid);
     $this->db->delete('employee');
 }
+
+
+
+//THIS IS FOR ATTENDANCE LIST
+public function getEmployeeByEmCode($emCode) {
+  // called 'employees' in your database
+  
+  // Retrieve the employee data based on the provided em_code
+  $query = $this->db->get_where('employee', array('em_code' => $emCode));
+  
+  // Check if a row exists in the result
+  if ($query->num_rows() > 0) {
+      // Return the employee data as an object
+      return $query->row();
+  } else {
+      // No employee data found, return null
+      return null;
+  }
+}
+
+  //deleting fp for inactive employee
+
+  public function checkAndDeleteInactiveEmployees() {
+    $this->db->where('status', 'INACTIVE');
+    $inactiveEmployees = $this->db->get('employee')->result();
+
+    foreach ($inactiveEmployees as $employee) {
+        $this->deleteEmployeeFingerprint($employee->em_id);
+    }
+}
+
+// Function to delete record from employee_fingerprint table
+private function deleteEmployeeFingerprint($employeeId) {
+    $this->db->where('employee_id', $employeeId);
+    $this->db->delete('employee_fingerprint');
+}
+
        
     }
 ?>

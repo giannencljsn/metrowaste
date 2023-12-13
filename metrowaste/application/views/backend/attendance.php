@@ -20,7 +20,7 @@
                 <div class="row m-b-10"> 
                     <div class="col-12">
                         <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Save_Attendance" class="text-white"><i class="" aria-hidden="true"></i> Add Attendance </a></button>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="#" class="text-white" data-toggle="modal" data-target="#Bulkmodal"><i class="" aria-hidden="true"></i>  Add Bulk Attendance</a></button>
+                    
                         <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Attendance_Report" class="text-white"><i class="" aria-hidden="true"></i> Attendance Report </a></button>
                     </div>
                 </div>  
@@ -36,12 +36,12 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>PIN</th>
+                                                <th>ID</th>
                                                 <th>Date </th>
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
                                                 <th>Working Hour</th>
-                                                <th>Action</th>
+                                                
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -56,23 +56,37 @@
                                             </tr>
                                         </tfoot> -->
                                         <tbody>
-                                           <?php foreach($attendancelist as $value): ?>
-                                            <tr>
-                                                <td><mark><?php echo $value->name; ?></mark></td>
-                                                <td><?php echo $value->emp_id; ?></td>
-                                                <td><?php echo $value->atten_date; ?></td>
-                                                <td><?php echo $value->signin_time; ?></td>
-                                                <td><?php echo $value->signout_time; ?></td>
-                                                <td><?php echo $value->Hours; ?></td>
-                                                <td class="jsgrid-align-center ">
-                                                <?php if($value->signout_time == '00:00:00') { ?>
-                                                    <a href="Save_Attendance?A=<?php echo $value->id; ?>" title="Edit" class="btn btn-sm btn-danger waves-effect waves-light" data-value="Approve" >Sign Out</a><br>                           
-                                                <?php } ?>
-                                                    <a href="Save_Attendance?A=<?php echo $value->id; ?>" title="Edit" class="btn btn-sm btn-primary waves-effect waves-light" data-value="Approve" ><i class="fa fa-pencil-square-o"></i></a>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
+    <?php foreach($attendancelist as $value): ?>
+        <tr>
+            <?php
+            // Retrieve the first name and last name of the employee from the database
+            $firstName = ''; 
+            $lastName = ''; 
+            
+            // 'Employees_model' for retrieving employee data
+            $this->load->model('employee_model');
+            $employeeData = $this->employee_model->getEmployeeByEmCode($value->em_code); 
+            
+            if ($employeeData !== null) {
+                $firstName = $employeeData->first_name;
+                $lastName = $employeeData->last_name;
+            }
+            
+            // Concatenate the first name and last name to display the full name
+            $fullName = $firstName . ' ' . $lastName;
+            ?>
+            
+            <td><mark><?php echo $fullName; ?></mark></td>
+            <td><?php echo $value->em_code; ?></td>
+            <td><?php echo $value->date; ?></td>
+            <td><?php echo $value->sign_in; ?></td>
+            <td><?php echo $value->sign_out; ?></td>
+            <td><?php echo $value->working_hour; ?></td> 
+            <td></td>             
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
                                     </table>
                                 </div>
                             </div>

@@ -89,5 +89,11 @@ class Notice extends CI_Controller {
 		redirect(base_url() , 'refresh');
 	}        
     }
+
+    public function delete($id){
+        $this->load->model('notice_model');
+        $this->notice_model->deleteNotice($id);
+        redirect('notice/All_notice', 'refresh');
+    }
     
 }

@@ -49,8 +49,7 @@ class Dashboard extends CI_Controller {
         $data = array(
         'user_id' => $userid,
         'to_dodata' =>$tododata,
-        'value' =>'1',
-        'date' =>$date    
+        'value' =>'1'
         );
         $success = $this->dashboard_model->insert_tododata($data);
             #echo "successfully added";
@@ -79,13 +78,11 @@ class Dashboard extends CI_Controller {
 		}
 	}    
      
-
     //delete todo list
     public function delete($id){
         $this->load->model('Dashboard_model');
         $this->Dashboard_model->deleteTodolist($id);
         redirect(base_url('dashboard'));
     }
-
      
 }

@@ -54,7 +54,7 @@ class Login extends CI_Controller {
 		redirect(base_url() . 'login', 'refresh');		
 	}
 	else{
-        //Validating login
+        // Validating login
         $login_status = $this->validate_login($email, $password);
         $response['login_status'] = $login_status;
         if ($login_status == 'success') {
@@ -77,8 +77,9 @@ class Login extends CI_Controller {
         
         }
 		else{
-			$this->session->set_flashdata('feedback','UserEmail or Password is Invalid');
-			redirect(base_url() . 'login', 'refresh');
+			// Login failed, set an error message and redirect
+			$this->session->set_flashdata('feedback', 'Invalid email or password. Please try again.');
+			redirect(base_url() . 'login', 'refresh');;
 		}
 	}
 	}
@@ -99,9 +100,9 @@ class Login extends CI_Controller {
 
 			//Redirect based on user type
 			if($row->em_role == 'ADMIN'){
-				redirect(base_url() . 'admin_dashboard/dashboard');
+				redirect(base_url() . 'dashboard/dashboard');
 			} elseif($row->em_role == 'EMPLOYEE'){
-				redirect(base_url() . 'employee_dashboard/dashboard');
+				redirect(base_url() . 'dashboard/dashboard');
 			}
 			
 
