@@ -175,7 +175,7 @@
 				                                        <input type="text" class="form-control" placeholder="Emergency Contact Name" name="contactname" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->contactname; ?>"  maxlength="30"  onkeypress="return /^[a-zA-Z\s]+$/.test(event.key)"> 
 
 				                                    </div>
-				                                    <?php } ?>
+				                                  
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Designation </label>
