@@ -1140,7 +1140,6 @@ else{
 
 					// Addition
                     'salary_id' => $sid,
-                    'basic' => $basic,
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
@@ -1189,7 +1188,6 @@ else{
 
 
                     // Addition
-                    'basic' => $basic,
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
