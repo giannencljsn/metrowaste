@@ -462,7 +462,7 @@
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Number</label>
-                                                    <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 5);" minlength="5" required>
+                                                    <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 17);"   minlength="12" maxlength="17"required>
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Type</label>
