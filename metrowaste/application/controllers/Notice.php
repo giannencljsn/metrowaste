@@ -90,10 +90,80 @@ class Notice extends CI_Controller {
 	}        
     }
 
-    public function delete($id){
+    // public function delete($id){
+    //     $this->load->model('notice_model');
+    //     $this->notice_model->deleteNotice($id);
+    //     redirect('notice/All_notice', 'refresh');
+    // }
+
+
+
+    //for editing view
+    public function edit($id) {
         $this->load->model('notice_model');
-        $this->notice_model->deleteNotice($id);
-        redirect('notice/All_notice', 'refresh');
+
+        // Fetch the notice data from the database based on the ID
+        $data['notice'] = $this->notice_model->get_notice($id);
+        $this->load->view('backend/edit_notice', $data);
     }
+
+   
+//for updating notice
+
+public function update() {
+    $this->load->model('notice_model');
+
+    // Fetch the existing file URL and date from the database
+    $existing_notice = $this->notice_model->get_notice($this->input->post('id'));
+    $existing_file_url = $existing_notice->file_url;
+    $existing_date = $existing_notice->date;
+
+    // Check if a new file is uploaded
+    if (!empty($_FILES['file_url']['name'])) {
+        $config['upload_path']   = "./assets/images/notice";
+        $config['allowed_types'] = "gif|jpg|png|jpeg|pdf|doc|docx";
+        $config['max_size']      = "50720000";
+
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);                
+        if ($this->upload->do_upload('file_url')) {
+            // Delete the existing file if it's different from the new file
+            if ($existing_file_url && $existing_file_url !== $_FILES['file_url']['name']) {
+                unlink("./assets/images/notice/" . $existing_file_url);
+            }
+
+            $file_url = $this->upload->data('file_name');
+        } else {
+            // Handle file upload error
+            $file_url = $existing_file_url;
+            echo $this->upload->display_errors(); // Output upload errors for debugging
+        }
+    } else {
+        // No new file selected, retain the existing file
+        $file_url = $existing_file_url;
+    }
+
+    // Check if a new date is provided
+    $new_date = $this->input->post('new_date');
+    $date = $new_date ? $new_date : $existing_date;
+
+    $data = array(
+        'id' => $this->input->post('id'),
+        'title' => $this->input->post('title'),
+        'file_url' => $file_url,
+        'date' => $date,
+    );
+
+    $success = $this->notice_model->update_notice($data);
+
+    if ($success) {
+        echo "Successfully updated.";
+    } else {
+        echo "Update failed."; // Add appropriate error handling
+    }
+
+    redirect(base_url() , 'refresh');
+}
+    
     
 }
