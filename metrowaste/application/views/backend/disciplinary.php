@@ -114,7 +114,7 @@
 				                                    </div>
                                                         <div class="form-group">
                                                             <label for="message-text" class="control-label">Details</label>
-                                                            <textarea class="form-control" value="" name="details" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible"></textarea>
+                                                            <textarea class="form-control" value="" name="details" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible" required></textarea>
                                                         </div>
                                                     
                                                 </div>
