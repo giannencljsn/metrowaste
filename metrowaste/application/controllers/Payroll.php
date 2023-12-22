@@ -1054,58 +1054,58 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     }
 }
 
-    // // Generate the list of employees by dept. to generate their payments
-    // public function load_employee_by_deptID_for_pay(){
+    // Generate the list of employees by dept. to generate their payments
+    public function load_employee_by_deptID_for_pay(){
 
-    //     if($this->session->userdata('user_login_access') != False) {  
+        if($this->session->userdata('user_login_access') != False) {  
 
-    //     // Get the month and year
-    //     $date_time = $this->input->get('date_time');
-    //     $dep_id = $this->input->get('dep_id');
+        // Get the month and year
+        $date_time = $this->input->get('date_time');
+        $dep_id = $this->input->get('dep_id');
 
-    //     $year = explode('-', $date_time);
-    //     $month = $year[0];
-    //     $year = $year[1];
+        $year = explode('-', $date_time);
+        $month = $year[0];
+        $year = $year[1];
 
-    //     $employees = $this->payroll_model->GetDepEmployee($dep_id);
+        $employees = $this->payroll_model->GetDepEmployee($dep_id);
 
-    //     foreach($employees as $employee){
+        foreach($employees as $employee){
 
-    //         $full_name = $this->get_full_name($employee->first_name, $employee->last_name);
+            $full_name = $this->get_full_name($employee->first_name, $employee->last_name);
 
 
-    //         echo "<tr>
-    //                 <td>$employee->em_code</td>
-    //                 <td>$full_name</td>
+            echo "<tr>
+                    <td>$employee->em_code</td>
+                    <td>$full_name</td>
 
-	// 				<td>$employee->totalnetpay</td>
+					<td>$employee->totalnetpay</td>
 
-    //                 <td><a href=''
-    //                             data-id='$employee->em_id' 
-    //                             data-month='$month' 
-    //                             data-year='$year' 
+                    <td><a href=''
+                                data-id='$employee->em_id' 
+                                data-month='$month' 
+                                data-year='$year' 
                                
-    //                             class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' 
-    //                             data-toggle='modal'
-    //                             data-target='#salaryGenerateModal'>
-    //                     Generate Salary</a></td>
-    //             </tr>";
-    //     }
+                                class='btn btn-sm btn-danger waves-effect waves-light salaryGenerateModal' 
+                                data-toggle='modal'
+                                data-target='#salaryGenerateModal'>
+                        Generate Salary</a></td>
+                </tr>";
+        }
 
-    //     // Sending 
-    //     $data = array();
-    //     $data['basic_salary'] = $employee_salary;
-    //     $data['total_work_hours'] = $total_work_hours;
-    //     $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
-    //     $data['addition'] = $addition;
-    //     $data['diduction'] = $diduction;
+        // Sending 
+        $data = array();
+        $data['basic_salary'] = $employee_salary;
+        $data['total_work_hours'] = $total_work_hours;
+        $data['employee_actually_worked'] = $employee_actually_worked[0]->Hours;
+        $data['addition'] = $addition;
+        $data['diduction'] = $diduction;
        
-    //     echo json_encode($data);
-    //     }
-    //     else{
-    //         redirect(base_url() , 'refresh');
-    //     }        
-    // }
+        echo json_encode($data);
+        }
+        else{
+            redirect(base_url() , 'refresh');
+        }        
+    }
 
 
     public function generate_payroll_for_each_employee() {

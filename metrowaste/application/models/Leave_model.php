@@ -68,12 +68,11 @@
         return $result; 
     }
     public function GetleavetypeInfo(){
-		$sql = "SELECT * FROM `leave_types` ORDER BY `type_id` DESC";
-		$query = $this->db->query($sql);
-		$result = $query->result();
-		return $result; 
-	}
-	
+        $sql = "SELECT * FROM `leave_types` WHERE `status`='1' ORDER BY `type_id` DESC";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result; 
+    }
     public function GetleavetypeInfoid($id){
         $sql = "SELECT * FROM `leave_types` WHERE `status`='1' AND `type_id`='$id'";
         $query = $this->db->query($sql);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 02:45 PM
+-- Generation Time: Dec 15, 2023 at 05:13 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hrsystemci`
+-- Database: `hricopy`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `addition` (
   `addi_id` int(14) NOT NULL,
   `salary_id` int(14) NOT NULL,
-  `basic` varchar(128) DEFAULT NULL,
   `restduty` varchar(64) DEFAULT NULL,
   `straightduty` varchar(64) DEFAULT NULL,
   `specialholiday` varchar(64) DEFAULT NULL,
@@ -49,8 +48,11 @@ CREATE TABLE `addition` (
 -- Dumping data for table `addition`
 --
 
-INSERT INTO `addition` (`addi_id`, `salary_id`, `basic`, `restduty`, `straightduty`, `specialholiday`, `legalholiday`, `sss`, `sssprovident`, `philhealth`, `hdmf`, `whtax`, `cashadvances`, `totaldeduction`, `totalnetpay`) VALUES
-(55, 57, '1000', '6', '10', '10', '10', '10', '10', '10', '10', '10', '10', '10', '976');
+INSERT INTO `addition` (`addi_id`, `salary_id`, `restduty`, `straightduty`, `specialholiday`, `legalholiday`, `sss`, `sssprovident`, `philhealth`, `hdmf`, `whtax`, `cashadvances`, `totaldeduction`, `totalnetpay`) VALUES
+(62, 86, '1001', '100', '103', '300', '7', '100', '100', '10', '10', '200', '427', '200.00'),
+(63, 87, '100', '100', '10', '103', '7', '38', '100', '10', '10', '31', '196', '200.00'),
+(64, 88, '700', '100', '102', '103', '100', '344', '100', '10', '10', '100', '664', '370.60'),
+(65, 89, '600', '0', '0', '0', '250', '0', '120', '100', '100', '500', '1070', '370.60');
 
 -- --------------------------------------------------------
 
@@ -72,19 +74,8 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`id`, `emp_id`, `city`, `country`, `address`, `type`) VALUES
-(8, 'EMP - 64687', 'pasig', 'ph', 'fsdfsdgsdgds', 'Permanent');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_settings`
---
-
-CREATE TABLE `admin_settings` (
-  `id` int(11) NOT NULL,
-  `em_role` int(11) DEFAULT NULL,
-  `hide_sidebar` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(13, 'EMP - 52708', 'gdfgdfg', 'dfgfdgfd', 'gdfgdfgdfgdgd', 'Permanent'),
+(14, 'EMP - 52708', 'gdfgfdg', 'dfgdfgdgd', 'gdgdfgdgdgd', 'Present');
 
 -- --------------------------------------------------------
 
@@ -102,25 +93,6 @@ CREATE TABLE `assign_leave` (
   `total_day` varchar(64) DEFAULT NULL,
   `dateyear` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `assign_leave`
---
-
-INSERT INTO `assign_leave` (`id`, `app_id`, `emp_id`, `type_id`, `day`, `hour`, `total_day`, `dateyear`) VALUES
-(1, '', 'Moo1402', 2, NULL, '8', NULL, '2021'),
-(2, '', 'Tho1044', 2, NULL, '56', NULL, '2022'),
-(3, '', 'Den1745', 1, NULL, '8', NULL, '2022'),
-(4, '', 'data-id=\"4\"', 1, NULL, '2', NULL, '2023'),
-(5, '', 'Par1787', 8, NULL, '7', NULL, '2023'),
-(6, '', 'Kim1923', 11, NULL, '4', NULL, '2023'),
-(7, '', 'Seo1259', 13, NULL, '2', NULL, '2023'),
-(8, '', 'Jeo1145', 13, NULL, '8', NULL, '2023'),
-(9, '', 'Jeo1145', 10, NULL, '8', NULL, '2023'),
-(10, '', 'Kim1767', 14, NULL, '8', NULL, '2023'),
-(11, '', 'EMP', 10, NULL, '24', NULL, '2023'),
-(12, '', 'EMP', 16, NULL, '5', NULL, '2023'),
-(13, '', 'EMP', 13, NULL, '24', NULL, '2023');
 
 -- --------------------------------------------------------
 
@@ -143,20 +115,11 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`em_id`, `em_code`, `employee_name`, `date`, `sign_in`, `sign_out`, `working_hour`) VALUES
-(2167, 'EMP - 64687', 'Lionel Acuemo', '2023-11-09', '04:10 pm', '05:28 pm', '1 hour 18 minutes'),
-(2169, 'Seo1523', 'Yeji Seo', '2023-11-11', '01:00', '08:00:00', '07 h 00 m'),
-(2170, 'EMP - 64687', 'Lionel Acuemo', '2023-11-11', '01:00', NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `attendance_state`
---
-
-CREATE TABLE `attendance_state` (
-  `id` int(11) NOT NULL,
-  `is_enabled` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(2256, 'EMP - 64687', 'Lionel Acuemo', '2023-12-15', '01:00', '10:00:00', '8 h 0 m'),
+(2257, 'EMP - 52708', 'Hershey May Bibal', '2023-12-15', '01:00', '10:00:00', '8 h 0 m'),
+(2258, 'EMP - 52708', 'Hershey May Bibal', '2023-12-15', '01:00', '10:00:00', '8 h 0 m'),
+(2259, 'EMP - 64687', 'Lionel Acuemo', '2023-12-13', '01:00', '10:00:00', '8 h 0 m'),
+(2260, 'EMP - 62049', 'Ariel Gabitan', '2023-12-15', '14:29:39', '14:37:22', '0.014');
 
 -- --------------------------------------------------------
 
@@ -173,6 +136,13 @@ CREATE TABLE `bank_info` (
   `account_number` varchar(256) DEFAULT NULL,
   `account_type` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `bank_info`
+--
+
+INSERT INTO `bank_info` (`id`, `em_id`, `holder_name`, `bank_name`, `branch_name`, `account_number`, `account_type`) VALUES
+(16, 'EMP - 52708', 'jhgjghjghjgh', 'asdasdsadsa', 'dsadasdadasd', '42342', 'dasdaddas');
 
 -- --------------------------------------------------------
 
@@ -198,7 +168,10 @@ CREATE TABLE `deduction` (
 --
 
 INSERT INTO `deduction` (`de_id`, `salary_id`, `sss`, `sssprovident`, `philhealth`, `hdmf`, `whtax`, `cashadvances`, `totaldeduction`, `totalnetpay`) VALUES
-(27, 57, '10', '10', '10', '10', '10', '10', '10', '976');
+(34, 86, '7', '100', '100', '10', '10', '200', '427', '200.00'),
+(35, 87, '7', '38', '100', '10', '10', '31', '', '200.00'),
+(36, 88, '100', '344', '100', '10', '10', '100', '664', '370.60'),
+(37, 89, '250', '0', '120', '100', '100', '500', '1070', '700.00');
 
 -- --------------------------------------------------------
 
@@ -242,24 +215,25 @@ CREATE TABLE `desciplinary` (
 
 CREATE TABLE `designation` (
   `id` int(11) NOT NULL,
-  `des_name` varchar(64) NOT NULL
+  `des_name` varchar(64) NOT NULL,
+  `salary_per_hr` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `designation`
 --
 
-INSERT INTO `designation` (`id`, `des_name`) VALUES
-(2, 'ADMINISTRATOR'),
-(3, 'EVALUATORS'),
-(4, 'PURCHASER'),
-(5, 'DISPATCHER'),
-(6, 'HR OFFICER'),
-(7, 'ENGINEER'),
-(8, 'MECHANICS'),
-(9, 'PALERO'),
-(10, 'DRIVER COLLECTOR'),
-(11, 'SERVICE DRIVER');
+INSERT INTO `designation` (`id`, `des_name`, `salary_per_hr`) VALUES
+(2, 'ADMINISTRATOR', '470.60'),
+(3, 'EVALUATORS', '200.00'),
+(4, 'PURCHASER', '370.60'),
+(5, 'DISPATCHER', '370.60'),
+(6, 'HR OFFICER', '700.00'),
+(7, 'ENGINEER', '370.60'),
+(8, 'MECHANICS', '370.60'),
+(9, 'PALERO', '370.60'),
+(10, 'DRIVER COLLECTOR', '370.60'),
+(11, 'SERVICE DRIVER', '370.60');
 
 -- --------------------------------------------------------
 
@@ -275,6 +249,13 @@ CREATE TABLE `education` (
   `result` varchar(64) DEFAULT NULL,
   `year` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`id`, `emp_id`, `edu_type`, `institute`, `result`, `year`) VALUES
+(6, 'EMP - 52708', 'dhfghfhh', 'fhgfhfhf', '1.3', '2024');
 
 -- --------------------------------------------------------
 
@@ -311,17 +292,18 @@ CREATE TABLE `employee` (
   `em_tin` varchar(18) DEFAULT NULL,
   `inactivedate` varchar(130) DEFAULT NULL,
   `reason` varchar(256) DEFAULT NULL,
-  `remarks` varchar(512) DEFAULT NULL,
-  `attendance_status` tinyint(1) NOT NULL
+  `remarks` varchar(512) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `contactname`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`, `attendance_status`) VALUES
-(1, 'Seo1523', 'EMP - 57764', 2, 2, 'Yeji', 'Seo', 'moonyoung', 'be209a601e2892a1c7a2934ebee393aa42f2fbc1', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Single', '09-961523232', '09-961523232', '', '2023-04-19', 'O+', '2023-04-19', '', 'Seo15231.jpg', '12', '1234-1234-1234', '12-1234567-1', '123-123-123-12345', NULL, NULL, NULL, 0),
-(51, 'EMP - 64687', 'EMP - 64687', 3, 3, 'Lionel', 'Acuemo', 'adminNel', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'Single', '09-615296241', '09-615296241', 'Yoo in na', '2000-10-16', '', '2023-10-28', NULL, NULL, '34-325345345-3', '5646-2425-2535', '32-4243534-2', '434-535-535-35353', NULL, NULL, NULL, 1);
+INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_marital_status`, `em_phone`, `em_em_contact`, `contactname`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_philhealth`, `em_pagibig`, `em_sss`, `em_tin`, `inactivedate`, `reason`, `remarks`) VALUES
+(51, 'EMP - 64687', 'EMP - 64687', 3, 3, 'Lionel', 'Acuemo', 'adminNel', 'f865b53623b121fd34ee5426c792e5c33af8c227', 'ADMIN', NULL, 'ACTIVE', 'Male', 'Single', '09-615296241', '09-615296241', 'Yoo in na', '2000-10-16', '', '2023-10-28', NULL, NULL, '34-325345345-3', '5646-2425-2535', '32-4243534-2', '434-535-535-35353', NULL, NULL, NULL),
+(64, 'EMP - 52708', 'EMP - 52708', 2, 2, 'Hershey May', 'Bibal', 'bibalhersheymay29@gmail.com', 'e798f74c106b9032d28c8f073daa39c1e3f2c229', 'ADMIN', NULL, 'ACTIVE', 'Female', 'Married', '09-867868686', '09-867867876', 'jjjj', '2023-12-01', NULL, '2023-12-15', NULL, NULL, '86-867868686-7', '6868-8686-8678', '86-6868686-6', '686-686-686-67876', NULL, NULL, NULL),
+(65, 'EMP - 62049', 'EMP - 62049', 6, 2, 'Ariel', 'Gabitan', 'arielgabitan05@gmail.com', '55c4f2e83e8db56d6a210bb7973026787671981b', 'ADMIN', NULL, 'ACTIVE', 'Male', 'Married', '09-567737526', '09-950123245', 'Marcela Teofila', '1982-05-05', NULL, '2021-07-13', NULL, NULL, '--', '--', '33-7006005-2', '---', NULL, NULL, NULL),
+(66, 'EMP - 21311', 'EMP - 21311', 11, 2, 'Hernane', 'Bibal', 'hernanebibal@gmail.com', '90a847b014aeeba5bfc98aa0ea0ab575cde0124c', 'ADMIN', NULL, 'ACTIVE', 'Male', 'Married', '09-106337138', '09-052539276', 'Elia Bibal', '1972-10-29', NULL, '2021-10-01', NULL, NULL, '--', '--', '--', '---', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -335,6 +317,13 @@ CREATE TABLE `employee_file` (
   `file_title` varchar(512) DEFAULT NULL,
   `file_url` varchar(512) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `employee_file`
+--
+
+INSERT INTO `employee_file` (`id`, `em_id`, `file_title`, `file_url`) VALUES
+(4, 'EMP - 52708', 'dadaewewa', 'wallpaperflare_com_wallpaper_(9)1.jpg');
 
 -- --------------------------------------------------------
 
@@ -353,7 +342,7 @@ CREATE TABLE `employee_fingerprint` (
 --
 
 INSERT INTO `employee_fingerprint` (`id`, `employee_id`, `fingerprint`) VALUES
-(11, 'EMP - 64687', '<?xml version=\"1.0\" encoding=\"UTF-8\"?><Fid><Bytes>Rk1SACAyMAABuAAz/v8AAAH0AiYBFAEUAQAAAFZEgG8Bx41kQIMA2V5iQOMB1odigQsBhJdbgLsAiFRbgKQAq1VbgQcAp0lZQI4BI2RYgIQBRmxYgQcBr5JYQXgA0TNYQL4Bno1WQRMBUkNVQFkAn2lVQRgAykhTgNwAnKJTgHYBYnNTQGAAzQJSgJ8BxjJRQDIBLxFQQCMBGG1PgPoB54lPQJcBqJBPQLMAmqVOQMUBAUxOQHwA2WJNQMcApklNQJABjH9NgE4BpoJMQEYA12ZLQQcB0I9LQIQAY1VKQE4Bh4FKgSAA0klKQUoBFkZIQOkBG55IgYwAkFhIQLEAdFRHQOEBB55HQKwAVkhHgSAAqUZGQQcBuJFGQDcBUHRFQE4AtghEQRgAokZBQEcBknxBgOgAYkNAgWEAwIxAgTYAwkFAQOkAWUI/QEkAsAk/QC4BWn8/QIABYnU/gPMBjJE/QQEAbD0/QNYBXJg/gLEBxzU/gHkAZbA+gKwBo4w+QF4AxQU+gXAA3ok9QMwBZEw9gMUCA3w9QTcAnEk9gB4A5gs9QD0BVXc9QNQBbJY9QRsAnEc7AAA=</Bytes><Format>1769473</Format><Version>1.0.0</Version></Fid>');
+(11, 'EMP - 62049', '<?xml version=\"1.0\" encoding=\"UTF-8\"?><Fid><Bytes>Rk1SACAyMAABpgAz/v8AAAH0AiYBFAEUAQAAAFZBQN4BLYJkgIsBZmRkgQkBLYdhgDIA0XpeQPoA/IleQU8BNjVeQLsBJ31dgKIBYnRdgHkBemBcgMUAkKNbQOUBinxbQPgAgEtagFQAqRNYQRgA5Y9YgJUBSmlXgGcAcmxWQQkAe5pVQEkBqFRVgRsAuJVUgJwBknFUgKYBHnZTQTcBLI1SQG8B2hJRQMoAx5JQgPIAp0dQQUUAgJpPgLkA/UFPQMIBUHtOgU8BUDNOgKwBuB5OQVcBFjVMQMUBgHhLgVgA2TpLgIMBIyJKQGABtVxKgRAAaEtJQI4BAXxDQLUAdKlDgPMBDoVAQMIALa4/QIABNhw/QDgBoUs/gLMAylY+gRYAW1A+gJ8A5pM+gGcBNpQ+QCEBJYs9QJ0A4Jk7QN4AQkw6QNYAQlo4gXgA9Y04ANYAH0w1AOEALk0zALUAJlQzANEAQaozAVUBDjgzAFYB714yAMcAOlgxAM0ARlgxAQwAW6UxAG8BOzgtANwANaUsAJAA6HwpAG8BLSspAI4A94MpAAA=</Bytes><Format>1769473</Format><Version>1.0.0</Version></Fid>');
 
 -- --------------------------------------------------------
 
@@ -369,6 +358,13 @@ CREATE TABLE `emp_experience` (
   `exp_com_address` varchar(128) DEFAULT NULL,
   `exp_workduration` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `emp_experience`
+--
+
+INSERT INTO `emp_experience` (`id`, `emp_id`, `exp_company`, `exp_com_position`, `exp_com_address`, `exp_workduration`) VALUES
+(4, 'EMP - 52708', 'fghgfhfhfh', 'fghfhfh', 'gfhfhfhfhfh', '8');
 
 -- --------------------------------------------------------
 
@@ -392,19 +388,6 @@ CREATE TABLE `emp_leave` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emp_penalty`
---
-
-CREATE TABLE `emp_penalty` (
-  `id` int(11) NOT NULL,
-  `emp_id` int(11) NOT NULL,
-  `penalty_id` int(11) NOT NULL,
-  `penalty_desc` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `emp_salary`
 --
 
@@ -413,35 +396,18 @@ CREATE TABLE `emp_salary` (
   `emp_id` varchar(64) DEFAULT NULL,
   `type_id` int(11) NOT NULL,
   `total` varchar(64) DEFAULT NULL,
-  `totalnetpay` varchar(64) DEFAULT NULL
+  `totalnetpay` varchar(64) DEFAULT NULL,
+  `totaldeduction` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `emp_salary`
 --
 
-INSERT INTO `emp_salary` (`id`, `emp_id`, `type_id`, `total`, `totalnetpay`) VALUES
-(57, 'EMP - 64687', 4, '1036.00', '976');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `field_visit`
---
-
-CREATE TABLE `field_visit` (
-  `id` int(14) NOT NULL,
-  `project_id` varchar(256) NOT NULL,
-  `emp_id` varchar(64) DEFAULT NULL,
-  `field_location` varchar(512) NOT NULL,
-  `start_date` varchar(64) DEFAULT NULL,
-  `approx_end_date` varchar(28) NOT NULL,
-  `total_days` varchar(64) DEFAULT NULL,
-  `notes` varchar(500) NOT NULL,
-  `actual_return_date` varchar(28) NOT NULL,
-  `status` enum('Approved','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve',
-  `attendance_updated` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+INSERT INTO `emp_salary` (`id`, `emp_id`, `type_id`, `total`, `totalnetpay`, `totaldeduction`) VALUES
+(87, 'EMP - 64687', 0, '313.00', '200.00', '196'),
+(88, 'EMP - 52708', 0, '1005.00', '370.60', '664'),
+(89, 'EMP - 62049', 0, '600.00', '700.00', '1070');
 
 -- --------------------------------------------------------
 
@@ -463,12 +429,12 @@ CREATE TABLE `holiday` (
 --
 
 INSERT INTO `holiday` (`id`, `holiday_name`, `from_date`, `to_date`, `number_of_days`, `year`) VALUES
-(1, 'New Year\'s Eve', '2021-12-30', '2022-01-31', '32', '12-2021'),
+(1, 'New Year\'s Eve', '2023-12-30', '2024-01-01', '2', '12-2023'),
 (3, 'New Year\'s Day', '2022-01-01', '2022-01-02', '1', '01-2022'),
 (5, 'Christmas', '2021-12-23', '2021-12-25', '2', '12-2021'),
-(6, 'Thanksgiving', '2021-11-23', '2021-11-26', '3', '11-2021'),
 (7, 'Halloween', '2021-10-31', '2021-10-31', '0', '10-2021'),
-(8, 'Saint Patrick\'s Day', '2021-03-17', '2021-03-17', '0', '03-2021');
+(9, 'Bonifacio Day', '2023-11-30', '2023-11-30', '0', '11-2023'),
+(10, 'Labor Day', '2023-05-01', '2023-05-01', '0', '05-2023');
 
 -- --------------------------------------------------------
 
@@ -492,7 +458,7 @@ INSERT INTO `leave_types` (`type_id`, `name`, `leave_day`, `status`) VALUES
 (11, 'Birthdayy', '', 0),
 (12, 'Paternity', '', 1),
 (13, 'Sick', '', 1),
-(14, 'Emergency', '', 1),
+(14, 'Emergency', '12', 1),
 (15, 'Maternity', '', 1),
 (16, 'Others', '', 1);
 
@@ -538,13 +504,6 @@ CREATE TABLE `notice` (
   `date` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `notice`
---
-
-INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
-(5, 'Mission of company metrowaste', '339838725_2184844885044271_1958159763907385544_n.jpg', '2023-04-25');
-
 -- --------------------------------------------------------
 
 --
@@ -560,7 +519,6 @@ CREATE TABLE `pay_salary` (
   `paid_date` varchar(64) DEFAULT NULL,
   `total_days` varchar(64) DEFAULT NULL,
   `basic` varchar(64) DEFAULT NULL,
-  `loan` varchar(64) DEFAULT NULL,
   `total_pay` varchar(128) DEFAULT NULL,
   `addition` int(128) NOT NULL,
   `diduction` int(128) NOT NULL,
@@ -572,8 +530,11 @@ CREATE TABLE `pay_salary` (
 -- Dumping data for table `pay_salary`
 --
 
-INSERT INTO `pay_salary` (`pay_id`, `emp_id`, `type_id`, `month`, `year`, `paid_date`, `total_days`, `basic`, `loan`, `total_pay`, `addition`, `diduction`, `status`, `paid_type`) VALUES
-(23, 'EMP - 64687', 0, 'November', '2023', '2023-11-01', '9', '976', NULL, '966', 0, 10, 'Paid', 'Hand Cash');
+INSERT INTO `pay_salary` (`pay_id`, `emp_id`, `type_id`, `month`, `year`, `paid_date`, `total_days`, `basic`, `total_pay`, `addition`, `diduction`, `status`, `paid_type`) VALUES
+(23, 'EMP - 64687', 0, 'November', '2023', '2023-11-01', '9', '976', '966', 0, 10, 'Paid', 'Hand Cash'),
+(28, 'EMP - 64687', 0, 'December', '2023', '2023-12-15', '8', '200.00', '1717', 313, 196, 'Paid', 'Hand Cash'),
+(29, 'EMP - 52708', 0, 'December', '2023', '2023-12-15', '16', '370.60', '6270.6', 1005, 664, 'Paid', 'Hand Cash'),
+(30, 'EMP - 62049', 0, 'December', '2023', '2023-12-25', '0.014', '370.60', '-464.81', 600, 1070, 'Process', 'Hand Cash');
 
 -- --------------------------------------------------------
 
@@ -583,9 +544,9 @@ INSERT INTO `pay_salary` (`pay_id`, `emp_id`, `type_id`, `month`, `year`, `paid_
 
 CREATE TABLE `penalty` (
   `id` int(11) NOT NULL,
-  `penalty_name` varchar(64) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `penalty_name` varchar(255) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -604,10 +565,7 @@ CREATE TABLE `salary_type` (
 --
 
 INSERT INTO `salary_type` (`id`, `salary_type`, `create_date`) VALUES
-(1, 'Hourly', '2017-11-22'),
-(2, 'Monthly', '2017-12-30'),
-(3, 'Weekly', '2017-12-29'),
-(4, 'Daily', '2018-03-31');
+(2, 'Monthly', '2017-12-30');
 
 -- --------------------------------------------------------
 
@@ -643,21 +601,13 @@ INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright
 --
 
 CREATE TABLE `social_media` (
-  `id` int(14) NOT NULL,
-  `emp_id` varchar(64) DEFAULT NULL,
-  `facebook` varchar(256) DEFAULT NULL,
-  `twitter` varchar(256) DEFAULT NULL,
-  `google_plus` varchar(512) DEFAULT NULL,
-  `skype_id` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `social_media`
---
-
-INSERT INTO `social_media` (`id`, `emp_id`, `facebook`, `twitter`, `google_plus`, `skype_id`) VALUES
-(1, 'Jeo1145', '', '', 'https://www.bing.com/search?pglt=41&q=google&cvid=fcc737a185d841338d14aaf33ba72277&aqs=edge.0.46j69i57j46l3j0j46j69i60l2.1521j0j1&FORM=ANNTA1&PC=HCTS', ''),
-(2, 'Kim1479', '', '', 'https://us05web.zoom.us/postattendee?mn=Ue86cW53AzC7_eF6yBR4S-_YCUn8EBAi0dM.z-8p07tRRK-kuwXh', '');
+  `id` int(11) NOT NULL,
+  `emp_id` int(11) NOT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `google_plus` varchar(255) DEFAULT NULL,
+  `skype_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -672,6 +622,13 @@ CREATE TABLE `to-do_list` (
   `date` varchar(128) DEFAULT NULL,
   `value` varchar(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `to-do_list`
+--
+
+INSERT INTO `to-do_list` (`id`, `user_id`, `to_dodata`, `date`, `value`) VALUES
+(34, 'EMP - 77177', 'rwerwrewrwerw', NULL, '0');
 
 --
 -- Indexes for dumped tables
@@ -690,12 +647,6 @@ ALTER TABLE `address`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `admin_settings`
---
-ALTER TABLE `admin_settings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
@@ -706,12 +657,6 @@ ALTER TABLE `assign_leave`
 --
 ALTER TABLE `attendance`
   ADD PRIMARY KEY (`em_id`);
-
---
--- Indexes for table `attendance_state`
---
-ALTER TABLE `attendance_state`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `bank_info`
@@ -780,21 +725,9 @@ ALTER TABLE `emp_leave`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `emp_penalty`
---
-ALTER TABLE `emp_penalty`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `field_visit`
---
-ALTER TABLE `field_visit`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -828,6 +761,12 @@ ALTER TABLE `pay_salary`
   ADD PRIMARY KEY (`pay_id`);
 
 --
+-- Indexes for table `penalty`
+--
+ALTER TABLE `penalty`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salary_type`
 --
 ALTER TABLE `salary_type`
@@ -859,85 +798,73 @@ ALTER TABLE `to-do_list`
 -- AUTO_INCREMENT for table `addition`
 --
 ALTER TABLE `addition`
-  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `addi_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `admin_settings`
---
-ALTER TABLE `admin_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `em_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2171;
-
---
--- AUTO_INCREMENT for table `attendance_state`
---
-ALTER TABLE `attendance_state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `em_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2261;
 
 --
 -- AUTO_INCREMENT for table `bank_info`
 --
 ALTER TABLE `bank_info`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `deduction`
 --
 ALTER TABLE `deduction`
-  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `de_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `desciplinary`
 --
 ALTER TABLE `desciplinary`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
 --
 ALTER TABLE `employee_file`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employee_fingerprint`
@@ -949,37 +876,25 @@ ALTER TABLE `employee_fingerprint`
 -- AUTO_INCREMENT for table `emp_experience`
 --
 ALTER TABLE `emp_experience`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `emp_leave`
 --
 ALTER TABLE `emp_leave`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `emp_penalty`
---
-ALTER TABLE `emp_penalty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `emp_salary`
 --
 ALTER TABLE `emp_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
-
---
--- AUTO_INCREMENT for table `field_visit`
---
-ALTER TABLE `field_visit`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `holiday`
 --
 ALTER TABLE `holiday`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
@@ -997,13 +912,19 @@ ALTER TABLE `loan`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pay_salary`
 --
 ALTER TABLE `pay_salary`
-  MODIFY `pay_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `pay_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `penalty`
+--
+ALTER TABLE `penalty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salary_type`
@@ -1021,13 +942,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `social_media`
 --
 ALTER TABLE `social_media`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `to-do_list`
 --
 ALTER TABLE `to-do_list`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

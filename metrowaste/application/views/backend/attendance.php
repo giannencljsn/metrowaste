@@ -36,12 +36,12 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>ID</th>
+                                                <th>PIN</th>
                                                 <th>Date </th>
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
                                                 <th>Working Hour</th>
-                                                
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>

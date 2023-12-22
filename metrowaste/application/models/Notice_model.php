@@ -23,10 +23,35 @@ class Notice_model extends CI_Model{
         return $result;        
     }
 
+    public function get_notice_by_title($title) {
+        // Fetch notice by title
+        $this->db->where('title', $title);
+        return $this->db->get('notice')->row();
+
+    }
+
     public function deleteNotice($id){
         return $this->db->delete('notice', ['id' => $id]);
     
       }
+
+      //this is for editing and update notice
+
+      public function get_notice($id) {
+        // Fetch notice based on ID
+        $query = $this->db->get_where('notice', array('id' => $id));
+        return $query->row();
+    }
+
+    public function update_notice($data) {
+        $this->db->where('id', $data['id']);
+        $this->db->set('title', $data['title']);
+        $this->db->set('file_url', $data['file_url']);
+        $this->db->set('date', $data['date']);
+        $this->db->update('notice');
+
+        return $this->db->affected_rows() > 0;
+    }
           
 }
 ?>

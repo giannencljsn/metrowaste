@@ -115,21 +115,7 @@ class Employee extends CI_Controller {
         /*validating username field*/
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
-
-
-		// Check if password and confirm password match
-		if ($password != $confirm) {
-			$this->session->set_flashdata('formdata', 'Password and Confirm Password do not match');
-			echo "Password and Confirm Password do not match";
-			return; // Exit the function if passwords do not match
-		}
         if ($this->form_validation->run() == FALSE) {
-			   // Check if password and confirm password match
-			   if ($password != $confirm) {
-				$this->session->set_flashdata('formdata', 'Password and Confirm Password do not match');
-				echo "Password and Confirm Password do not match";
-				return; // Exit the function if passwords do not match
-			}
             echo validation_errors();
 
 			} else {
@@ -1154,7 +1140,6 @@ else{
 
 					// Addition
                     'salary_id' => $sid,
-                    'basic' => $basic,
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,
@@ -1203,7 +1188,6 @@ else{
 
 
                     // Addition
-                    'basic' => $basic,
                     'restduty'=> $restduty,
                     'straightduty'=> $straightduty,
                     'specialholiday'=> $specialholiday,

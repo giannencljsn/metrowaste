@@ -52,14 +52,12 @@
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>PIN</th>
                                         <th>Employee</th>
                                         <th>Type</th>
                                         <th>Duration</th>
                                         <th>Start</th>
                                         <th>End</th>
-                                        <th>Status</th>
-
                                         <!--<th>Total</th>-->
                                     </tr>
                                 </thead>

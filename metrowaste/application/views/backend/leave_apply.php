@@ -38,7 +38,7 @@
                                     <tr>
                                     <!-- <th>ID</th> -->
                                         <th>Name</th>
-                                        <th>ID</th>
+                                        <th>PIN</th>
                                         <th>Leave Type</th>
                                         <th>Apply Date</th>
                                         <th>Start Date</th>
@@ -162,7 +162,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Reason</label>
-                                <textarea class="form-control" name="reason" id="message-text1" required minlength="10"></textarea>                                                
+                                <textarea class="form-control" name="reason" id="message-text1" required minlength="10" required></textarea>                                                
                             </div>
                             
                         </div>

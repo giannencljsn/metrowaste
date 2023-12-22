@@ -80,7 +80,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content ">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="exampleModalLabel1">Disciplinary Notice</h4>
+                                                    <h4 class="modal-title" id="exampleModalLabel1">Inactive Notice</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <form method="post" action="adding_Inactivity" id="btnSubmit" enctype="multipart/form-data">
@@ -124,7 +124,7 @@
                                                      
                                                         <div class="form-group">
                                                             <label for="message-text" class="control-label">Remarks</label>
-                                                            <textarea class="form-control" value="" name="remarks" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible"></textarea>
+                                                            <textarea class="form-control" value="" name="remarks" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible" required></textarea>
                                                         </div>
                                                     
                                                 </div>
