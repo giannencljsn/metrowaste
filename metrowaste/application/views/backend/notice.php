@@ -97,5 +97,18 @@
                             </div>
                         </div>
                         <!-- /.modal --> 
+
+
+                        <script>
+    $(document).ready(function () {
+        $('#message-text1').on('input', function () {
+            var currentValue = $(this).val();
+            var newValue = currentValue.replace(/\s+/g, ' '); // Replace multiple spaces with a single space
+            if (currentValue !== newValue) {
+                $(this).val(newValue);
+            }
+        });
+    });
+</script>
   
 <?php $this->load->view('backend/footer'); ?>
