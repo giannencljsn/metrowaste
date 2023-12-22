@@ -23,6 +23,13 @@ class Notice_model extends CI_Model{
         return $result;        
     }
 
+    public function get_notice_by_title($title) {
+        // Fetch notice by title
+        $this->db->where('title', $title);
+        return $this->db->get('notice')->row();
+
+    }
+
     public function deleteNotice($id){
         return $this->db->delete('notice', ['id' => $id]);
     
