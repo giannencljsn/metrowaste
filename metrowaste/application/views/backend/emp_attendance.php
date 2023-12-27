@@ -7,8 +7,13 @@
     <!-- Include your CSS and other dependencies here -->
 </head>
 <body>
+<?php 
+                        $id = $this->session->userdata('user_login_id');
+                        $basicinfo = $this->employee_model->GetBasic($id); 
+						?>
     <!-- Your Attendance HTML code here -->
     <h1>Employee Attendance</h1>
+	<h5><?php echo $basicinfo->em_code ?></h5>
     <!-- ... -->
 </body>
 </html>
