@@ -24,18 +24,18 @@ class Emp_Attendance extends CI_Controller {
         $this->load->view('backend/emp_attendance', $data);
     }
 
-    public function filterAttendance() {
-        // Get the input from the form
-        $employee_code = $this->input->post('employee_code');
+    // public function filterAttendance() {
+    //     // Get the input from the form
+    //     $employee_code = $this->input->post('employee_code');
 
-        // Fetch attendance data based on the entered employee code
-        $data['attendance_data'] = $this->employee_attendance->getAttendanceData($employee_code);
+    //     // Fetch attendance data based on the entered employee code
+    //     $data['attendance_data'] = $this->employee_attendance->getAttendanceData($employee_code);
 
-        // Pass the data to the view
-        $data['basicinfo'] = (object) array('em_code' => $employee_code);
+    //     // Pass the data to the view
+    //     $data['basicinfo'] = (object) array('em_code' => $employee_code);
 
-        // Load your view and pass the data
-        $this->load->view('backend/emp_attendance', $data);
-    }
+    //     // Load your view and pass the data
+    //     $this->load->view('backend/emp_attendance', $data);
+    // }
 }
 ?>
