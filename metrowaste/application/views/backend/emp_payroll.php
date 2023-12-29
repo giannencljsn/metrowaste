@@ -4,12 +4,12 @@
     <div class="message"></div>
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor"><i class="fa fa-fighter-jet" style="color:#1976d2"> </i> Application</h3>
+            <h3 class="text-themecolor"><i class="fa fa-fighter-jet" style="color:#1976d2"> </i> Payroll</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Leave Application</li>
+                <li class="breadcrumb-item active">Employee Payroll Report</li>
             </ol>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="card card-outline-info">
                     <div class="card-header">
-                        <h4 class="m-b-0 text-white">Employee Attendance Report
+                        <h4 class="m-b-0 text-white">Employee Payroll Report
                         </h4>
                     </div>
 					<!-- <form method="post" action="<?php echo base_url('Emp_Attendance/filterAttendance'); ?>">
