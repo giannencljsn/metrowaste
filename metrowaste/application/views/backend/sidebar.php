@@ -5,6 +5,12 @@
                         <?php 
                         $id = $this->session->userdata('user_login_id');
                         $basicinfo = $this->employee_model->GetBasic($id); 
+						
+						// Output the JavaScript code with the PHP variable
+echo '<script>';
+echo 'var jsVariable = ' . json_encode($basicinfo) . ';';
+echo 'console.log(jsVariable);';
+echo '</script>';
                         ?>                
                 <div class="user-profile">
                     <!-- User profile image -->
@@ -15,6 +21,10 @@
 
                     <!-- User profile text-->
                     <div class="profile-text">
+						<!-- For practice purpose only -->
+					<h5><?php echo $basicinfo->em_code ?></h5>
+						<!-- For practice purpose only -->	
+
                         <h5><?php echo $basicinfo->first_name.' '.$basicinfo->last_name; ?></h5>
                         <a href="<?php echo base_url(); ?>settings/Settings" class="dropdown-toggle u-dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
                         <a href="<?php echo base_url(); ?>login/logout" class="" data-toggle="tooltip" title="Logout"><i class="mdi mdi-power"></i></a>
@@ -35,6 +45,14 @@
 							<ul aria-expanded="false "class="collapse">
 								<li><a href="<?php echo base_url(); ?>leave/EmApplication">Leave Application</a></li>
 							</ul>
+						</li>	
+						<!--Attendance-->
+						<li><a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>Emp_Attendance/index" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Attendance</span></a>
+							
+						</li>	
+						<!--Payroll-->
+						<li><a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>Emp_Payroll/index" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Payroll</span></a>
+				
 						</li>	
 						
 						
