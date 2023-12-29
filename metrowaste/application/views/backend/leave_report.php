@@ -81,25 +81,42 @@
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                $("#BtnSubmit").on("click", function(event) {
+		<script>
+    $(document).ready(function() {
+        var dataTable; // Declare a variable to store the DataTable instance
 
-                    event.preventDefault();
+        $("#BtnSubmit").on("click", function(event) {
+            event.preventDefault();
 
-                    var emid = $('#emid').val();
-                    var datetime = $('.mydatetimepicker').val();
-                    console.log(datetime);
-                    $.ajax({
-                        url: "Get_LeaveDetails?date_time=" + datetime + "&emp_id=" + emid,
-                        type: "GET",
-                        data: 'data',
-                        success: function(response) {
-                            $('.leave').html(response);
-                        }
+            var emid = $('#emid').val();
+            var datetime = $('.mydatetimepicker').val();
+
+            $.ajax({
+                url: "Get_LeaveDetails?date_time=" + datetime + "&emp_id=" + emid,
+                type: "GET",
+                data: 'data',
+                success: function(response) {
+                    // Clear and destroy the existing DataTable
+                    if ($.fn.DataTable.isDataTable('#example23')) {
+                        $('#example23').DataTable().clear().destroy();
+                    }
+
+                    // Update the table body with new data
+                    $('.leave').html(response);
+
+                    // Reinitialize DataTable with new data
+                    dataTable = $('#example23').DataTable({
+                        "aaSorting": [[1, 'asc']],
+                        dom: 'Bfrtip',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
                     });
-                });
+                },
+                error: function(response) {
+                    // Handle error if needed
+                }
             });
+        });
+    });
+</script>
 
-        </script>
         <?php $this->load->view('backend/footer'); ?>
