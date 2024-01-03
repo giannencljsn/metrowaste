@@ -1,5 +1,6 @@
 <?php $this->load->view('backend/header'); ?>
 <?php $this->load->view('backend/sidebar'); ?>
+<!-----ATTENDANCE WITH PRINT-->
          <div class="page-wrapper">
             <div class="message"></div>
             <div class="row page-titles">
@@ -39,7 +40,7 @@
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
                                                 <th>Working Hour</th>
-                                               
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -126,3 +127,4 @@
         ]
     });
 </script>
+    
