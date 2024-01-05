@@ -68,15 +68,15 @@
                         </td>
                     </tr>
                     <?php endforeach; ?>
-                    <tr>
-                        <td colspan="6">
-							<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
-                        </td>
-                    </tr>
-                </form>
             </tbody>
         </table>
+        <div>
+            <td colspan="6">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+            </td>
+        </div>
     </div>
+    </form>
 </div>
 
 
