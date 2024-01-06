@@ -450,19 +450,23 @@
 			                                <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label> Bank Holder Name</label>
-			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')" required> 
+			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name; ?>" class="form-control form-control-line" placeholder="Enter Bank Holder Name" oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '');">
+
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Name</label>
-			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')" required> 
+			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name; ?>" class="form-control form-control-line" placeholder="Enter Bank Name" oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '');">
+
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Branch Name</label>
-                                                    <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name ?>" class="form-control form-control-line" placeholder="Branch Name" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '')" required>
+                                                    <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name; ?>" class="form-control form-control-line" placeholder="Enter Branch Name" oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '');">
+
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Number</label>
-                                                    <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 17);"   minlength="12" maxlength="17"required>
+                                                    <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number; ?>" class="form-control form-control-line" placeholder="Enter Account Number" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Type</label>
