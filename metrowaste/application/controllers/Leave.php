@@ -512,6 +512,8 @@ class Leave extends CI_Controller
                         <td>$value->leave_duration hours</td>
                         <td>$value->start_date</td>
                         <td>$value->end_date</td>
+                        <td>$value->leave_status</td>
+
                     </tr>";
             }
         } else {
