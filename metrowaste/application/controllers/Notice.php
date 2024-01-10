@@ -64,7 +64,7 @@ class Notice extends CI_Controller {
                         'file_name' => $new_file_name,
                         'upload_path' => "./assets/images/notice",
                         'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
-                        'overwrite' => True,
+                        'overwrite' => False,
                         'max_size' => "50720000"
                     );
     
