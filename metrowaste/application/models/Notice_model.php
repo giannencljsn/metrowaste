@@ -53,5 +53,13 @@ class Notice_model extends CI_Model{
         return $this->db->affected_rows() > 0;
     }
           
+	public function get_notice_by_file_name($file_name) {
+		$this->db->where('file_url', $file_name);
+		$query = $this->db->get('notice');
+		return $query->row();
+	}
 }
+
+
+
 ?>
