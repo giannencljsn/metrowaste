@@ -239,28 +239,27 @@ class Leave extends CI_Controller
             $hourAmount   = $this->input->post('hourAmount');
             $reason       = $this->input->post('reason');
             $type         = $this->input->post('type');
-            // $duration     = $this->input->post('duration');
-
-            if($type == 'Half Day') {
+    
+            $formattedStart = new DateTime($appstartdate);
+            $formattedEnd = new DateTime($appenddate);
+    
+            if ($type == 'Half Day') {
                 $duration = $hourAmount;
-            } else if($type == 'Full Day') { 
+            } elseif ($type == 'Full Day') {
                 $duration = 24;
-            } else { 
-                $formattedStart = new DateTime($appstartdate);
-                $formattedEnd = new DateTime($appenddate);
-
-                $duration = $formattedStart->diff($formattedEnd)->format("%d");
-                $duration = $duration * 24;
+            } else {
+                $interval = $formattedStart->diff($formattedEnd);
+                $duration = $interval->days + 1; // Include both start and end days
+                $duration *= 24; // Convert days to hours
             }
-
+    
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters();
             $this->form_validation->set_rules('startdate', 'Start Date', 'trim|required|xss_clean');
+            
             if ($this->form_validation->run() == FALSE) {
                 echo validation_errors();
-                #redirect("employee/view?I=" .base64_encode($eid));
             } else {
-                $data = array();
                 $data = array(
                     'em_id' => $emid,
                     'typeid' => $typeid,
@@ -272,23 +271,20 @@ class Leave extends CI_Controller
                     'leave_duration' => $duration,
                     'leave_status' => 'Not Approve'
                 );
+    
                 if (empty($id)) {
                     $success = $this->leave_model->Application_Apply($data);
-                    #$this->session->set_flashdata('feedback','Successfully Updated');
-                    #redirect("leave/Application");
                     echo "Successfully Added";
                 } else {
                     $success = $this->leave_model->Application_Apply_Update($id, $data);
-                    #$this->session->set_flashdata('feedback','Successfully Updated');
-                    #redirect("leave/Application");
                     echo "Successfully Updated";
                 }
-                
             }
         } else {
             redirect(base_url(), 'refresh');
         }
     }
+    
 
     public function Add_L_Status()
     {
