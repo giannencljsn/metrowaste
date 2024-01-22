@@ -55,10 +55,14 @@
 						</div>
 					</div>
 
-					<div class="form-group"> 
-						<div class="col-xs-12">
-							<input class="form-control" name="password" value="<?php if(isset($_COOKIE['password'])){ echo $_COOKIE['password']; } ?>" type="password" required placeholder="Password">
-						</div>
+					<div class="form-group">
+    					<div class="col-xs-12">
+        				<input class="form-control" name="password" value="<?php if(isset($_COOKIE['password'])){ echo $_COOKIE['password']; } ?>" type="password" required placeholder="Password" id="passwordInput">
+        				<div class="form-check mt-2">
+           					 <input class="form-check-input" type="checkbox" id="showPasswordCheckbox" onclick="togglePassword()">
+           					 <label class="form-check-label" for="showPasswordCheckbox">Show Password</label>
+       					 </div>
+    					</div>
 					</div>
 
 
@@ -108,6 +112,17 @@
 
 
 
+		<script>
+    function togglePassword() {
+        var passwordInput = document.getElementById("passwordInput");
+        var checkbox = document.getElementById("showPasswordCheckbox");
 
+        if (checkbox.checked) {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
 	</body>
 </html>
