@@ -1272,5 +1272,15 @@ else{
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
+
+    public function getFingerprintList(){
+        if($this->session->userdata('user_login_access') != False) { 
+        $data['employee'] = $this->employee_model->emselect();
+        $this->load->view('backend/employee_fplist',$data);
+        }
+    else{
+		redirect(base_url() , 'refresh');
+	}        
+    }
  
 }
