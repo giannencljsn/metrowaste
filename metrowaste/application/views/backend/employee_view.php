@@ -171,38 +171,46 @@
                                                     <!---update 11/05/23 --->
                                                     
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Department</label>
-        <select name="dept" readonly class="form-control custom-select">
-            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
-        </select>
-    </div>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Designation</label>
-        <select name="deg" readonly class="form-control custom-select">
-            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
-        </select>
-    </div>
-<?php } else { ?>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Department</label>
-        <select name="dept" class="form-control custom-select">
-            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
-            <?php foreach($depvalue as $value): ?>
-                <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-    <div class="form-group col-md-4 m-t-10">
-        <label>Designation</label>
-        <select name="deg" class="form-control custom-select">
-            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
-            <?php foreach($degvalue as $value): ?>
-                <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
-            <?php endforeach; ?>
-        </select>
-    </div>
-<?php } ?>
+                                                    <div class="form-group col-md-4 m-t-10">
+                                                        <label>Department</label>
+                                                        <select name="dept" readonly class="form-control custom-select">
+                                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4 m-t-10">
+                                                        <label>Designation</label>
+                                                        <select name="deg" readonly class="form-control custom-select">
+                                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
+                                                        </select>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="form-group col-md-4 m-t-10">
+                                                        <label>Department</label>
+                                                        <select name="dept" class="form-control custom-select">
+                                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
+                                                            <?php foreach($depvalue as $value): ?>
+                                                                <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4 m-t-10">
+                                                        <label>Designation</label>
+                                                        <select name="deg" class="form-control custom-select">
+                                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
+                                                            <?php foreach($degvalue as $value): ?>
+                                                                <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                <?php } ?>                                          
+                                                    <!---Fingerprint dropdown field--->
+                                                    <div class="form-group col-md-4 m-t-10">
+				                                        <label>Fingerprint Registered</label>
+				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+				                                            <option value="No">No</option>
+                                                            <option value="Yes">Yes</option>
+				                                        </select>
+				                                    </div>
 
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Joining </label>
