@@ -1274,13 +1274,13 @@ else{
     }
 
     public function getFingerprintList(){
-        if($this->session->userdata('user_login_access') != False) { 
-        $data['employee'] = $this->employee_model->emselect();
-        $this->load->view('backend/employee_fplist',$data);
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
-    }
+		if($this->session->userdata('user_login_access') != False){
+			$data['employee'] = $this->employee_model->empRegisteredFp();
+			$this->load->view('backend/employee_fplist', $data);
+
+		}else{
+			redirect(base_url(), 'refresh');
+		}
+	}
  
 }

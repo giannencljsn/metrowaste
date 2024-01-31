@@ -363,7 +363,20 @@ private function deleteEmployeeFingerprint($employeeId) {
     $this->db->where('employee_id', $employeeId);
     $this->db->delete('employee_fingerprint');
 }
+//For fingerprint registered list
+public function empRegisteredFp(){
+	$sql = "SELECT `fingerprint`.*, `person`.`first_name`, `person`.`last_name` 
+					FROM `employee_fingerprint` `fingerprint`
+					JOIN `employee` `person` ON `fingerprint`.`employee_id` = `person`.`em_code`";
+	$query = $this->db->query($sql);
+	$result = $query->result();
+	return $result;
+}
+
 
        
     }
+
+	
+		
 ?>

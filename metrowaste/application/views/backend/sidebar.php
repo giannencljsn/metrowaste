@@ -83,7 +83,7 @@ echo '</script>';
 				<!-- Attendance -->
 						<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Attendance</span></a>
 							<ul aria-expanded="false" class="collapse"> 
-							<li><a href="<?php echo base_url(); ?>employee/getFingerprintList">Fingerprint Regitered list</a></li>
+							<li><a href="<?php echo base_url(); ?>employee/getFingerprintList">Fingerprint Registered list</a></li>
                             <li><a href="<?php echo base_url(); ?>attendance/getAttendanceList">Attendance List</a></li>
 								<li><a href="<?php echo base_url(); ?>attendance/Save_Attendance">Add Attendance</a></li>
 								<li><a href="<?php echo base_url(); ?>attendance/Attendance_Report">Attendance Report</a></li>
