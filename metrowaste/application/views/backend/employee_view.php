@@ -203,14 +203,7 @@
                                                         </select>
                                                     </div>
                                                 <?php } ?>                                          
-                                                    <!---Fingerprint dropdown field--->
-                                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Fingerprint Registered</label>
-				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                            <option value="No">No</option>
-                                                            <option value="Yes">Yes</option>
-				                                        </select>
-				                                    </div>
+                                                   
 
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Joining </label>
