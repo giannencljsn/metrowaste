@@ -413,7 +413,7 @@ namespace BiometricApp
             return bmp;
         }
 
-        public MySqlConnection conn = new MySqlConnection("Server=localhost;Database=hris;Uid=root;");
+        public MySqlConnection conn = new MySqlConnection("Server=153.92.15.3;Port=3306;Database=u219196713_hrsystemci;Uid=u219196713_admin;password=Hrsystemci_123");
 
         private void frmDBEnrollment_FormClosing(object sender, FormClosingEventArgs e)
         {
