@@ -50,10 +50,10 @@ class Settings extends CI_Controller {
         // Validating address Field
         $this->form_validation->set_rules('address', 'address', 'trim|min_length[5]|max_length[600]|xss_clean');
         $this->form_validation->set_rules('address2', 'address2', 'trim|min_length[5]|max_length[600]|xss_clean');
-		//Validating email field
+
+        //Validating email field
 		$this->form_validation->set_rules('email', 'System Email', 'trim|required|valid_email');
 
-		
         if ($this->form_validation->run() == FALSE) {
 			echo validation_errors();
 			} else {

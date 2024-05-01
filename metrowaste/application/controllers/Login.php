@@ -23,6 +23,7 @@ class Login extends CI_Controller {
         $this->load->database();
         $this->load->model('login_model');
         $this->load->model('dashboard_model');
+       
   
     }
     

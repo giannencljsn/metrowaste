@@ -203,7 +203,6 @@
                                                         </select>
                                                     </div>
                                                 <?php } ?>                                          
-                                                   
 
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Joining </label>
@@ -301,7 +300,7 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID </th>
+                                    <!--<th>ID </th>-->
                                     <th>Certificate</th>
                                     <th>Institute </th>
                                     <th>Result </th>
@@ -322,7 +321,7 @@
                             <tbody>
                                <?php foreach($education as $value): ?>
                                 <tr>
-                                    <td><?php echo $value->id ?></td>
+                                    <!--<td><?php echo $value->id ?></td>-->
                                     <td><?php echo $value->edu_type ?></td>
                                     <td><?php echo $value->institute ?></td>
                                     <td><?php echo $value->result ?></td>
@@ -380,7 +379,7 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID </th>
+                                    <!--<th>ID </th>-->
                                     <th>Company name</th>
                                     <th>Position </th>
                                     <th>Work Duration </th>
@@ -399,7 +398,7 @@
                             <tbody>
                                <?php foreach($experience as $value): ?>
                                 <tr>
-                                    <td><?php echo $value->id ?></td>
+                                    <!--<td><?php echo $value->id ?></td>-->
                                     <td><?php echo $value->exp_company ?></td>
                                     <td><?php echo $value->exp_com_position ?></td>
                                     <td><?php echo $value->exp_workduration ?></td>
@@ -488,7 +487,7 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>ID </th>
+                                    <!--<th>ID </th>-->
                                     <th>File Title</th>
                                     <th>File </th>
                                 </tr>
@@ -503,7 +502,7 @@
                             <tbody>
                                <?php foreach($fileinfo as $value): ?>
                                 <tr>
-                                    <td><?php echo $value->id ?></td>
+                                    <!--<td><?php echo $value->id ?></td>-->
                                     <td><?php echo $value->file_title ?></td>
                                     <td><a href="<?php echo base_url(); ?>assets/images/users/<?php echo $value->file_url ?>" target="_blank"><?php echo $value->file_url ?></a></td>
                                 </tr>

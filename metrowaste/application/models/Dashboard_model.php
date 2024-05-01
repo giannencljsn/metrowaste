@@ -29,5 +29,11 @@
         return $this->db->delete('to-do_list', ['id' => $id]);
     
       }
+          public function GetHolidayInfo(){
+        $sql = "SELECT * FROM `holiday` ORDER BY `id` DESC LIMIT 10";
+        $query=$this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
     }
 ?>

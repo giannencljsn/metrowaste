@@ -359,7 +359,7 @@ public function getEmployeeByEmCode($emCode) {
 }
 
 // Function to delete record from employee_fingerprint table
-private function deleteEmployeeFingerprint($employeeId) {
+public function deleteEmployeeFingerprint($employeeId) {
     $this->db->where('employee_id', $employeeId);
     $this->db->delete('employee_fingerprint');
 }

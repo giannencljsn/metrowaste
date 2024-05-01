@@ -12,7 +12,7 @@
 	<meta name="author" content="TeamWonderPets">
 	<!-- Favicon icon -->
     <?php $settingsvalue = $this->settings_model->GetSettingsValue(); ?>
-    <link rel="icon" type="image/ico" sizes="16x16" href="<?php echo base_url(); ?>assets/images/login_logo-removebg.png">
+    <link rel="icon" type="image/ico" sizes="16x16" href="<?php echo base_url(); ?>assets/images/<?php echo $settingsvalue->sitelogo; ?>">
     <title><?php echo $settingsvalue->sitetitle; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -99,10 +99,11 @@
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo base_url(); ?>"><b>
-                        <img src="<?php echo base_url();?>assets/images/login_logo-removebg.png" alt="DRI" class="DRI-logo" style="width:50px;"/>
+                        <!--<img src="<?php echo base_url();?>assets/images/login_logo-removebg.png" alt="DRI" class="DRI-logo" style="width:50px;"/>-->
+                        <img src="<?php echo base_url(); ?>assets/images/<?php echo $settingsvalue->sitelogo; ?>"width="50px">
                         </b>
                         <!-- Logo text --><span>
-                         <img src="<?php echo base_url(); ?>assets/images/icon_logo2.png" alt="homepage" class="dark-logo" height="60px" width="100px" />
+                         <!--<img src="<?php echo base_url(); ?>assets/images/icon_logo2.png" alt="homepage" class="dark-logo" height="60px" width="100px" />-->
                          <!-- Light Logo text -->    
                          </span> </a>
                 </div>
@@ -141,7 +142,7 @@
                     </ul>
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basicinfo->em_image; ?>" alt="Genit" class="profile-pic" style="height:40px;width:40px;border-radius:50px" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" title="View Profile"><img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basicinfo->em_image; ?>" alt="Genit" class="profile-pic" style="height:40px;width:40px;border-radius:50px" /></a>
                             <div class="dropdown-menu dropdown-menu-right scale-up">
                                 <ul class="dropdown-user">
                                     <li>
