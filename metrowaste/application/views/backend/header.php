@@ -74,6 +74,9 @@
 				font-style:italic;
 			}
 
+			.profile-blue-text{
+				color:blue;
+			}
 			
 	</style>
 
@@ -149,7 +152,7 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basicinfo->em_image; ?>" alt="user"></div>
                                             <div class="u-text">
-                                                <h4><?php echo $basicinfo->first_name.' '.$basicinfo->last_name; ?></h4>
+                                                <h4 class="profile-blue-text"><?php echo $basicinfo->first_name.' '.$basicinfo->last_name; ?></h4>
                                                 <p class="text-muted"><?php echo $basicinfo->em_email ?></p>
                                         	</div>
                                     </li>
