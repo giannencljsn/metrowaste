@@ -162,6 +162,7 @@ class Leave extends CI_Controller
             $data['employee']    = $this->employee_model->emselectByID($emid);
             $data['leavetypes']  = $this->leave_model->GetleavetypeInfo();
             $data['application'] = $this->leave_model->GetallApplication($emid);
+			$data['total_leave_duration']  = $this->leave_model->count_leave_durations();
             $this->load->view('backend/leave_apply', $data);
         } else {
             redirect(base_url(), 'refresh');

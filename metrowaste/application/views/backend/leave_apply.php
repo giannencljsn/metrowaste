@@ -19,7 +19,7 @@
         <div class="row m-b-10">
             <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
             <div class="col-12">
-                <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Application </a></button>
+                <button type="button" class="btn btn-info <?php if($total_leave_duration > 400) echo 'disabled'; ?>"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Application </a></button>
                 <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Holidays" class="text-white"><i class="" aria-hidden="true"></i>  Holiday List</a></button>
             </div>
             <?php } ?>
@@ -61,6 +61,13 @@
                                     <th>Action</th>
                                 </tr>
                                 </tfoot> -->
+								<h1 style="color:blue;">Total Leave Duration Count: 
+								<?php 
+									if($total_leave_duration > 400){
+										echo 'You have already used all your leaves!';
+									}else{
+										echo 'You have currently '.$total_leave_duration.' '.'Number of leaves';
+									} ; ?></h1>
                                 <tbody>
                                     <?php foreach($application as $value): ?>
                                     <tr style="vertical-align:top">
@@ -240,4 +247,21 @@
                 });
             });
         </script>
+		<!-- DISABLE BTN IF MAXIMUM LEAVES HAS BEEN REACHED -->
+		<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var addApplicationBtn = document.getElementById('addApplicationBtn');
+
+    // Add click event listener to the button
+    addApplicationBtn.addEventListener('click', function(event) {
+        // Check if button is disabled
+        if (this.classList.contains('disabled')) {
+            // Prevent default behavior (e.g., following the link)
+            event.preventDefault();
+            // Optionally, show a message or perform any other action
+            console.log('Button is disabled.');
+        }
+    });
+});
+</script>
         <?php $this->load->view('backend/footer'); ?>

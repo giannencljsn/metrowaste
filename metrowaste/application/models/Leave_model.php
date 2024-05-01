@@ -293,5 +293,12 @@
         $query = $this->db->query($sql);
         return $query->row();
     }
+	//count leave
+	public function count_leave_durations() {
+        $query = $this->db->select('SUM(leave_duration) as total_leave_duration')
+                          ->from('emp_leave')
+                          ->get();
+        return $query->row()->total_leave_duration;
     }
+}
 ?>    
