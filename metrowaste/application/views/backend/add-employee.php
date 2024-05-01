@@ -52,7 +52,7 @@
 
                                     <?php
                                     function generate_unique_random_number($min, $max) {
-                                        $db_conn = mysqli_connect('localhost', 'u219196713_admin', 'Hrsystemci_123', 'u219196713_hrsystemci');
+                                        $db_conn = mysqli_connect('localhost', 'root', '', 'hrsystemci');
                                         if (!$db_conn) {
                                             die('Could not connect to database: ' . mysqli_connect_error());
                                         }

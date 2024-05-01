@@ -1,9 +1,9 @@
 <?php 
 // Database connection parameters
 $host = "localhost";
-$username = "u219196713_admin"; 
-$password = "Hrsystemci_123";
-$database = "u219196713_hrsystemci";
+$username = "root"; 
+$password = "";
+$database = "hrsystemci";
 
 // Create a database connection
 $connect = mysqli_connect($host, $username, $password, $database);
@@ -88,10 +88,10 @@ if (!$connect) {
 <?php 
 if(isset($_POST["recover"])){
     // Database connection parameters
-   $host = "localhost";
-$username = "u219196713_admin"; 
-$password = "Hrsystemci_123";
-$database = "u219196713_hrsystemci";
+    $host = "localhost";
+    $username = "root"; 
+    $password = "";
+    $database = "hrsystemci";
 
     // Create a database connection
     $connect = mysqli_connect($host, $username, $password, $database);
