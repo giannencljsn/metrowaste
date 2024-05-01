@@ -294,11 +294,14 @@
         return $query->row();
     }
 	//count leave
-	public function count_leave_durations() {
-        $query = $this->db->select('SUM(leave_duration) as total_leave_duration')
-                          ->from('emp_leave')
-                          ->get();
-        return $query->row()->total_leave_duration;
-    }
+	public function count_leave_durations($emid) {
+       $sql = "SELECT SUM(leave_duration) AS total_leave_duration 
+	   			FROM `emp_leave`
+				WHERE `em_id` = '$emid' AND `leave_status` = 'Approve'";
+	$query = $this->db->query($sql, array($emid));
+	$result = $query->row()->total_leave_duration;
+	return $result;
+			
+	}
 }
 ?>    

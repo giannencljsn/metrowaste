@@ -17,11 +17,27 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <div class="row m-b-10">
+			<!-- Create a PHP variable for maximum leaves -->
+			<?php 
+				$maximum_leaves = 240;
+			?>
             <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-            <div class="col-12">
-                <button type="button" class="btn btn-info <?php if($total_leave_duration > 400) echo 'disabled'; ?>"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Application </a></button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Holidays" class="text-white"><i class="" aria-hidden="true"></i>  Holiday List</a></button>
-            </div>
+
+				<div class="col-12">
+					
+					<?php if($total_leave_duration > $maximum_leaves) {?>
+					<button type="button" class="btn btn-info disabled">
+                <i class="fa fa-plus"></i> Add Application
+            </button>
+        	<?php } else { ?>
+				<button type="button" class="btn btn-info">
+                <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white">Add Application</a>
+            	</button>
+		
+				<?php } ?>
+					<button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Holidays" class="text-white"><i class="" aria-hidden="true"></i>  Holiday List</a></button>
+				</div>
+
             <?php } ?>
         </div>
         <div class="row">
@@ -61,11 +77,16 @@
                                     <th>Action</th>
                                 </tr>
                                 </tfoot> -->
-								<h1 style="color:blue;">Total Leave Duration Count: 
+								<h1 style="color:blue;">
 								<?php 
-									if($total_leave_duration > 400){
+							
+					
+									if($total_leave_duration > $maximum_leaves){
 										echo 'You have already used all your leaves!';
-									}else{
+									}elseif($total_leave_duration == 0){
+										echo "You have 0 leaves";
+									}
+									else{
 										echo 'You have currently '.$total_leave_duration.' '.'Number of leaves';
 									} ; ?></h1>
                                 <tbody>
