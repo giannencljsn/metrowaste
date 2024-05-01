@@ -77,9 +77,10 @@
                                     <th>Action</th>
                                 </tr>
                                 </tfoot> -->
-								<h1 style="color:blue;">
+								<h2 style="color:blue;">
 								<?php 
-							
+                                    $day1 = 24;
+                                    $currentYear = date('Y');
 					
 									if($total_leave_duration > $maximum_leaves){
 										echo 'You have already used all your leaves!';
@@ -87,8 +88,11 @@
 										echo "You have 0 leaves";
 									}
 									else{
-										echo 'You have currently '.$total_leave_duration.' '.'Number of leaves';
-									} ; ?></h1>
+										echo 'You have currently '.($total_leave_duration / $day1).'/'.($maximum_leaves/$day1).' '.'Number of leaves approved'.'<br>';
+                                        echo 'In'.' '.$currentYear;
+									} ; ?></h2>
+
+                                
                                 <tbody>
                                     <?php foreach($application as $value): ?>
                                     <tr style="vertical-align:top">
