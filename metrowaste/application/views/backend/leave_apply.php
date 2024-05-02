@@ -175,7 +175,7 @@
                             </div>
                             <div class="form-group" id="enddate" style="display:none">
                                 <label class="control-label">End Date</label>
-                                <input type="date" name="enddate" class="form-control" id="recipient-name1 LeaveDateEnd">
+                                <input type="date" name="enddate" class="form-control" id="recipient-name1">
                             </div>
 
                             <div class="form-group" id="hourAmount">
@@ -198,61 +198,7 @@
                             </div>
                             
                         </div>
-						<!-- Restrict dates only current year and current date, exclude past dates -->
-						<script>
-						document.addEventListener("DOMContentLoaded", function() {
-    let dateInput = document.getElementById("recipient-name1");
-    let endDateInput = document.getElementById("enddate");
-
-    let today = new Date();
-    let currentYear = today.getFullYear();
-    let currentMonth = today.getMonth() + 1; // Month starts from 0
-    let currentDate = today.getDate();
-
-    // Format the current date
-    let formattedCurrentDate = currentYear + '-' + (currentMonth < 10 ? '0' + currentMonth : currentMonth) + '-' + (currentDate < 10 ? '0' + currentDate : currentDate);
-
-    // Set the minimum date to the current date
-    dateInput.setAttribute("min", formattedCurrentDate);
-    endDateInput.setAttribute("min", formattedCurrentDate);
-
-    // Calculate the maximum date
-    let lastDayOfYear = new Date(currentYear, 11, 31);
-    let formattedLastDayOfYear = currentYear + '-12-31';
-    dateInput.setAttribute("max", formattedLastDayOfYear);
-});
-						</script>
-
-						<!-- Restrict dates only current year and current date, exclude past dates -->
-						<script>
-						 // Get the input element
-    let inputField = document.getElementById('recipient-name1 LeaveDateEnd');
-
-// Get today's date
-let currentDate = new Date();
-let tomorrowDate = new Date(currentDate);
-tomorrowDate.setDate(currentDate.getDate() +1);
-let currentDay = tomorrowDate.getDate();
-let currentMonth = tomorrowDate.getMonth() + 1; //January is 0!
-let currentYear = tomorrowDate.getFullYear();
-
-if(currentDay < 10){
-	currentDay = '0' + currentDay;
-}
-if(currentMonth < 10){
-	currentMonth = '0' + currentMonth;
-}
-
-let todayDate = currentYear + '-' + currentMonth + '-' + currentDay;
-
-// Set the minimum date to today
-inputField.min = todayDate;
-
-// Set the maximum date to the end of the current year
-let endOfYearDate = new Date(currentYear, 11, 31);
-let endOfYearDateString = endOfYearDate.toISOString().split('T')[0];
-inputField.max = endOfYearDateString;
-						</script>
+						
 
 
 
