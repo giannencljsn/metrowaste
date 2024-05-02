@@ -19,7 +19,7 @@
         <div class="row m-b-10">
 			<!-- Create a PHP variable for maximum leaves -->
 			<?php 
-				$maximum_leaves = 240;
+				$maximum_leaves = 360;
 			?>
             <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
 
@@ -88,7 +88,7 @@
 										echo "You have 0 leaves";
 									}
 									else{
-										echo 'You have currently '.($total_leave_duration / $day1).'/'.($maximum_leaves/$day1).' '.'Number of leaves approved'.'<br>';
+										echo 'You have currently '.round(($total_leave_duration / $day1)).'/'.($maximum_leaves/$day1).' '.'Number of leaves approved'.'<br>';
                                         echo 'In'.' '.$currentYear;
 									} ; ?></h2>
 
