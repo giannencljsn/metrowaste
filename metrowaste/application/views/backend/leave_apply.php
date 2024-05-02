@@ -25,7 +25,7 @@
 
 				<div class="col-12">
 					
-					<?php if($total_leave_duration > $maximum_leaves) {?>
+					<?php if($total_leave_duration >= $maximum_leaves) {?>
 					<button type="button" class="btn btn-info disabled">
                 <i class="fa fa-plus"></i> Add Application
             </button>
