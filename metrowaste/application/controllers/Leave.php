@@ -224,62 +224,85 @@ class Leave extends CI_Controller
     }
 
     public function Add_Applications()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            $id           = $this->input->post('id');
-            $emid         = $this->input->post('emid');
-            $typeid       = $this->input->post('typeid');
-            $applydate    = date('Y-m-d');
-            $appstartdate = $this->input->post('startdate');
-            $appenddate   = $this->input->post('enddate');
-            $hourAmount   = $this->input->post('hourAmount');
-            $reason       = $this->input->post('reason');
-            $type         = $this->input->post('type');
-    
-            $formattedStart = new DateTime($appstartdate);
+{
+    if ($this->session->userdata('user_login_access') != False) {
+        $id           = $this->input->post('id');
+        $emid         = $this->input->post('emid');
+        $typeid       = $this->input->post('typeid');
+        $applydate    = date('Y-m-d');
+        $appstartdate = $this->input->post('startdate');
+        $appenddate   = $this->input->post('enddate');
+        $hourAmount   = $this->input->post('hourAmount');
+        $reason       = $this->input->post('reason');
+        $type         = $this->input->post('type');
+
+        // Validate start date
+        if (empty($appstartdate) || new DateTime($appstartdate) > new DateTime(date('Y')) ) {
+            echo "Please select a valid date within the current year: ".date("Y");
+            return;
+        }else if(new DateTime($appstartdate) < new DateTime(date('Y-m-d')) ){
+			echo "Past dates not allowed!";
+			return;
+		}
+
+        $formattedStart = new DateTime($appstartdate);
+
+        // Validate end date
+        if (!empty($appenddate)) {
             $formattedEnd = new DateTime($appenddate);
-    
-            if ($type == 'Half Day') {
-                $duration = $hourAmount;
-            } elseif ($type == 'Full Day') {
-                $duration = 24;
-            } else {
-                $interval = $formattedStart->diff($formattedEnd);
-                $duration = $interval->days + 1; // Include both start and end days
-                $duration *= 24; // Convert days to hours
-            }
-    
-            $this->load->library('form_validation');
-            $this->form_validation->set_error_delimiters();
-            $this->form_validation->set_rules('startdate', 'Start Date', 'trim|required|xss_clean');
-            
-            if ($this->form_validation->run() == FALSE) {
-                echo validation_errors();
-            } else {
-                $data = array(
-                    'em_id' => $emid,
-                    'typeid' => $typeid,
-                    'apply_date' => $applydate,
-                    'start_date' => $appstartdate,
-                    'end_date' => $appenddate,
-                    'reason' => $reason,
-                    'leave_type' => $type,
-                    'leave_duration' => $duration,
-                    'leave_status' => 'Not Approve'
-                );
-    
-                if (empty($id)) {
-                    $success = $this->leave_model->Application_Apply($data);
-                    echo "Successfully Added";
-                } else {
-                    $success = $this->leave_model->Application_Apply_Update($id, $data);
-                    echo "Successfully Updated";
-                }
-            }
-        } else {
-            redirect(base_url(), 'refresh');
+            $lastDayOfYear = new DateTime(date('Y-12-31'));
+
+            if ($formattedEnd > $lastDayOfYear) {
+                echo "Please select an end date within the current year.";
+                return;
+            }else if($formattedEnd < $formattedStart){
+				echo "End date should be after Start date!";
+				return;
+			}
         }
+
+        if ($type == 'Half Day') {
+            $duration = $hourAmount;
+        } elseif ($type == 'Full Day') {
+            $duration = 24;
+        } else {
+            $interval = $formattedStart->diff($formattedEnd);
+            $duration = $interval->days + 1; // Include both start and end days
+            $duration *= 24; // Convert days to hours
+        }
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters();
+        $this->form_validation->set_rules('startdate', 'Start Date', 'trim|required|xss_clean');
+        
+        if ($this->form_validation->run() == FALSE) {
+            echo validation_errors();
+        } else {
+            $data = array(
+                'em_id' => $emid,
+                'typeid' => $typeid,
+                'apply_date' => $applydate,
+                'start_date' => $appstartdate,
+                'end_date' => $appenddate,
+                'reason' => $reason,
+                'leave_type' => $type,
+                'leave_duration' => $duration,
+                'leave_status' => 'Not Approve'
+            );
+
+            if (empty($id)) {
+                $success = $this->leave_model->Application_Apply($data);
+                echo "Successfully Added";
+            } else {
+                $success = $this->leave_model->Application_Apply_Update($id, $data);
+                echo "Successfully Updated";
+            }
+        }
+    } else {
+        redirect(base_url(), 'refresh');
     }
+}
+
     
 
     public function Add_L_Status()
