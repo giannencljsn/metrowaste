@@ -42,7 +42,7 @@ class Login extends CI_Controller {
 	$response = array();
     //Recieving post input of email, password from request
     $email = $this->input->post('email');
-    $password = sha1($this->input->post('password'));
+    $password = $this->input->post('password');
 	$remember = $this->input->post('remember');
 	#Login input validation\
 	$this->load->library('form_validation');
@@ -85,31 +85,35 @@ class Login extends CI_Controller {
 	}
 	}
     //Validating login from request
-    function validate_login($email = '', $password = '') {
-        $credential = array('em_email' => $email, 'em_password' => $password,'status' => 'ACTIVE');
-
-
-        $query = $this->login_model->getUserForLogin($credential);
-        if ($query->num_rows() > 0) {
-            $row = $query->row();
-            $this->session->set_userdata('user_login_access', '1');
-            $this->session->set_userdata('user_login_id', $row->em_id);
-            $this->session->set_userdata('name', $row->first_name);
-            $this->session->set_userdata('email', $row->em_email);
-            $this->session->set_userdata('user_image', $row->em_image);
-            $this->session->set_userdata('user_type', $row->em_role);
-
-			//Redirect based on user type
-			if($row->em_role == 'ADMIN'){
-				redirect(base_url() . 'dashboard/dashboard');
-			} elseif($row->em_role == 'EMPLOYEE'){
-				redirect(base_url() . 'dashboard/dashboard');
+	function validate_login($email = '', $password = '') {
+		$credential = array('em_email' => $email, 'status' => 'ACTIVE');
+	
+		$query = $this->login_model->getUserForLogin($credential);
+		if ($query->num_rows() > 0) {
+			$row = $query->row();
+	
+			// Verify password with bcrypt
+			if (password_verify($password, $row->em_password)) {
+				$this->session->set_userdata('user_login_access', '1');
+				$this->session->set_userdata('user_login_id', $row->em_id);
+				$this->session->set_userdata('name', $row->first_name);
+				$this->session->set_userdata('email', $row->em_email);
+				$this->session->set_userdata('user_image', $row->em_image);
+				$this->session->set_userdata('user_type', $row->em_role);
+	
+				// Redirect based on user type
+				if ($row->em_role == 'ADMIN' || $row->em_role == 'EMPLOYEE') {
+					redirect(base_url() . 'dashboard/dashboard');
+				}
+				// Handle other user types if needed
+	
+				return 'success';
 			}
-			
-
-            return 'success';
-        }
+		}
+	
+		return 'failure'; // Return failure if credentials don't match
 	}
+	
     /*Logout method*/
     function logout() {
         $this->session->sess_destroy();
