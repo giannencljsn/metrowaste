@@ -119,7 +119,16 @@ class Employee extends CI_Controller {
             echo validation_errors();
 
 			} else {
-            if($this->employee_model->Does_email_exists($email) && !password_verify($confirm, $password)){
+				//Validate bcrypt hash
+				function is_valid_bcrypt($hash){
+					return(bool) preg_match('/^\$2y\$[0-9]{2}\$[./A-Za-z0-9]{53}$/', $hash);
+				}
+				if(!is_valid_bcrypt($password) && !password_verify($confirm, $password)){
+					echo "Invalid Password Hash";
+					return; 
+				}
+
+            if($this->employee_model->Does_email_exists($email)){
                 $this->session->set_flashdata('formdata','Username is already Existing or Check your password');
                 echo "Username is already Exist or Check your password";
             } else {
