@@ -100,7 +100,7 @@ class Employee extends CI_Controller {
 	$username = $this->input->post('username');	
 	$email = $this->input->post('email');
 	$acctpw = $this->input->post('password');	
-	$password = sha1($acctpw);	
+	$password = password_hash($acctpw, PASSWORD_BCRYPT);	
 	$confirm = $this->input->post('confirm');		
 	$sss =  $this->input->post('sss_1') . '-' . $this->input->post('sss_2') . '-' . $this->input->post('sss_3');	
 	$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
@@ -119,7 +119,7 @@ class Employee extends CI_Controller {
             echo validation_errors();
 
 			} else {
-            if($this->employee_model->Does_email_exists($email) && $password != $confirm){
+            if($this->employee_model->Does_email_exists($email) && !password_verify($confirm, $password)){
                 $this->session->set_flashdata('formdata','Username is already Existing or Check your password');
                 echo "Username is already Exist or Check your password";
             } else {
