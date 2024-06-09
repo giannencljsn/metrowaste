@@ -67,18 +67,20 @@
         $result = $query->row();
         return $result; 
     }
-    public function GetleavetypeInfo(){
-        $sql = "SELECT * FROM `leave_types` WHERE `status`='1' ORDER BY `type_id` DESC";
-        $query = $this->db->query($sql);
-        $result = $query->result();
-        return $result; 
-    }
-    public function GetleavetypeInfoid($id){
-        $sql = "SELECT * FROM `leave_types` WHERE `status`='1' AND `type_id`='$id'";
-        $query = $this->db->query($sql);
-        $result = $query->row();
-        return $result; 
-    }
+	public function GetleavetypeInfo(){
+		$sql = "SELECT * FROM `leave_types` ORDER BY `type_id` DESC";
+		$query = $this->db->query($sql);
+		$result = $query->result();
+		return $result; 
+	}
+	
+	public function GetleavetypeInfoid($id){
+		$sql = "SELECT * FROM `leave_types` WHERE `type_id`='$id'";
+		$query = $this->db->query($sql);
+		$result = $query->row();
+		return $result; 
+	}
+	
     public function GetemassignLeaveType($emid,$id,$year){
         $sql = "SELECT `hour` FROM `assign_leave` WHERE `assign_leave`.`emp_id`='$emid' AND `type_id`='$id' AND `dateyear`='$year'";
         $query = $this->db->query($sql);
@@ -291,5 +293,15 @@
         $query = $this->db->query($sql);
         return $query->row();
     }
-    }
+	//count leave
+	public function count_leave_durations($emid) {
+       $sql = "SELECT SUM(leave_duration) AS total_leave_duration 
+	   			FROM `emp_leave`
+				WHERE `em_id` = '$emid' AND `leave_status` = 'Approve'";
+	$query = $this->db->query($sql, array($emid));
+	$result = $query->row()->total_leave_duration;
+	return $result;
+			
+	}
+}
 ?>    

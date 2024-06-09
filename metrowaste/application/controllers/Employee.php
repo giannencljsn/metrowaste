@@ -100,7 +100,7 @@ class Employee extends CI_Controller {
 	$username = $this->input->post('username');	
 	$email = $this->input->post('email');
 	$acctpw = $this->input->post('password');	
-	$password = sha1($acctpw);	
+	$password = password_hash($acctpw, PASSWORD_BCRYPT);	
 	$confirm = $this->input->post('confirm');		
 	$sss =  $this->input->post('sss_1') . '-' . $this->input->post('sss_2') . '-' . $this->input->post('sss_3');	
 	$philhealth =  $this->input->post('philhealth_1') . '-' . $this->input->post('philhealth_2') . '-' . $this->input->post('philhealth_3');
@@ -119,7 +119,16 @@ class Employee extends CI_Controller {
             echo validation_errors();
 
 			} else {
-            if($this->employee_model->Does_email_exists($email) && $password != $confirm){
+				//Validate bcrypt hash
+				function is_valid_bcrypt($hash){
+					return(bool) preg_match('/^\$2y\$[0-9]{2}\$[./A-Za-z0-9]{53}$/', $hash);
+				}
+				if(!is_valid_bcrypt($password) && !password_verify($confirm, $password)){
+					echo "Invalid Password Hash";
+					return; 
+				}
+
+            if($this->employee_model->Does_email_exists($email)){
                 $this->session->set_flashdata('formdata','Username is already Existing or Check your password');
                 echo "Username is already Exist or Check your password";
             } else {
@@ -1274,13 +1283,13 @@ else{
     }
 
     public function getFingerprintList(){
-        if($this->session->userdata('user_login_access') != False) { 
-        $data['employee'] = $this->employee_model->emselect();
-        $this->load->view('backend/employee_fplist',$data);
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
-    }
+		if($this->session->userdata('user_login_access') != False){
+			$data['employee'] = $this->employee_model->empRegisteredFp();
+			$this->load->view('backend/employee_fplist', $data);
+
+		}else{
+			redirect(base_url(), 'refresh');
+		}
+	}
  
 }

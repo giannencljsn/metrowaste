@@ -70,15 +70,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+
 $active_group = 'default';
 $query_builder = TRUE;
 
+
+// TESTING NEW COMMIT 6/7/24
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'hrsystemci_15',
+	'database' => 'hrsystemci',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

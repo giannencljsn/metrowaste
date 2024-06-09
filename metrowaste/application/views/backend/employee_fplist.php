@@ -25,7 +25,7 @@
                     <div class="col-12">
                         <div class="card card-outline-info">
                             <div class="card-header">
-                                <h4 class="m-b-0 text-white"><i class="fa fa-user-o" aria-hidden="true"></i> Employee List</h4>
+                                <h4 class="m-b-0 text-white"><i class="fa fa-user-o" aria-hidden="true"></i>Successful Fingerprint Registered List</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive ">
@@ -34,8 +34,7 @@
                                             <tr>
                                                 <th>Employee Name</th>
                                                 <th>PIN</th>
-                                                <th>Username</th>
-                                                <th>Fingerprint Registered</th>
+                                             
                                              
                                             </tr>
                                         </thead>
@@ -52,10 +51,12 @@
                                         <tbody>
                                            <?php foreach($employee as $value): ?>
                                             <tr>
-                                                <td title="<?php echo $value->first_name .' '.$value->last_name; ?>"><?php echo $value->first_name .' '.$value->last_name; ?></td>
-                                                                                <td><?php echo $value->em_code; ?></td>
-                                                <td><?php echo $value->em_email; ?></td>
-                                                <td><?php echo $value->em_fpregistered; ?></td>
+											
+                                               
+                                                <td><?php echo $value->employee_id; ?></td>
+                                                <td><?php echo $value->first_name ." " .  $value->last_name; ?></td>
+
+                                            
                                             </tr>
                                             <?php endforeach; ?>
                                         </tbody>

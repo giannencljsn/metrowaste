@@ -33,62 +33,67 @@ class Notice extends CI_Controller {
 		redirect(base_url() , 'refresh');
 	}        
     }
-    public function Published_Notice() {
-        if ($this->session->userdata('user_login_access') != False) {
-            $filetitle = $this->input->post('title');
-            $ndate = $this->input->post('nodate');
-    
-            // Check if a notice with the same title already exists
-            $existing_notice = $this->notice_model->get_notice_by_title($filetitle);
-            if ($existing_notice) {
-                // Display an alert and prevent submission
-                echo "Notice with the same title already exists!";
-                return;
-            }
-    
-            $this->load->library('form_validation');
-            $this->form_validation->set_error_delimiters();
-            $this->form_validation->set_rules('title', 'title', 'trim|required|min_length[5]|max_length[150]|xss_clean');
-    
-            if ($this->form_validation->run() == FALSE) {
-                echo validation_errors();
-            } else {
-                if ($_FILES['file_url']['name']) {
-                    $file_name = $_FILES['file_url']['name'];
-                    $fileSize = $_FILES["file_url"]["size"] / 1024;
-                    $fileType = $_FILES["file_url"]["type"];
-                    $new_file_name = '';
-                    $new_file_name .= $file_name;
-    
-                    $config = array(
-                        'file_name' => $new_file_name,
-                        'upload_path' => "./assets/images/notice",
-                        'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
-                        'overwrite' => True,
-                        'max_size' => "50720000"
-                    );
-    
-                    $this->load->library('Upload', $config);
-                    $this->upload->initialize($config);
-                    if (!$this->upload->do_upload('file_url')) {
-                        echo $this->upload->display_errors();
-                    } else {
-                        $path = $this->upload->data();
-                        $img_url = $path['file_name'];
-                        $data = array(
-                            'title' => $filetitle,
-                            'file_url' => $img_url,
-                            'date' => $ndate
-                        );
-                        $success = $this->notice_model->Published_Notice($data);
-                        echo "Successfully Added";
-                    }
-                }
-            }
-        } else {
-            redirect(base_url(), 'refresh');
-        }
-    }
+	public function Published_Notice() {
+		if ($this->session->userdata('user_login_access') != false) {
+			$filetitle = $this->input->post('title');
+			$ndate = $this->input->post('nodate');
+	
+			// Check if a notice with the same title already exists
+			$existing_notice_title = $this->notice_model->get_notice_by_title($filetitle);
+			if ($existing_notice_title) {
+				// Display an alert and prevent submission
+				echo "Notice with the same title already exists!";
+				return;
+			}
+	
+			if ($_FILES['file_url']['name']) {
+				$file_name = $_FILES['file_url']['name'];
+	
+				// Check if a notice with the same file name already exists
+				$existing_notice_file = $this->notice_model->get_notice_by_file_name($file_name);
+				if ($existing_notice_file) {
+					// Display an alert and prevent submission
+					echo "Notice with the same file name already exists!";
+					return;
+				}
+	
+				$fileSize = $_FILES["file_url"]["size"] / 1024;
+				$fileType = $_FILES["file_url"]["type"];
+				$new_file_name = $file_name;
+	
+				$config = array(
+					'file_name' => $new_file_name,
+					'upload_path' => "./assets/images/notice",
+					'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
+					'overwrite' => false,
+					'max_size' => "50720000"
+				);
+	
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+	
+				if (!$this->upload->do_upload('file_url')) {
+					echo $this->upload->display_errors();
+				} else {
+					$path = $this->upload->data();
+					$img_url = $path['file_name'];
+					$data = array(
+						'title' => $filetitle,
+						'file_url' => $img_url,
+						'date' => $ndate
+					);
+					$success = $this->notice_model->Published_Notice($data);
+					echo "Successfully Added";
+				}
+			} else {
+				echo "File not provided.";
+			}
+		} else {
+			redirect(base_url(), 'refresh');
+		}
+	}
+	
+	
 
     // public function delete($id){
     //     $this->load->model('notice_model');

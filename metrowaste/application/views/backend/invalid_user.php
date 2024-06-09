@@ -34,7 +34,7 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ID </th>
+                                                <th>PIN </th>
                                                 <th>Employee Name</th>
                                                 <th>Status</th>
 												<th>Date Inactive</th>

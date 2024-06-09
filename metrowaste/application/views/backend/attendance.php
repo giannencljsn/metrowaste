@@ -40,7 +40,7 @@
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
                                                 <th>Working Hour</th>
-                                                <th>Action</th>
+                                            
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -81,7 +81,7 @@
             <td><?php echo $value->sign_in; ?></td>
             <td><?php echo $value->sign_out; ?></td>
             <td><?php echo $value->working_hour; ?></td> 
-            <td></td>             
+ 
             </td>
         </tr>
     <?php endforeach; ?>

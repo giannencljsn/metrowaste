@@ -116,7 +116,8 @@
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
                 $userid = $this->session->userdata('user_login_id');
-                $todolist = $this->dashboard_model->GettodoInfo($userid);                 
+                $todolist = $this->dashboard_model->GettodoInfo($userid);     
+                                $holiday = $this->dashboard_model->GetHolidayInfo();                 
                 ?>
                 <!-- Row -->
                 <div class="row">
@@ -185,7 +186,7 @@
                                         <input type="text" name="todo_data" class="form-control" style="border: 1px solid #fff !IMPORTANT;" placeholder="Enter New Task...">
                                         <span class="input-group-btn">
                                         <input type="hidden" name="userid" value="<?php echo $this->session->userdata('user_login_id'); ?>">
-                                        <button type="submit" class="btn btn-success todo-submit"><i class="fa fa-plus"></i></button>
+                                        <button type="submit" class="btn btn-success todo-submit" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></button>
                                         </span> 
                                     </div>
                                     </form>
@@ -226,9 +227,9 @@
                             </div> -->
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="card">
-                            <!-- <div class="card-body">
+                            <div class="card-body">
                                 <h4 class="card-title">
                                     Holidays
                                 </h4>
@@ -243,11 +244,16 @@
                                             </tr>                                           
                                        </thead>
                                        <tbody>
-                                         
+                                          <?php foreach($holiday as $value): ?>
+                                           <tr style="background-color:#e3f0f7">
+                                               <td><?php echo $value->holiday_name ?></td>
+                                               <td><?php echo $value->from_date; ?></td>
+                                           </tr>
+                                           <?php endforeach ?>
                                        </tbody> 
                                     </table>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div> 
