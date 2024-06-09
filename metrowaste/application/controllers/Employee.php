@@ -812,60 +812,60 @@ else{
     }
     public function Reset_Password_Hr(){
         if($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('emid');
-        $onep = $this->input->post('new1');
-        $twop = $this->input->post('new2');
+            $id = $this->input->post('emid');
+            $onep = $this->input->post('new1');
+            $twop = $this->input->post('new2');
             if($onep == $twop){
                 $data = array();
                 $data = array(
-                    'em_password'=> sha1($onep)
+                    'em_password'=> password_hash($onep, PASSWORD_BCRYPT)
                 );
-        $success = $this->employee_model->Reset_Password($id,$data);
-        #$this->session->set_flashdata('feedback','Successfully Updated');
-        #redirect("employee/view?I=" .base64_encode($id));
+                $success = $this->employee_model->Reset_Password($id,$data);
+                #$this->session->set_flashdata('feedback','Successfully Updated');
+                #redirect("employee/view?I=" .base64_encode($id));
                 echo "Successfully Updated";
             } else {
-        $this->session->set_flashdata('feedback','Please enter valid password');
-        #redirect("employee/view?I=" .base64_encode($id)); 
+                $this->session->set_flashdata('feedback','Please enter valid password');
+                #redirect("employee/view?I=" .base64_encode($id)); 
                 echo "Please enter valid password";
             }
-
         }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
+        else{
+            redirect(base_url() , 'refresh');
+        }        
     }
+    
     public function Reset_Password(){
         if($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('emid');
-        $oldp = sha1($this->input->post('old'));
-        $onep = $this->input->post('new1');
-        $twop = $this->input->post('new2');
-        $pass = $this->employee_model->GetEmployeeId($id);
-        if($pass->em_password == $oldp){
-            if($onep == $twop){
-                $data = array();
-                $data = array(
-                    'em_password'=> sha1($onep)
-                );
-        $success = $this->employee_model->Reset_Password($id,$data);
-        $this->session->set_flashdata('feedback','Successfully Updated');
-        #redirect("employee/view?I=" .base64_encode($id));
-                echo "Successfully Updated";
+            $id = $this->input->post('emid');
+            $oldp = $this->input->post('old');
+            $onep = $this->input->post('new1');
+            $twop = $this->input->post('new2');
+            $pass = $this->employee_model->GetEmployeeId($id);
+    
+            // Verify the old password with bcrypt
+            if(password_verify($oldp, $pass->em_password)){
+                if($onep == $twop){
+                    $data = array(
+                        'em_password' => password_hash($onep, PASSWORD_BCRYPT)
+                    );
+                    $success = $this->employee_model->Reset_Password($id, $data);
+                    $this->session->set_flashdata('feedback', 'Successfully Updated');
+                    #redirect("employee/view?I=" .base64_encode($id));
+                    echo "Successfully Updated";
+                } else {
+                    $this->session->set_flashdata('feedback', 'Please enter valid password');
+                    #redirect("employee/view?I=" .base64_encode($id));
+                    echo "Please enter valid password";
+                }
             } else {
-        $this->session->set_flashdata('feedback','Please enter valid password');
-        #redirect("employee/view?I=" .base64_encode($id));
+                $this->session->set_flashdata('feedback', 'Please enter valid password');
+                #redirect("employee/view?I=" .base64_encode($id));
                 echo "Please enter valid password";
             }
         } else {
-            $this->session->set_flashdata('feedback','Please enter valid password');
-            #redirect("employee/view?I=" .base64_encode($id));
-            echo "Please enter valid password";
-        }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
+            redirect(base_url(), 'refresh');
+        }        
     }
     public function Department(){
         if($this->session->userdata('user_login_access') != False) {
