@@ -53,7 +53,7 @@ if (!$connect) {
 </nav>
 
 <main class="login-form">
-    <div class="cotainer">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -91,44 +91,42 @@ if (!$connect) {
         $password = "";
         $database = "hrsystemci";
 
-    // Create a database connection
-    $connect = mysqli_connect($host, $username, $password, $database);
+        // Create a database connection
+        $connect = mysqli_connect($host, $username, $password, $database);
 
-    // Check the connection
-    if (!$connect) {
-        die("Connection failed: " . mysqli_connect_error());
+        // Check the connection
+        if (!$connect) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $psw = $_POST["password"];
+
+        $token = $_SESSION['token'];
+        $Email = $_SESSION['email'];
+
+        // Use bcrypt for hashing
+        $hash = password_hash($psw, PASSWORD_BCRYPT);
+
+        $sql = mysqli_query($connect, "SELECT * FROM employee WHERE em_email='$Email'");
+        $query = mysqli_num_rows($sql);
+        $fetch = mysqli_fetch_assoc($sql);
+
+        if($Email){
+            $new_pass = $hash;
+            mysqli_query($connect, "UPDATE employee SET em_password='$new_pass' WHERE em_email='$Email'");
+            ?>
+            <script>
+                alert("<?php echo "Your password has been successfully reset"?>");
+                window.location.href = '<?php echo base_url(); ?>';
+            </script>
+            <?php
+        }else{
+            ?>
+            <script>
+                alert("<?php echo "Please try again"?>");
+            </script>
+            <?php
+        }
     }
-    $psw = $_POST["password"];
-
-    $token = $_SESSION['token'];
-    $Email = $_SESSION['email'];
-
-    // Use sha1 for hashing
-    $hash = sha1($psw);
-
-    $sql = mysqli_query($connect, "SELECT * FROM employee WHERE em_email='$Email'");
-    $query = mysqli_num_rows($sql);
-    $fetch = mysqli_fetch_assoc($sql);
-
-    if($Email){
-        $new_pass = $hash;
-        mysqli_query($connect, "UPDATE employee SET em_password='$new_pass' WHERE em_email='$Email'");
-        ?>
-        <script>
-            alert("<?php echo "Your password has been successfully reset"?>");
-            window.location.href = '<?php echo base_url(); ?>';
-        </script>
-        <?php
-    }else{
-        ?>
-        <script>
-            alert("<?php echo "Please try again"?>");
-        </script>
-        <?php
-    }
-}
-
-
 ?>
 <script>
     const toggle = document.getElementById('togglePassword');
