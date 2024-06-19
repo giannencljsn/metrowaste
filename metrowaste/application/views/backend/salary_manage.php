@@ -34,7 +34,9 @@
 							<thead>
 								<tr>
 									<th>Designation </th>
-									<th>Add Salary Per Hour</th>
+									<th>Add Salary Per Hour
+										<h6 id="required-fields-red">*(ex. 100.75 - leave 2 decimal digits)*</h6>
+									</th>
 								</tr>
 							</thead>
 							<tbody>

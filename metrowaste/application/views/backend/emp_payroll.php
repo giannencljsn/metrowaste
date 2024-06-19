@@ -42,7 +42,7 @@
                                     <!-- <th>ID</th> -->
                                         <th>Name</th>
                                         <th>Date</th>
-                                        <th>Total Days</th>
+                                        <th>Total Hours</th>
                                         <th>Basic</th>
                                         <th>Total Pay</th>
                                         <th>Addition</th>

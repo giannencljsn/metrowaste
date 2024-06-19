@@ -53,12 +53,12 @@
                                                 <textarea class="form-control" id="description" value="<?php echo $settingsvalue->description; ?>" name="description" rows="6" required minlength="20" maxlength="512"><?php echo $settingsvalue->description; ?></textarea>
                                             </div>                                        
                                         </div>                                                                
-                                        <div class="form-group clearfix">
-                                            <label for="copyright" class="col-md-3">Copyright</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" name="copyright" value="<?php echo $settingsvalue->copyright; ?>" id="copyright" placeholder="copyright...">
-                                            </div>
-                                        </div>                                
+                                        <!--<div class="form-group clearfix">-->
+                                        <!--    <label for="copyright" class="col-md-3">Copyright</label>-->
+                                        <!--    <div class="col-md-9">-->
+                                        <!--        <input type="text" class="form-control" name="copyright" value="<?php echo $settingsvalue->copyright; ?>" id="copyright" placeholder="copyright...">-->
+                                        <!--    </div>-->
+                                        <!--</div>                                -->
                                         <div class="form-group clearfix">
                                             <label for="contact" class="col-md-3">Contact</label>
                                             <div class="col-md-9">
