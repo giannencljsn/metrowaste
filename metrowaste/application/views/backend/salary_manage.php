@@ -44,7 +44,7 @@
 									<tr>
 										<td><?php echo $value->des_name; ?></td>
 										<td>
-											<input type="number" name="salary_per_hr[]" value="<?php echo $value->salary_per_hr; ?>" pattern="[0-9]+(\.[0-9]+)?">
+										<input type="number" name="salary_per_hr[]" value="<?php echo $value->salary_per_hr; ?>" pattern="[0-9]+(\.[0-9]+)?" min="0" step="0.01">
 											<input type="hidden" name="designation[]" value="<?php echo $value->id; ?>" >
 										</td>
 									</tr>
