@@ -732,6 +732,7 @@ public function adding_Inactivity(){
 	$id = $this->input->post('id');
 	$em_id = $this->input->post('emid');
 	$reason = $this->input->post('reason');
+	$reasonturnover = $this->input->post('reasonturnover');
     $status = $this->input->post('status');
 	$inactivedate = $this->input->post('inactivedate');
 	$remarks = $this->input->post('remarks');
@@ -751,6 +752,7 @@ public function adding_Inactivity(){
 				'em_id' => $em_id,
 				'inactivedate' => $inactivedate,
 				'reason' => $reason,
+                'reasonturnover' => $reasonturnover,
                 'status' => $status,
 				'remarks' => $remarks
 			);
@@ -772,6 +774,7 @@ else{
 	redirect(base_url() , 'refresh');
 }        
 }
+
 
     public function Add_bank_info(){
         if($this->session->userdata('user_login_access') != False) {
