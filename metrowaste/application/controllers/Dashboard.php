@@ -85,4 +85,15 @@ class Dashboard extends CI_Controller {
         redirect(base_url('dashboard'));
     }
      
+    public function getInactiveEmployeeData($year) {
+        $this->load->model('dashboard_model');
+        $inactiveEmployeeData = $this->dashboard_model->getInactiveEmployeeData($year);
+        echo json_encode($inactiveEmployeeData);
+    }
+    
+        public function getTurnoverReasons($year) {
+            $this->load->model('dashboard_model');
+            $turnoverReasons = $this->dashboard_model->getTurnoverReasons($year);
+            echo json_encode($turnoverReasons);
+        }
 }

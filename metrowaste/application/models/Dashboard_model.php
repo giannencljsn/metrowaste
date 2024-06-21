@@ -35,5 +35,40 @@
         $result = $query->result();
         return $result;
     }
+
+    public function getInactiveEmployeeData($year) {
+        $query = $this->db->select('MONTH(employee.inactivedate) as month, department.dep_name as department, COUNT(employee.id) as count')
+                          ->from('employee')
+                          ->join('department', 'employee.dep_id = department.id')
+                          ->where('employee.status', 'INACTIVE')
+                          ->where('YEAR(employee.inactivedate)', $year)
+                          ->group_by(['MONTH(employee.inactivedate)', 'employee.dep_id'])
+                          ->get();
+    
+        $results = $query->result();
+    
+        // Organize data by month and department
+        $data = array_fill(1, 12, []);
+        foreach ($results as $row) {
+            if (!isset($data[$row->month][$row->department])) {
+                $data[$row->month][$row->department] = 0;
+            }
+            $data[$row->month][$row->department] += $row->count;
+        }
+    
+        return $data;
+    }
+    
+        
+        public function getTurnoverReasons($year) {
+            $this->db->select('reasonturnover, COUNT(id) as count');
+            $this->db->from('employee');
+            $this->db->where('status', 'INACTIVE');
+            $this->db->where('YEAR(inactivedate)', $year);
+            $this->db->group_by('reasonturnover');
+            $query = $this->db->get();
+            return $query->result();
+        }
+        
     }
 ?>
