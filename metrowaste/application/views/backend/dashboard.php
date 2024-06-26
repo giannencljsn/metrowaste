@@ -110,8 +110,42 @@
                     
                     <!-- Column -->
                 </div>
+
                 <!-- ============================================================== -->
             </div> 
+
+			<!-- Inactive employees -->
+			<div class="container-fluid">
+    <div class="row justify-content-between">
+            <div class="mx-4">
+            <h4 class="text-primary">Inactive Employees</h4>
+            </div>
+     
+        <div class="col-auto">
+            <select id="yearDropdown" class="form-control">
+                <?php
+                $currentYear = date('Y');
+                $startYear = max(2024, $currentYear);
+                for ($year = $startYear; $year <= $currentYear + 1; $year++) {
+                    echo '<option value="' . $year . '">' . $year . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-8">
+            <canvas id="employeeChart" class="mt-4"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="turnoverReasonsChart" class="mt-4"></canvas>
+        </div>
+    </div>
+</div>
+<!-- Inactive employees -->
             <?php endif; ?>
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
@@ -228,37 +262,6 @@
                         </div>
                     </div>
                     </div>
-
-                <div class="container-fluid">
-    <div class="row justify-content-between">
-            <div class="mx-4">
-            <h4 class="text-primary">Inactive Employees</h4>
-            </div>
-     
-        <div class="col-auto">
-            <select id="yearDropdown" class="form-control">
-                <?php
-                $currentYear = date('Y');
-                $startYear = max(2024, $currentYear);
-                for ($year = $startYear; $year <= $currentYear + 1; $year++) {
-                    echo '<option value="' . $year . '">' . $year . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid my-5">
-    <div class="row">
-        <div class="col-md-8">
-            <canvas id="employeeChart" class="mt-4"></canvas>
-        </div>
-        <div class="col-md-4">
-            <canvas id="turnoverReasonsChart" class="mt-4"></canvas>
-        </div>
-    </div>
-</div>
 
 <div class="col-md-12 mt-5">
                         <div class="card">
