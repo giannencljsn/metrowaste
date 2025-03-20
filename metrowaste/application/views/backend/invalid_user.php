@@ -34,11 +34,12 @@
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>ID </th>
+                                                <th>PIN </th>
                                                 <th>Employee Name</th>
                                                 <th>Status</th>
 												<th>Date Inactive</th>
                                                 <th>Reason</th>
+                                                <th>Reason Turnover</th>
                                                 <th>Remarks</th>
                                                 <th>Action</th>
                                             </tr>
@@ -61,6 +62,8 @@
                                                 <td><?php echo $value->status; ?></td>
 												<td><?php echo $value->inactivedate; ?></td>
 												<td><button class="btn btn-sm btn-danger"><?php echo $value->reason; ?></button></td>
+                                                <td><?php echo $value->reasonturnover; ?></td>
+
 												<!-- remarks -->
 												<td><?php echo substr("$value->remarks",0,40).'...' ?></td>
 												<td class="jsgrid-align-center ">
@@ -80,7 +83,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content ">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="exampleModalLabel1">Disciplinary Notice</h4>
+                                                    <h4 class="modal-title" id="exampleModalLabel1">Inactive Notice</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <form method="post" action="adding_Inactivity" id="btnSubmit" enctype="multipart/form-data">
@@ -105,6 +108,18 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label class="control-label">Reason for Turnover</label>
+                                                            <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" name="reasonturnover" value="">
+                                                                <option value="Other">Other</option>
+                                                                <option value="Career Advancement">Career Advancement</option>
+                                                                <option value="Work-Life Balance">Work-Life Balance</option>
+                                                                <option value="Management Issues">Management Issues</option>
+                                                                <option value="Compensation">Compensation</option>
+                                                                
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group">
                                                         <label>Status </label>
                                                         <select name="status" tabindex="1" class="form-control custom-select" >
                                                             <option value="ACTIVE">ACTIVE</option>
@@ -124,7 +139,7 @@
                                                      
                                                         <div class="form-group">
                                                             <label for="message-text" class="control-label">Remarks</label>
-                                                            <textarea class="form-control" value="" name="remarks" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible"></textarea>
+                                                            <textarea class="form-control" value="" name="remarks" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible" required></textarea>
                                                         </div>
                                                     
                                                 </div>
@@ -164,6 +179,7 @@
                                                     $('#btnSubmit').find('[name="emid"]').val(response.inactivity.em_id).end();
                                                     $('#btnSubmit').find('[name="inactivedate"]').val(response.inactivity.inactivedate).end();
                                                     $('#btnSubmit').find('[name="reason"]').val(response.inactivity.reason).end();
+                                                    $('#btnSubmit').find('[name="reasonturnover"]').val(response.inactivity.reasonturnover).end();
                                                     $('#btnSubmit').find('[name="remarks"]').val(response.inactivity.remarks).end();
                                                     $('#btnSubmit').find('[name="status"]').val(response.inactivity.status).end();
                                                    

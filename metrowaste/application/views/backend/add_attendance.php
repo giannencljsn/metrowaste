@@ -29,12 +29,21 @@
                             </div>
 							<div class="card-body">
 							<form method="POST" action="<?php echo site_url('formController/process_selected'); ?>" id="employeeForm">
+                              <!---Search box--->
+                              <div class="row">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="employeeSearch">Search:</label>
+                                    <input type="text" class="form-control form-control-sm" id="employeeSearch" placeholder="Enter name">
+                                </div>
+                            </div>
+                        </div>
     <div class="table-responsive">
         <table id="employees123" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Employee Name</th>
-                    <th>ID</th>
+                    <th>PIN</th>
                     <th>Username</th>
                     <th>Contact</th>
                     <th>User Type</th>
@@ -59,15 +68,15 @@
                         </td>
                     </tr>
                     <?php endforeach; ?>
-                    <tr>
-                        <td colspan="6">
-							<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
-                        </td>
-                    </tr>
-                </form>
             </tbody>
         </table>
+        <div>
+            <td colspan="6">
+				<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+            </td>
+        </div>
     </div>
+    </form>
 </div>
 
 
@@ -264,7 +273,22 @@ fetch('Add_Attendance', {
 
 </script>
 
+<script>
+    document.getElementById('employeeSearch').addEventListener('input', function () {
+        var searchText = this.value.toLowerCase();
+        var rows = document.getElementById('employees123').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
 
+        for (var i = 0; i < rows.length; i++) {
+            var name = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+
+            if (name.includes(searchText)) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    });
+</script>
 
                                  
 

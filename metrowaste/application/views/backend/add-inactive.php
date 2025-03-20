@@ -35,7 +35,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>ID</th>
+                                                <th>PIN</th>
                                                 <th>Username </th>
                                                 <th>Contact </th>
                                                 <th>User Type</th>

@@ -110,13 +110,48 @@
                     
                     <!-- Column -->
                 </div>
+
                 <!-- ============================================================== -->
             </div> 
+
+			<!-- Inactive employees -->
+			<div class="container-fluid">
+    <div class="row justify-content-between">
+            <div class="mx-4">
+            <h4 class="text-primary">Inactive Employees</h4>
+            </div>
+     
+        <div class="col-auto">
+            <select id="yearDropdown" class="form-control">
+                <?php
+                $currentYear = date('Y');
+                $startYear = max(2024, $currentYear);
+                for ($year = $startYear; $year <= $currentYear + 1; $year++) {
+                    echo '<option value="' . $year . '">' . $year . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row">
+        <div class="col-md-8">
+            <canvas id="employeeChart" class="mt-4"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="turnoverReasonsChart" class="mt-4"></canvas>
+        </div>
+    </div>
+</div>
+<!-- Inactive employees -->
             <?php endif; ?>
             <div class="container-fluid">
                 <?php $notice = $this->notice_model->GetNoticelimit(); 
                 $userid = $this->session->userdata('user_login_id');
-                $todolist = $this->dashboard_model->GettodoInfo($userid);                 
+                $todolist = $this->dashboard_model->GettodoInfo($userid);     
+                                $holiday = $this->dashboard_model->GetHolidayInfo();                 
                 ?>
                 <!-- Row -->
                 <div class="row">
@@ -185,7 +220,7 @@
                                         <input type="text" name="todo_data" class="form-control" style="border: 1px solid #fff !IMPORTANT;" placeholder="Enter New Task...">
                                         <span class="input-group-btn">
                                         <input type="hidden" name="userid" value="<?php echo $this->session->userdata('user_login_id'); ?>">
-                                        <button type="submit" class="btn btn-success todo-submit"><i class="fa fa-plus"></i></button>
+                                        <button type="submit" class="btn btn-success todo-submit" data-toggle="tooltip" title="Add"><i class="fa fa-plus"></i></button>
                                         </span> 
                                     </div>
                                     </form>
@@ -226,9 +261,11 @@
                             </div> -->
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    </div>
+
+<div class="col-md-12 mt-5">
                         <div class="card">
-                            <!-- <div class="card-body">
+                            <div class="card-body">
                                 <h4 class="card-title">
                                     Holidays
                                 </h4>
@@ -243,14 +280,165 @@
                                             </tr>                                           
                                        </thead>
                                        <tbody>
-                                         
+                                          <?php foreach($holiday as $value): ?>
+                                           <tr style="background-color:#e3f0f7">
+                                               <td><?php echo $value->holiday_name ?></td>
+                                               <td><?php echo $value->from_date; ?></td>
+                                           </tr>
+                                           <?php endforeach ?>
                                        </tbody> 
                                     </table>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div> 
+
+<script>
+$(document).ready(function () {
+    var barChart;
+    var pieChart;
+
+    function fetchDataAndRenderChart(year) {
+        $.ajax({
+            url: "<?php echo base_url('dashboard/getInactiveEmployeeData'); ?>/" + year,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (barChart) {
+                    barChart.destroy();
+                }
+
+                // Prepare data for the chart
+                var labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var departments = new Set();
+                var datasets = [];
+
+                // Collect all departments
+                for (var month in data) {
+                    for (var dept in data[month]) {
+                        departments.add(dept);
+                    }
+                }
+
+                // Prepare datasets for each department
+                departments.forEach(function (dept) {
+                    var dataset = {
+                        label: dept + " Inactive",
+                        data: [],
+                        backgroundColor: getRandomColor(),
+                        borderColor: getRandomColor(),
+                        borderWidth: 1
+                    };
+                    for (var month = 1; month <= 12; month++) {
+                        dataset.data.push(data[month][dept] || 0);
+                    }
+                    datasets.push(dataset);
+                });
+
+                // Render new chart
+                var ctx = document.getElementById('employeeChart').getContext('2d');
+                barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    max: Math.max(7, Math.ceil(Math.max(...datasets.map(d => Math.max(...d.data))) / 7) * 7)
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                // Fetch and update the turnover reasons chart
+                fetchTurnoverReasons(year);
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    function fetchTurnoverReasons(year) {
+        $.ajax({
+            url: "<?php echo base_url('dashboard/getTurnoverReasons'); ?>/" + year,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                if (pieChart) {
+                    pieChart.destroy();
+                }
+
+                var labels = data.map(function (item) {
+                    return item.reasonturnover;
+                });
+                var counts = data.map(function (item) {
+                    return item.count;
+                });
+
+                var ctx = document.getElementById('turnoverReasonsChart').getContext('2d');
+                pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: counts,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                                'rgba(75, 192, 192, 0.5)',
+                                'rgba(153, 102, 255, 0.5)',
+                                'rgba(255, 159, 64, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 8)];
+        }
+        return color;
+    }
+
+    $('#yearDropdown').change(function () {
+        var selectedYear = $(this).val();
+        fetchDataAndRenderChart(selectedYear);
+    });
+
+    var currentYear = (new Date()).getFullYear();
+    fetchDataAndRenderChart(currentYear);
+    fetchTurnoverReasons(currentYear);
+});
+</script>
+
+
+
+
 <script>
   $(".to-do").on("click", function(){
       //console.log($(this).attr('data-value'));

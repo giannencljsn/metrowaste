@@ -1,5 +1,6 @@
 <?php $this->load->view('backend/header'); ?>
 <?php $this->load->view('backend/sidebar'); ?>
+<!-----ATTENDANCE WITH PRINT-->
          <div class="page-wrapper">
             <div class="message"></div>
             <div class="row page-titles">
@@ -20,8 +21,6 @@
                 <div class="row m-b-10"> 
                     <div class="col-12">
                         <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Save_Attendance" class="text-white"><i class="" aria-hidden="true"></i> Add Attendance </a></button>
-                    
-                        <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a href="<?php echo base_url(); ?>attendance/Attendance_Report" class="text-white"><i class="" aria-hidden="true"></i> Attendance Report </a></button>
                     </div>
                 </div>  
                 <div class="row">
@@ -36,12 +35,12 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>ID</th>
+                                                <th>PIN</th>
                                                 <th>Date </th>
                                                 <th>Sign In</th>
                                                 <th>Sign Out</th>
                                                 <th>Working Hour</th>
-                                                
+                                            
                                             </tr>
                                         </thead>
                                         <!-- <tfoot>
@@ -82,7 +81,7 @@
             <td><?php echo $value->sign_in; ?></td>
             <td><?php echo $value->sign_out; ?></td>
             <td><?php echo $value->working_hour; ?></td> 
-            <td></td>             
+ 
             </td>
         </tr>
     <?php endforeach; ?>
@@ -128,3 +127,4 @@
         ]
     });
 </script>
+    

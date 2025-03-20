@@ -38,7 +38,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Employee Name</th>
-                                                <th>ID</th>
+                                                <th>PIN</th>
                                                 <th>Date Reported</th>
                                                 <th>Date of Incident</th>
                                                 <th>Description</th>
@@ -114,7 +114,7 @@
 				                                    </div>
                                                         <div class="form-group">
                                                             <label for="message-text" class="control-label">Details</label>
-                                                            <textarea class="form-control" value="" name="details" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible"></textarea>
+                                                            <textarea class="form-control" value="" name="details" id="message-text1" rows="4" placeholder="Please make it as Detailed as possible" required></textarea>
                                                         </div>
                                                     
                                                 </div>

@@ -26,13 +26,33 @@
                         <h4 class="m-b-0 text-white"> Application List                        
                         </h4>
                     </div>
+					<!--LEAVE APPROVAL Modal HTML -->
+<div id="confirmationModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:blue;">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to <span id="action"></span> this leave application?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirmAction">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
                     <div class="card-body">
                         <div class="table-responsive ">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
                                         <th>Employee Name</th>
-                                        <th>ID</th>
+                                        <th>PIN</th>
                                         <th>Leave Type</th>
                                         <th>Apply Date</th>
                                         <th>Start Date</th>
@@ -113,6 +133,9 @@
                             </table>
                         </div>
                     </div>
+												
+
+
                 </div>
             </div>
         </div>
@@ -268,49 +291,53 @@
             $('.totalhour').val((day * hour ? day * hour : 0).toFixed(2));
         });
         </script>
+
+<!-- JavaScript to handle modal and AJAX -->
 <script>
 $(".Status").on("click", function (event) {
-    event.preventDefault();
-
-    // Store the reference to $(this) in a variable
-    var $this = $(this);
-
+  event.preventDefault();
+  var action = $(this).attr('data-value');
+  var id = $(this).attr('data-id');
+  var message = action === 'Approve' ? 'Approve' : 'Reject';
+  
+  $('#action').text(message);
+  
+  $('#confirmationModal').modal('show');
+  
+  $('#confirmAction').off('click').on('click', function() {
     $.ajax({
-        url: "approveLeaveStatus",
-        type: "POST",
-        data: {
-            'employeeId': $this.attr('data-employeeId'),
-            'lid': $this.attr('data-id'),
-            'lvalue': $this.attr('data-value'),
-            'duration': $this.attr('data-duration'),
-            'type': $this.attr('data-type')
-        },
-        success: function (response) {
-            var message = "";
-            if ($this.attr('data-value') === 'Approve') {
-                message = 'Successfully Approved';
-            } else if ($this.attr('data-value') === 'Rejected') {
-                message = 'Successfully Rejected';
+      url: "approveLeaveStatus",
+      type: "POST",
+      data: {
+        'employeeId': $(this).attr('data-employeeId'),
+        'lid': id,
+        'lvalue': action,
+        'duration': $(this).attr('data-duration'),
+        'type': $(this).attr('data-type')
+      },
+      success: function (response) {
+        // Handle success response
+		let responseMessage = "";
+		if (action === 'Approve') {
+			responseMessage = 'Successfully Approved';
+            } else if (action === 'Rejected') {
+                responseMessage = 'Successfully Rejected';
             }
+        console.log(responseMessage);
 
-            // Log the message to the console
-            console.log(message);
-
-            // Display the success message in div.message
-          $(".message").html(message).show();
-
-            // Reload the page after a delay (if needed)
-            setTimeout(function () {
-                window.location.reload();
-            }, 2000); // Reload after 2 seconds (adjust as needed)
-        },
-        error: function (response) {
-            console.error(response);
-        }
+        $(".message").html(responseMessage).show();
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000);
+      },
+      error: function (response) {
+        // Handle error response
+        console.error(responseMessage);
+      }
     });
+  });
 });
 </script>
-
 
 
 <script type="text/javascript">

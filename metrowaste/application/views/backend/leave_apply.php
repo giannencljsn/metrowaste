@@ -17,11 +17,27 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <div class="row m-b-10">
+			<!-- Create a PHP variable for maximum leaves -->
+			<?php 
+				$maximum_leaves = 360;
+			?>
             <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-            <div class="col-12">
-                <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Application </a></button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Holidays" class="text-white"><i class="" aria-hidden="true"></i>  Holiday List</a></button>
-            </div>
+
+				<div class="col-12">
+					
+					<?php if($total_leave_duration >= $maximum_leaves) {?>
+					<button type="button" class="btn btn-info disabled">
+                <i class="fa fa-plus"></i> Add Application
+            </button>
+        	<?php } else { ?>
+				<button type="button" class="btn btn-info">
+                <i class="fa fa-plus"></i> <a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white">Add Application</a>
+            	</button>
+		
+				<?php } ?>
+					<button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>leave/Holidays" class="text-white"><i class="" aria-hidden="true"></i>  Holiday List</a></button>
+				</div>
+
             <?php } ?>
         </div>
         <div class="row">
@@ -38,7 +54,7 @@
                                     <tr>
                                     <!-- <th>ID</th> -->
                                         <th>Name</th>
-                                        <th>ID</th>
+                                        <th>PIN</th>
                                         <th>Leave Type</th>
                                         <th>Apply Date</th>
                                         <th>Start Date</th>
@@ -61,6 +77,22 @@
                                     <th>Action</th>
                                 </tr>
                                 </tfoot> -->
+								<h2 style="color:blue;">
+								<?php 
+                                    $day1 = 24;
+                                    $currentYear = date('Y');
+					
+									if($total_leave_duration > $maximum_leaves){
+										echo 'You have already used all your leaves!';
+									}elseif($total_leave_duration == 0){
+										echo "You have 0 leaves";
+									}
+									else{
+										echo 'You have currently '.round(($total_leave_duration / $day1)).'/'.($maximum_leaves/$day1).' '.'Number of leaves approved'.'<br>';
+                                        echo 'In'.' '.$currentYear;
+									} ; ?></h2>
+
+                                
                                 <tbody>
                                     <?php foreach($application as $value): ?>
                                     <tr style="vertical-align:top">
@@ -162,10 +194,14 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Reason</label>
-                                <textarea class="form-control" name="reason" id="message-text1" required minlength="10"></textarea>                                                
+                                <textarea class="form-control" name="reason" id="message-text1" required minlength="10" required></textarea>                                                
                             </div>
                             
                         </div>
+						
+
+
+
                         <script>
                         $(document).ready(function () {
                             $('#leaveapply input').on('change', function(e) {
@@ -240,4 +276,21 @@
                 });
             });
         </script>
+		<!-- DISABLE BTN IF MAXIMUM LEAVES HAS BEEN REACHED -->
+		<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var addApplicationBtn = document.getElementById('addApplicationBtn');
+
+    // Add click event listener to the button
+    addApplicationBtn.addEventListener('click', function(event) {
+        // Check if button is disabled
+        if (this.classList.contains('disabled')) {
+            // Prevent default behavior (e.g., following the link)
+            event.preventDefault();
+            // Optionally, show a message or perform any other action
+            console.log('Button is disabled.');
+        }
+    });
+});
+</script>
         <?php $this->load->view('backend/footer'); ?>

@@ -136,78 +136,7 @@
                                     </div>
                                     
 
-									<div class="form-group col-md-3 m-t-20">
-										<label>PHILHEALTH (12 digits)</label>
-										<div class="input-group">
-											<input type="text" name="philhealth_1" class="form-control" maxlength="2" placeholder="00" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-											<span class="input-group-text">-</span>
-											</div>
-											<input type="text" name="philhealth_2" class="form-control" maxlength="9" placeholder="000000000" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-											<span class="input-group-text">-</span>
-											</div>
-											<input type="text" name="philhealth_3" class="form-control" maxlength="1" placeholder="0" onkeypress="return /[0-9]/i.test(event.key)">
-										</div>
-										<input type="hidden" name="philhealth" id="philhealth">
-										</div>
-
-
-
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>SSS (10 digits)</label>
-                                        <div class="input-group">
-                                            <input type="text" name="sss_1" class="form-control" minlength="2" maxlength="2" placeholder="00" onkeypress="return /[0-9]/i.test(event.key)">
-                                            <div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-                                            </div>
-                                            <input type="text" name="sss_2" class="form-control" minlength="7" maxlength="7" placeholder="0000000" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-                                            </div>
-                                            <input type="text" name="sss_3" class="form-control" minlength="1" maxlength="1" placeholder="0" onkeypress="return /[0-9]/i.test(event.key)">
-                                       	 </div>
-											<input type="hidden" name="sss" id="sss">	
-									</div>
-                                   
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>PAGIBIG (12 digits)</label>
-										<div class="input-group">
-                                        	<input type="text" name="pagibig_1" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
-                                            <div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-											</div>
-                                            
-                                            <input type="text" name="pagibig_2" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-                                            </div>
-                                            <input type="text" name="pagibig_3" class="form-control" minlength="4" maxlength="4" placeholder="0000" onkeypress="return /[0-9]/i.test(event.key)">
-                                       	 </div>
-											<input type="hidden" name="pagibig" id="pagibig">	
-                                    </div>
-
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>TIN (12-15 digits)</label>
-										<div class="input-group">
-											<input type="text" name="tin_1" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
-                                            <div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-											</div>
-                                            
-                                            <input type="text" name="tin_2" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-                                            </div>
-                                            <input type="text" name="tin_3" class="form-control" minlength="3" maxlength="3" placeholder="000" onkeypress="return /[0-9]/i.test(event.key)">
-											<div class="input-group-prepend">
-                                            <span class="input-group-text">-</span>
-											</div>
-											<input type="text" name="tin_4" class="form-control" minlength="3" maxlength="5" placeholder="00000" onkeypress="return /[0-9]/i.test(event.key)">
-										
-										</div>
-											<input type="hidden" name="tin" id="tin">
-                                    </div>
+								
                                     <div class="form-group col-md-3 m-t-20">
                                         <label><span id="required-fields-red">*</span>Contact Number (<span id="required-fields-red">required</span>)</label>
 										<div class="input-group">
@@ -291,56 +220,48 @@
 
 <script>
     // Function to check if all required fields are filled
-function checkForm() {
-    var requiredFields = [
-        "fname",
-        "lname",
-        "eid",
-        "dept",
-        "deg",
-        "role",
-        "gender",
-        "maritalstat",
-        "contact_1",
-        "contact_2",
-        "emcontact_1", // Added emcontact_1 to requiredFields
-        "emcontact_2", // Added emcontact_2 to requiredFields
-        "contactname",
-        "dob",
-        "joindate",
-        "email",
-        "password",
-        "confirm"
-    ];
+    function checkForm() {
+        var requiredFields = [
+            "fname",
+            "lname",
+            "eid",
+            "dept",
+            "deg",
+            "role",
+            "gender",
+            "maritalstat",
+            "contact_1",
+            "contact_2",
+            "emcontact_1", // Added emcontact_1 to requiredFields
+            "emcontact_2", // Added emcontact_2 to requiredFields
+            "contactname",
+            "dob",
+            "joindate",
+            "email",
+            "password",
+            "confirm"
+            
+        ];
 
-    var allFieldsFilled = true;
+        var allFieldsFilled = true;
 
-    for (var i = 0; i < requiredFields.length; i++) {
-        var field = document.forms["myForm"][requiredFields[i]];
-        if (field.value === "") {
-            allFieldsFilled = false;
-            break;
+        for (var i = 0; i < requiredFields.length; i++) {
+            var field = document.forms["myForm"][requiredFields[i]];
+            if (field.value === "") {
+                allFieldsFilled = false;
+                break;
+            }
         }
+
+        var submitBtn = document.getElementById("submitBtn");
+        submitBtn.disabled = !allFieldsFilled;
     }
-
-    // Check if the password and confirm fields are not empty
-    var passwordField = document.forms["myForm"]["password"];
-    var confirmPasswordField = document.forms["myForm"]["confirm"];
-
-    if (passwordField.value === "" || confirmPasswordField.value === "") {
-        allFieldsFilled = false;
-    }
-
-    var submitBtn = document.getElementById("submitBtn");
-    submitBtn.disabled = !allFieldsFilled;
-}
 
     // Call checkForm function on form field change
     var formFields = document.getElementsByClassName("form-control");
     for (var i = 0; i < formFields.length; i++) {
         formFields[i].addEventListener("input", checkForm);
     }
-
 
     // Function to show/hide password
     function showPassword() {

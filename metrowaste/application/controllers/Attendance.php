@@ -122,6 +122,14 @@ public function Add_Attendance()
                     // Subtract 1 hour directly from the hours property
                     $time_diff->h -= 1;
 
+                    // Check if the working hours exceed 8 hours
+                    if ($time_diff->h > 8 || ($time_diff->h == 8 && $time_diff->i > 0)) {
+                        $message = "Error: Working hours cannot exceed 8 hours.";
+                        $response = array('message' => $message);
+                        echo json_encode($response);
+                        return;
+                    }
+
                     $working_hour = $time_diff->format('%h h %i m');
 
                     $this->attendance_model->UpdateAttendance($em_codes[$key], $date, $sign_out, $working_hour);
@@ -145,6 +153,9 @@ public function Add_Attendance()
         echo json_encode($response);
     }
 }
+
+
+
 
 
 
